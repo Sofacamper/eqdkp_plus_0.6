@@ -25,6 +25,7 @@ require('armory.class.php');
 
 class ArmoryChars extends PHPArmory
 {
+	private $realm = 'WoW-Castle+PvE';
   /**
   * Download Character Information
   * 
@@ -36,7 +37,8 @@ class ArmoryChars extends PHPArmory
   * @return bol
   */
 	public function GetCharacterData($user, $realm, $loc='us', $lang='en_us', $parse=true){
-	  $wowurl = $this->links[$loc].'character-sheet.xml?r='.$this->ConvertInput($realm).'&n='.$this->ConvertInput($user);
+	  $realm = 'WoW-Castle+PvE';
+	  $wowurl = $this->links[$loc].'character-sheet.xml?r='.$this->realm.'&cn='.$this->ConvertInput($user);
 		if($parse == true){
 			$xml = simplexml_load_string($this->read_url($wowurl, $lang));
 			if(is_object($xml)){
@@ -61,7 +63,8 @@ class ArmoryChars extends PHPArmory
   * @return bol
   */
 	public function GetAchievementData($category, $user, $realm, $loc='us', $lang='en_us'){
-		$wowurl = $this->links[$loc].'character-achievements.xml?r='.$this->ConvertInput($realm).'&cn='.$this->ConvertInput($user).'&c='.$category;
+	
+		$wowurl = $this->links[$loc].'character-achievements.xml?r='.$this->realm.'&cn='.$this->ConvertInput($user).'&c='.$category;
 		if($parse == true){
 			$xml = simplexml_load_string($this->read_url($wowurl, $lang));
 			if(is_object($xml)){   
@@ -87,7 +90,7 @@ class ArmoryChars extends PHPArmory
   * @return bool
   */
 	public function GetGuildMembers($guild, $realm, $loc='us', $minLevel, $clsFilter, $rnkFilter, $lang='en_us', $parse=true) {
-    $wowurl = $this->links[$loc]."guild-info.xml?r=".$this->ConvertInput($realm)."&n=".$this->ConvertInput($guild)."&p=1";
+    $wowurl = $this->links[$loc]."guild-info.xml?r=".$this->realm."&gn=".$this->ConvertInput($guild)."&p=1";
 		$xmldata = $this->read_url($wowurl, $lang);
 		if($parse == true){
 			$xml = simplexml_load_string($xmldata);
