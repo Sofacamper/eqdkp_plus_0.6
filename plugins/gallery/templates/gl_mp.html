@@ -1,0 +1,107 @@
+<style>
+table.borderless .image-resize div { height: 0px; margin: 0px; padding: 0px}
+#mthumb:hover { background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/hover.png);}
+</style>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="3"> 
+      <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="text-align: left;"><b>      
+            <a href="{EQDKP_ROOT_PATH}plugins/gallery/gallery.php">{GL_HEADLINE}</a> -> {GL_HEADLINE_CAT} -> {GL_FILENAME}</b></td><td align="right">{GL_UPLOAD}</td>
+        </tr>
+      </table>
+    </th>	
+  </tr>	
+  <tr class="row1">	<td>                <form method="POST">	 	
+      <table class="borderless" border="0" cellpadding="0" cellspacing="0">  
+        <tr >    
+          <td valign="top">    
+            <table class="borderless" border="0" cellpadding="0" cellspacing="2">    
+              <tr >		
+                <td width="50" align="right">{GL_PREV}</td>		
+                <td align="center">                   
+                  <div style="position: absolute; margin-top: 20px; margin-left: 330px; z-index:2;"><a href="#">
+                  <img src="images/delete_big.png" onclick="return overlib('<div class=\'pk_tt_help\' style=\'display:block; width: 270px;\'><div class=\'pktooldiv\'><table cellpadding=\'0\' border=\'0\' class=\'borderless\' width=\'100%\'><tr><td align=\'center\'><b> <span style=\'font-size:13px;\'>&quot;{GL_TITLE_HTML}&quot; {GL_AD_PIC_DEL_TITLE}</span> </b><br /> ({GL_FILENAME}) <br /><br /><table class=\'borderless\' width=\'100%\' align=\'center\'><tr><td valign=\'top\' colspan=\'2\' align=\'center\' border=\'1\'>{GL_AD_PIC_DELCHECK}<br />&nbsp;</td></tr><tr><td valign=\'top\' align=\'center\' border=\'1\' style=\'width: 50%\'> <a href=\'./mypics.php?del_id={GL_PIC_ID}\' style=\'color: #000000\'><b>{GL_AD_PIC_DEL_YES}</b></a></td><td valign=\'top\' align=\'center\' style=\'width: 50%\'><b><a href=\'#\' onclick=\'return cClick();\' style=\'color: #000000\'>{GL_AD_PIC_DEL_NO}</a></b></td></tr></table></td></tr></table><br /></div></div>', STICKY, FULLHTML, WRAP, LEFT);"></a>            
+                  </div>                    
+                  <div style="z-index:1; border: 1px solid #999999; padding: 10px; background: transparent url(images/highlighting.png);" class="row3">            
+                    <table height="300" width="100%" class="borderless" cellpadding="0" cellspacing="0">              
+                      <tr>                
+                        <td style="text-align: center; vertical align: middle;">                  
+                          <a href="{GL_DIRNAME}/{GL_FILENAME}" rel="lytebox[nocat]" class="image-resize" title="{GL_TITLE_HTML}&nbsp; &lt;span style=&quot;font-weight: normal;&quot;&gt;({GL_PIC_WIDTH}x{GL_PIC_HEIGHT}) {GL_SHORT_UP_FROM}{GL_UNAME}&lt;/span&gt;&lt;br /&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;{GL_DESCRIPTION_CONTENT_NOBREAK}&lt;/span&gt;&lt;br /&gt;&nbsp;" >                  
+                            <img src="{GL_DIRNAME}/{GL_FILENAME}" align="middle" style="max-height: 300px; max-width: 350px">                  </a>                </td>              
+                      </tr>            
+                    </table>          
+                  </div>    </td>		
+                <td width="50" >{GL_NEXT}</td>		
+              </tr>    
+              <tr >		
+                <td width="50" ></td>		
+                <td align="center">	
+   
+                  <table style="border: 1px solid #999999; table-layout:auto; width: 392px" border="0" cellspacing="1" cellpadding="2">			
+                    <tr>				
+                      <td style="text-align: center; padding: 10px; width: 368px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);"  height="70" colspan="2">        <b><br /><input class="input" name="description" value="{GL_TITLE}" style="text-align: center; width: 250px; font-weight: bold;"><br />&nbsp;    </b>        </td>			
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="28" style="text-align: left; width: 150px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);">{GL_FILE_NAME}</td>
+                      <td class="row2" height="28" style="text-align: left; width: 242px">{GL_FILENAME}</td>      
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="70" valign="top" style="padding-top: 5px; padding-bottom: 5px; text-align: left; width: 150px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);">{GL_DESCRIPTION}</td>
+                      <td class="row2" height="28" valign="top" style="padding-top: 5px; padding-bottom: 5px; padding-right: 0px; text-align: left; width: 242px">			  
+                      <textarea class="input" name="comment" cols="36" rows="7" style="padding-right: -12px; width: 235px">{GL_DESCRIPTION_CONTENT}</textarea></td>      
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="28" style="text-align: left; width: 150px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);">{GL_UP_FROM}</td>
+                      <td class="row2" height="28" style="text-align: left; width: 242px">	  {GL_UNAME}</td>      
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="28" style="text-align: left; width: 150px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);">{GL_UP_DATE}</td>
+                      <td class="row2" height="28" style="text-align: left; width: 242px">			  {GL_DATE}</td>      
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="28" style="text-align: left; width: 150px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);">{GL_NEW_CATEGORY}</td>
+                      <td class="row2" height="28" style="text-align: left; width: 242px">			  {GL_NEW_CAT}</td>      
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="28" style="text-align: left; width: 150px; background: transparent url({EQDKP_ROOT_PATH}plugins/gallery/images/highlighting.png);">{GL_PIC_RESOLUTION}</td>
+                      <td class="row2" height="28" style="text-align: left; width: 242px">			  {GL_PIC_WIDTH} x {GL_PIC_HEIGHT}</td>      
+                    </tr>      
+          			</td>			
+              </tr>		
+            </table>
+               </td>		
+          <td width="50" ></td>		
+        </tr>		     
+      </table>
+      </td>		
+      <td width="100%" valign="top" align="center">		
+        <div style="overflow: hidden; width: 318px;"><table style="border: 1px solid #999999; margin: 2px; padding: 4px; background: transparent url(images/highlighting.png); width: 314px; " ><tr><td align="left" width="33%">{GL_NAVIGATION_LEFT}</td><td align="center" width="34%">&nbsp;{GL_NAVIGATION_CENTER}&nbsp;</td><td align="right" width="33%">{GL_NAVIGATION_RIGHT}</td></tr></table>{GL_RES_OUT}<br />
+      <table style="border: 1px solid #999999; margin: 2px; padding: 4px; background: transparent url(images/highlighting.png); width: 314px; " ><tr><td align="left" width="15%">{GL_NAVIGATION_LEFT}</td><td align="center" width="70%">{GL_RANGE_NAVIGATION_CENTER}&nbsp;</td><td align="right" width="15%">{GL_NAVIGATION_RIGHT}</td></tr></table>
+        </div>
+        		</td>	
+   </tr>	
+  </table>  
+ </td>  
+</tr>	
+<tr class="{GL_ROW_CLASS}">		
+  <th colspan="3"> <input type="hidden" name="pid" value={GL_PIC_ID}> <input type="submit" name="update" value="Update" class="mainoption">
+  </th>
+  </form> 
+</tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+function aboutDialog(){
+	{L_CREDITS}
+}
+</script>
+<br/>
+<center>
+  <span class="copyis">
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">
+      <img src="{EQDKP_ROOT_PATH}plugins/gallery/images/credits/info.png" alt="Credits" border="0" /> Credits</a>
+  </span><br />
+  <span class="copy">{L_COPYRIGHT}
+  </span>
+</center>

@@ -1,0 +1,42 @@
+ /*
+ * Project:     EQdkp CharManager 1
+ * License:     Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Began:       2006
+ * Date:        $Date: 2009-05-13 07:55:34 +0200 (Wed, 13 May 2009) $
+ * -----------------------------------------------------------------------
+ * @author      $Author: wallenium $
+ * @copyright   2005-2008 Simon (Wallenium) Wallmann
+ * @link        http://eqdkp-plus.com
+ * @package     charmanager
+ * @version     $Rev: 4852 $
+ * 
+ * $Id: cronjob.de.txt 4852 2009-05-13 05:55:34Z wallenium $
+ */
+
+CRONJOB README
+--------------------------------------------------------------------------------------------------
+Man kann mit sog. Cron Jobs, Funktionen auf Webservern zeitlich gesteuert automatisieren. 
+Das EQDKP Plugin 'Char Manager' verfügt ab der Version 1.1.4 über ein Script, 
+welches das Updaten der Charakter Daten der WoW Armory Seite übernimmt, 
+wenn es im Browser (oder durch einen Cron-Job) aufgerufen wird. Das Cron Job Script 
+befindet sich nach erfolgreicher Installation unter folgender Adresse: http://www.meinedomain.de/plugins/charmanager/games/wow/import/armory/armory_cron.php 
+
+Um bspw. einen kostenlosen Anbieter wie www.cronjob.de zu verwenden, einfach
+Registrieren und in der Verwaltung einen Cron Job hinzufügen. www.cronjob.de 
+bietet hier einfache Vorlagen an, um die Zeiten - wann das Script - aufgerufen 
+werden soll auszuwählen. Zusätzliche Zeiten werden einfach durch Mehrfachauswahl 
+angeklickt. Als Zeiten für das Updaten meiner Char Manager Daten habe ich 
+00:00, 06:00, 12:00, 18:00 Uhr an allen Tagen und Monaten eines Jahres gewählt.
+Das ordungsgemäße Ausführen des Cron Jon kann man prüfen, indem man das 
+Aktualisierungsdatum im Char Manager überprüft und auf der Anbieter Seite innerhalb 
+der Verwaltung nachsieht wann der Job ausgeführt wurde. 
+
+Anmerkung: 
+--------------------------------------------------------------------------------------------------
+Bei kostenlosen Anbietern kann es uU. sein das ein Cron Job nicht genau um 12:00 Uhr
+ausgeführt wird, ein bis drei Minuten Verzögerung sind durchaus üblich bis der Start
+erfolgt. Das Updaten aller Charaktere dauert dann wie gewohnt seine 3-5 Minuten.Wer
+auch seine Datenbank automatisiert via Cron Job sichern möchte, schaut sich mal bei
+www.mysqldumper.de um. 

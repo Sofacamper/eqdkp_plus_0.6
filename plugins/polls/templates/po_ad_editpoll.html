@@ -1,0 +1,164 @@
+{STATUS}
+<!-- disable the Enter-Key - begin -->
+<script type="text/javascript">
+	function stopRKey(evt) {
+		var evt = (evt) ? evt : ((event) ? event : null);
+		var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+		if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+	}
+	document.onkeypress = stopRKey;
+</script>
+<!-- disable the Enter-Button - end -->
+<script type="text/javascript">
+	function valueCheck(){
+		if (document.editpoll.po_ed_title.value != ""){
+			document.editpoll.po_submit.disabled = false;
+		} else {
+			document.editpoll.po_submit.disabled = true;
+		}
+	}
+	function newOptionCheck(){
+		if (document.editpoll.newanswer.value != ""){
+			document.getElementById("addbutton").style.visibility = "visible";
+		} else {
+			document.getElementById("addbutton").style.visibility = "hidden";
+		}
+	}
+</script>
+
+<style type="text/css">
+	.delbutton{
+		width: 16px;
+		height: 16px;
+		background: transparent url('../images/delete.png');
+		text-indent: -1000em;
+		border: none;
+	}
+
+	.addbutton{
+		width: 16px;
+		height: 16px;
+		background: transparent url('../images/add.png');
+		text-indent: -1000em;
+		border: none;
+	}
+</style>
+
+{PO_JS_CONFIG_TABS}
+{TAB_PRESET}
+<form name="editpoll" method="POST">
+	<input type="hidden" name="po_id" value="{ID}" />
+	<div id="config_tabs">
+		<ul>
+			<li>
+				<a href="#common">{F_COMMON}</a>
+			</li>
+			<li>
+				<a href="#options">{F_OPTIONS}</a>
+			</li>
+		</ul>
+		<div id="common">
+			<table width="100%" cellpadding="2" cellspacing="0">
+				<tr>
+					<th colspan="2">{F_HEADLINE}</th>
+				</tr>
+				<tr class="row1">
+					<td>{F_TITLE}</td>
+					<td>
+						<input type="text" name="po_ed_title" size="80" onKeyUp="valueCheck()" value="{TITLE}" />
+					</td>
+				</tr>
+				<tr class="row2">
+					<td valign="top">{F_DESCRIPTION}</td>
+					<td>
+						{DESCAREA}<textarea id="description" name="po_ed_description" class="jTagEditor">{DESCRIPTION}</textarea>
+					</td>
+				</tr>
+				<tr class="row1">
+					<td>{F_MULTIPLE}</td>
+					<td><input type="checkbox" name="po_ed_multiple" value="1" {MULTIPLE} /></td>
+				</tr>
+				<tr class="row2">
+					<td>{F_COMMENTS}</td>
+					<td><input type="checkbox" name="po_ed_comments" value="1" {COMMENTS} /></td>
+				</tr>
+				<tr class="row1">
+					<td>{F_EDITABLE}</td>
+					<td><input type="checkbox" name="po_ed_editable" value="1" {EDITABLE} /></td>
+				</tr>
+				<tr class="row2">
+					<td>{F_INTERMED}</td>
+					<td><input type="checkbox" name="po_ed_intermed" value="1" {INTERMED} /></td>
+				</tr>
+				<tr class="row1">
+					<td>{F_MODSTYLE}</td>
+					<td>
+						<select name="po_ed_modstyle">
+							<option value="1" {MODSTYLE1}>{F_MODSTYLE1}</option>
+							<option value="2" {MODSTYLE2}>{F_MODSTYLE2}</option>
+						</select>
+					</td>
+				</tr>
+				<tr class="row2">
+					<td>{F_ENDDATE}</td>
+					<td>{ENDDATE}</td>
+				</tr>
+				<tr class="row1">
+					<td>{F_CLOSED}</td>
+					<td><input type="checkbox" name="po_ed_closed" value="1" {CLOSED} /></td>
+				</tr>
+			</table>
+		</div>
+
+
+		<div id="options">
+			<table width="100%" cellpadding="2" cellspacing="0">
+				<tr>
+					<th colspan="2">{F_HEADLINE}</th>
+				</tr>
+				<!-- BEGIN options -->
+					<tr class="{options.ROWCLASS}">
+						<td>
+							<input type="text" size="80" name="opt[{options.ID}]" value="{options.OPTION}" />
+						</td>
+						<td>
+							<input type="hidden" name="{options.ID}" value="{options.DBID}" />
+							<input type="submit" class="delbutton" value="{options.ID}" name="opt_delete" />
+						</td>
+					</tr>
+				<!-- END options -->
+				<tr>
+					<th colspan="2">
+						{F_NEWOPTION}
+					</th>
+				</tr>
+				<tr class="row2">
+					<td>
+						<input type="text" name="newanswer" onKeyUp="newOptionCheck()" size="80" />
+					</td>
+					<td>
+						<input type="submit" class="addbutton" style="visibility: hidden;" id="addbutton" name="opt_add" value="new_opt" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<table width="100%" cellpadding="2" cellspacing="0">
+			<tr>
+				<th>
+					<!-- IF SUBMIT -->
+						<table width="100%">
+							<tr>
+								<td width="40%" align="left">{F_RESET}<input type="checkbox" name="po_reset" /></td>
+								<td>
+									<input align="middle" class="mainoption" type="submit" name="po_submit" value="{F_UPDATE}" />
+								</td>
+								<td width="40%" align="right">{F_DELETE}<input type="checkbox" name="po_delete" /></td>
+							</tr>
+						</table>
+					<!-- ENDIF -->
+				</th>
+			</tr>
+  	</table>
+	</div>
+</form>
+{PO_FOOTER}

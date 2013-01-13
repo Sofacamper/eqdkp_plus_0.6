@@ -1,0 +1,111 @@
+  <div align="center" style="font-weight:bold;">{MC_ERROR}</div>
+
+        <div id='upload_tabs'>
+         <div id="video">
+          <form action="edit.php{SID}&id={ID}" method="post" enctype="multipart/form-data" name="mc_upload" onSubmit="return  mc_check_upload_form()">
+          <table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th colspan="2">{L_INSERT_VIDEO}<span class="footer"></span></th>
+      </tr>
+
+        <tr class="row1">
+          <td width="180" align="left"><strong>{L_CATEGORY}:*</strong></td>
+          <td>{CATEGORY_SELECT}</td>
+        </tr>
+
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_NAME}</span>:*</strong></td>
+          <td><input name="name" type="text" class="input" id="name" style="width:98%;" value="{NAME}"/></td>
+        </tr>
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_DESCRIPTION}</span>:</strong></td>
+          <td><textarea name="description" class="input" id="description" style="width:98%">{DESC}</textarea></td>
+        </tr>
+
+        
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_URL}:*</strong></td>
+          <td><input name="url" type="text" class="input" id="url" style="width:98%;" onChange="mc_check_url()" value="{URL}"/></td>
+        </tr>
+        <!-- IF not S_YOUTUBE -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_PREVIEW_IMAGE}:</strong></td>
+          <td><!-- IF S_PREVIEWIMAGE -->{DL_EDIT_PREVIEW_IMAGE}
+            <input name="is_previewimage" type="hidden" class="input" id="is_preview" style="width:98%;" value="true"/>
+          <input name="previewimage" type="hidden" class="input" id="previewimage" style="width:98%;" value="{PREVIEWIMAGE}"/>{PREVIEWIMAGE}<a href="edit.php{SID}&id={ID}&mode=del_pi" title=""><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/delete.png" alt="Delete"></a><!-- ELSE --><input name="previewimage" type="file" class="input" id="previewimage" size="60"><!-- ENDIF --></td>
+        </tr>
+
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_DURATION}:</strong></td>
+          <td><input name="duration" type="text" class="input" id="duration" value="{DURATION}" size="5" maxlength="5"/>
+            <span id="dl_mirrors_area2">MM:SS</span></td>
+        </tr>
+		<!-- ELSE -->
+        <input name="duration" type="hidden" class="input" id="duration" value="{DURATION}" size="5" maxlength="5"/>
+        <input name="previewimage" type="hidden" class="input" id="previewimage" style="width:98%;" value="{PREVIEWIMAGE}"/>
+        <!-- ENDIF -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_TAGS}:</strong></td>
+          <td><input name="tags" type="text" class="input" id="tags" style="width:98%" onchange="if(this.value != ''){dl_add_mirror_input();}" value="{TAGS}"/>
+          <span id="dl_mirrors_area"></span></td>
+        </tr>
+        <tr class="row2">
+          <td colspan="2" align="left" nowrap><a href="javascript:show_story('story')" id="story_link_story">{L_SHOW_STORY} </a><a href="javascript:hide_story('story')" id="story_link2_story" style="display:none;">{L_HIDE_STORY}</a>
+            
+            <div id="story_area_story" style="display:none">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">          
+                <tr class="row1">
+                  <td align="left" nowrap><strong>{L_STORY}:</strong></td>
+                  <td>{VIDEO_EDITOR}
+                  <input class="input" type="text" name="story" style="width:98%" id="story" value="{STORY}"/></td>
+                </tr>
+              </table>
+            </div>          </td>
+          </tr>
+
+          </table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="{L_SAVE}">
+      <input class="liteoption" type="reset" value="{L_RESET}" onClick="dl_reset_fields()">
+      <input name="ref" type="hidden" id="ref" value="{REFFERRER}"></th>
+    </tr>
+
+</table>
+</form>
+</div>
+</div>          
+
+
+
+<script language="javascript" type="text/javascript">
+
+
+function mc_check_upload_form(){
+
+	if((document.mc_upload.name.value == "") || (document.mc_upload.url.value == "") ){
+		
+					show_fields_empty();
+					return false;
+	}
+	else {document.getElementById('dl_file_area').style.display = "none";
+		document.getElementById('dl_loading_area').style.display = "inline";
+		};
+}
+
+function show_story(id){
+	
+	document.getElementById('story_area_'+id).style.display = 'inline';
+	document.getElementById('story_link_'+id).style.display = 'none';
+	document.getElementById('story_link2_'+id).style.display = 'inline';
+}
+
+function hide_story(id){
+	
+	document.getElementById('story_area_'+id).style.display = 'none';
+	document.getElementById('story_link_'+id).style.display = 'inline';
+	document.getElementById('story_link2_'+id).style.display = 'none';
+}
+</script>
+{JS_FIELDS_EMPTY}

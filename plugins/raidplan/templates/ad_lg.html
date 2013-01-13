@@ -1,0 +1,81 @@
+<!-- IF S_LIST -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+  <tr>
+    <td align="center" class="menu">{VL_PAGINATION}</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th colspan="5">
+    <form method="post" action="{F_DELLOG}" name="post">
+      <table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+        <tr>
+          <th width="70%"></th>
+          <th width="20%">{L_DEL_LOG}</th>
+          <th width="10%"><input type="text" name="rp_dellogdays" size="5" value="{RPDELLOGDAYS}" class="input" /> {L_DAYS}</th>
+          <th width="5%"><input type="submit" name="deletedays" value="{L_DELETE}" class="mainoption" /></th>
+        </tr>
+      </table>
+      </form>
+    </th>
+  </tr>
+  <tr>
+    <th align="left" width="150" nowrap="nowrap"><a href="{U_LOGS}o={O_DATE}">{L_DATE}</a></th>
+    <th align="left" width="100%"><a href="{U_LOGS}o={O_TAG}">{L_TAG}</a></th>
+    <th align="left" width="100%"><a href="{U_LOGS}o={O_ATTACHED}">{L_RAIDINFO}</a></th>
+    <th align="left" width="100" nowrap="nowrap"><a href="{U_LOGS}o={O_USER}">{L_USER}</a></th>
+    <th align="left" width="70" nowrap="nowrap"><a href="{U_LOGS}o={O_RESULT}">{L_RESULT}</a></th>
+  </tr>
+  <!-- BEGIN logs_row -->
+  <tr class="{logs_row.ROW_CLASS}">
+    <td width="150" nowrap="nowrap">{logs_row.DATE}</td>
+    <td width="100" nowrap="nowrap"><a href="{logs_row.U_VIEW_LOG}">{logs_row.TAG}</a></td>
+    <td width="100%">{logs_row.RAID_NAME} ({logs_row.RAID_DATE})</td>
+    <td width="100" nowrap="nowrap">{logs_row.USER}</td>
+    <td width="70" nowrap="nowrap" class="{logs_row.C_RESULT}">{logs_row.RESULT}</td>
+  </tr>
+  <!-- END logs_row -->
+  <tr>
+    <th colspan="6" class="footer">{VL_FOOTCOUNT}</th>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+  <tr>
+    <td align="center" class="menu">{VL_PAGINATION}</td>
+  </tr>
+</table>
+<!-- ELSE -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="left" colspan="2">{L_LOG_VIEWER}</th>
+  </tr>
+  <tr>
+    <td class="row1" width="200" nowrap="nowrap">{L_DATE}:</td>
+    <td class="row1" width="100%">{LOG_DATE}</td>
+  </tr>
+  <tr>
+    <td class="row2" width="200" nowrap="nowrap">{L_USERNAME}:</td>
+    <td class="row2" width="100%">{LOG_USERNAME}</td>
+  </tr>
+  <tr>
+    <td class="row1" width="200" nowrap="nowrap">{L_IP_ADDRESS}:</td>
+    <td class="row1" width="100%">{LOG_IP_ADDRESS}</td>
+  </tr>
+  <tr>
+    <td class="row2" width="200" nowrap="nowrap">{L_SESSION_ID}:</td>
+    <td class="row2" width="100%">{LOG_SESSION_ID}</td>
+  </tr>
+  <tr>
+    <th align="left" colspan="2">{LOG_ACTION}</th>
+  </tr>
+  <!-- BEGIN log_row -->
+  <tr>
+    <td class="{log_row.ROW_CLASS}" width="200" nowrap="nowrap">{log_row.KEY}</td>
+    <td class="{log_row.ROW_CLASS}" width="100%">{log_row.VALUE}</td>
+  </tr>
+  <!-- END log_row -->
+  <tr>
+    <th colspan="2">&nbsp;</th>
+  </tr>
+</table>
+<!-- ENDIF -->

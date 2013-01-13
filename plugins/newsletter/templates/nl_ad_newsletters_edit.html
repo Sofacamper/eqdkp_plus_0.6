@@ -1,0 +1,63 @@
+{ERROR_MSG}
+<script language="javascript" type="text/javascript">
+function nl_check_form(){
+
+	if((document.editNewsletter.name.value == "")){
+		
+					show_fields_empty();
+					return false;
+	};
+}
+
+</script>
+{JS_FIELDS_EMPTY}
+<form method="post" action="newsletters_edit.php{SID}&id={LETTER_ID}" name="editNewsletter" onSubmit="return  nl_check_form()">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+
+  <tr>
+    <th align="center" colspan="2">{L_EDIT_LETTER}:</th>
+  </tr>
+  <tr class="row2">
+    <td nowrap="nowrap">{L_NAME}: *</td>
+    <td><input name="name" type="text" class="input" id="name" value="{LETTER_NAME}" size="65" /></td>
+  </tr>
+  <tr  class="row1">
+    <td>{L_DESC}:</td>
+    <td><input name="desc" type="text" class="input" id="desc" value="{LETTER_DESC}" size="65" /></td>
+  </tr>
+  <tr  class="row2">
+    <td>{L_LETTER_PERM}:</td>
+    <td>{PERMISSION_DROPDOWN}</td>
+  </tr>
+  <tr  class="row2">
+    <td>{L_ARCHIVE_PERM}:</td>
+    <td>{ARCHIVE_PERMISSION_DROPDOWN}</td>
+  </tr>
+  <tr class="row1">
+    <th colspan="2">{L_PRESETTINGS}:</th>
+    </tr>
+  <tr class="row1">
+    <td>{L_TEMPLATE}</td>
+    <td>{TEMPLATES_DROPDOWN}</td>
+  </tr>
+  <tr class="row1">
+    <td>{L_ARCHIVE}</td>
+    <td><input type="checkbox" name="preset_archive" value="1" id="preset_archive" {LETTER_ARCHIVE}/></td>
+  </tr>
+  <!-- IF not S_SMS_DISABLED -->
+  <tr class="row1">
+    <td>{L_TYPE}</td>
+    <td><label><input type="radio" name="preset_type" value="email"{LETTER_MAIL}>
+      {L_MAIL}</label> 
+        <label><input type="radio" name="preset_type" value="sms"{LETTER_SMS}>
+      {L_SMS}</label></td>
+  </tr>
+  <!-- ENDIF -->
+  <tr>
+    <th colspan=2><center>
+      <input type="submit" name="submit" value="{B_SAVE}" class="mainoption" /> <input type="reset" value="{B_RESET}" class="mainoption" />
+    </center></th>
+  </tr>
+</table>
+
+  </form>

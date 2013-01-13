@@ -1,0 +1,151 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+{UPDATE_BOX} {UPDCHECK_BOX}
+<!-- IF DL_S_CATS_DIABLED -->
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	   
+  <tr>		     
+    <th><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/admin_logo.png" alt="Edit" align="absmiddle"> {DL_AD_CATEGORIES}</th>
+    <th width="50">{ADMIN_MENU}</th>   
+  </tr>
+  <tr>
+  	<td colspan="2" align="center" class="row1">{DL_AD_CATS_DISABLED}
+    </td>
+  </tr>
+  <tr>   
+  	<th colspan="2" class="footer"></th>
+  </tr>
+</table> 
+<!-- ELSE -->
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	   
+  <tr>		     
+    <th colspan="2"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/admin_logo.png" alt="Edit" align="absmiddle"> {DL_AD_CATEGORIES}</th>
+    <th colspan="5" nowrap="nowrap" width="50" align="left">{ADMIN_MENU}    
+    </th>	   
+  </tr>
+  <!-- IF DL_S_NOCATS -->
+    <tr>		     
+    <th colspan="7" align="left">{DL_AD_NO_CATS}</th>		     
+  </tr>
+    <tr>		     
+    <td colspan="7" align="left">&nbsp;</td>		     
+  </tr>
+  <!-- ELSE -->	
+  <tr>		     
+    <th width="15%" align="left">{DL_AD_CATEGORY}
+    </th>		     
+    <th >{DL_AD_ADD_COMMENT}   
+    </th>
+    <th>{DL_PERM_HEADLINE}</th> 
+    <th>{DL_AD_MANAGE_LINKS}
+    </th>		
+    <th width="50" >    {DL_AD_MANAGE_CAT_ORDER}:     
+    </th>    
+    <th colspan="2" width="50" align="left">			     
+    </th>    	   
+  </tr>
+  	   
+  <!-- BEGIN cat_list -->	   
+  <form method="POST" action="categories.php{SID}">
+  <tr class="{cat_list.ROW_CLASS}">
+         
+      <td width="15%" align="left" style="padding-left: 10px;"><input type="text" class="input" style="width:90px" name="cat_up_name" value="{cat_list.LIST}"></td>		     
+      <td style="padding-left: 10px;"><input type="text" class="input" style="width:200px" name="cat_up_description" value="{cat_list.DESCRIPTION}"></td>
+      <td align="center"><span style="padding-left: 10px;">
+        <select name="cat_up_permission" id="cat_up_permission" class="input">
+	        <option value="0" {cat_list.DL_PERM_EDIT_SELECT_0}>{cat_list.DL_PERM_REGISTERED}</option>
+	        <option value="1" {cat_list.DL_PERM_EDIT_SELECT_1}>{cat_list.DL_PERM_PUBLIC}</option>
+          </select>
+      </span></td> 		
+      <td align="center">{cat_list.PIC_COUNT}</td>
+      <td width="50" align="center">{cat_list.UP_BUTTON}<br>{cat_list.DOWN_BUTTON}</td>    
+    <td width="50" align="center">			       				         
+        <input type="hidden" name="cat_update_id" value="{cat_list.CAT_ID}">				         
+        <input class="mainoption" type="submit" value="{DL_AD_UPDATE_TITLE}">
+      </td>
+ 		<td><a href="javascript:DeleteWarn({cat_list.PIC_COUNT},{cat_list.CAT_ID});"><img src="../images/delete.png"></a>  </td>
+        </tr></form>	   
+      <!-- END cat_list --> 
+      
+   <tr> 
+    <th colspan="7" class="footer">{DL_AD_CAT_FOOTCOUNT}</th>
+  </tr>
+  
+  <tr>
+    <td colspan="7">&nbsp;</td>
+  </tr>
+  <!-- ENDIF -->
+  <tr>		     
+    <th colspan="7"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/new.png" alt="Edit" align="absmiddle">{DL_AD_CREATE}     
+    </th>	   
+  </tr>	
+  <form action="../admin/categories.php" method="post" name="dl_create_cat" onSubmit="return dl_check_fields()">   
+    <tr class="row1">
+      <td align="left" style="padding-left: 10px;"><strong>{DL_AD_CATEGORY}*</strong></td>
+      <td  style="padding-left: 10px;"><strong>{DL_AD_ADD_COMMENT}</strong></td>
+      <td align="center"><strong>{DL_PERM_HEADLINE}</strong></td>
+      <td align="center">&nbsp;</td>
+      <td colspan="3" align="center"></td>
+    </tr>
+    <tr class="row2">		     
+      <td width="15%" align="left" style="padding-left: 10px;">	 
+        <input class="input" type="text" name="cat_name" style="width:90px">			</td>		     
+      <td  style="padding-left: 10px;">        
+        <input class="input" type="text" name="cat_comment" style="width:200px">    </td>
+      <td width="40" align="center"><span style="padding-left: 10px;">
+        <select name="cat_permission" id="cat_permission" class="input">
+          <option value="0">{DL_PERM_REGISTERED}</option>
+          <option value="1">{DL_PERM_PUBLIC}</option>
+        </select>
+      </span></td> 		
+      <td width="40" align="center">&nbsp;</td>    
+      <td colspan="3" width="50" align="center">			  		</td>    
+    </tr>	      
+    <tr>		     
+      <th colspan="7">        
+        <input class="mainoption" type="submit" value="{DL_AD_SEND}">				         
+        <input class="liteoption" type="reset" value="{DL_AD_RESET}">
+        &nbsp;{DL_AD_STATUS}			
+      </th>	   
+    </tr>	         
+  </form>
+</table>
+<!-- ENDIF -->
+<script language="JavaScript" type="text/javascript">
+
+function dl_check_fields(){
+				if (document.dl_create_cat.cat_name.value == "") {
+					
+					show_fields_empty();
+					return false;
+				};
+}
+
+function submit_DeleteWarn(v,m,f){
+
+                  if(v){
+                    window.location = 'categories.php?delete='+f.cat;
+                  }
+                  return true;
+                }
+
+function DeleteWarn(downloads, cat){
+		if (downloads > 0){
+					
+				$.prompt('{DL_DELETE_WARN}<input type="hidden" name="cat" value="'+cat+'">', {
+                            buttons:{ {DL_DELETE}: true, {DL_CANCEL}: false },
+                            submit: submit_DeleteWarn,
+                            prefix:'cleanblue',
+                            show:'slideDown'}
+                 );
+		
+		
+		} else {
+				window.location = 'categories.php?delete='+cat;	
+		};
+                  
+}
+
+</script>
+{DL_JS_FIELDS_EMPTY}
+<br/>
+{DL_FOOTER}

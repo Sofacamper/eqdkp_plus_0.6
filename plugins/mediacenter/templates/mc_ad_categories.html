@@ -1,0 +1,127 @@
+<!-- INCLUDE ../mc_css.html -->
+{MC_STATUS}
+{UPDATE_BOX} {UPDCHECK_BOX}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	   
+  <tr>		     
+    <th colspan="2"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/admin_logo.png" alt="Edit" align="absmiddle"> {L_MANAGE_CATEGORIES}</th>
+    <th colspan="4" nowrap="nowrap" width="50">{MC_ADMIN_MENU}    
+    </th>	   
+  </tr>
+  <!-- IF S_NOCATS -->
+   <tr class="row2">		     
+    <td colspan="6" align="left">{L_NO_CATS}</td>		     
+  </tr>
+   <tr>		     
+    <th colspan="6" align="left">&nbsp;</th>		     
+  </tr>
+   <tr>		     
+    <td colspan="6" align="left">&nbsp;</td>		     
+  </tr>
+  
+  
+  <!-- ELSE -->	
+  <tr>		     
+    <th width="25%" align="left">{L_CATEGORY}
+    </th>		     
+    <th >{L_DESCRIPTION}   
+    </th>
+    <th>{L_VIDEOS}
+    </th>		
+    <th width="50" >    {L_ORDER}:     
+    </th>    
+    <th colspan="2" width="50" align="left">			     
+    </th>    	   
+  </tr>
+  	   
+  <!-- BEGIN cat_list -->	   
+  <form method="POST" action="categories.php{SID}">
+  <tr class="{cat_list.ROW_CLASS}">
+         
+      <td width="15%" align="left" style="padding-left: 10px;"><input name="cat_up_name" type="text" class="input" style="width:90%" value="{cat_list.LIST}"></td>		     
+      <td style="padding-left: 10px;"><input type="text" class="input" style="width:90%" name="cat_up_description" value="{cat_list.DESCRIPTION}"></td>
+      <td align="center">{cat_list.PIC_COUNT}</td>
+      <td width="50" align="center">{cat_list.UP_BUTTON}<br>{cat_list.DOWN_BUTTON}</td>    
+    <td width="50" align="center">			       				         
+        <input type="hidden" name="cat_update_id" value="{cat_list.CAT_ID}">				         
+        <input class="mainoption" type="submit" value="{L_UPDATE}">
+      </td>
+ 		<td><a href="javascript:DeleteWarn({cat_list.PIC_COUNT},{cat_list.CAT_ID});" title="{L_DELETE}"><img src="../images/delete.png" border="0"></a>  </td>
+        </tr></form>	   
+      <!-- END cat_list --> 
+      
+   <tr> 
+    <th colspan="6" class="footer">{L_CAT_FOOTCOUNT}</th>
+  </tr>
+  
+  <tr>
+    <td colspan="6">&nbsp;</td>
+  </tr>
+  <!-- ENDIF -->
+  <tr>		     
+    <th colspan="6"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/new.png" alt="Edit" align="absmiddle">{L_CREATE_CATEGORY}     
+    </th>	   
+  </tr>	
+  <form action="../admin/categories.php" method="post" name="dl_create_cat" onSubmit="return dl_check_fields()">   
+    <tr class="row1">
+      <td align="left" style="padding-left: 10px;"><strong>{L_CATEGORY}*</strong></td>
+      <td  style="padding-left: 10px;"><strong>{L_DESCRIPTION}</strong></td>
+      <td align="center">&nbsp;</td>
+      <td colspan="3" align="center"></td>
+    </tr>
+    <tr class="row2">		     
+      <td width="25%" align="left" style="padding-left: 10px;">	 
+        <input class="input" type="text" name="cat_name" style="width:90%">			</td>		     
+      <td  style="padding-left: 10px;">        
+        <input class="input" type="text" name="cat_comment" style="width:90%">    </td>
+      <td width="40" align="center">&nbsp;</td>    
+      <td colspan="3" width="50" align="center">			  		</td>    
+    </tr>	      
+    <tr>		     
+      <th colspan="6">        
+        <input class="mainoption" type="submit" value="{L_SAVE}">				         
+        <input class="liteoption" type="reset" value="{L_RESET}">
+      &nbsp;</th>	   
+    </tr>	         
+  </form>
+</table>
+
+<script language="JavaScript" type="text/javascript">
+
+function dl_check_fields(){
+				if (document.dl_create_cat.cat_name.value == "") {
+					
+					show_fields_empty();
+					return false;
+				};
+}
+
+function submit_DeleteWarn(v,m,f){
+
+                  if(v){
+                    window.location = 'categories.php?delete='+f.cat;
+                  }
+                  return true;
+                }
+
+function DeleteWarn(downloads, cat){
+		if (downloads > 0){
+					
+				$.prompt('{L_DELETE_WARN}<input type="hidden" name="cat" value="'+cat+'">', {
+                            buttons:{ {L_DELETE}: true, {L_CANCEL}: false },
+                            submit: submit_DeleteWarn,
+                            prefix:'cleanblue',
+                            show:'slideDown'}
+                 );
+		
+		
+		} else {
+				window.location = 'categories.php?delete='+cat;	
+		};
+                  
+}
+
+</script>
+{JS_FIELDS_EMPTY}
+<br/>
+{MC_FOOTER}

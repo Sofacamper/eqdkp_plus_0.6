@@ -1,0 +1,163 @@
+<!-- INCLUDE ../nl_css.html -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="2">
+    <tr>
+      <th colspan="1"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+            <td colspan="1">{L_MANAGE_NEWSLETTERS}:</td>
+            <td width="5" align="left" nowrap="nowrap">{ADMIN_MENU}</td>
+          </tr>
+      </table></th>
+    </tr>
+    <!-- IF S_NO_LETTERS -->
+    <tr class="row1">
+    <td><em>{L_NO_LETTERS}</em></td>
+    </tr>
+    <tr><th></th></tr>
+    <!-- ENDIF -->
+  </table>
+
+
+
+<script language="JavaScript" type="text/javascript">
+
+function aboutDialog(){
+	{NL_JS_ABOUT}
+}
+
+function editLetter(id){
+	{JS_EDIT_NL}
+}
+
+function newLetter(){
+	{JS_ADD_NL}
+}
+
+function nl_select_all(area){
+				
+	var area = document.getElementById(area);
+	var checkboxes = area.getElementsByTagName('input');
+
+	for (var i=0; i<checkboxes.length; i++){
+		checkboxes[i].checked = true;
+
+	}
+				
+}
+			
+function nl_deselect_all(area){
+	
+	var area = document.getElementById(area);
+
+	var checkboxes = area.getElementsByTagName('input');
+
+	for (var i=0; i<checkboxes.length; i++){
+		checkboxes[i].checked = false;
+
+	}
+				
+}
+			
+			
+			
+function nl_check_action_dropdown(id){
+		
+	var action = document.getElementById('action_drpdwn_'+id).value;
+	if (action == "move" || action == "copy"){
+			
+		document.getElementById('target_div_'+id).style.display = "inline";
+			
+	} else {
+			
+		document.getElementById('target_div_'+id).style.display = "none";
+			
+	};
+		
+}
+
+</script>
+<script language="javascript" type="text/javascript">
+function nl_check_form(){
+
+	if((document.newsletter.name.value == "")){
+		
+					fields_emptyAlert();
+					return false;
+	};
+}
+{JS_FIELDS_EMPTY}
+</script>
+<!-- BEGIN index_list -->
+<script type="text/javascript">animatedcollapse.addDiv('nl_letter_{index_list.ID}', 'persist=0,hide=1'); animatedcollapse.init();</script>
+
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tr>
+    <th colspan="9" nowrap="nowrap"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td nowrap="nowrap"><strong><a href="javascript:animatedcollapse.toggle('nl_letter_{index_list.ID}')"><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/toggle.png" name="imgdl_mirror_table" border="0" id="imgdl_mirror_table">{index_list.NAME}</a></strong> - {index_list.DESC}</td>
+        <td nowrap="nowrap" align="right"><a href="newsletters.php{SID}&mode=delete_l&id={index_list.ID}"><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/delete.png" alt="{L_TITLE_DELETELETTER}" border="0" align="absmiddle" style="cursor:pointer" title="{L_TITLE_DELETELETTER}" /></a> <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/edit.png" alt="{L_TITLE_EDITLETTER}" align="absmiddle" onclick="editLetter({index_list.ID})" style="cursor:pointer" title="{L_TITLE_EDITLETTER}" /></td>
+      </tr>
+    </table></th>
+  </tr>
+</table>
+<div id="nl_letter_{index_list.ID}">
+  <table width="98%" border="0" align="center" cellpadding="2" cellspacing="1" >
+<form method="post" action="newsletters.php{SID}&lid={index_list.ID}" name="newsletter">    
+    <tr>
+      <th align="center" width="120" nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){nl_deselect_all('nl_letter_{index_list.ID}');} else {nl_select_all('nl_letter_{index_list.ID}');};"></th>
+      <th width="50%" align="left" nowrap="nowrap">{L_USERNAME}</th>
+      <th align="left" width="50%" nowrap="nowrap">{L_USEREMAIL}</th>
+      <th align="left" width="50">{L_DATE}</th>
+      <th align="left" width="60">{L_ACTION}</th>
+    </tr>
+    <!-- BEGIN user_list -->
+    <tr class="{index_list.user_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{index_list.user_list.ROW_CLASS}';">
+      <td nowrap="nowrap" align="center"><input type="checkbox" value="{index_list.user_list.ID}" name="subscriber[]"></td>
+      <td nowrap="nowrap">{index_list.user_list.NAME}</td>
+      <td width="50%" nowrap="nowrap">{index_list.user_list.MAIL}</td>
+      <td width="50" nowrap="nowrap">{index_list.user_list.DATE}</td>
+      <td nowrap="nowrap" align="center"><a href="newsletters.php{SID}&mode=delete&id={index_list.user_list.ID}" ><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/delete.png" alt="Delete" border="0" /></a></td>
+      <!-- END user_list -->
+      
+    </tr>
+    <!-- IF index_list.S_UNCONFIRMED-->
+    <tr>
+      <th colspan="5" align="center" nowrap="nowrap">{L_UNCONFIRMED_USERS}</th>
+      </tr>
+      <!-- BEGIN unconfirmed_list -->
+    <tr class="{index_list.unconfirmed_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{index_list.unconfirmed_list.ROW_CLASS}';">
+      <td nowrap="nowrap" align="center"><input type="checkbox" value="{index_list.unconfirmed_list.ID}" name="subscriber[]">&nbsp;</td>
+      <td nowrap="nowrap">{index_list.unconfirmed_list.NAME}</td>
+      <td nowrap="nowrap">{index_list.unconfirmed_list.MAIL}</td>
+      <td nowrap="nowrap">{index_list.unconfirmed_list.DATE}</td>
+      <td nowrap="nowrap" align="center"><a href="newsletters.php{SID}&mode=user_add&id={index_list.unconfirmed_list.ID}&lid={index_list.ID}" ><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/user_add.png" alt="Confirm User" border="0" /></a>  <a href="newsletters.php{SID}&mode=user_deny&id={index_list.unconfirmed_list.ID}&lid={index_list.ID}" ><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/user_delete.png" alt="Deny User" border="0" /></a></td>
+    </tr>
+    <!-- END unconfirmed_list -->
+    <!-- ENDIF -->
+    <tr>
+    
+      <th colspan="5" align="center" nowrap="nowrap" valign="middle"><span style="padding-left:7px;"><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/arrow_turn_left.png" align="bottom" /></span> {L_ALL_MARKED}: {index_list.ACTION_DROPDOWN}<span style="padding-left:7px;"><div id="target_div_{index_list.ID}" style="display:none">{L_TO} {index_list.TARGET_LETTER_DROPDOWN}</div>
+          <input class="mainoption" type="submit" value="{L_GO}" name="massedit"/>
+      </span></th>
+      </tr>
+</form>          
+          
+          <tr>
+      <form method="post" action="newsletters.php{SID}&lid={index_list.ID}&mode=add">
+      <th colspan="5" align="center" nowrap="nowrap" valign="bottom">{L_ADD_SUBSCRIBER}: {index_list.ADD_USER_DROPDOWN}
+        <input class="mainoption" type="submit" value="{L_GO}" />
+     </th></form> 
+      </tr>
+  </table>
+ 
+</div>
+<!-- END index_list -->
+
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

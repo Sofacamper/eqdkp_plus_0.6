@@ -1,0 +1,133 @@
+<style type="text/css">
+/* Basic code - don't modify */
+.actionmenu { display: block; margin: 0; padding: 0; position: relative; }
+.actionmenu li { display: block; list-style: none; margin: 0; padding: 0; float: right; position: relative; }
+.actionmenu a { display: block; }
+.actionmenu ul { display: none; position: absolute; right: 0; margin: 0; padding: 0; }
+* html .actionmenu ul { line-height: 0; } /* IE6 "fix" */
+.actionmenu ul a { zoom: 1; } /* IE6/7 fix */
+.actionmenu ul li { float: none; }
+.actionmenu ul ul { top: 0; }
+    
+/* Essentials - configure this */
+.actionmenu ul { width: 220px; }
+.actionmenu ul ul { right: 221px; }
+
+/* Everything else is theming */
+.actionmenu { height: 20px; font-size:11px; color: black;}
+.actionmenu *:hover {  }
+.actionmenu a { font-size: 12px; padding: 3px; line-height: 1; height: 20px;}
+.actionmenu li.hover a { background-color: #EEFFDF; color: black; }
+.actionmenu ul { top: 25px; background: #f5f5f5;}
+.actionmenu ul li a { background-color: #EEFFDF; }
+.actionmenu ul a.hover { background-color: #30A8C3; color: white; }
+.actionmenu ul a { border-bottom: 1px solid white; border-right: none; opacity: 0.9; filter: alpha(opacity=90); }
+/* #groupmenu ul a { border-bottom: none; } - I also needed this for IE6/7 */
+
+/* Basic code - don't modify */
+.colortab { display: block; margin: 0; padding: 0; position: relative; }
+.colortab li { display: block; list-style: none; margin: 0; padding: 0; float: right; position: relative; }
+.colortab a { display: block; font-size:11px;font-weight:normal;}
+.colortab ul { display: none; position: absolute; right: 0; margin: 0; padding: 0; }
+* html .colortab ul { line-height: 0; } /* IE6 "fix" */
+.colortab ul a { zoom: 1; } /* IE6/7 fix */
+.colortab ul li { float: none; }
+.colortab ul ul { top: 0; }
+    
+/* Essentials - configure this */
+.colortab ul { width: 160px; color: black;}
+.colortab ul ul { right: 161px; }
+
+/* Everything else is theming */
+.colortab { height: 24px; font-size:11px;font-weight:normal;}
+.colortab *:hover { background-color: #EEFFDF; font-weight:normal;}
+.colortab a { font-size: 12px; padding: 4px; line-height: 1; color: black; background: #f5f5f5}
+.colortab li.hover a { background-color: #EEFFDF; color: black; }
+.colortab ul { top: 25px; background: #f5f5f5; color: black; font-size:11px;font-weight:normal;}
+.colortab ul li a { background-color: #EEFFDF; color: black;}
+.colortab ul a.hover { background-color: #30A8C3; color: white; }
+.colortab ul a { border-right: none; opacity: 0.9; filter: alpha(opacity=90); color: black;}
+/* #colortab ul a { border-bottom: none; } - I also needed this for IE6/7 */
+
+tr.cm_confirm{
+	text-decoration:line-through;
+	font-style:italic;
+}
+</style>
+<script language="JavaScript" type="text/javascript">
+
+function AboutDialog() {
+	 {JS_ABOUT}
+}
+  
+function AddChar() {
+  {JS_ADDCHARS}
+}
+  
+function EditChar(editid) {
+  {JS_EDITCHAR}
+}
+
+function AddCharArmory() {
+  {JS_IMPORTCHAR}
+}
+
+function UpdateChar(memberid){
+	{JS_UPDATECHAR}
+}
+
+function MassUpdateChars(){
+	{JS_MASSUPDATECH}
+}
+
+{JS_DELETECHAR}
+</script>
+<form method="post" action="{F_UPDATE}" name="data">
+<input type='hidden' name='delete_id' value=''>
+</form>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <!-- IF CONNECT_CHARS -->
+  <tr>
+    <th colspan="10" >
+    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    		<tr>
+    			<td width="80%" align="left">
+			      <form method="POST" action="{F_UPDATE}">{L_CONN_MEMBERS}: {JS_CONNECTIONS} <input type="submit" name="submit" value="{L_SUBMIT}" class="mainoption" />
+			      </form>
+			    </td>
+			    <td width="20%">
+      			{ADD_MENU}
+      		</td>
+      	</tr>
+      </table>
+    </th>
+  </tr>
+  <!-- ENDIF --> 
+  <tr>
+    <th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+    <th align="left" width="100%"><a href="{U_CHARACTERS}o={O_NAME}{URI_ADDON}">{L_NAME}</a></th>
+    <th align="left" width="160" nowrap="nowrap"><a href="{U_CHARACTERS}o={O_GUILD}{URI_ADDON}">{L_GUILD}</a></th>
+    <th align="left" width="100" nowrap="nowrap"><a href="{U_CHARACTERS}o={O_CLASS}{URI_ADDON}">{L_RANK}</a></th>
+    <th align="left" width="40" nowrap="nowrap"><a href="{U_CHARACTERS}o={O_LEVEL}{URI_ADDON}">{L_LEVEL}</a></th>
+
+    <th align="left" width="100" nowrap="nowrap">{L_SPEC}</th>
+    <th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+  </tr>
+  <!-- BEGIN members_row -->
+  <tr class="{members_row.ROW_CLASS}{members_row.TBA}">
+    <td width="35" nowrap="nowrap" align="right">{members_row.COUNT}</td>
+    <td width="100%" nowrap="nowrap"><span class="classes{members_row.CLASSID}">{members_row.CLASS_ICON}{members_row.RACE_ICON} {members_row.NAME} {members_row.MBCONFIRMED}</span></td>
+    <td width="160" nowrap="nowrap">{members_row.GUILD}</td>
+    <td width="100" nowrap="nowrap">{members_row.RANK}</td>
+    <td width="40" nowrap="nowrap">{members_row.LEVEL}</td>
+    
+    <td width="100" nowrap="nowrap">{members_row.SPEC} {members_row.SPEC2}</td>		
+    <td align="left" width="35" nowrap="nowrap">{members_row.ACTIONMENU}</td>
+  </tr>
+  <!-- END members_row -->
+  <tr>
+    <th colspan="10" class="footer">{US_FOOTCOUNT}</th>
+  </tr>
+</table>
+<center><br /><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="{ICON_INFO}" alt="Credits" border="0" /> Credits</a></span>
+<br /><span class="copy">{CM_COPYRIGHT}</span></center>

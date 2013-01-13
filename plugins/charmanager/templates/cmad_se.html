@@ -1,0 +1,84 @@
+<script language="JavaScript" type="text/javascript">
+
+function UpdateProfiles(){
+	{JS_UPDATEPROF}
+}
+
+function ImportGuild(){
+	{JS_IMPORTGUILD}
+}
+</script>
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+
+<form method="post" action="{F_CONFIG}" name="post">
+<table border="0" width="100%" cellspacing="1" cellpadding="2">
+<tr>
+    <th align="center" colspan="2">{L_GENERAL}</th>
+</tr>
+			<tr>
+				<td width="60%" class="row2">{L_USE_UPDATECH}</td>
+				<td width="40%" class="row1"><input type="checkbox" name="uc_updtcheck_on" value="1" {USE_UPDATECH} /></td>
+			</tr>
+			<tr>
+				<td width="60%" class="row2">{L_REQ_CONFIRM}</td>
+				<td width="40%" class="row1"><input type="checkbox" name="uc_reqconfirm" value="1" {REQCONFIRM} /></td>
+			</tr>
+			<tr>
+				<td width="60%" class="row2">{L_DEFRANK}</td>
+				<td width="40%" class="row1">{DRPWN_RANK}</td>
+		</tr>
+		<tr>
+				<td width="60%" class="row2">{L_LP_HIDERESI}</td>
+				<td width="40%" class="row1"><input type="checkbox" name="uc_lphideresi" value="1" {LP_HIDERESI} /></td>
+		</tr>
+		<!-- IF U_HAS_IMPORT -->
+		<tr>
+			<th colspan="2">{L_IMPORT}</th>
+		</tr>
+		<tr>
+				<td width="60%" class="row2">{L_SHOW_ARMLINK}</td>
+				<td width="40%" class="row1"><input type="checkbox" name="uc_showarmlink" value="1" {SHOW_ARM_LINK} /></td>
+		</tr>
+	   <tr>
+				<td width="60%" class="row2">{L_SERVERLOC}</td>
+				<td width="40%" class="row1">{DRPWN_SERVERLOC}</td>
+		</tr>
+		<tr>
+				<td width="60%" class="row2">{L_SERVERLANG}</td>
+				<td width="40%" class="row1">{DRPWN_SRVLANG}</td>
+		</tr>
+	   <tr>
+				<td width="60%" class="row2">{L_SERVERNAME}</td>
+				<td width="40%" class="row1"><input type="text" name="uc_servername" size="32" value="{SERVERNAME}" class="input" /></td>
+		</tr>
+		<tr>
+				<td width="60%" class="row2">{L_LOCK_SERVER}</td>
+				<td width="40%" class="row1"><input type="checkbox" name="uc_lockserver" value="1" {LOCK_SERVERFLD} /></td>
+		</tr>
+		<tr>
+				<td width="60%" class="row2">{L_UPDATE_ALL}</td>
+				<td width="40%" class="row1">
+				    <!-- IF U_IMPORT_DISBLD -->
+				      <input type="button" name="add" value="{L_BTTN_UPDATE}" disabled=true />	[{LAST_UPDATED}]
+				    <!-- ELSE -->
+						  <input type="button" name="add" value="{L_BTTN_UPDATE}" class="mainoption" onclick="javascript:UpdateProfiles()" />	[{LAST_UPDATED}]
+				    <!-- ENDIF -->
+        </td>
+		</tr>
+		<tr>
+				<td width="60%" class="row2">{L_IMPORT_GUILD}</td>
+				<td width="40%" class="row1">
+				    <!-- IF U_IMPORT_DISBLD -->
+				      <input type="button" name="add" value="{L_BTTN_GIMP}" disabled=true />
+				    <!-- ELSE -->
+						  <input type="button" name="add" value="{L_BTTN_GIMP}" class="mainoption" onclick="javascript:ImportGuild()" />
+				    <!-- ENDIF -->
+        </td>
+		</tr>
+		<!-- ENDIF -->
+		
+	<tr><th align="center" colspan="2"><input type="submit" name="issavebu" value="{L_SUBMIT}" class="mainoption" />
+  </th></tr>
+</table>
+</form>

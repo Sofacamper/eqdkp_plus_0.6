@@ -1,0 +1,248 @@
+<!-- IF S_NO_CATS -->
+{L_NO_CATS}
+<!-- ELSE -->
+<!-- IF not S_YOUTUBE --> 
+ 
+<div align="center" style="font-weight:bold;">{MC_ERROR}</div>
+                   
+
+ {JS_TAB}
+        <div id='upload_tabs'>
+          <ul>
+            <li><a href='#video'><span>{L_INSERT_VIDEO}</span></a></li>
+            <li><a href="#youtube"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/youtube.jpg" border="0" align="absmiddle"> {L_YOUTUBE_UPLOAD}<span class="footer"></span></a></li>
+            
+          </ul>
+          <div id="video">
+          <form action="upload.php{SID}&mode=video" method="post" enctype="multipart/form-data" name="mc_upload" onSubmit="return  mc_check_upload_form()">
+          <table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th colspan="2">{L_INSERT_VIDEO}<span class="footer"></span></th>
+      </tr>
+
+        <tr class="row1">
+          <td width="180" align="left"><strong>{L_CATEGORY}:*</strong></td>
+          <td>{CATEGORY_SELECT}</td>
+        </tr>
+
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_NAME}</span>:*</strong></td>
+          <td><input class="input" type="text" name="name" id="name" style="width:98%;"/></td>
+        </tr>
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_DESCRIPTION}</span>:</strong></td>
+          <td><textarea name="description" class="input" id="description" style="width:98%"></textarea></td>
+        </tr>
+
+        
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_URL}:*</strong></td>
+          <td><input class="input" type="text" name="url" id="url" style="width:98%;" onChange="mc_check_url()"/></td>
+        </tr>
+        
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_PREVIEW_IMAGE}:</strong></td>
+          <td><input name="previewimage" type="file" class="input" id="previewimage" size="60"></td>
+        </tr>
+
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_DURATION}:</strong></td>
+          <td><input name="duration" type="text" class="input" id="duration" size="5" maxlength="5"/>
+            <span id="dl_mirrors_area2">MM:SS</span></td>
+        </tr>
+
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_TAGS}:</strong></td>
+          <td><input class="input" type="text" name="tags" style="width:98%" id="tags" onchange="if(this.value != ''){dl_add_mirror_input();}"/>
+          <span id="dl_mirrors_area"></span></td>
+        </tr>
+        <tr class="row2">
+          <td colspan="2" align="left" nowrap><a href="javascript:show_story('story')" id="story_link_story">{L_SHOW_STORY} </a><a href="javascript:hide_story('story')" id="story_link2_story" style="display:none;">{L_HIDE_STORY}</a>
+            
+            <div id="story_area_story" style="display:none">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">          
+                <tr class="row1">
+                  <td align="left" nowrap><strong>{L_STORY}:</strong></td>
+                  <td>{VIDEO_EDITOR}
+                  <input class="input" type="text" name="story" style="width:98%" id="story"/></td>
+                </tr>
+              </table>
+            </div>          </td>
+          </tr>
+
+
+          </table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="{L_SAVE}">
+      <input class="liteoption" type="reset" value="{L_RESET}" onClick="reset_fields()">
+      <input name="ref" type="hidden" id="ref" value="{REFFERRER}"></th>
+    </tr>
+
+</table>
+</form>
+</div>
+
+<div id="youtube">
+                    <form action="upload.php{SID}&mode=youtube" method="post" enctype="multipart/form-data" name="mc_ytupload" onSubmit="return mc_check_ytupload_form();">
+          <table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th colspan="2">{L_YOUTUBE_UPLOAD}<span class="footer"></span></th>
+      </tr>
+
+        <tr class="row1">
+          <td width="180" align="left"><strong>{L_CATEGORY}:*</strong></td>
+          <td>{CATEGORY_SELECT}</td>
+        </tr>
+        <tr class="row2">
+          <td width="180" align="left"><strong>{L_YOUTUBE_NICK}:*</strong></td>
+          <td><input name="yt_nick" type="text" class="input" id="yt_nick" style="width:98%;" value="{YOUTUBE_NICK}"/></td>
+        </tr>
+        
+        <tr class="row1">
+          <td width="180" align="left"><strong>{L_YOUTUBE_PW}:*</strong></td>
+          <td><input class="input" type="password" name="yt_pw" id="yt_pw" style="width:98%;"/></td>
+        </tr>
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_NAME}</span>:*</strong></td>
+          <td><input class="input" type="text" name="name" id="name" style="width:98%;"/></td>
+        </tr>
+        <tr class="row1">
+          <td align="left" nowrap><strong>{L_DESCRIPTION}</span>:</strong></td>
+          <td><textarea name="description" class="input" id="description" style="width:98%"></textarea></td>
+        </tr>
+
+        <tr class="row2">
+          <td align="left" nowrap><strong>{L_TAGS}:*</strong></td>
+          <td><input class="input" type="text" name="tags" style="width:98%" id="tags" onchange="if(this.value != ''){dl_add_mirror_input();}"/>
+          <span id="dl_mirrors_area"></span></td>
+        </tr>
+        <tr class="row1">
+          <td colspan="2" align="left" nowrap>{YT_EDITOR}<a href="javascript:show_story('yt')" id="story_link_yt">{L_SHOW_STORY}</a><a href="javascript:hide_story('yt')" id="story_link2_yt" style="display:none;">{L_HIDE_STORY}</a>
+            
+            <div id="story_area_yt" style="display:none">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">          
+                <tr class="row1">
+                  <td align="left" nowrap><strong>{L_STORY}:</strong></td>
+                  <td>
+                  <input class="input" type="text" name="story2" style="width:98%" id="story2"/></td>
+                </tr>
+              </table>
+            </div>          </td>
+          </tr>
+
+          </table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="{L_NEXT_STEP}">
+      <input class="liteoption" type="reset" value="{L_RESET}" onClick="dl_reset_fields()">
+      <input name="ref" type="hidden" id="ref" value="{REFFERRER}"></th>
+    </tr>
+
+</table>
+</form>
+          </div>
+</div>          
+<!-- ENDIF --> 
+
+<!-- IF S_YOUTUBE_STEP_2 -->
+<form action="{YOUTUBE_UPLOAD_FORM}" method="post" enctype="multipart/form-data">
+          <table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th colspan="2">{L_YOUTUBE_UPLOAD}</th>
+      </tr>
+        <tr class="row2">
+          <td width="180" align="left"><strong>{L_SELECT_FILE}:*</strong></td>
+          <td><input type="file" name="file"/><input type="hidden" name="token" value="{YOUTUBE_UPLOAD_TOKEN}"/></td>
+        </tr>
+        
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="Go">
+
+      </th>
+    </tr>
+
+</table>
+</form>
+<!-- ENDIF -->
+<!-- IF S_YOUTUBE_STEP_3 -->
+          <table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th>{L_YOUTUBE_UPLOAD}</th>
+      </tr>
+        <tr class="row2">
+          <td align="left">{L_YOUTUBE_UPLOAD_SUCCESS}<br><br><a href="{YOUTUBE_VIDEO_URL}" target="_blank">{YOUTUBE_VIDEO_URL}</a></td>
+          </tr>
+              <tr>
+        <th>&nbsp;</th>
+      </tr>
+        
+</table>
+<!-- ENDIF --> 
+<script language="javascript" type="text/javascript">
+
+
+function mc_check_upload_form(){
+
+	if((document.mc_upload.name.value == "") || (document.mc_upload.url.value == "") ){
+		
+					show_fields_empty();
+					return false;
+	}
+	else {document.getElementById('dl_file_area').style.display = "none";
+		document.getElementById('dl_loading_area').style.display = "inline";
+		};
+}
+
+function mc_check_ytupload_form(){
+
+	if((document.mc_ytupload.name.value == "") || (document.mc_ytupload.yt_nick.value == "") || (document.mc_ytupload.yt_pw.value == "") || (document.mc_ytupload.tags.value == "")){
+		
+					show_fields_empty();
+					return false;
+	}
+	else {document.getElementById('dl_file_area').style.display = "none";
+		document.getElementById('dl_loading_area').style.display = "inline";
+		};
+}
+
+function mc_check_url(){
+
+	if (document.mc_upload.url.value.indexOf("youtube.") != -1 || document.mc_upload.url.value.indexOf("myvideo.") != -1){
+
+		document.mc_upload.previewimage.disabled = true;
+		document.mc_upload.duration.disabled = true;
+		document.mc_upload.previewimage.value = "";
+		document.mc_upload.duration.value = "";
+	} else {
+		reset_fields();
+	}
+}
+
+function reset_fields(){
+		document.mc_upload.previewimage.disabled = false;
+		document.mc_upload.duration.disabled = false;
+}
+
+function show_story(id){
+	
+	document.getElementById('story_area_'+id).style.display = 'inline';
+	document.getElementById('story_link_'+id).style.display = 'none';
+	document.getElementById('story_link2_'+id).style.display = 'inline';
+}
+
+function hide_story(id){
+	
+	document.getElementById('story_area_'+id).style.display = 'none';
+	document.getElementById('story_link_'+id).style.display = 'inline';
+	document.getElementById('story_link2_'+id).style.display = 'none';
+}
+
+</script>
+{JS_FIELDS_EMPTY}
+<!-- ENDIF -->

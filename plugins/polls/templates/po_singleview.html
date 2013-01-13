@@ -1,0 +1,71 @@
+<style type="text/css">
+	.graph .bar {
+		background: white;
+		color: black;
+	}
+</style>
+
+<form action="pollview.php" method="POST">
+	<input type="hidden" name="id" value="{ID}" />
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<tr class="row2">
+			<td width="64px">
+				<img src="images/poll.png" />
+			</td>
+			<td>
+				<h2 align="center">{TITLE}</h2>
+			</td>
+			<td width="64px">
+				&nbsp;
+			</td>
+		</tr>
+		<tr class="row1">
+			<td colspan="3">
+				{DESCRIPTION}
+			</td>
+		</tr>
+		<tr class="row2">
+			<td colspan="3" align="center">
+				{ENDDATE}
+			</td>
+		</tr>
+		<tr>
+			<th colspan="3">
+				{F_OPTIONS}
+			</th>
+		</tr>
+		<!-- BEGIN optlist -->
+			<tr class="{optlist.ROWCLASS}">
+				<td align="center" style="padding-right: 10px;">
+					<!-- IF CLOSED -->
+						&nbsp;
+					<!-- ELSE -->
+						<!-- IF MULTIPLE -->
+							<input type="checkbox" name="check[]" value="{optlist.OPTID}" {optlist.CHECKED} {DISABLED} />
+						<!-- ELSE -->
+							<input type="radio" name="check[]" value="{optlist.OPTID}" {optlist.CHECKED} {DISABLED} />
+						<!-- ENDIF -->
+					<!-- ENDIF -->
+				</td>
+				<td>
+					{optlist.OPTION}
+				</td>
+				<td align="center">
+					{optlist.PERCENT}
+				</td>
+			</tr>
+		<!-- END optlist -->
+		<tr>
+			<th>&nbsp;</th>
+			<th align="center">
+				<input type="submit" class="mainoption" name="vote_submit" value="{F_VOTE}" {DISABLED} />
+			</th>
+			<th>{F_VOTESUM}{VOTESUM}</th>
+		</tr>
+	</table>
+</form>
+<p>&nbsp;</p>
+<!-- IF ENABLE_COMMENTS -->
+	{COMMENTS}
+<!-- ENDIF -->
+{PO_FOOTER}

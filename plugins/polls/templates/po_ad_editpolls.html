@@ -1,0 +1,67 @@
+{STATUS}
+<style type="text/css">
+	.po_description{
+		background: #999999;
+		color: #444444;
+		border: 2px solid #444444;
+		-moz-border-radius: 10px;
+	}
+</style>
+
+<table width="100%" cellpadding="2" cellspacing="0">
+	<tr>
+		<th align="center">
+			{F_TITLE}
+		</th>
+		<th align="center">
+			{F_MULTIPLE}
+		</th>
+		<th align="center">
+			{F_COMMENTS}
+		</th>
+		<th align="center">
+			{F_EDITABLE}
+		</th>
+		<th align="center">
+			{F_INTERMED}
+		</th>
+		<th align="center">
+			{F_MODSTYLE}
+		</th>
+		<th align="center">
+			{F_ENDDATE}
+		</th>
+		<th align="center">
+			{F_CLOSED}
+		</th>
+	</tr>
+	<!-- BEGIN allpolls -->
+		<tr class="{allpolls.ROWCLASS}">
+			<td align="center">
+				<a href="editpoll.php?id={allpolls.ID}" {allpolls.DESCRIPTION}>{allpolls.TITLE}</a>
+			</td>
+			<td align="center">
+				{allpolls.MULTIPLE}
+			</td>
+			<td align="center">
+				{allpolls.COMMENTS}
+			</td>
+			<td align="center">
+				{allpolls.EDITABLE}
+			</td>
+			<td align="center">
+				{allpolls.INTERMED}
+			</td>
+			<td align="center">
+				{allpolls.MODSTYLE}
+			</td>
+			<td align="center">
+				{allpolls.ENDDATE}
+			</td>
+			<td align="center">
+				{allpolls.CLOSED}
+			</td>
+		</tr>
+	<!-- END allpolls -->
+</table>
+{PO_FOOTER}

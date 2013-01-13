@@ -1,0 +1,87 @@
+{STATUS}
+<!-- disable the Enter-Key - begin -->
+<script type="text/javascript">
+	function stopRKey(evt) {
+		var evt = (evt) ? evt : ((event) ? event : null);
+		var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+		if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+	}
+	document.onkeypress = stopRKey;
+</script>
+<!-- disable the Enter-Button - end -->
+
+<script type="text/javascript">
+	function valueCheck(){
+		if (document.newoptions.newanswer.value != ""){
+			document.getElementById("addbutton").style.visibility = "visible";
+		} else {
+			document.getElementById("addbutton").style.visibility = "hidden";
+		}
+	}
+</script>
+
+<style type="text/css">
+	.delbutton{
+		width: 16px;
+		height: 16px;
+		background: transparent url('../images/delete.png');
+		text-indent: -1000em;
+		border: none;
+	}
+
+	.addbtn{
+		width: 16px;
+		height: 16px;
+		background: transparent url('../images/add.png');
+		text-indent: -1000em;
+		border: none;
+	}
+</style>
+
+<form action="createoptions.php" name="newoptions" method="GET">
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<tr>
+			<th colspan="2">{OPTIONS}</th>
+		</tr>
+		<!-- IF NOOPTIONS -->
+			<tr class="row2">
+				<td colspan="2">
+					{NOOPTIONS}
+				</td>
+			</tr>
+		<!-- ENDIF -->
+		<!-- BEGIN answers -->
+		<tr class="{answers.ROWCLASS}">
+			<td>
+				{answers.ANSWER}
+			</td>
+			<td>
+				<input type="submit" class="delbutton" name="del_opt" value="{answers.ID}" />
+			</td>
+		</tr>
+		<!-- END blubb -->
+		<tr>
+			<th colspan="2">
+				{NEWOPTION}
+			</th>
+		</tr>
+		<tr class="row2">
+			<td>
+				<input type="text" name="newanswer" onKeyUp="valueCheck()" size="80" />
+			</td>
+			<td>
+				<input type="submit" class="addbtn" style="visibility: hidden;" id="addbutton" name="new_opt" value="new_opt" />
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				<!-- IF SUBMIT -->
+					<input type="submit" name="createpoll" value="{CREATEPOLL}" />
+				<!-- ENDIF -->
+			</th>
+		</tr>
+	</table>
+</form>
+{PO_FOOTER}
+
+

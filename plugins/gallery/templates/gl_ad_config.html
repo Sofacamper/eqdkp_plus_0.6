@@ -1,0 +1,66 @@
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+<form method="POST">
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>
+    <th colspan="2">{GL_AD_CONF_GEN}</th>
+  </tr>
+  <tr class="row1">
+    <td width="50%">
+    {GL_AD_CONF_SHOWN_MTHUMBS}
+    </td>
+    <td width="50%">
+      {GL_AD_CONF_SHOWN_THUMBS}
+    </td>
+  </tr>
+  <tr class="row2">
+    <td>
+      {GL_AD_CONF_SHOWN_CATS}
+    </td>
+    <td>
+        <input name="showncategories" maxlength="2" value="{GL_AD_CONF_SHOWN_CATS_TO}" style="width: 35px">
+    </td>
+  <tr>
+  <tr class="row1">
+    <td>
+      {GL_AD_TEXTSTAMP_F}
+    </td>
+    <td>
+      {GL_AD_TEXTSTAMP_INPUT}
+    </td>
+  </tr>
+  <tr class="row2">
+    <td>
+      {GL_AD_CONF_EXTERN}
+    </td>
+    <td>
+      {GL_AD_CONF_EXTERN_CHECKBOX}
+    </td>
+  </tr>
+  <tr class="row1">
+  	<td>
+  		{GL_AD_CONF_LIMIT}
+  	</td>
+  	<td>
+  		{GL_AD_CONF_LIMIT_CHECKBOX}
+  	</td>
+  </tr>
+  <tr>
+    <th colspan="2"><input type="submit" name="submit" class="mainoption" value="{GL_UP_SEND}"></th>
+  </tr>
+</table>
+</form>
+<script language="JavaScript" type="text/javascript">
+function aboutDialog(){
+  {L_CREDITS}
+}
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="../images/credits/info.png" alt="Credits" border="0" /> Credits</a>  
+  </span><br />  
+  <span class="copy">{L_COPYRIGHT}   
+  </span>
+</center>

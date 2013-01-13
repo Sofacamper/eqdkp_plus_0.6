@@ -1,0 +1,8 @@
+﻿Asunto: {GUILDTAG} {DKP_NAME}: ¡Enviada respuesta a tu ticket!
+Charset: iso-8859-1
+
+Un administrador ha respondido a uno de tus tickets
+
+{LINK}
+
+Tu equipo DKP

@@ -1,0 +1,78 @@
+<!-- INCLUDE ../nl_css.html -->
+<script language="JavaScript" type="text/javascript">
+function NewTemplate() {
+  {JS_ADD_TEMPLATE}
+}
+  
+function EditTemplate(tid) {
+  {JS_EDIT_TEMPLA}
+}
+
+function PreviewTemplate(id, name) {
+  {JS_PREVIEW}
+}
+
+
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+
+			function nl_selectall(name){
+
+				for (var i = 0;i < document.getElementsByName(name).length;i++)
+				{
+					document.getElementsByName(name)[i].checked = true;
+				}
+			}
+			
+			function nl_deselectall(name){
+
+				for (var i = 0;i < document.getElementsByName(name).length;i++)
+				{
+					document.getElementsByName(name)[i].checked = false;
+				}
+			}
+</script>
+<form method="post" action="templates.php{SID}" name="post">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr >
+    <th colspan="4" align="left" nowrap="nowrap"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left">{L_MANAGE_TEMPLATES}</td>
+          <td width="5" align="left" nowrap="nowrap">{ADMIN_MENU}</td>
+        </tr>
+      </table></th>
+    </tr>
+  <tr >
+    <th align="left" width="10" nowrap="nowrap"><input type="checkbox" onclick="if(this.checked == false){nl_deselectall('template[]');} else {nl_selectall('template[]');};" /></th>
+    <th align="left" width="100%" nowrap="nowrap">{L_TEMPLATENAME}</th>
+    <th align="left" width="50" nowrap="nowrap">{L_PREVIEW}</th>
+    <th align="left" width="10" nowrap="nowrap">{L_ACTION}</th> 
+  </tr>
+  <!-- BEGIN template_row -->
+  <tr class="{template_row.ROW_CLASS}">
+      <td align="left" width="10"><input name="template[]" value="{template_row.ID}" type="checkbox"></td>
+      <td align="left" nowrap="nowrap"><a href="javascript:void(0);" title="{L_EDITTEMPLATE}" onclick="javascript:EditTemplate({template_row.ID})">{template_row.NAME}</a></td>
+      <td align="left" nowrap="nowrap"><a href="javascript:void()" onClick="PreviewTemplate({template_row.ID}, '{template_row.NAME}')">{L_PREVIEW}</a></td>
+      <td align="center" nowrap="nowrap"><img border="0" style="cursor:pointer;" src="../images/edit.png" alt="{L_EDITTEMPLATE}" title="{L_EDITTEMPLATE}" onclick="javascript:EditTemplate({template_row.ID})"/><a href="templates.php{SID}&mode=delete&id={template_row.ID}"><img border="0" style="cursor:pointer;" src="../images/delete.png" alt="{L_DELETETEMPLATE}" title="{L_DELETETEMPLATE}" /></a></td>
+  </tr>
+  <!-- END template_row -->
+  <!-- IF S_NO_TEMPLATES -->
+  <tr class="row1">
+  	<td colspan="4"><em>{L_NO_TEMPLATES}</em></td>
+  </tr>
+  <!-- ENDIF -->
+  <th colspan="4">
+  <input type="button" name="add" value="{L_ADDTEMPLATE}" onclick="javascript:NewTemplate()" class="mainoption"/>
+  <input type="submit" name="doDelete" value="{L_DELETE}" class="mainoption"/>
+  </th>
+</table>
+</form>
+<br />
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="../images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}</span>
+</center>

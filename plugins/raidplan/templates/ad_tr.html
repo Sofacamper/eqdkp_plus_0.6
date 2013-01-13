@@ -1,0 +1,23 @@
+<form method="post" action="{F_TRANSFORM}" name="transformRaids">
+<input type="hidden" name="raid_id" value="{RAID_ID}" />
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr >
+    <td width="20%" nowrap="nowrap" class="row2"><input type="checkbox" name="confirmed" value="1" checked></td>
+    <td width="80%" nowrap="nowrap" class="row2">{L_OPT_CONFIRM}</td>
+  </tr>
+  <tr >
+    <td width="20%" nowrap="nowrap" class="row2"><input type="checkbox" name="signedin" value="1"></td>
+    <td width="80%" nowrap="nowrap" class="row2">{L_OPT_SIGNIN}</td>
+  </tr>
+  <tr >
+    <td width="20%" nowrap="nowrap" class="row2"><input type="checkbox" name="notsure" value="1"></td>
+    <td width="80%" nowrap="nowrap" class="row2">{L_OPT_NOTSURE}</td>
+  </tr>
+  <tr>
+    <td colspan=2>
+      <center>
+        <input type="submit" name="clean" value="{L_BUTT_TRANS}" class="mainoption" /> 
+      </center>
+    </td>
+  </tr>
+</form>

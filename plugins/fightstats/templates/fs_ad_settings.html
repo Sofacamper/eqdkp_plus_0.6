@@ -1,0 +1,54 @@
+<!-- INCLUDE ../FS_css.html -->
+{FS_STATUS}
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+<style>
+.rptooldiv  {
+	display: block;
+	font-size: 12px;
+	padding: 5px;
+	margin: 0px;
+}
+
+/* Warn */
+.rp_tt_warn{
+  width: 200px;
+  min-height:100px;
+	background:#fff url(../images/bg_warn.jpg) bottom right no-repeat;
+  border:1px solid #c5a524;
+}
+
+
+.rp_tt_warn td{
+	color: black;
+	font-family: Verdana, Tahoma, Arial;
+	font-size: 11px;
+}
+
+</style>
+{FS_JS_CONFIG_TABS}
+<form method="post" action="{F_ACTION}" name="post">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+ 	<tr>
+ 	  <th align="center" colspan="2">{L_CONFIG}</th></tr>
+   	<tr>
+    	<td width="50%" class="row2">{L_UPDATE_CHECK}</td>
+		<td width="50%" class="row1">{UPDATECHECK_BOX}</td>
+	</tr>  
+ 	<tr>
+    	<td width="30%" class="row2">{L_WOL_GROUP_ID}</td>
+		<td width="70%" class="row1"><input type="text" name="wol_group_id" value="{WOL_GROUP_ID}" class="input"></td>
+	</tr>
+        <tr>
+                <td class="row2">{L_LAST_UPDATE}</td>
+                <td width="70%" class="row1"><input name="fs_update" type="submit" class="mainoption" id="fs_update" value="{L_UPDATE}">                 
+                   [{LAST_UPDATE}]</td>
+        </tr>
+
+
+  <tr><th align="center" colspan="2"><input name="submit" type="submit" class="mainoption" id="submit" value="{L_SAVE}" /></th></tr>
+</table>
+</form>
+
+
+{FS_FOOTER}

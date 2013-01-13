@@ -1,0 +1,202 @@
+{ERROR_MSG}
+{JS_FIELDS_EMPTY}
+<form method="post" name="bridge">
+{JS_BRIDGE_TABS}
+<div id='bridge_tabs'>
+                  <ul>
+                    <!-- IF S_RP_INSTALLED -->
+                    <li><a href='#next_raids'><span>{L_NEXT_RAIDS}</span></a></li>
+                    <!-- ENDIF -->
+                    <li><a href='#news'><span>{L_NEWS}</span></a></li>
+                    <li><a href='#allvatar_news'><span><img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/allvatar_icon.png" border="0">{L_ALLVATAR_NEWS}</span></a></li>
+                  </ul>
+<!-- IF S_RP_INSTALLED -->
+<div id="next_raids">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th colspan="5">{L_NEXT_RAIDS}</th>
+    </tr>
+    <tr>
+      <th nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){nl_deselect_all('next_raids');} else {nl_select_all('next_raids');};"></th>
+      <th nowrap="nowrap">&nbsp;</th>
+      <th>{L_DATE}</th>
+      <th>{L_NAME}</th>
+      <th>{L_DESC}</th>
+    </tr>
+    <!-- BEGIN nextraids_row -->
+
+    <tr class="{nextraids_row.ROW_CLASS}">
+    <td width="5" nowrap="nowrap"><input type="checkbox" name="nr_checkbox" value="{nextraids_row.ID}" {SELECTED}><textarea style="display:none" id="nr_{nextraids_row.ID}">[url={DKP_LINK}plugins/raidplan/viewraid.php?r={nextraids_row.ID}][b]{nextraids_row.DATE}[/b]: {nextraids_row.NAME}[/url] {nextraids_row.NOTE_LONG}</textarea></td>
+    <td width="40" nowrap="nowrap">{nextraids_row.IMG}</td>
+    <td width="100" nowrap="nowrap">{nextraids_row.DATE}</td>
+    <td>{nextraids_row.NAME}</td>
+    <td>{nextraids_row.NOTE}</td>
+    </tr>
+  <!-- END nextraids_row -->
+  <tr>
+      <th colspan="5" nowrap="nowrap"><input type="button" value="{L_INSERT}" onClick="parse_next_raids()"></th>
+      </tr>
+</table>
+</div>
+<!-- ENDIF -->
+<div id="news">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th colspan="4">{L_NEWS}</th>
+    </tr>
+    <tr>
+      <th nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){nl_deselect_all('news');} else {nl_select_all('news');};"></th>
+      <th nowrap="nowrap">{L_DATE}</th>
+      <th>{L_TITEL}</th>
+      <th>{L_DESC}</th>
+    </tr>
+    <!-- BEGIN news_row -->
+  <tr class="{news_row.ROW_CLASS}">
+    <td width="5" nowrap="nowrap"><input type="checkbox" name="news_checkbox" value="{news_row.ID}" {SELECTED}><textarea style="display:none" id="news_{news_row.ID}">[url={DKP_LINK}viewnews.php?id={news_row.ID}][b]{news_row.NAME}[/b] - {news_row.DATE}[/url][br]{news_row.MESSAGE_LONG}</textarea></td>
+    <td width="100" nowrap="nowrap">{news_row.DATE}</td>
+    <td>{news_row.NAME}</td>
+    <td>{news_row.MESSAGE}</td>
+  </tr>
+  <!-- END news_row -->
+  <tr>
+      <th colspan="4" nowrap="nowrap"><input type="button" value="{L_INSERT}" onClick="parse_news()"></th>
+      </tr>
+  
+</table>
+</div>
+
+<div id="allvatar_news">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th colspan="4">Allvatar-News:</th>
+    </tr>
+    <tr>
+      <th nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){nl_deselect_all('allvatar_news');} else {nl_select_all('allvatar_news');};"></th>
+      <th width="100" nowrap="nowrap">{L_DATE}</th>
+      <th>{L_TITEL}</th>
+      <th>{L_DESC}</th>
+    </tr>
+    <!-- BEGIN avtnews_row -->
+  <tr class="{avtnews_row.ROW_CLASS}">
+    <td width="5" nowrap="nowrap"><input type="checkbox" name="avtnews_checkbox" value="{avtnews_row.ID}" {SELECTED}><textarea style="display:none" id="avtnews_{avtnews_row.ID}">[url={avtnews_row.LINK}][b]{avtnews_row.TITLE}[/b] - {avtnews_row.DATE}[/url][br]{avtnews_row.MESSAGE_LONG}[br][url={avtnews_row.LINK}]{L_ALLVATAR_READ_MORE}[/url]</textarea></td>
+    <td>{avtnews_row.DATE}</td>
+    <td><a href="{avtnews_row.LINK}" target="_blank">{avtnews_row.TITLE}</a></td>
+    <td>{avtnews_row.MESSAGE}</td>
+   </tr>
+  <!-- END avtnews_row -->
+  <tr>
+      <th colspan="4" nowrap="nowrap"><input type="button" value="{L_INSERT}" onClick="parse_allvatar_news()"></th>
+   </tr>
+  
+</table>
+</div>
+
+
+</div>
+
+
+
+
+
+
+</form>
+<script>
+
+function insert(){
+
+var output =  parse_next_raids() + parse_news() + parse_allvatar_news();
+
+alert(output);
+}
+
+function parse_next_raids(){
+
+	var checkboxes = document.getElementsByName('nr_checkbox');
+	var output = "";
+	for (var i=0; i<checkboxes.length; i++){
+		
+		if (checkboxes[i].checked == true){
+			var counter = 1;
+			
+			output = output + "\n" + document.getElementById("nr_"+checkboxes[i].value).value;
+
+		};
+
+	}
+
+	if (counter == 1){
+		output = "\n[size=140][b][u]{L_NEXT_RAIDS}[/u][/b][/size]\n" + output;
+	}
+	
+	window.parent.document.newsletter.body.value = window.parent.document.newsletter.body.value + "\n" + output;
+};
+
+function parse_news(){
+
+	var checkboxes = document.getElementsByName('news_checkbox');
+	var output = "";
+	for (var i=0; i<checkboxes.length; i++){
+		
+		if (checkboxes[i].checked == true){
+			var counter = 1;
+			
+			output = output + "\n\n" + document.getElementById("news_"+checkboxes[i].value).value;
+
+		};
+
+	}
+
+	if (counter == 1){
+		output = "\n[size=140][b][u]{L_NEWS}[/u][/b][/size]\n" + output;
+	}
+	
+	window.parent.document.newsletter.body.value = window.parent.document.newsletter.body.value + "\n" + output;
+};
+
+function parse_allvatar_news(){
+
+	var checkboxes = document.getElementsByName('avtnews_checkbox');
+	var output = "";
+	for (var i=0; i<checkboxes.length; i++){
+		
+		if (checkboxes[i].checked == true){
+			var counter = 1;
+			
+			output = output + "\n\n" + document.getElementById("avtnews_"+checkboxes[i].value).value;
+
+		};
+
+	}
+
+	if (counter == 1){
+		output = "\n[size=140][b][u]{L_ALLVATAR_NEWS}[/u][/b][/size]" + output + "\n\n{L_ALLVATAR_FOOTER}";
+	}
+	
+	window.parent.document.newsletter.body.value = window.parent.document.newsletter.body.value + "\n" + output;
+};
+
+function nl_select_all(area){
+				
+	var area = document.getElementById(area);
+	var checkboxes = area.getElementsByTagName('input');
+
+	for (var i=0; i<checkboxes.length; i++){
+		checkboxes[i].checked = true;
+
+	}
+				
+}
+			
+function nl_deselect_all(area){
+	
+	var area = document.getElementById(area);
+
+	var checkboxes = area.getElementsByTagName('input');
+
+	for (var i=0; i<checkboxes.length; i++){
+		checkboxes[i].checked = false;
+
+	}
+				
+}
+</script>

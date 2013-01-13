@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="plugin" version="0.7.0.0">
+	<name>Fightstats</name>
+	<author>GodMod</author>
+	<authorEmail>godmod@eqdkp-plus.com</authorEmail>
+	<authorUrl>http://www.eqdkp-plus.com</authorUrl>
+	<creationDate>24-JAN-2009</creationDate>
+	<copyright>(C)20010 eqdkp-plus.com.</copyright>
+	<license>CC</license>
+	<version>0.0.1</version>
+	<description>This Plugin shows the last combatlogs.</description>
+</install>

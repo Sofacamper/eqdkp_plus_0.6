@@ -1,0 +1,67 @@
+<script language="JavaScript" type="text/javascript">
+function AboutDialog() {
+  {JS_ABOUT}
+}
+</script>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="1" align="center">
+  <tr>
+    <th colspan="2">
+      <form method="get" action="{F_MEMBERS}">{L_STATS} {DR_DAYS} {L_DAYS}</form>
+    </th>
+  </tr>
+  <tr class="row1">
+    <td>{L_TOTAL_RAID}</td>
+    <td align="center" width="70" nowrap="nowrap">{TOTAL_RAIDS}</td>
+  </tr>
+  <tr class="row2">
+    <td >{L_TOTAL_RUN}</td>
+    <td align="center" width="70" nowrap="nowrap">{TOTAL_SCHED}</td>
+  </tr>
+</table>
+<br />
+
+<table width="100%" border="0" cellspacing="1" cellpadding="3">
+  <tr>
+    <th colspan="5" cellspacing="2"></th>
+    <th colspan="5" cellspacing="2">{L_LAST_X_DAYS}</th>
+    <th colspan="4" cellspacing="2">{L_SINCE_FIRST}</th>
+  </tr>
+  <tr>
+    <th colspan="2" align="left" width="100%"><a href="{U_LIST_MEMBERS}o={O_NAME}">{L_NAME}</a></th>
+    <th align="left" width="130" ><a href="{U_LIST_MEMBERS}o={O_CLASS}">{L_CLASS}</a></th>
+    <th align="left" width="80" ><a href="{U_LIST_MEMBERS}o={O_CURRENT}">{L_CURRENT}</a></th>
+    <th align="left" width="70" ><a href="{U_LIST_MEMBERS}o={O_LASTRAID}">{L_LASTRAID}</a></th>
+    <th align="left" width="70" nowrap="nowrap" colspan="2">{L_ATTENDED}</th>
+    <th align="left" width="70" nowrap="nowrap" colspan="2">{L_SIGNED_IN}</th>
+    <th align="left" width="70" nowrap="nowrap">{L_SIGNED_OFF}</th>
+    <th align="left" width="70" nowrap="nowrap">{L_FIRSTRAID}</th>
+    <th align="left" width="70" nowrap="nowrap">{L_ATTENDED}</th> 
+    <th align="center" width="70" nowrap="nowrap" colspan="2">{L_TOTAL}</th>           
+  </tr>
+<!-- BEGIN members_row -->
+  <tr class="{members_row.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{members_row.ROW_CLASS}';">
+    <td width="35" nowrap="nowrap" align="right">{members_row.COUNT}</td>
+    <td width="100%" nowrap="nowrap"><a href="{members_row.U_VIEW_MEMBER}">{members_row.NAME}</a></td>
+    <td width="100" nowrap="nowrap">{members_row.CLASS_ICON} {members_row.CLASS}</td>
+    <td width="60" nowrap="nowrap" class="{members_row.C_CURRENT}">{members_row.CURRENT}</td>
+    <td width="70" nowrap="nowrap" class="{C_NEUTRAL}">{members_row.LASTRAID}</td>
+    <td align="right" width="70" nowrap="nowrap" class="{members_row.C_RAIDS_COUNT}">{members_row.RAIDS_COUNT}</td>
+    <td align="right" width="70" nowrap="nowrap" class="{members_row.C_PERC_RAIDS_COUNT}">{members_row.PERC_RAIDS_COUNT}</td>
+    <td align="right" width="70" nowrap="nowrap" class="{members_row.C_SIGNUP_COUNT}">{members_row.SIGNUP_COUNT}</td>
+    <td align="right" width="70" nowrap="nowrap" class="{members_row.C_PERC_SIGNUP_COUNT}">{members_row.PERC_SIGNUP_COUNT}</td>
+
+    <td align="center" width="70" nowrap="nowrap" class="{members_row.C_SIGNOFF_COUNT}">{members_row.SIGNOFF_COUNT}</td>
+    <td align="center" width="70" nowrap="nowrap" class="{C_NEUTRAL}">{members_row.FIRSTRAID}</td>
+    <td align="center" width="70" nowrap="nowrap" class="{members_row.C_RAIDS_FIRSTRAID}">{members_row.RAIDS_FIRSTRAID}</td>
+    <td align="center" width="70" nowrap="nowrap" class="{members_row.C_TOTAL_FIRSTRAID}">{members_row.TOTAL_FIRSTRAID}</td>
+    <td align="center" width="70" nowrap="nowrap" class="{members_row.C_PERC_RAIDCOUNT}">{members_row.PERC_RAIDCOUNT}</td>
+  </tr>
+  <!-- END members_row -->
+  <tr>
+    <th colspan="24" class="footer">{RS_FOOTCOUNT}</th>
+  </tr>
+</table>
+
+<br/><center><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="images/credits/info.png" alt="{L_CREDITS}" border="0" /> {L_CREDITS}</a></span>
+<br /><span class="copy">{L_COPYRIGHT}</span></center>

@@ -1,0 +1,49 @@
+To attach Files to the news,
+
+open the file "dkp/includes/functions.php" and find around line 690:
+
+===FIND==============================================
+
+
+$message = $bbcode->MyEmoticons($message);
+
+
+=====================================================
+
+After this, insert the following code in a new line:
+
+
+===INSERT AFTER======================================
+
+	
+//Download-BBCode
+if ($pm->check(PLUGIN_INSTALLED, 'downloads')){
+			
+	include_once($eqdkp_root_path.'plugins/downloads/include/downloads.class.php');
+			
+		if (!$dlclass){			
+			$dlclass = new DownloadsClass();
+		};
+
+	$message = $dlclass->DownloadBBcode($message);
+
+};
+//Close Download-BBCode
+
+
+=====================================================
+
+Now you can use the following BB-Codes:
+
+
+[file]ID[/file]       and (for the germans)
+
+[datei]ID[/datei]
+
+"ID" is the ID of a Download. You can get the ID from your database or from the URL, for example "../downloads.php?file=14"
+=> ID = 14
+
+
+Have Fun,
+
+GodMod

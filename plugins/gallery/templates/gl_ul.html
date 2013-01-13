@@ -1,0 +1,120 @@
+{NO_UPLOAD}
+<form action="insertpic.php" method="POST" enctype="multipart/form-data">
+  <table width="100%" border="0" cellspacing="0" cellpadding="2">	
+    <tr>		
+      <th colspan="2">
+        <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="text-align: left;">      
+              <a href="{EQDKP_ROOT_PATH}plugins/gallery/gallery.php">{GL_HEADLINE}</a> -> {GL_HEADLINE_UP}</td>
+          </tr>
+        </table>
+      </th>	
+    </tr>	
+  <tr class="row1">	<td>	
+      <table class="borderless" border="0" cellpadding="0" cellspacing="0">  
+        <tr >    
+          <td valign="top">    
+            <table class="borderless" border="0" cellpadding="0" cellspacing="2">    
+              <tr >		
+                <td width="50" align="right"><img src="images/empty.png"></td>		
+                <td align="center">                   
+                  <div style="width: 470px; padding: 15px; border: 1px solid #999999; padding: 10px; background: transparent url(images/pic_upload.png);" class="row3">            
+                    <table height="400" width="100%" class="borderless" cellpadding="0" cellspacing="0">              
+                      <tr>                
+                        <td style="text-align: center; vertical align: middle;">                  
+                        <table align="center"><tr><td class="row1" style="padding:10px">{GL_FILENAME}<input class="input" name="filename" type="file" accept="image/jpeg,image/png,image/gif" style="color: #000000; background: #FFFFFF;" ></td></tr></table>                                       
+                        </td>              
+                      </tr>            
+                    </table>          
+                  </div>    </td>		
+                <td width="50" ><img src="images/empty.png"></td>		
+              </tr>    
+              <tr >		
+                <td width="50" ><img src="images/empty.png"></td>		
+                <td align="center">		    
+                  <table style="border: 1px solid #999999; table-layout:auto; width: 492px" border="0" cellspacing="1" cellpadding="2">			
+                    <tr>				
+                      <td style="text-align: center; padding: 10px; width: 468px; background: transparent url(images/highlighting.png);"  height="70" colspan="2">        <b>&nbsp;{GL_NAME}<br /><input class="input" name="description" style="text-align: center; width: 300px; font-weight: bold;"></b><br />&nbsp;        </td>			
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="28" style="text-align: left; width: 170px; background: transparent url(images/highlighting.png);">{GL_CATEGORY}</td>
+                      <td class="row2" height="28" style="text-align: left; width: 322px">
+                      <select class="input" name="category">    	
+                        <!-- BEGIN categories -->		
+                        <option value="{categories.GL_CATEGORY_ID}">{categories.GL_CATEGORY_NAME}
+                        </option>
+                        <!-- END categories -->			
+                      </select>
+                      </td>      
+                    </tr>      
+                    <tr>				
+                      <td class="row1" height="70" valign="top" style="padding-top: 5px; padding-bottom: 5px; text-align: left; width: 170px; background: transparent url(images/highlighting.png);">{GL_DESCRIPTION}</td>
+                      <td class="row2" height="28" valign="top" style="padding-left: 3px; padding-top: 5px; padding-bottom: 5px; text-align: left; width: 322px">			  <textarea class="input" name="comment" cols="57" rows="7"></textarea></td>      
+                    </tr>      
+            </table>    </td>		
+          <td width="50" ><img src="images/empty.png"></td>		
+        </tr>
+      </table></td>		
+      <td valign="top" width="100%" align="center">	
+      
+      
+      
+      
+<table style="border: 1px solid #999999; table-layout:auto; width: 374px; margin: 2px; margin-left: 0px; margin-right: 0px" border="0" cellspacing="1" cellpadding="2" align="center">			
+                    <tr>				
+                      <td style="text-align: center; padding: 10px; background: transparent url(images/highlighting.png);"  height="70" colspan="2">        <b>{GL_HEADLINE_UP} - {GL_INFO}</b>        </td>			
+                    </tr>
+                    <tr>				
+                      <td class="row1" height="70" valign="top" style="padding-top: 5px; padding-bottom: 5px; text-align: left; width: 100px; background: transparent url(images/highlighting.png);">{GL_FILENAME}</td>
+                      <td class="row2" height="28" valign="top" style="padding-left: 3px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{GL_FILENAME_DESCRIBE}
+                      </td>      
+                    </tr>
+                    <tr>				
+                      <td class="row1" height="70" valign="top" style="padding-top: 5px; padding-bottom: 5px; text-align: left; width: 100px; background: transparent url(images/highlighting.png);">{GL_NAME}</td>
+                      <td class="row2" height="28" valign="top" style="padding-left: 3px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{GL_NAME_DESCRIBE}
+                      </td>      
+                    </tr>
+                    <tr>				
+                      <td class="row1" height="70" valign="top" style="padding-top: 5px; padding-bottom: 5px; text-align: left; width: 100px; background: transparent url(images/highlighting.png);">{GL_CATEGORY}</td>
+                      <td class="row2" height="28" valign="top" style="padding-left: 3px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{GL_CATEGORY_DESCRIBE}
+                      </td>      
+                    </tr>
+                    <tr>				
+                      <td class="row1" height="70" valign="top" style="padding-top: 5px; padding-bottom: 5px; text-align: left; width: 100px; background: transparent url(images/highlighting.png);">{GL_DESCRIPTION}</td>
+                      <td class="row2" height="28" valign="top" style="padding-left: 3px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{GL_DESCRIBTION_DESCRIBE}
+                      </td>      
+                    </tr>   
+            </table>      
+      
+      
+      
+      
+    	</td>	
+  </tr>	
+</table></td>
+</tr>
+<tr class="{GL_ROW_CLASS}">		
+      <th colspan="2">			
+        <input type="submit" class="mainoption" value="{GL_SEND}">			
+        <input type="reset" class="liteoption" value="{GL_RESET}">		
+      </th>	
+</tr>
+  </table>
+</form>
+
+
+<script language="JavaScript" type="text/javascript">
+function aboutDialog(){
+	{L_CREDITS}
+}
+</script>
+<br />
+<center>
+  <span class="copyis">
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">
+      <img src="images/credits/info.png" alt="Credits" border="0" /> Credits</a>
+  </span><br />
+  <span class="copy">{L_COPYRIGHT}
+  </span>
+</center>

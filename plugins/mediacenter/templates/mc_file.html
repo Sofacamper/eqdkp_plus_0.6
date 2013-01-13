@@ -1,0 +1,269 @@
+<!-- INCLUDE ../mc_css.html -->
+<style>
+#more_from_cat, #more_from_uploader, #more_from_tags{
+                  	margin:0;
+                  	padding:5px;
+                  	height:200px;
+                  	width:auto;
+                  	overflow: auto;
+                  }
+
+</style>
+{MC_STATUS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="4">		  
+      <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="50%" style="text-align: left; width: 33%">      
+           <b><a href="index.php{SID}">{MC_L_MEDIACENTER}</a> &raquo; <a href="list.php{SID}&cat={MEDIA_CAT_ID}">{MEDIA_CAT}</a> &raquo; {MEDIA_NAME}:</b></td>{DL_UPLOAD}
+          <td width="49%" style="text-align: right;"><form action="search.php{SID}" method="post" name="mc_search">
+            <input type="text" class="input" value="{MC_L_SEARCH_INPUTVALUE}" name="search_value" onFocus="this.value='';" onBlur="if(this.value == ''){this.value='{MC_L_SEARCH_INPUTVALUE}';};" />
+            <img src="{EQDKP_ROOT_PATH}/plugins/mediacenter/images/search.png" alt="Submit" onClick="document.mc_search.submit();" style="cursor:pointer;">
+          </form></td>
+          <td width="1%" nowrap="nowrap" style="text-align: left;"><!-- IF MC_IS_ADMIN -->{MC_ADMIN_MENU}<!-- ELSE --><!-- IF MC_IS_UPLOADER --><a href="javascript:uploadDialog();">{MC_L_UPLOAD}</a><!-- ENDIF --><!-- ENDIF --></td>	
+        </tr>
+      </table>    
+    </th>	
+  </tr>
+        
+        <tr>
+          <td align="left">
+
+
+{SHOW_CATEGORIES}
+
+
+</td>
+        </tr>
+        <tr>
+          <td height="6"><table width="900" class="borderless" border="0" cellpadding="1" cellspacing="1">
+    <tr>
+      <td colspan="2" valign="top" style="text-align: left;">
+      
+     <!-- IF MC_IS_ADMIN -->
+    <!-- IF S_REPORTED -->
+    <table class="errortable" border="0" cellpadding="2" cellspacing="0" width="100%">
+          								<tbody><tr>
+          								 
+          								  <td class="row1">{L_REPORTED}</td>
+                                          </tr>
+                                          
+                                          <!-- BEGIN reported_list -->
+                                          <tr><td class="row1">{reported_list.CONTENT}</td></tr>
+                                          <!-- END reported_list-->
+                                          
+          								
+                        </tbody></table>
+    <!-- ENDIF -->
+    <!-- ENDIF -->
+      
+      <table width="590" border="0" align="center" cellpadding="1" cellspacing="1">
+        <tr>
+          <th colspan="2" style="text-align: left;">{MEDIA_NAME}</th>
+          </tr>
+        <tr>
+          <td colspan="2" style="text-align: center; background-color:#000; color:#FFF;" valign="top">{MEDIA_PLAYER}</td>
+          </tr>
+        <tr class="row1">
+          <td style="text-align: left;">{MEDIA_RATING_STARS}  <br />
+      ({MEDIA_RATING}/10 | {MEDIA_VOTES} {L_VOTES}) 
+      
+      <!-- IF MC_IS_ADMIN -->
+      (<a href="file.php{SID}&id={MEDIA_ID}&mode=del_votes">{L_RESET_RATINGS}</a>)<!-- ENDIF --></td>
+          <td style="text-align: left;"> {MEDIA_VIEWS} {L_VIEWS}</td>
+          </tr>
+        <tr class="row2">
+          <td colspan="2" style="text-align: left;">{JS_ACTION_TABS}
+            
+            <div id='mc_action_tabs'>
+              <ul style="font-size:11px;">
+				<!-- IF MC_S_STORY -->
+                <li><a href="#story">{L_STORY}</a></li>
+                <!-- ENDIF -->
+                <li><a href="#comments">{L_COMMENTS} ({MEDIA_COMMENT_COUNT})</a></li>
+                <li><a href="#share">{L_SHARE}</a></li>
+                <li><a href='#embed'><span>{L_EMBED}</span></a></li>
+                <!-- IF S_LOGGED_IN -->
+                <li><a href='#report'><span>{L_REPORT}</span></a></li>
+                <!-- ENDIF -->
+                </ul>
+			<!-- IF MC_S_STORY -->
+            <div id="story">
+                <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                  
+                  <tr class="row1">
+                    <td>{MEDIA_STORY}</td>
+                    </tr>
+                  
+                  </table>
+            </div>
+            <!-- ENDIF -->
+            <div id="comments">
+            {COMMENTS}         
+            </div>
+              
+              <div id="share">
+                <table width="400" border="0" cellspacing="0" cellpadding="2">
+                  
+                  <tr class="row1">
+                    <td>{L_SHARE_INFO}
+                      <input type="text" class="input" style="width:500px;" onclick="select()" value="[url={DKP_URL}plugins/mediacenter/file.php?id={MEDIA_ID}]{MEDIA_NAME}[/url]" readonly="readonly"></td>
+                    </tr>
+                  
+                  </table>
+                </div>
+              <div id="embed">
+                <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                  
+                  <tr class="row1">
+                    <td>{L_EMBED_INFO}<input value="{EMBED_CODE}" class="input" readonly="readonly" onclick="select()" type="text" style="width:500px;"></td>
+                    </tr>
+                  
+                  </table>
+                </div>
+              <!-- IF S_LOGGED_IN -->
+              <div id="report">
+                <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                  
+                  <tr class="row1">
+                    <td>
+<form action="" method="post" enctype="multipart/form-data" name="dl_report" >
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+              <tr class="row1">
+          <td align="left">{L_REPORT_INFO}</td>
+        </tr>
+        <tr class="row2" align="center">
+          <td><textarea name="dl_comment" class="input" id="dl_comment" style="width:98%"></textarea></td>
+        </tr>
+
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+    <tr>
+      <th colspan="5"> <input name="report_but" type="submit" class="mainoption" id="report_but" value="{L_REPORT}">
+      <input class="liteoption" type="reset" value="{L_RESET}" onClick="dl_reset_fields()"></th>
+    </tr>
+</table>
+</form>
+</td>
+                    </tr>
+                  
+                  </table>
+                </div>
+              <!-- ENDIF -->
+              </div>
+            
+            </td>
+          </tr>
+
+        </table></td>
+      <td width="300" valign="top"><table width="300" class="borderless" border="0" cellpadding="1" cellspacing="1">
+        <tr>
+          <th>{L_INFORMATION}</th>
+        </tr>
+        <tr>
+          <td width="200" class="row1"><strong>{L_DESC}:</strong> {MEDIA_DESC}<br>
+            <strong>{L_UPLOADED}:</strong> {MEDIA_DATE}<br>
+            <strong>{L_UPLOADER}:</strong> {MEDIA_UPLOADER}<br>
+            <strong>{L_TAGS}:</strong> {MEDIA_TAGS}</td>
+        </tr>
+        <tr class="row2">
+          <td><table width="100%" cellpadding="0" cellspacing="0" class="forumline">
+            <tr>
+              <th><a href="javascript:animatedcollapse.toggle('more_from_uploader')"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/toggle.png" name="imgdl_mirror_table" border="0" id="imgdl_mirror_table">{L_MORE_FROM}: {MEDIA_UPLOADER}</a></th>
+            </tr>
+            <tr></tr>
+          </table>
+            <div id="more_from_uploader">
+              <table width="100%" cellpadding="2" cellspacing="0">
+                <!-- BEGIN more_from_uploader_list -->
+                <tr class="{more_from_uploader_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{more_from_uploader_list.ROW_CLASS}';" style="cursor:pointer" onClick="window.location.href='file.php{SID}&id={more_from_uploader_list.ID}'">
+                  <td width="50"><img src="{more_from_uploader_list.THUMBNAIL}" alt="{more_from_uploader_list.NAME}" height="50"></td>
+                  <td>{more_from_uploader_list.NAME}<br><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{more_from_uploader_list.RATING}.png"></td>
+                </tr>
+                <!-- END more_from_uploader_list -->
+                <tr></tr>
+              </table>
+            </div></td>
+        </tr>
+        <tr class="row1">
+          <td class="row2"><table width="100%" cellpadding="0" cellspacing="0" class="forumline">
+            <tr>
+              <th><a href="javascript:animatedcollapse.toggle('more_from_cat')"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/toggle.png" name="imgdl_cat_table" border="0" id="imgdl_cat_table">{L_MORE_FROM_CAT}</a></th>
+            </tr>
+            <tr></tr>
+          </table>
+            <div id="more_from_cat">
+              <table width="100%" cellpadding="2" cellspacing="0">
+                <!-- BEGIN more_from_cat_list -->
+                <tr class="{more_from_cat_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{more_from_cat_list.ROW_CLASS}';" style="cursor:pointer" onClick="window.location.href='file.php{SID}&id={more_from_cat_list.ID}'">
+                  <td width="50"><img src="{more_from_cat_list.THUMBNAIL}" alt="{more_from_cat_list.NAME}" height="50"></td>
+                  <td>{more_from_cat_list.NAME}<br><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{more_from_cat_list.RATING}.png"></td>
+                </tr>
+                <!-- END more_from_cat_list -->
+                <tr></tr>
+              </table>
+            </div></td>
+        </tr>
+        <tr class="row2">
+          <td><table width="100%" cellpadding="0" cellspacing="0" class="forumline">
+            <tr>
+              <th><a href="javascript:animatedcollapse.toggle('more_from_tags')"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/toggle.png" name="imgdl_tags_table" border="0" id="imgdl_tags_table">{L_RELATED_VIDEOS}</a></th>
+            </tr>
+            <tr></tr>
+          </table>
+            <div id="more_from_tags">
+              <table width="100%" cellpadding="2" cellspacing="0">
+                <!-- BEGIN related_list -->
+                <tr class="{related_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{related_list.ROW_CLASS}';" style="cursor:pointer" onClick="window.location.href='file.php{SID}&id={related_list.ID}'">
+                  <td width="50"><img src="{related_list.THUMBNAIL}" alt="{related_list.NAME}" height="50"></td>
+                  <td>{related_list.NAME}<br><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{related_list.RATING}.png"></td>
+                </tr>
+                <!-- END related_list -->
+                <tr></tr>
+              </table>
+            </div></td>
+        </tr>
+      </table></td>
+    </tr>
+    </table></td>			
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+var player;
+function playerReady(obj) {
+
+	player = document.getElementById(obj['id']);
+	player.addModelListener("TIME","muteTracker");
+
+
+};
+function muteTracker2(obj) { document.write('the new mute state is: '+obj.duration); };
+
+function aboutDialog(){
+{MC_JS_ABOUT}
+}
+
+function editDialog(){
+{MC_JS_EDIT}
+}
+function uploadDialog(){
+{MC_JS_UPLOAD}
+}
+
+function extend_infos(){
+	document.getElementById("info_link").style.display = "none";
+	document.getElementById("info_area").style.display = "inline";
+}
+
+function hide_infos(){
+	document.getElementById("info_area").style.display = "none";
+	document.getElementById("info_link").style.display = "inline";
+}
+
+resizeimg();
+
+</script>
+<script type="text/javascript">animatedcollapse.addDiv('more_from_uploader', 'persist=1,hide=0'); animatedcollapse.addDiv('more_from_cat', 'persist=1,hide=0'); animatedcollapse.addDiv('more_from_tags', 'persist=1,hide=0'); animatedcollapse.init();</script>
+<br />
+{MC_FOOTER}

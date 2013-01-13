@@ -1,0 +1,204 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+<style>
+.rptooldiv  {
+	display: block;
+	font-size: 12px;
+	padding: 5px;
+	margin: 0px;
+}
+
+/* Warn */
+.rp_tt_warn{
+  width: 200px;
+  min-height:100px;
+	background:#fff url(../images/bg_warn.jpg) bottom right no-repeat;
+  border:1px solid #c5a524;
+}
+
+
+.rp_tt_warn td{
+	color: black;
+	font-family: Verdana, Tahoma, Arial;
+	font-size: 11px;
+}
+
+</style>
+{DL_JS_CONFIG_TABS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>
+    <th><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/admin_logo.png" alt="Edit" align="absmiddle"> {DL_L_CONFIG}</th>
+    <th>&nbsp;</th>
+    <th width="50" nowrap="nowrap" align="left">{ADMIN_MENU}</th>
+  </tr>
+ </table>
+<form method="POST" name="dl_config">
+<div id='config_tabs'>
+          <ul>
+            <li><a href='#common'>{DL_AD_CONF_GEN}</a></li>
+            <!-- IF not DL_S_HMODE -->
+            <li><a href='#file'>{DL_AD_CONF_FILE}</a></li>
+            <!-- ENDIF -->
+            <li><a href="#view">{DL_AD_CONF_VIEW}</a></li>
+            <!-- IF not DL_S_HMODE -->
+            <li><a href="#extended"><span>{DL_AD_CONF_EXTENDED}</span></a></li>
+            <!-- ENDIF -->
+           </ul>
+
+	<div id="common">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>
+    <th colspan="2"> {DL_AD_CONF_GEN}</th>
+    </tr>
+  
+  
+  <tr class="row2">
+    <td width="50%">{DL_AD_CONF_MIRRORS} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_MIRRORS}/></td>
+    <td>{DL_AD_CONF_MIRRORS_CHECKBOX}</td>
+  </tr>
+  <tr class="row1">
+    <td>{DL_AD_CONF_COMMENTS} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_COMMENTS}/></td>
+    <td>{DL_AD_CONF_COMMENTS_CHECKBOX}</td>
+  </tr>
+  <tr class="row2">
+    <td> {DL_AD_CONF_SINGLE_VOTE}</td>
+    <td>{DL_AD_CONF_SINGLE_VOTE_CHECKBOX}</td>
+  </tr>
+    <tr class="row1">
+    <td> {DL_AD_CONF_RELATED_LINKS} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_RELATED_LINKS}/></td>
+    <td>{DL_AD_CONF_RELATED_LINKS_CHECKBOX}</td>
+  </tr>
+    <!-- IF not DL_S_HMODE -->
+    <tr class="row2">
+      <td> {DL_AD_CONF_RECAPTCHA} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_RECAPTCHA}/></td>
+      <td>{DL_AD_CONF_RECAPTCHA_CHECKBOX}</td>
+    </tr>
+    <!-- ENDIF -->
+    <tr class="row1">
+      <td> {DL_AD_CONF_STATISTICS} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_STATISTICS}/></td>
+      <td>{DL_AD_CONF_STATISTICS_CHECKBOX} <input type="button" name="resetStats" value="{DL_AD_CONF_STATISTICS_RESET}" class="mainoption" onclick="javascript:ResetStats()" /></td>
+    </tr>
+    <tr class="row2">
+      <td> {DL_AD_CONF_PRUNE_STATISTICS} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_PRUNE_STATISTICS}/></td>
+      <td><input name="prune_statistics" maxlength="255" value="{DL_AD_CONF_VAL_PRUNE_STATISTICS}" size="5" class="input"></td>
+    </tr>
+    </table>
+    
+    
+    </div>
+    
+    <!-- IF not DL_S_HMODE -->
+    <div id="file">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2">	
+    <tr>
+      <th colspan="3">{DL_AD_CONF_FILE}</th>
+    </tr>
+    <tr class="row1">
+      <td width="50%"> {DL_AD_CONF_ACCEPTED_FILE_TYPES} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_FILE_TYPES}/></td>
+      <td colspan="2"><input name="accepted_file_types" maxlength="255" value="{DL_AD_CONF_VAL_ACCEPTED_FILE_TYPES}" size="80" class="input"></td>
+    </tr>
+    <tr class="row2">
+      <td> {DL_AD_CONF_TRAFFIC_LIMIT} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_TRAFFIC_LIMIT}/></td>
+      <td colspan="2">{DL_AD_CONF_TRAFFIC_LIMIT_INPUT}</td>
+    </tr>
+    <tr class="row1">
+      <td> {DL_AD_CONF_FILESIZE_LIMIT} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_FILESIZE_LIMIT}/></td>
+      <td colspan="2">{DL_AD_CONF_FILESIZE_LIMIT_INPUT}</td>
+    </tr>
+    <tr class="row2">
+      <td> {DL_AD_CONF_FOLDER_LIMIT} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_FOLDER_LIMIT}/></td>
+      <td colspan="2">{DL_AD_CONF_FOLDER_LIMIT_INPUT}</td>
+    </tr>
+    </table>
+    </div>
+    <!-- ENDIF -->
+    
+    <div id="view">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2">	
+    <tr>
+      <th colspan="3">{DL_AD_CONF_VIEW}</th>
+      </tr>
+    <tr class="row1">
+    <td width="50%"> {DL_AD_CONF_STATISTICS_OV} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_STATISTICS_OV}/></td>
+    <td colspan="2">{DL_AD_CONF_STATISTICS_OV_CHECKBOX}</td>
+  </tr>
+  <tr class="row2">
+    <td> {DL_AD_CONF_CAT_DISABLED} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_CAT_DISABLED}/></td>
+    <td colspan="2">{DL_AD_CONF_CAT_CHECKBOX}</td>
+  </tr>
+  <tr class="row1">
+    <td>{DL_AD_CONF_SHOW_LINK_ON_TAB}</td>
+    <td colspan="2">{DL_AD_CONF_SHOW_TAB_CHECKBOX}</td>
+  </tr>
+  <tr class="row2">
+    <td> {DL_AD_CONF_ITEMS_PER_PAGE} </td>
+    <td colspan="2"><input name="items_per_page" maxlength="255" value="{DL_AD_CONF_VAL_ITEMS_PER_PAGE}" size="3" class="input"></td>
+  </tr>
+    
+    </table>
+    </div>
+    
+    <!-- IF not DL_S_HMODE -->
+    <div id="extended">
+    
+    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+      <tr>
+        <th colspan="2">{DL_AD_CONF_EXTENDED}</th>
+        </tr>
+      <tr class="row2">
+        <td width="50%"> {DL_AD_CONF_HTCHECK_DISABLED} {DL_HELP_HTCHECK}</td>
+        <td width="50%">{DL_AD_CONF_HTACC_CHECKBOX}</td>
+      </tr>
+      <tr class="row1">
+        <td> {DL_AD_CONF_UPDATECHECK}</td>
+        <td>{DL_AD_CONF_UPDATECHECK_CHECKBOX}</td>
+      </tr>
+
+      <tr class="row2">
+        <td>{DL_AD_CONF_DEBUG}<img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_DEBUG}/></td>
+        <td>{DL_AD_CONF_DEBUG_CHECKBOX}</td>
+      </tr>
+      <tr class="row1">
+        <td>{DL_AD_CONF_FORCE_DBUPDATE} <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_DBRESET}/></td>
+        <td>{DB_DL_VERSION}
+          <input type="button" name="fupdate" value="{DL_AD_CONF_FORCE_DBUPDATE}" class="mainoption" onclick="javascript:ForceUpdate()" /></td>
+      </tr>
+    </table>
+    
+    </div>
+	<!-- ENDIF -->
+</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+<tr>
+    <th colspan="3"><input type="submit" name="submit" class="mainoption" value="{DL_AD_SEND}">
+      <input name="reset" type="reset" class="mainoption" id="reset" value="{L_RESET}"></th>
+  </tr>
+  </table>
+</form>
+
+
+
+<script language="JavaScript" type="text/javascript">
+
+function dl_confirm_disable_htacc(){
+
+	if (document.dl_config.disable_htacc.checked == true){
+
+		htcheck_warning();
+		
+	};
+	document.dl_config.disable_htacc.checked = false;
+}
+
+
+{DL_JS_FORCE_UPD}
+{DL_JS_HTCHECK_WARNING}
+{DL_JS_STATS_RESET}
+
+</script>
+<script type="text/javascript">animatedcollapse.addDiv('conf_extended', 'persist=0,hide=1'); animatedcollapse.init();</script>
+<br/>
+{DL_FOOTER}

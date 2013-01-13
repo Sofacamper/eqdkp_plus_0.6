@@ -1,0 +1,20 @@
+<!-- IF S_ADD -->
+<style type="text/css">
+.input { font-family: Verdana, Tahoma, Arial; font-size: 10px; color: #000000; background-color: #FFFFFF; 
+         border-top: 1px; border-right: 1px; border-bottom: 1px; border-left: 1px; border-color: #000000; border-style: solid; }
+input.mainoption { font-family: Verdana, Tahoma, Arial; font-size: 10px; font-weight: bold; color: #CECFEF; background-color: #424563; border-top: 1px;
+                   border-right: 1px; border-bottom: 1px; border-left: 1px; border-color: #CECFEF; border-style: solid; }
+</style>
+<form method="post" action="{F_EDIT_NOTE}" name="editNote">
+<input type="hidden" name="memberid" value="{MEMBER_ID}">
+<input type="hidden" name="raidid" value="{RAID_ID}">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr >
+    <td width="40" nowrap="nowrap" class="row1">{L_NOTE}:</td>
+    <td width="50%" nowrap="nowrap" class="row2"><textarea name="signupnote" rows="4" cols="65" class="input">{NOTE}</textarea></td>
+  </tr>
+  <tr>
+  <td colspan=2><center><input type="submit" name="save" value="{L_BUTTSAVE}" class="mainoption" /> <input type="submit" name="delete" value="{L_BUTTDELETE}" class="mainoption" /></center></td>
+  </tr>
+  </form>
+<!-- ENDIF -->

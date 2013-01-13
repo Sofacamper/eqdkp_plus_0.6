@@ -1,0 +1,86 @@
+<?php
+
+if (!defined('EQDKP_INC')) {
+	die('You cannot access this file directly.');
+}
+
+//Language: French	
+//Created by EQdkp Plus Translation Tool on  2010-07-09 13:55
+//File: plugin_polls
+//Source-Language: english
+
+$alang = array( 
+"polls" => "sondages",
+"po_common_description" => "Sondages pour EQdkp-Plus",
+"po_common_long_description" => "ce plugin vous permets de créer et gérer les sondages dans EQdkp-Plus",
+"po_about_header" => "A propos du module de sondage",
+"po_additionals" => "Informations supplémentaires sur le plugin Sondages",
+"po_licence" => "Licence",
+"po_permissions_manage" => "Créer et gérer les sondages",
+"po_permissions_vote" => "Voter",
+"po_ad_men_settings" => "Paramètres",
+"po_ad_men_edit" => "Gérer les sondages",
+"po_ad_men_create" => "Créer un sondage",
+"po_ad_sett_manage" => "Sondage - Paramètres d'édition",
+"po_ad_sett_legend" => "Vous pouvez définir les préconfigurations pour les nouveaux sondages ici:",
+"po_ad_sett_multiple" => "Activer les choix multiples",
+"po_ad_sett_comments" => "Activer les commentaires",
+"po_ad_sett_editable" => "L'opinion peut être changée",
+"po_ad_sett_intermed" => "Afficher les résultats intermédiaires",
+"po_ad_sett_modstyle" => "Style du module du portail",
+"po_ad_sett_cake" => "Camembert",
+"po_ad_sett_bars" => "Histogramme",
+"po_ad_sett_common" => "Paramètre du plugin",
+"po_ad_sett_updchk" => "Vérification de nouvelle version",
+"po_ad_sett_update" => "Mettre à jour",
+"po_ad_sett_saved" => "Les paramètres ont été enregistrés",
+"po_ad_sett_hlsaved" => "Enregistré!",
+"po_ad_sett_title" => "Titre du sondage",
+"po_ad_sett_description" => "Description",
+"po_ad_sett_enddate" => "Date de fin",
+"po_ad_sett_closed" => "Sondage cloturé!",
+"po_ad_sett_steptwo" => "Suivant (étape 2)",
+"po_ad_sett_options" => "Options",
+"po_ad_sett_nooptions" => "Aucune option disponible",
+"po_ad_sett_newoption" => "Créer une nouvelle option",
+"po_ad_sett_createpoll" => "Créer le sondage",
+"po_ad_edit_headline" => "Editer le sondage",
+"po_ad_edit_headlines" => "Editer les sondages",
+"po_ad_edit_title" => "Titre",
+"po_ad_edit_multiple" => "Multiple",
+"po_ad_edit_comments" => "Commentaire",
+"po_ad_edit_editable" => "Editable",
+"po_ad_edit_intermed" => "Résultat intermédiaire",
+"po_ad_edit_modstyle" => "Style du module du portail",
+"po_ad_edit_enddate" => "Date de fin",
+"po_ad_edit_closed" => "Statut",
+"po_ad_edit_reset" => "Effacer les votes actuels",
+"po_ad_edit_delete" => "Effacer le sondage",
+"po_ad_edit_common" => "Commun",
+"po_ad_edit_options" => "Options",
+"po_usr_ov_title" => "Titre du sondage",
+"po_usr_ov_voted" => "A voté?",
+"po_usr_ov_status" => "Statut",
+"po_usr_ov_yes" => "Oui",
+"po_usr_ov_no" => "Non",
+"po_usr_ov_enddate" => "Le sondage fini le:",
+"po_usr_pv_opthl" => "Voter maintenant!",
+"po_usr_pv_vote" => "Voter",
+"po_usr_pv_votesum" => "Tous les votes:",
+"po_pm_pollshown" => "Sondages affichés",
+"po_pm_last" => "Dernier sondage",
+"po_pm_random" => "Sondage aléatoire",
+"po_pm_allpolls" => "Tous les sondages",
+"po_pm_nopermission" => "Vous n'avez pas l'autorisation de participer aux sondages.",
+"po_pm_nopolls" => "Il n'y a aucun sondage.",
+"po_pm_votecounted" => "<p><center>Votre vote a été enregistré</center></p>",
+"po_pm_changeopinion" => "Changer d'opinion",
+"po_pm_enddate1" => "Les résultats de ce sondage seront publiés le",
+"po_pm_enddate2" => ".",
+"po_pm_noenddate" => "Le résultat de ce sondage sera publié à la clôture",
+"pollsmodule" => "Sondages",
+"po_pm_guestinfo" => "Vous devez être connecté pour voir les sondages",
+ );
+$lang = (is_array($lang))? $lang : array();
+$lang = array_merge($lang, $alang);
+?>

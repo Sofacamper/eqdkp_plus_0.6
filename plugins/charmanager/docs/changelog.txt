@@ -1,0 +1,219 @@
+ /*
+ * Project:     EQdkp CharManager 1
+ * License:     Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:	http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Began:       2006
+ * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * -----------------------------------------------------------------------
+ * @author      $Author: wallenium $
+ * @copyright   2005-2008 Simon (Wallenium) Wallmann
+ * @link        http://eqdkp-plus.com
+ * @package     charmanager
+ * @version     $Rev: 12157 $
+ * 
+ * $Id: changelog.txt 12157 2012-09-30 20:05:50Z wallenium $
+ */
+
+Changelog
+--------------------------------------------------------------------------------------------------
+
+1.7.0 [09/30/2012]
+  removed residences for world of warcraft as it is not longer used
+  added mandarin & monk
+
+
+1.6.0 [09/22/2011]
+  removed residences for world of warcraft as it is not longer used
+  get import & update to work with the new battle net wow API. its a workaround, bad coding! but it seems to work for now until 0.7 is released
+
+1.5.7 [12/20/2010]
+  fixed some errors with the armory move to battle.net
+
+1.5.6 [08/09/2010]
+  Bug #1861	Updating chars from armory not working
+  Bug #1860	Saving of updated chars not working if not an admin
+  Bug #1863	Wrong Output of text in the cronjob
+
+1.5.5 [08/01/2010]
+  Bug #1855  	Import of members not working if user is not an admin
+
+1.5.4 [06/30/2010]
+  Bug #1831  	Permissions on armory import not working as intended
+  Bug #1832  	User can overwrite existing chars by adding a new one
+
+1.5.3 [03/12/2010]
+  Fixed - [#1770] changed tab names in profile view
+
+1.5.2 [12/20/2009]
+  Fixed - [#1728] Fixed missing skill &amp; race icons in charlist
+
+1.5.1 [09/24/2009]
+  Fixed - [#1598] Import existing Char updates the wrong one
+  Fixed - [#1599] profile links not working for members with special chars
+  Fixed - [#1660] Armory cronjob not working
+  Fixed - [#1661] Armory Character Images not working
+  Implemented - [#1624] Use Libraries 2.0
+  Implemented - [#1657] Import by rank into roster
+
+1.5.0 [05/25/2009]
+  Fixed - [#1509] Display Bugs in Internet Explorer 8
+  Fixed - [#1510] Deathknight spec not showing
+  Fixed - [#1517] Member addition in import working if adding of members is disabled
+  Fixed - [#1554] Profile Picture not working as intended
+  Fixed - [#1559] Member Level with 3 digits not working
+  Fixed - [#1560] [Import] Not working due to Armory 3.1 changes
+  Fixed - [#1562] Remove iepngfix.js link, file doesn&#039;t exist
+  Implemented - [#105] Possibility to confirm new added Chars
+  Implemented - [#946] [Import] Import whole Chars of a guild
+  Implemented - [#1370] Possibility to delete a Character for Members
+  Implemented - [#1552] [core] Merge UpdateChar &amp; AddChar functions
+  Implemented - [#1553] [Core] Move Import to games Folder
+  Implemented - [#1555] Remove unused language Strings
+  Implemented - [#1556] Add French language files
+  Implemented - [#1570] Admin Todo Management Page (delete/confirm)
+  Implemented - [#1558] Get rid of class translations, use IDs instead of classnames
+  Implemented - [#1561] [Import] Add Armory Class 3.x (PHP5 required)
+  Implemented - [#1563] [WoW] Add second Spec Tree
+  Implemented - [#1569] Select Default Rank for new Members
+  Implemented - [#1571] Rework the Character Page
+  Implemented - [#1583] Secure Plugin against SQL Inject
+
+1.4.9 [02/21/2009]
+  Fixed - [#1418] Game() API function
+  Fixed - [#1449] Member ID in additions table was null on member creation
+  Fixed - [#1450] Use cacheHandler to manage uploaded User images
+
+1.4.8 [12/17/2008]
+  Fixed - [#1334] Armory Import not working
+
+1.4.7 [11/21/2008]
+  Fixed - [#1274] [Armory Import] Death Knight shown as Unknown
+  Fixed - [#1275] Inscription Proffession icon missing
+
+1.4.6 [11/18/2008]
+  Fixed - [#1272] Profession maximum value wrong (now 450)
+  Implemented - [#1273] Use library instead of wpfc
+
+1.4.5 [11/06/2008]
+  Fixed - [#1249] Connection window not closed on save
+	Implemented - [#1253] Use multiselect class for char selection
+
+1.4.4 [11/06/2008]
+  Fixed - [#1252] Template fix
+
+1.4.3 [11/04/2008]
+  Fixed - [#1182] m9wotlk Addchar Import not working
+  Implemented - [#1210] Add new Profession 'Inscription' to language files
+  Implemented - [#1211] Add new Death Knight class to talents array
+
+1.4.2 [15/10/2008]
+  Fixed - [#1136] Incompatible to eqdkpPLUS 0.4.x
+
+1.4.1 [09/11/2008]
+  Fixed - [#1132] Updated API to work with Raidplan 4.1.0 
+
+1.4.0 [09/05/2008]
+	Fixed - [#1122] Tabs broken in IE
+	Fixed - [#1126] Style and Color fixes
+	Implemented - [#1120] Add API for external usage of CM fields
+	Implemented - [#1121] Add Luna WotLk Template
+	Implemented - [#1123] Better Updater for easier version jumps
+	Implemented - [#1124] Update Russian Language file
+	Implemented - [#1125] Additional Information for eqdkpPlus Plugin Management
+
+
+
+1.3.0 [06/06/2008]
+	Not a bug - [#935] Wrong button Colors in charmanagement
+	Not a bug - [#965] Class FIlter in Listmembers not working
+	Fixed - [#966] Template Bugs in m9wow3eq template
+	Implemented - [#730] Guild in Charmanager Backend
+
+1.2.2 [09/27/2007]
+	FS#647 - Armory Import: Member import with special chars do not work
+
+1.2.1 [08/23/2007]
+	Fixed - [#595] Change Armory Link to new destination
+	Fixed - [#596] Cronjob does not work as intended
+
+1.2.0 [08/10/2007]
+	Fixed - [#558] wrong JS links in upd_profiles
+	Fixed - [#559] Edit in listprofile produce JS error
+	Fixed - [#561] Rename unclear Settingname
+	Fixed - [#571] No permission to run the charupdate cron
+	Fixed - [#572] SQL Error on some installations
+	Implemented - [#560] Show Name of the Skills
+	Implemented - [#562] Possibility to disable Resistence Import (Armory)
+	Implemented - [#574] Possibility to hide resistances in listprofiles.php
+	Implemented - [#575] Add Note field for users
+
+1.1.5 [xx/xx/xxxx]
+	Renamed to 1.2.0
+
+1.1.4 [07/23/2007]
+	Implemented - [#529] Cron Job
+	Implemented - [#539] Automatic Permission Setup for installing Person
+	Implemented - [#540] Add Skill names to profile view
+
+1.1.3 [06/20/2007]
+	Fixed - [#481] Connection Reset in IE
+	Fixed - [#482] Viewraid without rootpath in profile view
+	Fixed - [#483] Translated missing english language bits
+
+1.1.2 [06/13/2007]
+	Fixed - [#465] Error on import if no main profession
+	Implemented - [#474] Message if ini_set is not allowed &amp; no Curl
+	Implemented - [#480] Decentral Templates for easier updates
+
+1.1.1 [06/03/2007]
+	Fixed - [#443] PHP Error on Import from Armory (armory.php on line 88)
+	Fixed - [#445] User Armory Import: Faction &amp; Gender not saved
+	Fixed - [#446] On Edit Character: Females shown as Males... (German)
+	Implemented - [#442] Automatic permission setup for user who installs
+	Implemented - [#447] Change Tab.css for the other templates
+
+1.1.0 [05/23/2007]
+	Implemented - [#363] Profiler: Add Link to Charakterpage of WoWRoster
+	Implemented - [#398] Profile Data Import from Armory
+	Implemented - [#399] Mass profile import from Armory
+	Implemented - [#400] Settings for easier configuration
+
+1.0.4 [02/19/2007]
+	Fixed - [#358] Permissions: if manage: users couldn't edit profiles
+	Implemented - [#359] implement updater
+	Implemented - [#360] Add permission for connection members...
+	Implemented - [#362] Permission: Connection not set, auto connect char to member
+
+1.0.3 [02/11/2007] INTERNAL RELEASE
+	Works for me - [#356] Checked EQDKP 1.3.2 compatibilty
+	Fixed - [#300] Filter (class/armor) display fix
+	Fixed - [#354] Hardcoded Itemstats usage in profile.php
+	Implemented - [#355] JS Window Class Update to Version 1.0
+	Implemented - [#357] Use Plugin Dev Framework instead of hardcoed upd. check
+
+1.0.2 [01/06/2007]
+	Fixed - [#279] Skill with nil in first value didn&#039;t show in listprofiles.php
+	Implemented - [#278] Settings Menu entry only viewable on permission
+	Implemented - [#280] Abstract Error Messages for Language Pack
+	Implemented - [#281] Add some explanation texts to the user settings
+
+1.0.1 [12/17/2006]
+	Fixed - [#271] Several small Bugfixes in the template files
+	Fixed - [#273] Some wrong database links in the profile.php
+	Implemented - [#272] Update JS Window Class to current Version
+
+1.0.0 [12/10/2006]
+	Fixed - [#106] Users not logged in could add/edit chars
+	Fixed - [#154] Setup: Table members_additions was not created
+	Fixed - [#155] Could not obtain member information
+	Implemented - [#50] resitences
+	Implemented - [#51] Char photo
+	Implemented - [#52] better usability
+	Implemented - [#53] overview page
+	Implemented - [#54] rename plugin to CharManager
+	Implemented - [#55] Links to Blasc/ctprofiles
+	Implemented - [#57] integrate TradeSkills Plugin (if installed)
+	Implemented - [#108] Update Check
+	Implemented - [#109] Sort by Resitences
+	Implemented - [#110] Admin could edit all chars on profileList

@@ -1,0 +1,179 @@
+	<!-- BEGIN raidplanrow -->
+	<!-- IF raidplanrow.EXTRAID neq 4 -->
+	<table width="100%" border="0" cellspacing="1" cellpadding="1">
+    <tr>
+      <td align="left" width="100%">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderless">
+          <tr valign="middle" height="20px">
+            <th align="left" width="14px">&nbsp;<span id="ToggleStatus{raidplanrow.ID}-title" class="iconspan"><img src="images/minus.gif" /></span></th>
+            <th align="middle" colspan="{ATTENDEES_COLSPAN}"><font class="status{raidplanrow.ID}"> {raidplanrow.NAME}</font><!-- IF raidplanrow.ID neq 4 --> ({raidplanrow.COUNT}/{raidplanrow.MAXCOUNT})<!-- ENDIF --></th>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+		
+  <div id="ToggleStatus{raidplanrow.ID}" class="switchcontent" align="middle" >
+  <table width="100%" border="0" cellspacing="1" cellpadding="1">
+		<tr>
+		<!-- BEGIN classes -->
+      <td valign="top" width="{COLUMN_WIDTH}%">
+        <table border="0" cellpadding="0" cellspacing="0" class="borderless" width="100%">
+    		  <tr>
+    		  <!-- IF S_SHOW_CASSNAMES -->
+            <th width="100%" class="tableheader_{raidplanrow.classes.NAME_EN}" onMouseOver="overlib('{raidplanrow.classes.NAME}');" onMouseOut="nd();"> {raidplanrow.classes.CLASS_ICON} ({raidplanrow.classes.COUNT}{raidplanrow.classes.MAX})</th>
+				    <!-- ELSE -->
+            <th width="100%" class="tableheader_{raidplanrow.classes.NAME_EN}"> {raidplanrow.classes.CLASS_ICON} {raidplanrow.classes.NAME} ({raidplanrow.classes.COUNT}{raidplanrow.classes.MAX})</th>
+            <!-- ENDIF -->
+          </tr>
+          <tr>
+            <td valign="top">						 
+            <!-- BEGIN status -->
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" class="borderless">
+                <!-- IF raidplanrow.classes.status.STATUS eq 4 -->
+                <tr valign="top">
+                <!-- IF IS_AD_GL or raidplanrow.classes.status.IS_GROUPLEADER -->
+                  <td valign="top" width="10%">
+                  <!-- IF S_ROLE_DISTRI -->
+                    <a href="{raidplanrow.classes.status.TOGGLE_LINK}&amp;status=4&amp;role={raidplanrow.classes.NAME_EN}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/up.png"  border="0" alt="Confirm" title="{L_CONF_CONF_SIGNUP}" /></a>
+                  <!-- ELSE -->
+                    <a href="{raidplanrow.classes.status.TOGGLE_LINK}&amp;status=4"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/up.png"  border="0" alt="Confirm" title="{L_CONF_CONF_SIGNUP}" /></a>
+                  <!-- ENDIF -->
+                  </td>
+                <!-- ENDIF -->
+                  <td align="left" valign="middle" width="90%" height="19">
+                  <!-- IF S_COLORED_MEMBER -->
+                  <span class="tableheader_{raidplanrow.classes.status.CLASS_EN}"
+                  <!-- ELSE -->
+                   <span 
+                  <!-- ENDIF -->
+                    <!-- IF raidplanrow.classes.status.CHAR_TT -->
+                       {raidplanrow.classes.status.CHAR_TT} > {raidplanrow.classes.status.NAME}
+                    <!-- ELSE -->
+                      > {raidplanrow.classes.status.NAME}
+                    <!-- ENDIF -->
+                  </span>
+                  </td>
+                </tr>
+                <!-- ELSE -->
+                <!-- IF S_SHOW_RANKS -->
+                <tr valign="bottom">
+                  <td align="middle" colspan="5"></td>
+                </tr>
+                <!-- ENDIF -->
+                <tr valign="top">
+                <!-- IF IS_AD_GL or raidplanrow.classes.status.IS_GROUPLEADER -->
+                  <td valign="top" width="10%">
+                  <!-- IF raidplanrow.classes.status.STATUS eq 3 -->
+                    <a href="{raidplanrow.classes.status.TOGGLE_LINK}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/up.png"  border="0" alt="{L_CONF_CONF_SIGNUP}" title="{L_CONF_CONF_SIGNUP}" /></a>
+                    <!-- IF S_REMOVELOCK -->
+                    <a href="{raidplanrow.classes.status.DELETE_LINK}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/down.png"  border="0" alt="{L_CONF_CANC_CONF}" title="{L_CONF_CANC_CONF}" /></a>
+                    <!-- ENDIF -->
+                  <!-- ELSE -->
+                    <!-- IF raidplanrow.classes.status.STATUS gt 0 -->
+                    <a href="{raidplanrow.classes.status.TOGGLE_LINK}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/up.png"  alt="{L_CONF_CONF_SIGNUP}" border="0" title="{L_CONF_CONF_SIGNUP}" /></a>
+                    <a href="{raidplanrow.classes.status.TOGGLE_LINK}&amp;status={raidplanrow.classes.status.STATUS}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/down.png" border="0" alt="{L_CONF_ONE_DOWN}" title="{L_CONF_ONE_DOWN}" /></a>
+                    <!-- ELSE -->
+                    <a href="{raidplanrow.classes.status.TOGGLE_LINK}&amp;status={raidplanrow.classes.status.STATUS}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/down.png" border="0" alt="{L_CONF_CANC_CONF}" title="{L_CONF_CANC_CONF}" /></a>
+                    <!-- ENDIF -->
+                  <!-- ENDIF -->
+                  </td>
+                <!-- ENDIF -->
+              <!-- IF S_GROUPNUMBER -->
+                <!-- IF raidplanrow.classes.status.STATUS eq 0 or raidplanrow.classes.status.STATUS eq 3 or raidplanrow.classes.status.STATUS eq 1 -->
+                  <!-- IF IS_AD_GL or raidplanrow.classes.status.IS_GROUPLEADER -->
+                  <td align="right" valign="left" width="22" height="19">
+                    <div id="groupmenu_{raidplanrow.classes.status.ID}"><a href="#" rel="{raidplanrow.classes.status.ID}"><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/group/{raidplanrow.classes.status.GROUPIMG}" /></a></div>
+                    {raidplanrow.classes.status.MENU_GROUP}
+                  </td>
+                  <!-- ELSE -->
+                  <td align="right" valign="left" width="22" height="19">
+                    <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/group/{raidplanrow.classes.status.GROUPIMG}" title="{raidplanrow.classes.status.GROUPNR}"/>
+                  </td>
+                  <!-- ENDIF -->
+                <!-- ELSE -->
+                  <td align="right" valign="left" width="22" height="19">
+                    <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/group/{raidplanrow.classes.status.GROUPIMG}" title="{raidplanrow.classes.status.GROUPNR}"/>
+                  </td>
+                <!-- ENDIF -->
+              <!-- ENDIF -->
+                  <td align="right" valign="middle" width="22">
+                  <!-- IF SHOW_RAIDNOTE -->
+                    <!-- IF raidplanrow.classes.status.SHOWNOTE -->
+                      <!-- IF IS_AD_GL or raidplanrow.classes.status.IS_GROUPLEADER -->
+                    <span {raidplanrow.classes.status.NOTE} onclick="javascript:EditNote('{raidplanrow.classes.status.ID}')">
+                      <!-- ELSE -->
+                    <span {raidplanrow.classes.status.NOTE}>
+                      <!-- ENDIF -->
+                      <!-- IF raidplanrow.classes.status.ADMINNOTE -->
+                      <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/notes/comment_admin.png">
+                      <!-- ELSEIF raidplanrow.classes.status.GRPLNOTE -->
+                      <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/notes/comment_groupl.png">
+                      <!-- ELSE -->
+                      <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/notes/comment.png">
+                      <!-- ENDIF -->
+                    </span>
+                    <!-- ELSE -->
+                      <!-- IF IS_AD_GL or raidplanrow.classes.status.IS_GROUPLEADER -->
+                    <span onclick="javascript:EditNote('{raidplanrow.classes.status.ID}')">
+                      <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/notes/addcomment.png" alt="{L_ADDNOTE}" title="{L_ADDNOTE}">
+                    </span>
+						          <!-- ENDIF -->
+                    <!-- ENDIF -->
+                  <!-- ENDIF -->
+                  </td>
+                  <td align="left" valign="middle" width="90%" height="19">
+                    <span class="membername{raidplanrow.classes.status.ID}">
+                      <a href="{raidplanrow.classes.status.LINK}" class="attendee_Link" onclick="return viewmember('{raidplanrow.classes.status.LINK}');" <!-- IF raidplanrow.classes.status.TIME neq "" -->{raidplanrow.classes.status.INFO_TT}<!-- ENDIF --> >
+                      <!-- IF S_ROLE_DISTRI -->
+                      &nbsp;{raidplanrow.classes.status.CLASS_ICON}
+                      <!-- ENDIF -->
+                        <!-- IF S_COLORED_MEMBER -->
+                        <span class="tableheader_{raidplanrow.classes.status.CLASS_EN}">&nbsp;{raidplanrow.classes.status.NAME}</span>
+                        <!-- ELSE -->
+                        &nbsp;{raidplanrow.classes.status.NAME}
+                        <!-- ENDIF -->
+                      </a>
+                    </span>
+						        {raidplanrow.classes.status.JS_MEM_MENU}
+                  </td>								
+                  <!-- IF raidplanrow.classes.status.RANDOM gt 0 -->
+                    <!-- IF raidplanrow.classes.status.WILDCARD -->
+										  <!-- IF S_SHOW_WILDCARD -->
+									<td><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/wildcard.png" alt="{L_WILDCARD}" {raidplanrow.classes.status.WCEXPIRE} /></td>
+										  <!-- ENDIF -->
+                    <!-- ELSE -->
+										  <!-- IF S_SHOW_ROLL -->
+										    <!-- IF S_ROLL_TOOLTIP -->
+									<td><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/roll.png" alt="{L_ROLLED}" {raidplanrow.classes.status.ROLL_TT} /></td>
+                        <!-- ELSE -->
+                  <td><img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/roll.png" alt="{L_ROLLED}" /></td>
+                  <td width="15px" align="right">{raidplanrow.classes.status.RANDOM}</td>
+										    <!-- ENDIF -->
+                      <!-- ENDIF -->
+                    <!-- ENDIF -->
+                  <!-- ELSE -->
+									<td width="15px" align="right">(<span style="color:red; font-size: smaller;">deleted</span>)</td>
+								  <!-- ENDIF -->
+                </tr>
+                <!-- ENDIF -->
+              </table>
+            <!-- END status -->
+            </td>
+          </tr>
+        </table>
+      </td>
+		<!-- IF raidplanrow.classes.BREAK -->
+		</tr>
+	  <tr>
+		<!-- ENDIF -->
+		<!-- END classes -->
+    </tr>
+  	<!-- IF raidplanrow.ID eq 0 -->
+  	 <!-- INCLUDE ../guestoutput.html -->
+  	<!-- ENDIF -->
+  </table>
+	</div>
+  <br/>
+	<!-- ENDIF -->
+ <!-- END raidplanrow -->

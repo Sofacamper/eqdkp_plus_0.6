@@ -1,0 +1,129 @@
+<!-- INCLUDE ../mc_css.html -->
+{MC_STATUS}
+  {UPDATE_BOX} {UPDCHECK_BOX}
+  <table width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tr>
+    <th colspan="9" nowrap="nowrap"><table width="100%" class="borderless" border="0" cellspacing="0">
+      <tr>
+        <td style="text-align: left;"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/admin_logo.png" align="absmiddle"> {L_IMPORT_HEADLINE}
+         </td>
+        {DL_UPLOAD}
+        <td width="50" nowrap="nowrap" align="left">{MC_ADMIN_MENU}</td>
+      </tr>
+    </table></th>
+  </tr>
+  <tr>
+    <td colspan="9" class="row2"><span style="padding-left:7px;"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/credits/info.png" align="absmiddle" /></span>{L_IMPORT_INFO} <strong>{IMPORT_FOLDER}/</strong></td>
+  </tr>
+</table>
+<div align="center" style="font-weight:bold;">{DL_ERROR}</div>
+<form action="import.php{SID}&mode=import" method="post" name="dl_massedit">
+<table width="100%">
+   	  <tr>
+   	    <td><table width="100%" border="0" cellpadding="2" cellspacing="1" >
+
+   	      <tr>
+   	        <th align="center" width="20" nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){dl_deselectall();} else {dl_selectall();};"></th>
+   	        <th align="left" width="35" nowrap="nowrap">{L_ACTION}</th>
+   	        <th align="left" width="35" nowrap="nowrap">{L_NAME}*</th>
+   	        <th align="left" width="100%">{L_DESC}</th>
+   	        
+   	       
+   	        <!-- IF not S_CATS_DISABLED -->
+            <th align="left" width="80">{L_CATEGORY}</th>
+   	        <!-- ENDIF -->
+            <th align="left" width="80">{L_DURATION}</th>
+   	       <th align="left" width="16">{L_TYPE}</th>
+           <th align="left" >{L_DATE}</th>
+          </tr>
+		<!-- IF not S_NO_FILES -->
+   	      <!-- BEGIN import_list -->
+   	      <tr class="{import_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{import_list.ROW_CLASS}';">
+   	        <td width="20" nowrap="nowrap" align="center"><input type="checkbox" value="{import_list.NAME}" name="links[]"></td>
+   	        <td width="35" nowrap="nowrap"><a href="import.php{SID}&mode=delete&file={import_list.NAME}" title="{L_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/delete.png" alt="Delete" border="0"></a></td>
+   	        <td width="35" nowrap="nowrap"><import>
+<input name="name[{import_list.NAME}]" type="text" class="input" value="{import_list.NAME}" size="40"></td>
+   	        <td width="100%"><input type="text" name="desc[{import_list.NAME}]" value="" class="input" style="width:95%;"></td>
+   	        <!-- IF not S_CATS_DISABLED -->
+            <td nowrap="nowrap">{import_list.CATEGORY_SELECT}</td>
+            <!-- ENDIF -->
+   	        <td nowrap="nowrap"><input name="duration[{import_list.NAME}]2" type="text" class="input" value="" size="5" maxlength="5"></td> 
+               	        <td nowrap="nowrap">{import_list.TYPE}            </td>
+            <td nowrap="nowrap">{import_list.DATE}</td>
+          </tr>
+   	      <!-- END import_list -->
+          <!-- ELSE -->
+          <tr>
+   	        <td colspan="8" width="100%" class="row1">{L_NO_FILES}</td>
+          </tr>
+          <!-- ENDIF -->
+   	      <tr>
+   	        <th colspan="8" class="footer" width="100%">{FOOTCOUNT}</th>
+          </tr>
+        </table></td>
+    </tr>
+  <tr>
+        	<td><span style="padding-left:7px;"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/arrow_turn_left.png" align="bottom" /><a href="javascript:dl_selectall();">{DL_AD_SELECT_ALL}</a>/<a href="javascript:dl_deselectall();">{DL_AD_DESELECT_ALL}</a>
+ &nbsp;  &nbsp;   
+          {DL_ALL_MARKED}:  &nbsp;  {MASSEDIT_ACTION_DROPDOWN}
+          
+           <input class="mainoption" type="submit" value="{DL_AD_GO}" /></span>
+          </td>
+        </tr>
+    </table>
+
+</form>
+
+<br/>
+<script language="javascript" type="text/javascript">
+			
+			function dl_selectall(){
+
+				for (var i = 0;i < document.getElementsByName('links[]').length;i++)
+				{
+					document.getElementsByName('links[]')[i].checked = true;
+				}
+			}
+			
+			function dl_deselectall(){
+
+				for (var i = 0;i < document.getElementsByName('links[]').length;i++)
+				{
+					document.getElementsByName('links[]')[i].checked = false;
+				}
+			}
+			
+			
+			
+
+			
+function dl_check_action_dropdown(){
+		
+	var action = document.getElementById('massedit_action_drpdwn').value;
+
+	if (action == "move"){
+			
+		document.getElementById('target_cat').style.display = "inline";
+			
+	} else {
+			
+		document.getElementById('target_cat').style.display = "none";
+			
+	};
+		
+}
+
+
+          </script>
+<script language="JavaScript" type="text/javascript">
+
+function editDownload(id){
+ {MC_JS_EDIT}
+}
+
+function uploadDialog(catid){
+ {MC_JS_UPLOAD}
+}
+
+</script>
+{MC_FOOTER}

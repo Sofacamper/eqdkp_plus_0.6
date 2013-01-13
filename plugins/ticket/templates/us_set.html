@@ -1,0 +1,27 @@
+<script language=JavaScript src="picker.js"></script>
+<form method="post" action="{F_CONFIG}" name="post">
+<table border="0" width="100%" cellspacing="1" cellpadding="2">
+<tr>
+    <th align="center" colspan="2">{L_GENERAL}</th>
+</tr>
+			<!-- other mechanism
+			<tr>
+				<td width="60%" class="row2">{L_SHOW_COOKING}</td>
+				<td width="40%" class="row1"><input type="checkbox" name="ts_show_cooking" value="1" {SHOW_COOKING} /></td>
+			</tr>
+			-->
+			<tr>
+				<td width="60%" class="row2">{L_EMAIL}<br> <span style="font-size:75%">{L_EMAIL_NOTE}</span></td>
+				<td width="40%" class="row1"><input type="checkbox" name="email" value="1" {EMAIL} /></td>
+			</tr>
+            <tr>
+				<td width="60%" class="row2">{L_COLOR}</td>
+				<td width="40%" class="row1">{COLORPICK_USER}</td>
+			</tr>
+		</tr>
+	<tr><th align="center" colspan="2"><input type="submit" name="issavebu" value="{L_SUBMIT}" class="mainoption" />
+  </th></tr>
+</table>
+</form>
+
+

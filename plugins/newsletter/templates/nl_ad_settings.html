@@ -1,0 +1,95 @@
+<!-- INCLUDE ../nl_css.html -->
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+<form method="POST" name="dl_config">
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>
+    <th colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left">{L_CONF_GEN}:</td>
+          <td width="5" align="left" nowrap="nowrap">{ADMIN_MENU}</td>
+        </tr>
+      </table></th>
+  </tr>
+  <tr class="row1">
+    <td width="50%">{L_PUBLIC_SUBSCRIBE}:</td>
+    <td><input name="public_subscribe" type="checkbox" id="public_subscribe" value="1" {PUBLIC_SUBSCRIBE} /></td>
+  </tr>
+  <tr class="row2">
+    <td>{L_PUBLIC_ARCHIVE}:</td>
+    <td><input name="public_archive" type="checkbox" id="public_archive" value="1" {PUBLIC_ARCHIVE} /></td>
+  </tr>
+  
+  <tr class="row1">
+    <td>{L_SIGNATURE}:</td>
+    <td><textarea name="signature" rows="5" style="width:90%">{SIGNATURE}</textarea></td>
+  </tr>
+  <tr class="row2">
+    <td>{L_BG_COLOR}:</td>
+    <td>{JS_CP_BGCOLOR}</td>
+  </tr>
+  <tr class="row1">
+    <td>{L_FONT_COLOR}:</td>
+    <td>      {JS_CP_COLOR}</td>
+  </tr>
+  <tr class="row2">
+    <td>{L_BRIDGE_ITEMS}:</td>
+    <td><input name="bridge_items" value="{BRIDGE_ITEMS}"></td>
+  </tr>
+  <tr class="row1">
+    <td>{L_BRIDGE_PRESELECT}:</td>
+    <td><input name="bridge_preselected" type="checkbox" id="bridge_preselected" value="1" {BRIDGE_PRESELECT} /></td>
+  </tr>
+  <tr>
+    <th colspan="2"><a href="javascript:animatedcollapse.toggle('conf_extended')"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/toggle.png" name="imgdl_mirror_table" border="0" id="imgdl_mirror_table2">{L_CONF_EXTENDED}</a></th>
+  </tr>
+  
+  <tr>
+    <td colspan="2">
+    <div id="conf_extended">
+      <table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <tr class="row1">
+          <td width="50%"> {L_UPDATECHECK}:</td>
+          <td width="50%"><input type="checkbox" name="enable_updatecheck" value="1" {UPDATE_CHECK} /></td>
+        </tr>
+        <tr class="row2">
+          <td>{L_CSS_STYLE}:</td>
+          <td><textarea name="style_css" rows="5" style="width:90%" id="style_css">{CSS_STYLE}</textarea></td>
+        </tr>
+        <tr class="row1">
+          <td>{L_DBVERSION}:</td>
+          <td>{NL_VERSION}
+            <input type="button" name="fupdate" value="{L_FORCE_DBUPDATE}" class="mainoption" onclick="javascript:ForceUpdate()" /></td>
+        </tr>
+        <tr class="row2">
+          <td>{L_DELETE_QUEUE}:</td>
+          <td><input type="button" name="fupdate2" value="{L_DELETE_QUEUE}" class="mainoption" onclick="javascript:ForceDelQueue()" /></td>
+        </tr>
+      </table>
+    </div>
+    </td>
+    </tr>
+  <tr>
+    <th colspan="2"><input type="submit" name="submit" class="mainoption" value="{L_BUTTON_SAVE}"> <input type="reset" name="submit" class="mainoption" value="{L_BUTTON_RESET}"></th>
+  </tr>
+  </table>
+</form>
+<script type="text/javascript">animatedcollapse.addDiv('conf_extended', 'persist=0,hide=1'); animatedcollapse.init();</script>
+<script language="JavaScript" type="text/javascript">
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+
+{NL_JS_FORCE_UPD}
+{NL_JS_FORCE_DEL_QUEUE}
+</script>
+
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="../images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

@@ -1,0 +1,95 @@
+<style>
+/* PopUp Style */
+.actionmenu { display: block; margin: 0; padding: 0; position: relative; }
+.actionmenu li { display: block; list-style: none; margin: 0; padding: 0; float: left; position: relative; }
+.actionmenu a { display: block; }
+.actionmenu ul { display: none; position: absolute; left: 0; margin: 0; padding: 0; }
+* html .actionmenu ul { line-height: 0; } /* IE6 "fix" */
+.actionmenu ul a { zoom: 1; } /* IE6/7 fix */
+.actionmenu ul li { float: none; }
+.actionmenu ul ul { top: 0; }
+.actionmenu ul { width: 160px; }
+.actionmenu ul ul { left: 161px; }
+.actionmenu { height: 20px; font-size:11px; color: black;}
+.actionmenu *:hover {  }
+.actionmenu a { font-size: 12px; padding: 3px; line-height: 1; height: 20px;}
+.actionmenu li.hover a { background-color: #EEFFDF; color: black; }
+.actionmenu ul { top: 25px; background: #f5f5f5;}
+.actionmenu ul li a { background-color: #EEFFDF; }
+.actionmenu ul a.hover { background-color: #30A8C3; color: white; }
+.actionmenu ul a { border-bottom: 1px solid white; border-right: none; opacity: 0.9; filter: alpha(opacity=90); }
+/* #groupmenu ul a { border-bottom: none; } - I also needed this for IE6/7 */
+
+</style>
+<script language="JavaScript" type="text/javascript">
+function AboutDialog() {
+  {JS_ABOUT}
+}	
+
+function EditChar(editid) {
+  {JS_EDITCHAR}
+}
+  </script>
+    	 
+<!-- IF S_NOTMM -->
+<form method="get" action="{F_MEMBERS}">
+<input type="hidden" name="{URI_SESSION}" value="{V_SID}" />
+<table width="100%" border="0" cellspacing="1" cellpadding="2" style="border-bottom: none">
+  <tr>
+    <th align="right" width="56" nowrap="nowrap">{L_FILTER}:</th>
+    <th align="left">&nbsp;
+      <select name="filter" class="input" onchange="javascript:form.submit();">
+        <!-- BEGIN filter_row -->
+        <option value="{filter_row.VALUE}"{filter_row.SELECTED}>{filter_row.OPTION}</option>
+        <!-- END filter_row -->
+      </select>
+    </th>
+  </tr>
+</table>
+</form>
+<!-- ENDIF -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+    <!-- IF SHOW_ARMLINK -->
+    <th align="center" width="20" nowrap="nowrap"></th> 
+    <!-- ENDIF -->
+    <th align="left" width="100%"><a href="{U_LIST_PROFILES}o={O_NAME}{URI_ADDON}">{L_NAME}</a></th>
+    
+    <th align="left" width="80">{L_SKILL}</th>
+    <th align="left" width="100"><a href="{U_LIST_PROFILES}o={O_RANK}{URI_ADDON}">{L_RANK}</a></th>
+    <th align="left" width="140" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_GUILD}{URI_ADDON}">{L_GUILD}</a></th>
+    <th align="left" width="40" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_LEVEL}{URI_ADDON}">{L_LEVEL}</a></th>
+    <th align="left" width="100" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_CLASS}{URI_ADDON}">{L_CLASS}</a></th>
+    <th align="left" width="80" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_CURRENT}{URI_ADDON}">{L_CURRENT}</a></th>
+    <th align="left" width="70" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_LASTRAID}{URI_ADDON}">{L_LASTRAID}</a></th>
+  	<!-- IF IS_EDITOR -->
+  	<th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+  	<!-- ENDIF -->
+  </tr>
+  <!-- BEGIN members_row -->
+  <tr class="{members_row.ROW_CLASS}">
+    <td width="35" nowrap="nowrap" align="right">{members_row.COUNT}</td>
+    <!-- IF SHOW_ARMLINK -->
+    <td width="20" nowrap="nowrap">{members_row.ARMORY_LINKS}</td>
+    <!-- ENDIF -->
+    <td width="100%" nowrap="nowrap"><a href="{members_row.U_VIEW_MEMBER}">{members_row.NAME}</a></td>
+    
+    <td width="80" nowrap="nowrap">{members_row.SPEC1} {members_row.SPEC2}</td>
+    <td width="100" nowrap="nowrap">{members_row.RANK}</td>
+    <td width="140" nowrap="nowrap">{members_row.GUILD}</td>
+    <td width="40" nowrap="nowrap">{members_row.LEVEL}</td>
+    <td width="100" nowrap="nowrap">{members_row.CLASS}</td>
+    <td width="60" nowrap="nowrap" class="{members_row.C_CURRENT}">{members_row.CURRENT}</td>
+    <td width="70" nowrap="nowrap" class="{members_row.C_LASTRAID}">{members_row.LASTRAID}</td>
+  	<!-- IF IS_EDITOR -->
+  	<td width="35" nowrap="nowrap" align="right"><input type="button" name="edit" value="{L_BUTTON_EDIT}" onclick="javascript:EditChar({members_row.ID})" class="mainoption"/></td>
+  	<!-- ENDIF -->
+  </tr>
+  <!-- END members_row -->
+  <tr>
+    <th colspan="16" class="footer">{LISTMEMBERS_FOOTCOUNT}</th>
+  </tr>
+</table>
+<center><br /><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="{ICON_INFO}" alt="Credits" border="0" /> Credits</a></span>
+<br /><span class="copy">{CM_COPYRIGHT}</span></center>

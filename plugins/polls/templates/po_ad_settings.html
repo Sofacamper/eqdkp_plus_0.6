@@ -1,0 +1,75 @@
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+{STATUS}
+<form action="settings.php" method="POST">
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<tr>
+			<th align="center" valign="center" colspan="2">
+				<img src="../images/info_tall.png" />
+				{F_LEGEND}
+			</th>
+		</tr>
+		<tr class="row1">
+			<td width="30%">
+				{F_MULTIPLE}
+			</td>
+			<td width="70%">
+				<input type="checkbox" name="multiple" value="1" {MULTIPLE} />
+			</td>
+		</tr>
+		<tr class="row2">
+			<td>
+				{F_COMMENTS}
+			</td>
+			<td>
+				<input type="checkbox" name="comments" value="1" {COMMENTS} />
+			</td>
+		</tr>
+		<tr class="row1">
+			<td>
+				{F_EDITABLE}
+			</td>
+			<td>
+				<input type="checkbox" name="editable" value="1" {EDITABLE} />
+			</td>
+		</tr>
+		<tr class="row2">
+			<td>
+				{F_INTERMED}
+			</td>
+			<td>
+				<input type="checkbox" name="intermed" value="1" {INTERMED} />
+			</td>
+		</tr>
+		<tr class="row1">
+			<td>
+				{F_MODSTYLE}
+			</td>
+			<td>
+				<select name="modstyle">
+					<option value="1" {MODSTYLE_OPT1}>{F_CAKE}</option>
+					<option value="2" {MODSTYLE_OPT2}>{F_BARS}</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				{F_COMMON}
+			</th>
+		</tr>
+		<tr class="row2">
+			<td>
+				{F_UPDCHK}
+			</td>
+			<td>
+				<input type="checkbox" name="updcheck" value="1" {UPDCHECK} />
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				<input type="submit" class="mainoption" name="po_submit" value="{F_UPDATE}" />
+			</th>
+		</tr>
+	</table>
+</form>
+{PO_FOOTER}

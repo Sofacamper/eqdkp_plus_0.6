@@ -1,0 +1,43 @@
+<script type="text/javascript">
+  {JS_CONFIRM_DEL}
+  
+  function closeWindow(){
+    parent.window.location.href = 'index.php';
+  }
+</script>
+<style type="text/css">
+.input { font-family: Verdana, Tahoma, Arial; font-size: 10px; color: #000000; background-color: #FFFFFF; 
+         border-top: 1px; border-right: 1px; border-bottom: 1px; border-left: 1px; border-color: #000000; border-style: solid; }
+input.mainoption { font-family: Verdana, Tahoma, Arial; font-size: 10px; font-weight: bold; color: #CECFEF; background-color: #424563; border-top: 1px;
+                   border-right: 1px; border-bottom: 1px; border-left: 1px; border-color: #CECFEF; border-style: solid; }
+
+TABLE.warntable { 
+  padding: 5px;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  border-color: red; 
+  border-style: solid;
+  background: #FFEFEF;
+  text-align: center;
+}
+
+TABLE.warntable td{
+	color:red;
+}
+</style>
+<table border="0" cellpadding="0" cellspacing="0" class="warntable" width="100%">
+  <tr>
+    <td width="90%">{L_WARN_MSSG}</td>
+  </tr>
+</table><br/>
+<form method="post" action="{F_CLEANUP}" name="cleanRaids">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr >
+    <td width="50%" nowrap="nowrap" class="row2">{L_CLEAN_ALL_TXT1} <input type="text" name="cleanup_days" size="10" value="{CLEANUP_DAYS}" class="input" /> {L_CLEAN_ALL_TXT2}</td>
+  </tr>
+  <tr>
+  <td colspan=2><center><input type="button" name="clean" value="{L_BUTT_CLEAN}" class="mainoption" onclick="javascript:PerformCleanup();" /> <input type="button" name="close" value="{L_BUTT_CLOSE}" class="mainoption" onclick="javascript:closeWindow();" /></center></td>
+  </tr>
+  </form>

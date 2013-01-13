@@ -1,0 +1,184 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+  {UPDATE_BOX} {UPDCHECK_BOX}
+  <table width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tr>
+    <th colspan="9" nowrap="nowrap"><table width="100%" class="borderless" border="0" cellspacing="0">
+      <tr>
+        <td style="text-align: left; width: 33%"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/admin_logo.png" alt="Edit" align="absmiddle"> {DL_HEADLINE}
+</td>
+        {DL_UPLOAD}
+        <td style="text-align: right;"><form action="../search.php{SID}" method="post" name="dl_search">
+          <input type="text" class="input" value="{DL_L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{DL_L_SEARCH_INPUTVALUE}';};" />
+          <img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+        </form>
+         </td>
+        <td width="50" nowrap="nowrap" align="left">{ADMIN_MENU}</td>
+      </tr>
+    </table></th>
+  </tr>
+</table>
+<div align="center" style="font-weight:bold;">{DL_ERROR}</div> 
+    
+    {DL_AD_NOCATS}
+   <form action="{DL_MASSEDIT_ACTION}" method="post" name="dl_massedit">
+   
+
+    <!-- BEGIN index_list -->
+    <table width="99%" border="0" cellspacing="0" cellpadding="2">
+        
+        <tr>
+          <td colspan="1">
+           <script type="text/javascript">animatedcollapse.addDiv('dl_cat_{index_list.DL_CAT_ID}', 'persist=0,hide=1'); animatedcollapse.init();</script>
+            <table width="100%" border="0" cellpadding="2" cellspacing="1">
+              <tr>
+                <th colspan="9" nowrap="nowrap"> <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="text-align: left; width: 33%"><strong><a href="javascript:animatedcollapse.toggle('dl_cat_{index_list.DL_CAT_ID}')"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/toggle.png" name="imgdl_mirror_table" border="0" id="imgdl_mirror_table2"><strong><!-- IF DL_S_CATS_DISABLED -->{DL_HEADLINE}<!-- ELSE --> {index_list.DL_CAT_HEADLINE}: {index_list.DL_CAT_NAME}<!-- ENDIF --></strong></a></strong></td>
+                    <!-- IF DL_S_CATS_DISABLED --><!-- ELSE --><td style="text-align: left; width: 33%">({index_list.DL_CAT_DOWNLOADS} {DL_HEADLINE})</td><!-- ENDIF -->
+                    <td style="text-align: right; width: 33%"><!-- IF DL_S_NO_CATS -->
+                      <!-- ELSE -->
+                      <!-- IF DL_IS_ADMIN_UPLOAD -->
+                      <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/new.png" alt="Edit" align="absmiddle" onClick="uploadDialog('{index_list.DL_CAT_ID}')" style="cursor:pointer" title="{DL_UPLOAD_HEADLINE}">
+                      <!-- ENDIF -->
+                      <!-- ENDIF --></td>
+                  </tr>
+                </table></th>
+              </tr>
+            </table>
+            <div id="dl_cat_{index_list.DL_CAT_ID}">
+            <table width="100%" border="0" cellpadding="2" cellspacing="1" >
+<!-- IF index_list.DL_S_NOLINKS -->
+              <tr>
+                <td width="100%" align="center" class="row2" colspan="9">{index_list.DL_CAT_NOLINKS}</td>
+              </tr>
+<!-- ELSE index_list.DL_S_NOLINKS -->           
+              <tr>
+                <th align="center" width="20" nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){dl_deselect_cat('{index_list.DL_CAT_ID}');} else {dl_select_cat('{index_list.DL_CAT_ID}');};"></th>
+                <th align="left" width="35" nowrap="nowrap">{index_list.DL_ACTION_HEADLINE}</th>
+                <th align="left" width="35" nowrap="nowrap"><a href="downloads.php{SID}&o=2.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED20}.png" alt="down"></a><a href="downloads.php{SID}&o=2.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED21}.png" alt="up"></a>{index_list.DL_NAME_HEADLINE}</th>
+                <th align="left" width="100%">{index_list.DL_DESC_HEADLINE}</th>
+                <th align="left" width="16"><a href="downloads.php{SID}&o=1.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED10}.png" alt="down"></a><a href="downloads.php{SID}&o=1.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED11}.png" alt="up"></a>{index_list.DL_TYPE_HEADLINE}</th>
+                <th align="left" width="80"><a href="downloads.php{SID}&o=5.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED50}.png" alt="down"></a><a href="downloads.php{SID}&o=5.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED51}.png" alt="up"></a>{index_list.DL_FILESIZE_HEADLINE}</th>
+                <th align="left" width="80"><a href="downloads.php{SID}&o=4.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED40}.png" alt="down"></a><a href="downloads.php{SID}&o=4.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED41}.png" alt="up"></a>{index_list.DL_PERM_HEADLINE}</th>
+
+                <th align="left" width="80"><a href="downloads.php{SID}&o=3.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED30}.png" alt="down"></a><a href="downloads.php{SID}&o=3.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED31}.png" alt="up"></a>{index_list.DL_VIEWS_HEADLINE}</th>
+
+                <th align="left" ><a href="downloads.php{SID}&o=0.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED01}.png" alt="down"></a><a href="downloads.php{SID}&o=0.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED00}.png" alt="up"></a>{index_list.DL_DATE_HEADLINE}</th>
+
+              </tr>
+<!-- ENDIF index_list.NOLINKS -->                
+<!-- BEGIN link_list -->
+              <tr class="{index_list.link_list.DL_ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{index_list.link_list.DL_ROW_CLASS}';">
+                <td width="20" nowrap="nowrap" align="center"><input type="checkbox" value="{index_list.link_list.DL_LINK_ID}" name="links[]"></td>
+                <td width="35" nowrap="nowrap"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/edit.png" alt="Edit" onClick="editDownload('{index_list.link_list.DL_LINK_ID}');" style="cursor:pointer;" title="{index_list.link_list.DL_TITLE_LINK_EDIT}"/><a href="{index_list.link_list.DL_LINK_DELETE_URL}" title="{index_list.link_list.DL_TITLE_LINK_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/delete.png" alt="Delete"></a></td>
+                <td width="35" nowrap="nowrap"><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&file={index_list.link_list.DL_LINK_ID}">{index_list.link_list.DL_LINK_NAME}{index_list.link_list.DL_LINK_REPORTED}</a></td>
+
+                <td width="100%">{index_list.link_list.DL_LINK_DESC}</td>
+                <td nowrap="nowrap">{index_list.link_list.DL_EXT_IMAGE}</td>
+                <td nowrap="nowrap">{index_list.link_list.DL_LINK_FILESIZE}</td>
+                <td nowrap="nowrap">{index_list.link_list.DL_LINK_PERMISSION}</td>
+
+                <td nowrap="nowrap">{index_list.link_list.DL_LINK_VIEWS}</td>
+
+                <td nowrap="nowrap">{index_list.link_list.DL_LINK_DATE}</td>
+
+              </tr>
+<!-- END link_list -->              
+              <tr>
+                <th colspan="9" class="footer" width="100%">{index_list.DL_CAT_FOOTCOUNT}</th>
+              </tr>
+          </table></div></td>
+        </tr>
+    </table>
+
+    <!-- END index_list -->
+  <!-- IF DL_S_IF_CATS -->
+<table width="100%">
+    	<tr>
+        	<td><span style="padding-left:7px;"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/arrow_turn_left.png" align="bottom" /><a href="javascript:dl_selectall();">{DL_AD_SELECT_ALL}</a>/<a href="javascript:dl_deselectall();">{DL_AD_DESELECT_ALL}</a>
+ &nbsp;  &nbsp;   
+          {DL_ALL_MARKED}:  &nbsp;  {MASSEDIT_ACTION_DROPDOWN}
+              <div id="target_cat" style="display:none">{DL_L_TO_CATEGORY} {TARGET_CAT_DROPDOWN}</div>
+          
+           <input class="mainoption" type="submit" value="{DL_AD_GO}" /></span>
+          </td>
+        </tr>
+    </table>
+   <!-- ENDIF --> 
+</form>
+
+<br/>
+<script language="javascript" type="text/javascript">
+			
+			function dl_selectall(){
+
+				for (var i = 0;i < document.getElementsByName('links[]').length;i++)
+				{
+					document.getElementsByName('links[]')[i].checked = true;
+				}
+			}
+			
+			function dl_deselectall(){
+
+				for (var i = 0;i < document.getElementsByName('links[]').length;i++)
+				{
+					document.getElementsByName('links[]')[i].checked = false;
+				}
+			}
+			
+			
+			
+			function dl_select_cat(catid){
+				
+				var area = document.getElementById('dl_cat_'+catid);
+				var checkboxes = area.getElementsByTagName('input');
+
+				for (var i=0; i<checkboxes.length; i++){
+					checkboxes[i].checked = true;
+
+				}
+				
+			}
+			
+		function dl_deselect_cat(catid){
+	
+				var area = document.getElementById('dl_cat_'+catid);
+
+				var checkboxes = area.getElementsByTagName('input');
+
+				for (var i=0; i<checkboxes.length; i++){
+					checkboxes[i].checked = false;
+
+				}
+				
+			}
+			
+function dl_check_action_dropdown(){
+		
+	var action = document.getElementById('massedit_action_drpdwn').value;
+
+	if (action == "move"){
+			
+		document.getElementById('target_cat').style.display = "inline";
+			
+	} else {
+			
+		document.getElementById('target_cat').style.display = "none";
+			
+	};
+		
+}
+          </script>
+<script language="JavaScript" type="text/javascript">
+
+function editDownload(id){
+ {DL_JS_EDIT}
+}
+
+function uploadDialog(catid){
+ {DL_JS_UPLOAD}
+}
+
+</script>
+{DL_FOOTER}

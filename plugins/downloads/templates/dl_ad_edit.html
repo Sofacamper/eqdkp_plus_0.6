@@ -1,0 +1,150 @@
+<!-- INCLUDE ../dl_css.html -->
+ {DL_STATUS}
+ <div align="center" style="font-weight:bold;">{DL_ERROR}</div>
+
+<form action="edit.php{SID}&mode=update&id={DL_EDIT_ID}" method="post" name="dl_upload" onSubmit="return dl_check_upload_form()" enctype="multipart/form-data">
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th colspan="2"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/edit.png" alt="Edit" align="absmiddle"><span class="footer">{DL_EDIT_HEADLINE}</span></th>
+      </tr>
+      <!-- IF DL_S_CATEGORIES_DISABLED --><input type="hidden" name="dl_category" value="{DL_EDIT_CATEGORY}"><!-- ELSE -->
+        <tr class="row1">
+          <td width="180" align="left"><strong>{DL_CAT_HEADLINE}:*</strong></td>
+          <td>{DL_EDIT_CATEGORY_SELECT}</td>
+        </tr>
+        <!-- ENDIF -->
+        <tr class="row2">
+          <td width="180" align="left" nowrap><strong>{DL_NAME_HEADLINE}</span>:*</strong></td>
+          <td><input name="dl_name" type="text" class="input" id="dl_name" style="width:98%;" value="{DL_EDIT_NAME}"/></td>
+        </tr>
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_DESC_HEADLINE}</span>:</strong></td>
+          <td><textarea name="dl_description" class="input" id="dl_description" style="width:98%">{DL_EDIT_DESCRIPTION}</textarea></td>
+        </tr>
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_PERM_HEADLINE}:*</strong></td>
+          <td><select name="dl_permission" class="input">
+            <option value="0" id="perm0" {DL_PERM_EDIT_SELECT_0}>{DL_PERM_REGISTERED}</option>
+            <option value="1" id="perm1" {DL_PERM_EDIT_SELECT_1}>{DL_PERM_PUBLIC}</option>
+          </select></td>
+        </tr>
+        <!-- IF DL_S_IS_LOCALFILE -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_FILE_HEADLINE}:</strong></td>
+          
+          <td><div id="dl_file_area">
+            {DL_EDIT_URL}   <a href="{DL_LINK_DELETE_URL}" title="{DL_TITLE_LINK_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/delete.png" alt="Delete"></a>
+            <input name="dl_localfile" type="hidden" id="dl_localfile" value="true">
+          </div><div id="dl_loading_area" style="display:none" align="center"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/loading.gif"></div><input name="dl_url" type="hidden" class="input" id="dl_url" style="width:98%;" onChange="dl_check_url_field()" value="{DL_EDIT_URL}"/></td>
+        </tr>
+        <!-- ELSE -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_URL_HEADLINE}:*</strong></td>
+          <td><input name="dl_url" type="text" class="input" id="dl_url" style="width:98%;" onChange="dl_check_url_field()" value="{DL_EDIT_URL}"/></td>
+        </tr>
+        
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_FILESIZE_HEADLINE}:</strong></td>
+          <td>{DL_EDIT_FILESIZE}</td>
+        </tr>
+        <!-- ENDIF -->
+        
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_PREVIEW_IMAGE}:</strong></td>
+          <td><!-- IF DL_S_PREVIEWIMAGE -->{DL_EDIT_PREVIEW_IMAGE}
+            <input name="dl_edit_is_preview" type="hidden" class="input" id="dl_edit_is_preview" style="width:98%;" onChange="dl_check_url_field()" value="true"/>
+          <input name="dl_edit_previewimage" type="hidden" class="input" id="dl_edit_previewimage" style="width:98%;" onChange="dl_check_url_field()" value="{DL_EDIT_PREVIEW_IMAGE}"/>            <a href="{DL_PREVIEWIMAGE_DELETE_URL}" title=""><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/delete.png" alt="Delete"></a><!-- ELSE --><input name="dl_edit_previewimage" type="file" class="input" id="dl_previewimage" size="60"><!-- ENDIF --></td>
+        </tr>
+        <!-- IF DL_S_MULTIPLE_LINKS_ENABLED -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_RELATED_LINKS_HEADLINE}</strong>:</td>
+          <td><input name="dl_related_links" type="text" class="input" id="dl_related_links" style="width:92%" value="{DL_EDIT_RELATED_LINKS}"/>
+            <span id="dl_mirrors_area2"></span> <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_RELATED_LINKS}/></td>
+        </tr>
+        <!-- ENDIF -->
+        <!-- IF DL_S_MIRRORS_ENABLED -->
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_MIRRORS_HEADLINE}:</strong></td>
+          <td><!-- BEGIN mirror_list -->
+          <input name="dl_mirrors[]" type="text" class="input" id="dl_mirrors[]" style="width:92%" onchange="if(this.value != ''){dl_add_mirror_input();}" value="{mirror_list.DL_EDIT_MIRROR}"/>
+          <!-- END mirror_list -->
+          <input class="input" type="text" name="dl_mirrors[]" style="width:92%" id="dl_mirrors[]" onchange="if(this.value != ''){dl_add_mirror_input();}"/>
+          <span id="dl_mirrors_area"></span>
+
+          <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_MIRRORS}/></td>
+        </tr>
+		<!-- ENDIF -->
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="{DL_AD_SEND}">
+      <input class="liteoption" type="reset" value="{DL_AD_RESET}" onClick="dl_reset_fields()"><input type="hidden" value="{DL_EDIT_REFFERER}" name="dl_edit_referrer"></th>
+    </tr>
+
+</table>
+</form>
+<script language="javascript" type="text/javascript">
+<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->		  
+function dl_check_permission(){
+				
+	if (<!-- BEGIN js_registered_cats -->document.dl_upload.dl_category.value == {js_registered_cats.DL_CATID} || <!-- END js_registered_cats --> document.dl_upload.dl_category.value == "abc"){document.dl_upload.dl_permission.disabled = true;
+		document.dl_upload.dl_permission.selectedIndex = 0;
+	}	
+	else {document.dl_upload.dl_permission.disabled = false;};
+				
+}
+						
+dl_check_permission();
+<!-- ENDIF -->
+
+function dl_check_file_field(){
+	if (document.dl_upload.dl_file.value != ""){
+		document.dl_upload.dl_url.disabled = true;
+		document.dl_upload.dl_url_filesize.disabled = true;
+		document.dl_upload.dl_url_filesize_unit.disabled = true;
+		
+	}
+	else {
+		document.dl_upload.dl_url.disabled = false;
+		document.dl_upload.dl_url_filesize.disabled = false;
+		document.dl_upload.dl_url_filesize_unit.disabled = false;
+	};
+}
+
+function dl_check_url_field(){
+	if (document.dl_upload.dl_url.value != ""){document.dl_upload.dl_file.disabled = true;}
+	if (document.dl_upload.dl_url.value == ""){document.dl_upload.dl_file.disabled = false;}
+}
+
+function dl_reset_fields(){
+	document.dl_upload.dl_file.disabled = false;
+	document.dl_upload.dl_url.disabled = false;
+	document.dl_upload.dl_url_filesize.disabled = false;
+	document.dl_upload.dl_url_filesize_unit.disabled = false;
+}
+
+
+function dl_add_mirror_input(){
+	var clone = document.getElementById("dl_mirrors[]").cloneNode(true);
+	var output_area = document.getElementById("dl_mirrors_area");
+	clone.value = "";
+	output_area.appendChild(clone);
+}
+
+
+
+function dl_check_upload_form(){
+
+	if((document.dl_upload.dl_name.value == "") ||  (document.dl_upload.dl_url.value == "")){
+		
+					show_fields_empty();
+					return false;
+	}
+	else {document.getElementById('dl_file_area').style.display = "none";
+		document.getElementById('dl_loading_area').style.display = "inline";
+		};
+}
+
+</script>
+{DL_JS_FIELDS_EMPTY}

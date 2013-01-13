@@ -1,0 +1,158 @@
+<script language="JavaScript" type="text/javascript">
+function check_form()
+{
+    if (document.post.member_name.value.length < 2)
+    {
+        alert('{MSG_NAME_EMPTY}');
+        return false;
+    }
+    return true;
+}               
+</script>
+
+<form method="post" action="{F_ADD_MEMBER}" name="post" onsubmit="return check_form(this)">
+
+{TAB_HEAD_CM}
+<div id='char_tabs'>
+			<ul>
+			    <li><a href='#fragment-1'><span>{TAB_NAME1}</span></a></li>
+			    <!-- IF UCV_IS_WOW --><li><a href='#fragment-2'><span>{TAB_NAME2}</span></a></li><!-- ENDIF -->
+			    <li><a href='#fragment-3'><span>{TAB_NAME3}</span></a></li>
+			    <li><a href='#fragment-4'><span>{TAB_NAME4}</span></a></li>
+			    <li><a href='#fragment-5'><span>{TAB_NAME5}</span></a></li>
+			</ul>
+<div id="fragment-1">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<tr>
+    <td width="100" nowrap="nowrap" class="row1" colspan=2>
+    	<input type="hidden" name="member_pic" id="member_pic" size="20" value="{UCV_PICTURE_NAME}" class="input" />
+    	{UCV_PICTURE}
+    	</td>
+    </tr>
+  <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_NAME}:</td>
+    <!-- IF U_IS_EDIT -->
+    <td width="50%" nowrap="nowrap" class="row2">{UCV_MEMBER_NAME}
+    	<input type="hidden" name="member_name" size="60" value="{UCV_MEMBER_NAME}" class="input" />
+    	<input type="hidden" name="memberid" size="20" value="{UCV_MEMBER_ID}" class="input" />
+    	</td>
+    <!-- ELSE -->
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="member_name" size="20" value="{UCV_MEMBER_NAME}" class="input" /></td>
+		<!-- ENDIF -->  
+  </tr>
+  <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_RACE}:</td>
+    <td width="50%" nowrap="nowrap" class="row2">{DRPWN_RACE}</td>
+  </tr>
+  <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_GENDER}:</td>
+    <td width="50%" nowrap="nowrap" class="row2">{DRPWN_GENDER}</td>
+  </tr>
+  <!-- IF UCV_IS_WOW -->
+   <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_FACTION}:</td>
+    <td width="50%" nowrap="nowrap" class="row2">{DRPWN_FACTION}</td>
+  </tr>
+  <!-- ENDIF -->  
+  <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_CLASS}:</td>
+    <td width="50%" nowrap="nowrap" class="row2">{DRPWN_CLASS}</td>
+   </tr>
+  <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_LEVEL}:</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="member_level" size="3" maxlength="3" value="{UCV_MEMBER_LEVEL}" class="input" /></td>
+   </tr>
+   <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_GUILD}:</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="guild" size="25" maxlength="50" value="{UCV_GUILD}" class="input" /></td>
+   </tr>
+   
+
+  <!-- IF U_ISNOT_EDIT -->
+  <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_OVERTAKE}:</td>
+    <!-- IF USER_CAN_CONNECT -->
+    <td width="50%" nowrap="nowrap" class="row2"><input type="checkbox" name="overtakeuser" value="1" checked="checked" /></td>
+   	<!-- ELSE -->
+   	<td width="50%" nowrap="nowrap" class="row2"><input type="checkbox" name="overtakeuser" value="1" disabled="disabled" checked="checked" /></td>
+   	<!-- ENDIF -->
+   </tr>
+   <!-- ENDIF -->
+  <tr>
+  </tr>
+</table>
+</div>
+<!-- IF UCV_IS_WOW -->
+<div id="fragment-2">
+   <table width="100%" border="0" cellspacing="1" cellpadding="2">
+    <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_SKILL}</td>
+    <td width="50%" nowrap="nowrap" class="row2">
+    	<input type="text" name="skill_1" size="4" maxlength="3" value="{UCV_SKILL_1}" class="input" /> -
+    	<input type="text" name="skill_2" size="4" maxlength="3" value="{UCV_SKILL_2}" class="input" /> -
+    	<input type="text" name="skill_3" size="4" maxlength="3" value="{UCV_SKILL_3}" class="input" /><br/>
+    	<input type="text" name="skill2_1" size="4" maxlength="3" value="{UCV_SKILL2_1}" class="input" /> -
+    	<input type="text" name="skill2_2" size="4" maxlength="3" value="{UCV_SKILL2_2}" class="input" /> -
+    	<input type="text" name="skill2_3" size="4" maxlength="3" value="{UCV_SKILL2_3}" class="input" /> 
+    </td>
+   </tr>
+   </table>
+</div>
+<div id="fragment-3">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+   <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_FIRST_PROF}</td>
+    <td width="50%" nowrap="nowrap" class="row2">{DRPWN_PROF1} {L_SKILL_LEVEL}: <input type="text" name="prof1_value" size="4" maxlength="3" value="{UCV_PROF_V1}" class="input" /></td>
+   </tr>
+	<tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_SECOND_PROF}</td>
+    <td width="50%" nowrap="nowrap" class="row2">{DRPWN_PROF2} {L_SKILL_LEVEL}: <input type="text" name="prof2_value" size="4" maxlength="3" value="{UCV_PROF_V2}" class="input" /></td>
+   </tr>
+ </table>
+</div>
+<div id="fragment-4">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<tr>
+		<td colspan=2>{L_PROFILER_EXPL}</td>
+	</tr>
+   <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_BUFFED} ID</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="blasc_id" size="15" maxlength="50" value="{UCV_BUFFED}" class="input" /></td>
+   </tr>
+   <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_CTPROFILES} ID</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="ct_profile" size="15" maxlength="50" value="{UCV_CTPROFILES}" class="input" /></td>
+   </tr>
+    <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_ALLAKHAZAM} ID</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="allakhazam" size="15" maxlength="50" value="{UCV_ALLAKHAZAM}" class="input" /></td>
+   </tr>
+    <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_CURSE_PROFILER} URL</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="curse_profiler" size="25" maxlength="255" value="{UCV_CURSE_PROFILER}" class="input" /></td>
+   </tr>
+    <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_TALENTPLANER} URL</td>
+    <td width="50%" nowrap="nowrap" class="row2"><input type="text" name="talentplaner" size="25" maxlength="255" value="{UCV_TALENTPLANER}" class="input" /></td>
+   </tr>
+  </tr>
+</table>
+</div>
+<div id="fragment-5">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+   <tr>
+    <td width="100" nowrap="nowrap" class="row1">{L_NOTES}</td>
+    <td width="50%" nowrap="nowrap" class="row2"><textarea name="notes" class="input" rows="12" cols="75">{UCV_NOTES}</textarea></td>
+   </tr>
+</table>
+</div>
+<!-- ENDIF -->
+</div>
+<br><center>
+  <!-- IF U_IS_EDIT -->
+    <input type="submit" name="edit" value="{L_EDIT_MEMBER}" class="mainoption" /> 
+  <!-- ELSE -->
+    <input type="submit" name="add" value="{L_ADD_MEMBER}" class="mainoption" />
+  <!-- ENDIF -->
+</center>
+</form>

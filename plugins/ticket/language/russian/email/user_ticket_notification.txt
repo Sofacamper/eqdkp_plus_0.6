@@ -1,0 +1,9 @@
+Subject: {GUILDTAG} {DKP_NAME}: Answer to your ticket submitted!
+Charset: windows-1251
+
+Ответ на ваш вопрос(ы) был получен от Администратора!
+
+{LINK}
+
+
+С уважением Администрация!

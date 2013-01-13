@@ -1,0 +1,26 @@
+		<!-- IF S_GUESTS -->
+  		<tr>
+  		<td width="100%" valign="top" class="row2" colspan="{ATTENDEES_COLSPAN}">
+  		<br/>
+  		<table border="0" cellpadding="0" cellspacing="0" class="guesttable" width="100%">
+  		  <tr>
+  		    <td width="90%">
+            <b>{L_GUESTS}</b> ({GUESTCOUNT}): 
+            <!-- BEGIN guests -->
+              <!-- IF IS_AD_GL -->
+                <span onClick="ShowX('{guests.ID}');" {guests.TOOLTIP}>{guests.NAME} </span><span style="display:none;cursor:pointer;" id='guestdelete{guests.ID}' onMouseOut="window.setTimeout('HideX({guests.ID})', 5000)"><img src="images/global/delete.png" alt="{L_TITLE_DELGUEST}" title="{L_TITLE_DELGUEST}" onclick="javascript:DeleteGuest('{guests.ID}');"/>&nbsp;<img src="images/global/edit.png" alt="{L_TITLE_EDITGUEST}" title="{L_TITLE_EDITGUEST}" onclick="javascript:EditGuest('{guests.ID}','{RAID_ID}');" /></span>
+              <!-- ELSE -->
+                <span {guests.TOOLTIP}>{guests.NAME} </span>
+              <!-- ENDIF -->
+            <!-- END guests -->
+          </td>
+          <!-- IF IS_AD_GL -->
+          <td width="10%" align="right">
+          <input type="image" src="images/viewraid/addguest.png" border="0" name="addguest" 	onclick="javascript:AddGuest('{RAID_ID}');" alt="{B_ADDGUEST}" title="{B_ADDGUEST}" />
+          <!-- ENDIF -->
+          </td>
+        </tr>
+      </table>
+     </td>
+  	</tr>
+		<!-- ENDIF -->

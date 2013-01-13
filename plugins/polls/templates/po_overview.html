@@ -1,0 +1,33 @@
+<style type="text/css">
+	.po_description{
+		background: #999999;
+		color: #444444;
+		border: 2px solid #444444;
+		-moz-border-radius: 10px;
+	}
+</style>
+<table width="100%" cellpadding="2" cellspacing="0">
+	<tr>
+		<th align="center">
+			{F_TITLE}
+		</th>
+		<th align="center">
+			{F_VOTED}
+		</th>
+		<th align="center">
+			{F_ENDDATE}
+		</th>
+		<th align="center">
+			{F_STATUS}
+		</th>
+	</tr>
+	<!-- BEGIN polllist -->
+		<tr class="{polllist.ROWCLASS}">
+			<td align="center"><a href="pollview.php?id={polllist.ID}" {polllist.DESCRIPTION}>{polllist.TITLE}</a></td>
+			<td align="center">{polllist.VOTED}</td>
+			<td align="center">{polllist.ENDDATE}</td>
+			<td align="center">{polllist.STATUS}</td>
+		</tr>
+	<!-- END polllist -->
+</table>
+{PO_FOOTER}

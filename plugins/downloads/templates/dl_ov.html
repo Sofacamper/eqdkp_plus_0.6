@@ -1,0 +1,219 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="4">		  
+      <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="50%" style="text-align: left; width: 33%">      
+           <b>{DL_HEADLINE}</b></td>{DL_UPLOAD}
+          <td width="49%" style="text-align: right;"><form action="search.php{SID}" method="post" name="dl_search">
+            <input type="text" class="input" value="{DL_L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{DL_L_SEARCH_INPUTVALUE}';};" />
+            <img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+          </form></td>
+          <td width="1%" nowrap="nowrap" style="text-align: left;"><!-- IF DL_IS_ADMIN -->{ADMIN_MENU}<!-- ELSE --><!-- IF DL_IS_ADMIN_UPLOAD --> | <a href="javascript:uploadDialog()"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/new.png">{DL_UPLOAD_HEADLINE}</a><!-- ENDIF --><!-- ENDIF --></td>	
+        </tr>
+      </table>    
+    </th>	
+  </tr>
+      
+  <tr class="">			
+    <td colspan="1">
+    <div align="center" style="font-weight:bold;">{DL_OV_ERROR}</div>
+
+
+        
+
+          <!-- IF DL_S_SHOW_STATISTICS -->
+            <table width="100%" border="0" cellspacing="1" cellpadding="2" align="left">
+
+              <tr>
+                <td width="50%">
+                
+                <table width="100%" border="0" align="left" cellpadding="2" cellspacing="1">
+       
+                  <tr>
+                    <th colspan="2" nowrap="nowrap">{DL_STAT_HEADLINE}</th>
+                    </tr>
+
+                  <tr class="row2" onmouseover="this.className='rowHover';" onmouseout="this.className='row2';">
+                    <td width="50" nowrap="nowrap">{DL_L_FILES}:</td>
+                    <td>{DL_STAT_TOTAL_DLS}</td>
+                  </tr>
+
+                  <tr class="row1" onmouseover="this.className='rowHover';" onmouseout="this.className='row1';">
+                    <td width="20" nowrap="nowrap">{DL_L_CATS}:</td>
+                    <td>{DL_STAT_TOTAL_CATS}</td>
+
+                    </tr>
+
+                  <tr class="row2" onmouseover="this.className='rowHover';" onmouseout="this.className='row2';">
+                    <td width="20" nowrap="nowrap">{DL_L_TRAFFIC_MONTH}:</td>
+                    <td>{DL_STAT_TRAFFIC_MONTH}</td>
+
+                    </tr>
+
+                  <tr class="row1" onmouseover="this.className='rowHover';" onmouseout="this.className='row1';">
+                    <td>{DL_L_TRAFFIC_TOTAL}:</td>
+                    <td>{DL_STAT_TRAFFIC_TOTAL}</td>
+                  </tr>
+                  
+                  <tr class="row2" onmouseover="this.className='rowHover';" onmouseout="this.className='row2';">
+                    <td nowrap="nowrap">{DL_L_LAST_UPLOADED}:</td>
+                    <td><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&file={DL_STAT_LAST_UPLOADED_ID}">{DL_STAT_LAST_UPLOADED}</a></td>
+                  </tr>
+                </table></td>
+                <td width="50%" valign="top"><table width="100%" border="0" align="right" cellpadding="2" cellspacing="1">
+                  <tr>
+                    <th colspan="3" nowrap="nowrap">{DL_TOP5_HEADLINE}</th>
+                  </tr>
+                  <!-- BEGIN stat_topfive -->
+                  <tr class="{stat_topfive.DL_STAT_TOP_ROW}" onmouseover="this.className='rowHover';" onmouseout="this.className='{stat_topfive.DL_STAT_TOP_ROW}';">
+                    <td width="20" nowrap="nowrap">{stat_topfive.DL_STAT_TOP_PLACE}.</td>
+                    <td><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&file={stat_topfive.DL_STAT_TOP_ID}">{stat_topfive.DL_STAT_TOP_NAME}</a></td>
+                    <td width="20">{stat_topfive.DL_STAT_TOP_VIEWS}</td>
+                  </tr>
+                  <!-- END stat_topfive -->
+                </table></td>
+              </tr>
+    
+          </table><!-- ENDIF --></td>
+        </tr>
+        
+        <tr>
+          <td height="6">
+          <!-- IF DL_S_CATEGORIES_DISABLED -->
+          <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1">
+             <tr>
+              <!-- IF DL_IS_ADMIN_LINK --> <th align="center" width="20" nowrap="nowrap">{DL_ACTION_HEADLINE}</th><!-- ENDIF -->
+              <th align="center" width="20" nowrap="nowrap"><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=1.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED10}.png" alt="down"></a><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=1.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED11}.png" alt="up"></a>{DL_TYPE_HEADLINE}</th>
+              <th width="20" align="left" nowrap="nowrap"><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=2.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED20}.png" alt="down"></a><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=2.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED21}.png" alt="up"></a>{DL_NAME_HEADLINE}</th>
+              <th align="left" nowrap="nowrap"><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=3.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED30}.png" alt="down"></a><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=3.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED31}.png" alt="up"></a>{DL_DESC_HEADLINE}</th>
+              <th align="left" width="80"><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=4.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED40}.png" alt="down"></a><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=4.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED41}.png" alt="up"></a>{DL_SIZE_HEADLINE}</th>
+              <th align="left" width="80"><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=5.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED50}.png" alt="down"></a><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=5.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED51}.png" alt="up"></a>{DL_VIEWS_HEADLINE}</th>
+              <th align="left" ><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=6.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED60}.png" alt="down"></a><a href="downloads.php{SID}<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&cat={DL_CAT_ID}<!-- ENDIF -->&o=6.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED61}.png" alt="up"></a>{DL_RATING_HEADLINE}</th>
+              <th align="left" >&nbsp;</th>
+            </tr>
+             <!-- IF DL_S_NO_DOWNLOADS-->
+            <tr class="row2">
+              <td colspan="8">{DL_NO_DOWNLOADS}</td>
+            </tr>
+            <!-- ELSE -->
+            <!-- BEGIN link_list -->
+            <tr class="{link_list.DL_ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{link_list.DL_ROW_CLASS}';">
+              <!-- IF DL_IS_ADMIN_LINK --> 
+              <td width="20" nowrap="nowrap" align="center"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/edit.png" alt="Edit" onClick="editDownload('{link_list.DL_LINK_ID}');" style="cursor:pointer;" title="{DL_TITLE_LINK_EDIT}"/><a href="downloads.php{SID}&mode=delete&id={link_list.DL_LINK_ID}" title="{DL_TITLE_LINK_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/delete.png" alt="Delete"></a></td>
+              <!-- ENDIF -->
+              <td width="20" nowrap="nowrap" align="center">{link_list.DL_LINK_EXT_IMAGE}</td>
+              <td nowrap="nowrap"><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&file={link_list.DL_LINK_ID}">{link_list.DL_LINK_NAME}<!-- IF DL_IS_ADMIN_LINK -->{link_list.DL_LINK_REPORTED}<!-- ENDIF --></a></td>
+              <td>{link_list.DL_LINK_DESC}</td>
+              <td width="80" nowrap="nowrap">{link_list.DL_LINK_SIZE}</td>
+              <td width="80" nowrap="nowrap">{link_list.DL_LINK_VIEWS}</td>
+              <td width="80" nowrap="nowrap"><img src="images/rating_{link_list.DL_LINK_RATING}.png" alt="{link_list.DL_LINK_RATING}" border="0" /></td>
+              <td width="22" nowrap="nowrap" align="center"><a href="{EQDKP_ROOT_PATH}plugins/downloads/download.php{SID}&id={link_list.DL_LINK_ID}" target="_blank" title="{link_list.DL_L_DOWNLOAD_IT}"><img src="images/download.png" border="0" /></a></td>
+            </tr>
+            <!-- END link_list -->
+			<!-- ENDIF -->
+            <tr>
+              <th colspan="8" class="footer">{DL_CAT_FOOTCOUNT}</th>
+            </tr>
+          </table>
+          <table class="borderless" width="100%" border="0" cellpadding="2" cellspacing="1">
+            <tbody>
+              <tr>
+                <td class="menu" align="center">{DL_PAGINATION}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- ELSE -->
+          <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1">
+            <tr>
+              <td colspan="3" nowrap="nowrap">&nbsp;</td>
+            </tr>
+            <tr>
+              <th nowrap="nowrap"> {DL_CAT_HEADLINE}:</th>
+              <th width="100">{DL_FILES_HEADLINE}:</th>
+              <th width="100">{DL_VIEWS_HEADLINE}:</th>
+            </tr>
+            <!-- IF DL_S_NO_CATS -->
+            <tr>
+            	<td class="row2" colspan="3"><em>{DL_NO_CATS}</em></td>
+            </tr>
+            <!-- ELSE -->
+            <!-- BEGIN cat_list -->
+            <tr class="{cat_list.DL_CAT_ROW}" onmouseover="this.className='rowHover';" onmouseout="this.className='{cat_list.DL_CAT_ROW}';">
+              <td nowrap="nowrap"><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&cat={cat_list.DL_CAT_ID}">{cat_list.DL_CAT_DESC}</a></td>
+              <td>{cat_list.DL_CAT_FILES}</td>
+              <td>{cat_list.DL_CAT_VIEWS}</td>
+            </tr>
+            <!-- END cat_list -->
+            <!-- ENDIF -->
+            <tr>
+              <th colspan="3" class="footer"><table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+                <tr >
+                  <td style="text-align: left; width: 33%"><!-- IF DL_IS_ADMIN_CAT -->
+                             <script type="text/javascript">animatedcollapse.addDiv('dl_create_cat', 'persist=0,hide=1'); animatedcollapse.init();</script>
+                   <a href="javascript:animatedcollapse.toggle('dl_create_cat')"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/new.png" alt="Edit" align="absmiddle" />{DL_AD_CREATE}</a>                    <!-- ENDIF --></td>
+                  <td style="text-align: right; width: 33%" ><!-- IF DL_S_NO_CATS --><!-- ELSE --><!-- IF DL_IS_ADMIN_UPLOAD -->
+                    <!-- ENDIF -->                    <!-- ENDIF -->{DL_CAT_FOOTCOUNT}</td>
+                </tr>
+              </table></th></tr>
+          </table>
+          <!-- IF DL_IS_ADMIN_CAT -->
+          <div id="dl_create_cat">
+          <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1">
+  <form action="downloads.php{SID}" method="post" name="dl_create_cat" onSubmit="return dl_check_fields()">
+    <tr class="row1">
+      <td align="left" style="padding-left: 10px;"><strong>{DL_AD_CATEGORY}*</strong></td>
+      <td  style="padding-left: 10px;"><strong>{DL_DESC_HEADLINE}</strong></td>
+      <td align="center"><strong>{DL_PERM_HEADLINE}</strong></td>
+      </tr>
+    <tr class="row2">
+      <td width="210" align="left" style="padding-left: 10px;"><input class="input" type="text" name="cat_name" style="width:200px" id="cat_name"></td>
+      <td style="padding-left: 10px;"><input class="input" type="text" name="cat_comment" style="width:98%" id="cat_comment"></td>
+      <td width="40" align="center"><span style="padding-left: 10px;">
+        <select name="cat_permission" id="cat_permission" class="input">
+          <option value="0">{DL_PERM_REGISTERED}</option>
+          <option value="1">{DL_PERM_PUBLIC}</option>
+          </select>
+        </span></td>
+      </tr>
+    <tr>
+      <th colspan="3"> <input class="mainoption" type="submit" value="{DL_AD_SEND}" name="cat_submit">
+        <input class="liteoption" type="reset" value="{DL_AD_RESET}"></th>
+      </tr>
+  </form>
+</table>
+</div>
+<!-- ENDIF -->
+          <!-- ENDIF -->
+
+<br>
+
+    
+    </td>			
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function uploadDialog(){
+{DL_JS_UPLOAD}
+}
+
+function editDownload(id){
+{DL_JS_EDIT}
+}
+
+function dl_check_fields(){
+				if (document.dl_create_cat.cat_name.value == "") {
+					
+					show_fields_empty();
+					return false;
+				};
+}
+
+
+</script>
+{DL_JS_FIELDS_EMPTY}
+<br />
+{DL_FOOTER}

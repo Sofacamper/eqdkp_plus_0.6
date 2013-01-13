@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<style type="text/css">
+			body {
+				text-align:left;
+				font-size: 11px;
+				padding: 10px;
+				margin:0;
+				color: black;
+				background: white;
+			}
+			tr, td {
+				font-family: Verdana, Tahoma, Arial;
+				font-size: 11px;
+				color: #000000;
+			}
+			h3 {
+				font-size: 12px;
+				font-weight: bold;
+				color:#F37D1F;
+				padding-top: 17px;
+			}
+			a, a:active, a:visited, a:hover {
+				text-decoration: none;
+				color: #5588cc;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="0" cellpadding="0" cellspacing="0" class="borderless" width="100%">
+			<tr>
+				<td style="padding-right: 10px;" valign="top" align="center" colspan="2">
+					<img src="{PO_LOGO}" alt="" border="0">
+					<br/>Version {PO_VERSION}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h3>{PO_ADDITONS}</h3>
+				</td>
+			</tr>
+			<!-- BEGIN addition_row -->
+				<tr>
+					<td>
+						<b>{addition_row.PO_KEY}</b>:
+	        </td>
+	        <td>
+						{addition_row.PO_VALUE}
+	        </td>
+				</tr>
+			<!-- END addition_row -->
+			<tr>
+				<td colspan="2">
+					<h3>{PO_DEVTEAM}</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&copy; {PO_YEARR} {PO_TXT_DEVTEAM}<br />
+					{PO_URL_WEB}:	<a class="linkcrap" href="http://{PO_WEB_URL}" target="_blank">{PO_WEB_URL}</a>
+				</td>
+				<td>
+					<a href="http://www.amazon.de/wishlist/3GCMTF2BRXTQG" title="Support my work" target="_blank"><img src="{EQDKP_ROOT_PATH}plugins/polls/images/amazon.de_wishlist.gif" alt="Support my work" border="0"></a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h3>{PO_LICENCE}</h3></td>
+			</tr>
+			<tr>
+				<td  valign="top" colspan="2"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported</a><br /></td>
+			</tr>
+		</table>
+	</body>
+</html>

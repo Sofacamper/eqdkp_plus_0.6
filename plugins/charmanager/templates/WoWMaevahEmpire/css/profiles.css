@@ -1,0 +1,95 @@
+/* Bars */
+.mana-stat, .health-stat, .rage-stat, .energy-stat { 
+	width: 340px;
+	height: 15px;
+	padding: 2px 6px 0 5px;
+}
+.health-stat p, .mana-stat p, .rage-stat p, .energy-stat p { 
+	float: left;
+	width: 75%;
+	margin:0;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	padding:0;
+	height: 16px;
+	border: 1px solid black;
+}
+.health-stat p {
+	background: url('../../../images/bars/bar-life.gif') repeat-x;
+}
+.mana-stat p, .bar-container b {
+	background: url('../../../images/bars/bar-mana.gif') repeat-x;
+}
+.rage-stat p {
+	background: url('../../../images/bars/bar-rage.gif') repeat-x;
+}
+.energy-stat p {
+	background: url('../../../images/bars/bar-energy.gif') repeat-x;
+}
+.bar-container{
+	margin:0;
+	padding:0;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	padding:0;
+	height:16px;
+	width: 150px;
+	border: 1px solid black;
+	background: url('../../../images/bars/bar-grey.gif') repeat-x;position: relative;
+}
+.bar-container b{
+	height: 16px;
+	margin:0;
+	padding:0;
+	float: left;
+}
+.bar-container span{
+	position: absolute;
+	top: -1px;
+	left: 0px;
+	width: 150px;
+	text-align: center;
+}
+.health-stat p:hover{
+	border: 1px solid #7eff00;
+}
+.mana-stat p:hover, .bar-container:hover{
+	border: 1px solid #00a8ff;
+}
+.rage-stat p:hover {
+	border: 1px solid #ff0000;
+}
+.energy-stat p:hover{
+	border: 1px solid #fcff00;
+}
+img.ieimg 		{ display: none; }
+
+.uc_nametd {
+	border-bottom: 1px solid white;
+}
+.uc_name { 
+	text-align: left;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	padding-bottom: 0px;
+	padding-left: 6px;
+	z-index: 9;
+}
+.uc_subname {
+	text-align: left;
+	color: white;
+	font-size: 11px;
+	margin-top:2px;
+	margin-left:0px;
+	padding-left: 6px;
+	z-index: 10;
+}
+.uc_logo_alliance { 
+	background:url('../../../games/wow/images/factions/alliance-icon.png');
+}
+.uc_logo_horde { 
+	background:url('../../../games/wow/images/factions/horde-icon.png');
+}

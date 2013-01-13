@@ -1,0 +1,224 @@
+{MC_STATUS}
+<!-- INCLUDE ../mc_css.html -->   
+ <style>
+#play_button_big
+{
+position:relative;top:150px;left:230px;
+z-index:99;
+}
+
+#size_button_big
+{
+position:relative;left:510px;top:380px;
+z-index:98;
+}
+
+#newest, #best_rated, #most_viewed{
+
+                  	height:423px;
+                  	width:310px;
+                  	overflow: auto;
+                  }
+</style>  
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="4">		  
+      <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="50%" style="text-align: left; width: 33%">      
+           <b>{MC_L_MEDIACENTER}</b></td>
+          <td width="49%" style="text-align: right;"><form action="search.php{SID}" method="post" name="mc_search">
+            <input type="text" class="input" value="{MC_L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{MC_L_SEARCH_INPUTVALUE}';};" />
+            <img src="{EQDKP_ROOT_PATH}/plugins/mediacenter/images/search.png" alt="Submit" onClick="document.mc_search.submit();" style="cursor:pointer;">
+          </form></td>
+          <td width="1%" nowrap="nowrap" style="text-align: left;"><!-- IF MC_IS_ADMIN -->{MC_ADMIN_MENU}<!-- ELSE --><!-- IF MC_IS_UPLOADER --><a href="javascript:uploadDialog();">{MC_L_UPLOAD}</a><!-- ENDIF --><!-- ENDIF --></td>	
+        </tr>
+      </table>    
+    </th>	
+  </tr>
+        
+        <tr>
+          <td height="6" valign="top">
+          
+       
+{MC_CATEGORIES}
+          <table border="0" cellspacing="0" cellpadding="2" >
+            
+            <tr>
+              <td width="544" valign="top">
+              <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+              <table width="548" border="0" cellspacing="0" cellpadding="2">
+                <tr style="background-color:#000">
+                  <td width="544" height="414" colspan="2" valign="top"><div id="preview_image_container" style="position:absolute; z-index:0; vertical-align:middle; text-align:center; width:540px;" align="center"></div><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/play_big.png" id="play_button_big" onClick="" style="cursor:pointer; display:none;" title=""><a href="test" rel="lytebox[vacation]" title="test" id="size_button_link"> <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/lupe.png" id="size_button_big" onClick="" style="cursor:pointer; display:none;" title=""></a></td>
+                </tr>
+                <tr class="ui-state-focus">
+                  <td width="20" height="65"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/play.png" id="play_button" style="cursor:pointer; display:none;"/><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/image.png" id="image_button" style="cursor:pointer; display:none;"/></td>
+                  <td><div id="preview_details" style="display:none;">
+                  <b><div id="name"></div></b>
+                    <div id="desc"></div>
+                    <div>
+                    <span id="type"></span>, 
+                    <span id="duration"></span>
+                    </div>
+                    <div>
+                    <span id="rating"></span>
+                    <span id="votes"></span>
+                    </div>
+                  </div></td>
+                </tr>
+              </table>
+              </div>
+              </td>
+              <td valign="top"> {MC_JS_TAB_MEDIA}
+                <div id='media_tabs'>
+                  <ul style="font-size:10px;">
+                    <li><a href='#newest'><span>{MC_L_NEWEST}</span></a></li>
+                    <li><a href='#best_rated'><span>{MC_L_BESTRATED}</span></a></li>
+                    <li><a href='#most_viewed'><span>{MC_L_MOSTVIEWED}</span></a></li>
+                  </ul>
+
+                  <div id="newest">
+                    <table width="300" border="0" cellspacing="0" cellpadding="2">
+                      <!-- BEGIN newest_list -->
+                      <tr class="ui-state-default" onmouseover="this.className='ui-state-focus';" onmouseout="this.className='ui-state-default';" style="cursor:pointer" onClick="load_template({newest_list.ID})">
+                        <td width="50"><img src="{newest_list.THUMBNAIL}" height="40"></td>
+                        <td><b title="{newest_list.DESC}">{newest_list.REPORTED}{newest_list.NAME}</b><br><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{newest_list.RATING}.png"></td>
+                      </tr>
+                      <!-- END newest_list -->
+                    </table>
+                  </div>
+                  <div id="best_rated">
+<table width="300" border="0" cellspacing="0" cellpadding="2">
+                      <!-- BEGIN bestrated_list -->
+                      <tr class="ui-state-default" onmouseover="this.className='ui-state-focus';" onmouseout="this.className='ui-state-default';" style="cursor:pointer" onClick="load_template({bestrated_list.ID})">
+                        <td width="50"><img src="{bestrated_list.THUMBNAIL}" height="40"></td>
+                        <td><b title="{bestrated_list.DESC}">{bestrated_list.REPORTED}{bestrated_list.NAME}</b><br><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{bestrated_list.RATING}.png"></td>
+                      </tr>
+                      <!-- END bestrated_list -->
+                    </table>
+                  </div>
+                  <div id="most_viewed">
+                    <table width="300" border="0" cellspacing="0" cellpadding="2">
+                      <!-- BEGIN mostviewed_list -->
+                      <tr class="ui-state-default" onmouseover="this.className='ui-state-focus';" onmouseout="this.className='ui-state-default';" style="cursor:pointer" onClick="load_template({mostviewed_list.ID})">
+                        <td width="50"><img src="{mostviewed_list.THUMBNAIL}" height="40"></td>
+                        <td><b title="{mostviewed_list.DESC}">{mostviewed_list.REPORTED}{mostviewed_list.NAME}</b><br>
+                          <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{mostviewed_list.RATING}.png"></td>
+                      </tr>
+                      <!-- END mostviewed_list -->
+                    </table>
+
+                  </div>
+                </div></td>
+            </tr>
+          </table></td>			
+  </tr>
+</table>
+
+ <script>
+ $(document).ready(function() { 
+	load_template({MC_START_ID});
+});
+
+ function load_template(id){
+	$("#preview_details").fadeOut("fast");
+	$("#preview_image").fadeOut("fast");
+	$("#play_button_big").fadeOut("fast");
+	$("#play_button").fadeOut("fast");
+	$("#size_button_big").fadeOut("fast");
+	$("#image_button").fadeOut("fast");
+
+	if (id != "" && id != 0){
+
+		$(document).ready(function() { 
+
+		 $.ajax({  
+				type: "GET",
+				url: "index.php{SID}&mode=ajax&id="+id,
+				dataType: "xml",
+				success: function(xml) { 
+
+					$(xml).find('label').each(function(){
+					
+					var preview_img = $(this).find('preview_img').text();
+					var name = $(this).find('name').text();
+					 
+					$('#preview_image_container').html('<a href="file.php?id='+$(this).find('id').text()+'"><img src="'+preview_img+'" id="preview_image" style="display:none; width:540px;" name="resize_h"></a>');
+					
+					$('#name').html($(this).find('name').text());
+					$('#desc').html($(this).find('desc').text());
+					$('#type').html($(this).find('type').text());
+					$('#duration').html($(this).find('duration').text());
+					$('#votes').html($(this).find('votes').text());
+					$('#rating').html('<img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_'+$(this).find('rating').text()+'.png">');
+					$type_clean = $(this).find('type_clean').text();
+
+					if ($type_clean == "image"){
+
+						$('#preview_image').load(function(){
+							
+							$('#preview_image').fadeIn("fast");
+							$('#preview_details').fadeIn("fast");
+							$('#size_button_link').attr({
+								href: preview_img,
+								title: name, 
+							});
+
+							$('#image_button').attr({
+								onClick: "window.location.href='file.php?id="+id+"'",
+							});
+							$('#size_button_big').fadeIn("fast");
+							$('#image_button').fadeIn("fast");
+							resizeimg_h(410);
+	
+	
+							
+	
+						});
+					
+					} else {
+
+							$('#preview_image').load(function(){
+							
+							$('#preview_image').fadeIn("fast");
+							$('#preview_details').fadeIn("fast");
+							$('#play_button_big').attr({
+								onClick: "window.location.href='file.php?id="+id+"'",
+							});
+							$('#play_button').attr({
+								onClick: "window.location.href='file.php?id="+id+"'",
+							});
+							$('#play_button_big').fadeIn("fast");
+							$('#play_button').fadeIn("fast");
+							resizeimg_h(410);
+	
+	
+							
+	
+						});
+
+					
+					
+					
+					}
+					
+					
+					
+					});
+                }
+            }); 
+    });
+	};
+
+}
+ </script>
+<script language="JavaScript" type="text/javascript">
+
+function uploadDialog(){
+	{MC_JS_UPLOAD}
+}
+
+</script>
+
+{MC_FOOTER}

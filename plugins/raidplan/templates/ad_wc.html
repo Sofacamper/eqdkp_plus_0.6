@@ -1,0 +1,60 @@
+<!-- IF S_WINDOW -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <td class="row1" width ="48px"><img src="../images/{IMAGE}" /></td>
+    <td class="row1">{L_ERROR}</td>
+  </tr>
+  <tr>
+</table>
+<!-- ELSE -->
+<!-- IF S_ADD -->
+<form method="post" action="{F_ADD_WILDCARD}" name="addWC">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr >
+    <td align="left" width="40%" nowrap="nowrap">{L_SELECT_RAID}</td> 
+    <td align="left" width="60%" nowrap="nowrap">
+  <select size="1" name="raid_id">
+  <!-- BEGIN raids -->
+    <option value="{raids.ID}">{raids.NAME}, {raids.DATE}</option>
+  <!-- END raids -->
+  </select>
+  </td>
+  </tr>
+  <tr>
+  <td colspan=2><center><input type="submit" name="add" value="{B_SET_WILDCARD}" class="mainoption" /></center></td>
+  </tr>
+  </form>
+<!-- ELSE -->
+<script language="JavaScript" type="text/javascript">
+function AddWildcard() {
+  {JS_ADDWILDCARD}
+}
+</script>
+<form method="post" action="{F_DEL_FORM}" name="post">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr >
+    <th align="left" width="10" nowrap="nowrap"></th>
+    <th align="left" width="10" nowrap="nowrap"></th> 
+    <th align="left" width="30%" nowrap="nowrap">{L_MEMBERNAME}</th>
+    <th align="left" width="30%" nowrap="nowrap">{L_EVENTNAME}</th> 
+    <th align="left" width="10%" nowrap="nowrap">{L_WILDCARD}</th>
+    <th align="left" width="30%" nowrap="nowrap">{L_DATE}</th>  
+  </tr>
+  <!-- BEGIN wildcard_row -->
+  <tr class="{wildcard_row.ROW_CLASS}">
+      <td align="left" width="10"><input name="delete[]" value="{wildcard_row.ID}" type="checkbox"></td>
+      <td align="center" width="10">{wildcard_row.ID}</td>
+      <td align="left" nowrap="nowrap">{wildcard_row.MEMBER}</td>
+      <td align="left" nowrap="nowrap">{wildcard_row.EVENT}</td> 
+      <td align="left" nowrap="nowrap">{wildcard_row.WILDCARD}</td> 
+      <td align="left" nowrap="nowrap">{wildcard_row.DATE}</td>
+  </tr>
+  <!-- END wildcard_row -->
+  <th colspan=6>
+  <input type="button" name="add" value="{L_ADDWILDCARD}" onclick="javascript:AddWildcard()" class="mainoption"/>
+  <input type="submit" name="doDelete" value="{L_DELETE}" class="mainoption"/>
+  </th>
+</table>
+</form>
+<!-- ENDIF -->
+<!-- ENDIF -->

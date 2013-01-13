@@ -1,0 +1,72 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="4">		  
+      <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="text-align: left; width: 33%">      
+           <b><a href="downloads.php{SID}">{DL_HEADLINE}</a> <!-- IF DL_S_DL_EXISTS -->&raquo; <a href="downloads.php{SID}&file={DL_DOWNLOAD_ID}">{DL_DOWNLOAD_NAME}</a>
+           <!-- ENDIF --></b></td>{DL_UPLOAD}
+          <td style="text-align: right; width: 33%"><form action="search.php?catid={DL_CAT_ID}" method="post" name="dl_search">
+            <input type="text" class="input" value="{DL_L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{DL_L_SEARCH_INPUTVALUE}';};" />
+            <img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+          </form></td>	
+       </tr>
+      </table>    
+    </th>	
+  </tr>
+      
+  <tr class="row2">			
+    <td colspan="2" align="center" >
+    <div align="center"><b>{DL_OV_ERROR}</b></div>
+    <!-- IF DL_S_SHOW_CAPTCHA -->
+    <div id="captcha">
+    <br><br><form action="download.php?id={DL_DOWNLOAD_ID}" method="post" name="dl_captcha_form" onSubmit="return dl_check_fields()">
+    {DL_CAPTCHA}
+    </form>
+    </div>
+    <!-- ENDIF -->
+    </td>			
+  </tr>
+  <!-- IF DL_S_MIRRORS -->
+  <tr class="row1">
+    <th colspan="2">{DL_DOWNLOAD_MIRRORS}:</th>
+  </tr>
+   <!-- BEGIN mirror_list -->
+          <tr class="{mirror_list.ROW_CLASS}">
+           
+           <td width="5">&bull;</td>
+           <td>{mirror_list.MIRROR}</td>
+           
+          </tr>
+          <!-- END mirror_list -->
+  <!-- ENDIF -->
+  <tr class="row2">
+    <th colspan="2" align="center" >&nbsp;</th>
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+<!-- IF DL_S_SHOW_CAPTCHA -->
+function dl_check_fields(){
+
+				if (document.dl_captcha_form.recaptcha_response_field.value == "") {
+					
+					show_fields_empty();
+					return false;
+				} else {
+				
+					$("#captcha").hide("slow");
+					
+				};
+
+}
+<!-- ENDIF -->
+
+
+</script>
+{DL_JS_FIELDS_EMPTY}
+
+<br />
+{DL_FOOTER}

@@ -1,0 +1,214 @@
+<!--[if lte IE 7]> 
+<style type="text/css">.bar-container{position: absolute;} </script>
+<![endif]-->
+<style type="text/css">
+	/* About iframe thing*/
+#AboutUs_content {
+	border:0px;
+}
+/* PopUp Style */
+.actionmenu { display: block; margin: 0; padding: 0; position: relative; text-align:left;}
+.actionmenu li { display: block; list-style: none; margin: 0; padding: 0; float: right; position: relative; }
+.actionmenu a { display: block; }
+.actionmenu ul { display: none; position: absolute; right: 0; margin: 0; padding: 0; }
+* html .actionmenu ul { line-height: 0; } /* IE6 "fix" */
+.actionmenu ul a { zoom: 1; } /* IE6/7 fix */
+.actionmenu ul li { float: none; }
+.actionmenu ul ul { top: 0; }
+.actionmenu ul { width: 160px; }
+.actionmenu ul ul { right: 161px; }
+.actionmenu { height: 20px; font-size:11px; color: black;}
+.actionmenu *:hover {  }
+.actionmenu a { font-size: 12px; padding: 3px; line-height: 1; height: 20px;}
+.actionmenu li.hover a { background-color: #EEFFDF; color: black; }
+.actionmenu ul { top: 25px; background: #f5f5f5;}
+.actionmenu ul li a { background-color: #EEFFDF; }
+.actionmenu ul a.hover { background-color: #30A8C3; color: white; }
+.actionmenu ul a { border-bottom: 1px solid white; border-right: none; opacity: 0.9; filter: alpha(opacity=90); }
+/* #groupmenu ul a { border-bottom: none; } - I also needed this for IE6/7 */
+
+</style>
+<script language="JavaScript" type="text/javascript">
+function AboutDialog() {
+  {JS_ABOUT}
+}
+</script>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="1" class=borderless>
+<tr>
+	<td valign='top' width="30%">
+	<table width="98%" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="uc_logo_{FACTION}" width="50px" height="50px"></td>
+			<td class="uc_nametd" align="left">
+				<div class="uc_name">{NAME}</div>
+				<div class="uc_subname">{L_LEVEL} {LEVEL} {RACENAME} {CLASSNAME}</div>
+			</td>
+			<td width="24px" class="uc_nametd">
+			<!-- IF SHOW_ARMLINK -->
+			<span class="uc_profmenu">{ARMORY_LINKS}</span>
+			<!-- ENDIF -->
+		</td>
+		</tr>
+		<tr >
+    	<td align="center" height="160px" colspan=3><img src="{PROFILE_PICTURE}" border=0/></td>
+		</tr>
+		<tr class="row1">
+		<td align="right" colspan=3>{L_LAST_UPDATE}: <!-- IF LAST_UPDATE -->{LAST_UPDATE}<!-- ELSE -->[{L_UNKNOWN}]<!-- ENDIF --></td>
+		</tr>
+	</table>
+</td>
+<td valign="top" width="70%">
+{TAB_HEAD_CM1}
+<div id='char1_tabs'>
+			<ul>
+			    <li><a href='#fragment-1'><span>{TAB1_NAME1}</span></a></li>
+			    <li><a href='#fragment-2'><span>{TAB1_NAME2}</span></a></li>
+			    <li><a href='#fragment-3'><span>{TAB1_NAME3}</span></a></li>
+			</ul>
+<div id="fragment-1">
+<div class="tab-content">
+<table class=borderless width="100%" border="0" cellspacing="0" cellpadding="1">
+<tr><td width="70%">
+	<table class=borderless width="100%" border="0" cellspacing="0" cellpadding="1">
+	<tr class="row1"><td align="left" width="40%" nowrap="nowrap"><b>{L_GUILD}</b></td><td align="left" width="60%" nowrap="nowrap">{GUILD}</td></tr>
+  <tr class="row2"><td align="left" width="40%" nowrap="nowrap"><b>{L_EXT_PROFILE}</b></td><td align="left" width="60%" nowrap="nowrap">
+    			<!-- IF SHOW_BLASC -->
+    			<a target="_blank" href="http://www.buffed.de/?c={BLASC_ID}"><img src="images/profilers/blasc_icon.png" width=16 height=16 border=0 alt="{L_BUFFED}" /></a>
+    		<!-- ENDIF -->
+    		<!-- IF SHOW_CTPROFILE -->
+    			<a target="_blank" href="http://ctprofiles.net/{CTPROFILE_ID}"><img src="images/profilers/ctprofile_icon.png" border=0 alt="{L_CTPROFILES}" /></a>
+    		<!-- ENDIF -->
+    		<!-- IF SHOW_ALLA -->
+    			<a target="_blank" href="http://wow.allakhazam.com/profile.html?{ALLA_ID}"><img src="images/profilers/alla_icon.png" width=16 height=16 border=0 alt="{L_ALLAKHAZAM}" /></a>
+    		<!-- ENDIF -->
+    		<!-- IF SHOW_CURSE -->
+    			<a target="_blank" href="{CURSE_ID}"><img src="images/profilers/curse_icon.png" width=16 height=16 border=0 alt="{L_CURSEPROFILES}" /></a>
+    		<!-- ENDIF -->
+    		<!-- IF SHOW_TALENT -->
+    			<a target="_blank" href="{TALENT_URL}"><img src="images/profilers/talent.jpg" width=16 height=16 border=0 alt="{L_TALENTPLANER}" /></a>
+    		<!-- ENDIF -->
+    		</td></tr>
+    		<!-- IF IS_WOW -->
+    		<tr class="row1"><td align="left" width="40%" nowrap="nowrap"><b>{L_SKILL}</b></td><td align="left" width="60%" nowrap="nowrap">{SPEC1}{SPEC2}
+    		</td></tr>
+				<!-- ENDIF -->
+    <!-- IF HEALTHBAR -->
+    <tr  class="row2" height="28px">
+    	<td>{L_HEALTHBAR}</td>
+    	<td><div class="health-stat"><p><span>{HEALTHBAR}</span></p></div></td>
+    </tr>
+    <!-- ENDIF -->
+    <!-- IF SECONDBAR -->
+    <tr  class="row2" height="28px">
+    	<td>{L_SECOND_BAR}</td>
+    	<td><div class="{CSSSECONDBAR}-stat"><p><span>{SECONDBAR}</span></p></div></td>
+    </tr>
+    <!-- ENDIF -->
+    <!-- IF SHOW_PROFESSIONS -->
+    <tr>
+    		<td align="left" class="row2"><b>{L_RECEIVES}</b></td>
+    		<td align="left" width="60%" class="row2">
+					<table class=borderless width="100%" border="0" cellspacing="0" cellpadding="1">
+						<tr>
+							<td width="34px"><img src="games/wow/images/professions/{PROF_FIRST_I}-sm.png"  alt="{PROF_SECOND_N}"/></td>
+							<td width="165px"><div class="bar-container"><img class="ieimg" src="images/pixel.gif" height="1" width="1" /><b style="width: {PROF_FIRST_PERC}%;"></b><span>{PROF_FIRST_V} / {PROF_FIRST_VMAX}</span></div></td>
+							<td>{PROF_FIRST_N}</td>
+						</tr>
+						<tr>
+							<td width="34px"><img src="games/wow/images/professions/{PROF_SECOND_I}-sm.png" alt="{PROF_SECOND_N}"/></td>
+							<td width="165px"><div class="bar-container"><img class="ieimg" src="images/pixel.gif" height="1" width="1" /><b style="width: {PROF_SECOND_PERC}%;"></b><span>{PROF_SECOND_V} / {PROF_SECOND_VMAX}</span></div></td>
+							<td>{PROF_SECOND_N}</td>
+						</tr>
+					</table>
+    		</td>
+    </tr>
+    <!-- ENDIF -->
+   </table>
+</td><td width="30%">
+  </td></tr></table>
+</div>
+</div>
+<div id="fragment-2">
+<div class="tab-content">
+<table width="100%" border="0" cellspacing="0" cellpadding="1">
+    		<th colspan=2>{L_RAID_INFOS}</th>
+        <tr class="row1" ><td align="left" width="40%" nowrap="nowrap"><b>{L_EARNED}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="positive">{EARNED}</span></td></tr>
+        <tr class="row2" ><td align="left" width="40%" nowrap="nowrap"><b>{L_SPENT}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="negative">{SPENT}</span></td></tr>
+        <tr class="row1" ><td align="left" width="40%" nowrap="nowrap"><b>{L_ADJUSTMENT}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="{C_ADJUSTMENT}">{ADJUSTMENT}</span></td></tr>
+        <tr class="row2" ><td align="left" width="40%" nowrap="nowrap"><b>{L_CURRENT}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="{C_CURRENT}">{CURRENT}</span></td></tr>
+        <tr class="row1" ><td align="left" width="40%" nowrap="nowrap"><b>{L_RAIDS_30_DAYS}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="{C_RAIDS_30_DAYS}">{RAIDS_30_DAYS}</span></td></tr>
+        <tr class="row2" ><td align="left" width="40%" nowrap="nowrap"><b>{L_RAIDS_60_DAYS}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="{C_RAIDS_30_DAYS}">{RAIDS_60_DAYS}</span></td></tr>
+        <tr class="row1" ><td align="left" width="40%" nowrap="nowrap"><b>{L_RAIDS_90_DAYS}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="{C_RAIDS_90_DAYS}">{RAIDS_90_DAYS}</span></td>
+        <tr class="row2" ><td align="left" width="40%" nowrap="nowrap"><b>{L_RAIDS_LIFETIME}</b></td><td align="left" width="60%" nowrap="nowrap"><span class="{C_RAIDS_LIFETIME}">{RAIDS_LIFETIME}</span></td></tr>
+	</table> 
+</div>
+</div>
+<div id="fragment-3">
+<div class="tab-content">
+<table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr class="row1" >
+      <td align="left" width="40%" nowrap="nowrap">
+        {NOTES}
+      </td>
+    </tr>
+	</table> 
+</div>
+</div>
+</div>
+    </td>
+</tr>
+</table>
+<br />
+{TAB_HEAD_CM2}
+<div id='char2_tabs'>
+			<ul>
+			    <li><a href='#fragment-1-2'><span>{TAB2_NAME1}</span></a></li>
+			    <li><a href='#fragment-2-2'><span>{TAB2_NAME2}</span></a></li>
+			</ul>
+<div id="fragment-1-2">
+<div class="tab-content">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="center" colspan="5">{L_LAST_5_RAIDS}</th>
+  </tr>
+  <tr>
+    <th align="left" width="70" nowrap="nowrap">{L_DATE}</th>
+    <th align="left" width="35%" nowrap="nowrap">{L_NAME}</th>
+    <th align="left" width="65%" nowrap="nowrap">{L_NOTE}</th>
+    <th align="left" width="60" nowrap="nowrap">{L_EARNED}</th>
+  </tr>
+  <!-- BEGIN raids_row -->
+  <tr class="{raids_row.ROW_CLASS}">
+    <td width="70" nowrap="nowrap">{raids_row.DATE}</td>
+    <td width="35%" nowrap="nowrap"><a href="{raids_row.U_VIEW_RAID}">{raids_row.NAME}</a></td>
+    <td width="65%" nowrap="nowrap">{raids_row.NOTE}</td>
+    <td width="60" nowrap="nowrap" class="positive">{raids_row.EARNED}</td>
+  </tr>
+  <!-- END raids_row -->
+</table>
+</div>
+</div>
+<div id="fragment-2-2">
+<div class="tab-content">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="center" colspan="5">{L_LAST_5_ITEMS}</th>
+  </tr>
+  <tr>
+    <th align="left" width="70" nowrap="nowrap">{L_DATE}</th>
+    <th align="left" width="50%">{L_NAME}</th>
+    <th align="left" width="60" nowrap="nowrap">{L_SPENT}</th>
+  </tr>
+  <!-- BEGIN items_row -->
+  <tr class="{items_row.ROW_CLASS}">
+    <td width="70" nowrap="nowrap">{items_row.DATE}</td>
+    <td width="50%" nowrap="nowrap"><a href="{items_row.U_VIEW_ITEM}">{items_row.NAME}</a></td>
+    <td width="60" nowrap="nowrap" class="negative">{items_row.SPENT}</td>
+  </tr>
+  <!-- END items_row -->
+</table>
+</div>
+</div></div>
+<center><br /><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="{ICON_INFO}" alt="Credits" border="0" /> Credits</a></span>
+<br /><span class="copy">{CM_COPYRIGHT}</span></center>

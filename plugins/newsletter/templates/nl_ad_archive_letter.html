@@ -1,0 +1,64 @@
+<!-- INCLUDE ../nl_css.html -->
+<table width="100%" border="0" cellpadding="3" cellspacing="1" >
+  <tr>
+    <th colspan="4" align="left" nowrap="nowrap"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left"><a href="archive.php{SID}">{L_ARCHIVE}</a><!-- IF not S_ERROR --> &raquo; {NL_NAME}<!-- ENDIF -->:</td>
+          <td width="5" align="left" nowrap="nowrap">{ADMIN_MENU}</td>
+        </tr>
+    </table></th>
+  </tr>
+  <!-- IF S_ERROR -->
+    <tr>
+    <td colspan="4" align="left" class="row1">{ERROR}</td>
+  </tr>
+      <tr>
+    <th colspan="4" align="left"></th>
+  </tr>
+  <!-- ELSE -->
+  <tr>
+    <th align="left" width="100" nowrap="nowrap">{L_SUBJECT}</th>
+    <th align="left" nowrap="nowrap">{L_MESSAGE} </th>
+    <th align="left" nowrap="nowrap">{L_DATE}</th>
+    <th width="20" align="left" nowrap="nowrap">{L_ACTION}</th>
+  </tr>
+  <!-- BEGIN index_list -->
+  <tr class="{index_list.ROW_CLASS}">
+    <td width="100" nowrap="nowrap"><strong><a href="archive.php{SID}&id={index_list.NL_ID}">{index_list.NL_SUBJECT}</a></strong></td>
+    <td>{index_list.NL_MESSAGE}</td>
+    <td width="40" nowrap="nowrap">{index_list.NL_DATE}</td>
+    <td width="20" nowrap="nowrap" align="center"><a href="send.php{SID}&resend={index_list.NL_ID}" title="{L_RESEND}"><img border="0" style="cursor:pointer;" src="../images/resend.png"/></a>  <a href="archive.php{SID}&delete={index_list.NL_ID}" title="{L_DELETE}"><img border="0" style="cursor:pointer;" src="../images/delete.png"/></a></td>
+  </tr>
+  <!-- END index_list -->
+<!-- IF S_NO_MAILS -->
+  <tr>
+    <td colspan="4" class="row1"><em>{L_NO_MAILS}</em></td>
+  </tr>
+<!-- ENDIF -->
+  <tr>
+    <th colspan="4" class="footer">{L_FOOTCOUNT}</th>
+  </tr>
+ <!-- ENDIF -->
+</table>
+<table class="borderless" width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tbody>
+    <tr>
+      <td class="menu" align="center">{PAGINATION}</td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

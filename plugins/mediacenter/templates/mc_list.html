@@ -1,0 +1,115 @@
+<!-- INCLUDE ../mc_css.html -->
+{MC_STATUS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th>		  
+      <table width="100%" class="borderless" border="0" cellspacing="0">
+        <tr>
+          <td style="text-align: left; width: 33%">      
+           <b><a href="index.php{SID}">{MC_L_MEDIACENTER}</a> &raquo; {CAT_NAME}:</b></td>{MC_UPLOAD}
+          <td style="text-align: right;"><form action="search.php{SID}" method="post" name="dl_search">
+            <input type="text" class="input" value="{MC_L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{MC_L_SEARCH_INPUTVALUE}';};" />
+           <img src="{EQDKP_ROOT_PATH}/plugins/mediacenter/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+          </form></td>
+          <td width="30" nowrap="nowrap" style="text-align: left;">{MC_VIEW_MENU}</td>
+          <td width="10" nowrap="nowrap" style="text-align: left;"><!-- IF MC_IS_ADMIN -->{MC_ADMIN_MENU}<!-- ENDIF --></td>	
+        </tr>
+      </table>    
+    </th>	
+  </tr>
+  <tr class="row2">
+          <td style="text-align: left; width: 33%">{CAT_DESC}</td>
+        </tr>
+  <tr class="">			
+    <td align="center">
+
+
+<!-- IF MC_S_VIEW_1 -->
+<!-- BEGIN link_list -->
+
+<table align="left" width="200" height="280" cellpadding="1" cellspacing="0" style="padding-right:10px; padding-top:10px; ">
+<tr align="center">
+<td style="background-color:#000;"><a href="file.php{SID}&id={link_list.ID}"><img src="{link_list.THUMBNAIL}" height="120" border="0" class="reflect rheight20"></a></td>
+
+</tr>
+<tr>
+<td class="ui-state-focus"><strong><a href="file.php{SID}&id={link_list.ID}">{link_list.DESC_SMALL}</a></strong><br>
+<span class="small">
+{link_list.DATE}, {link_list.UPLOADER}<br>  
+  {link_list.DURATION}, {link_list.VIEWS} {L_VIEWS}
+ </span>
+  <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{link_list.RATING}.png" /></td>
+</tr>
+</table>
+
+<!-- END link_list -->      
+
+<!-- ELSE -->
+
+     
+      <table width="100%" border="0" cellpadding="2" cellspacing="1">
+<!-- IF MC_S_NO_MEDIA -->
+<tr class="row2">
+  <td colspan="10">{MC_OV_ERROR}</td>
+ </tr>
+
+<!-- ELSE -->   
+        <tr>
+         
+          <th align="center" width="20" nowrap="nowrap">&nbsp;</th>
+          <!-- IF MC_IS_ADMIN --><th align="center" width="20" nowrap="nowrap">{L_ACTION}</th><!-- ENDIF -->
+          <th width="20" align="left" nowrap="nowrap"><a href="list.php{SID}&cat={CAT_ID}&o=1.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED10}.png" alt="down" border="0"></a><a href="list.php{SID}&cat={CAT_ID}&o=1.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED11}.png" alt="up" border="0"></a>{L_NAME}</th>
+          <th align="left" nowrap="nowrap"><a href="list.php{SID}&cat={CAT_ID}&o=2.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED20}.png" alt="down" border="0"></a><a href="list.php{SID}&cat={CAT_ID}&o=2.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED21}.png" alt="up" border="0"></a>{L_DESC}</th>    
+          <th align="left" width="80"><a href="list.php{SID}&cat={CAT_ID}&o=3.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED30}.png" alt="down" border="0"></a><a href="list.php{SID}&cat={CAT_ID}&o=3.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED31}.png" alt="up" border="0"></a>{L_VIEWS}</th>
+          <th align="left" width="80"><a href="list.php{SID}&cat={CAT_ID}&o=4.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED40}.png" alt="down" border="0"></a><a href="list.php{SID}&cat={CAT_ID}&o=4.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED41}.png" alt="up" border="0"></a>{L_DURATION}</th>
+          <th align="left" width="80"><a href="list.php{SID}&cat={CAT_ID}&o=5.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED50}.png" alt="down" border="0"></a><a href="list.php{SID}&cat={CAT_ID}&o=5.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED51}.png" alt="up" border="0"></a>{L_RATING}</th>
+          <th align="left" ><a href="list.php{SID}&cat={CAT_ID}&o=0.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED01}.png" alt="down" border="0"></a><a href="list.php{SID}&cat={CAT_ID}&o=0.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED00}.png" alt="up" border="0"></a>{L_DATE}</th>
+        </tr>
+     
+<!-- BEGIN link_list -->
+       <!--  <tr class="{link_list.MC_ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{link_list.MC_ROW_CLASS}';"> -->
+       
+       <tr class="ui-state-default" onmouseover="this.className='ui-state-focus';" onmouseout="this.className='ui-state-default';">   
+          <td width="20" nowrap="nowrap" align="center"><a href="file.php{SID}&id={link_list.ID}"><img src="{link_list.THUMBNAIL}" height="40" border="0" /></a></td>
+         <!-- IF MC_IS_ADMIN --> <td width="20" nowrap="nowrap" align="center"><a href="list.php{SID}&cat={CAT_ID}&mode=delete&id={link_list.ID}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/delete.png" alt="Delete" border="0"></a> <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/edit.png" alt="Delete" border="0" onClick="editDialog({link_list.ID});" style="cursor:pointer;"></td><!-- ENDIF -->
+          <td width="40%"><a href="file.php{SID}&id={link_list.ID}">{link_list.REPORTED}{link_list.NAME}</a></td>
+          <td width="60%"><a href="file.php{SID}&id={link_list.ID}">{link_list.DESC}</a></td>
+          <td width="80" nowrap="nowrap">{link_list.VIEWS}</td>
+          <td width="80" nowrap="nowrap">{link_list.DURATION}</td>
+          <td width="80" nowrap="nowrap"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/rating_{link_list.RATING}.png" /></td>
+          <td width="80" nowrap="nowrap">{link_list.DATE}<br>{link_list.UPLOADER}</td>
+        </tr>
+<!-- END link_list -->
+<!-- ENDIF -->
+        <tr>
+          <th colspan="10" class="footer">{MC_SEARCH_FOOTCOUNT}</th>
+        </tr>
+    </table>
+    <!-- ENDIF -->
+      <table class="borderless" width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tbody><tr>
+    <td class="menu" align="center">{MC_PAGINATION}</td>
+
+  </tr>
+</tbody></table>
+
+  
+</td>			
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function uploadDialog(){
+	
+	{MC_JS_UPLOAD}
+
+}
+
+function editDialog(id){
+	
+	{MC_JS_EDIT}
+
+}
+</script>
+<br />
+{MC_FOOTER}

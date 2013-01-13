@@ -1,0 +1,149 @@
+<!-- INCLUDE ../mc_css.html -->
+{MC_STATUS}
+{UPDATE_BOX}
+{UPDCHECK_BOX}
+<style>
+.rptooldiv  {
+	display: block;
+	font-size: 12px;
+	padding: 5px;
+	margin: 0px;
+}
+
+/* Warn */
+.rp_tt_warn{
+  width: 200px;
+  min-height:100px;
+	background:#fff url(../images/bg_warn.jpg) bottom right no-repeat;
+  border:1px solid #c5a524;
+}
+
+
+.rp_tt_warn td{
+	color: black;
+	font-family: Verdana, Tahoma, Arial;
+	font-size: 11px;
+}
+
+</style>
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+  <tr>
+    <th><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/admin_logo.png" alt="Edit" align="absmiddle"> {L_SETTINGS}</th>
+    <th width="50" nowrap="nowrap" align="left">{MC_ADMIN_MENU}</th>
+  </tr>
+
+</table>
+{MC_JS_CONFIG_TABS}
+<form method="POST" name="dl_config">
+  <div id='config_tabs'>
+    <ul>
+      <li><a href='#common'>{L_SETTINGS}</a></li>
+      <li><a href="#view">{L_VIEW_SETTINGS}</a></li>
+      <!-- IF not S_HMODE -->
+      <li><a href="#extended"><span>{L_EXTENDED_SETTINGS}</span></a></li>
+      <!-- ENDIF -->
+    </ul>
+    
+    <div id="common">
+      <table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <tr>
+          <th colspan="3"> {L_SETTINGS}</th>
+        </tr>
+        <tr class="row1">
+          <td>{L_ENABLE_COMMENTS} <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/help.png" border="0" {HELP_COMMENTS}/></td>
+          <td colspan="2">{COMMENTS_CHECKBOX}</td>
+        </tr>
+        <tr class="row2">
+          <td> {L_SINGLE_VOTE}</td>
+          <td colspan="2">{SINGLE_VOTE_CHECKBOX}</td>
+        </tr>
+        <tr class="row1">
+          <td> {L_ADMIN_ACTIVATION} <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/help.png" border="0" {HELP_ADMIN_ACTIVATION}/></td>
+          <td colspan="2">{ADMIN_ACTIVATION_CHECKBOX}</td>
+        </tr>
+
+        <tr class="row2">
+          <td>{L_DISABLE_REPORTMAIL}</td>
+          <td colspan="2">{REPORT_MAIL_CHECKBOX}</td>
+        </tr>
+        <tr class="row1">
+          <td> {L_ENABLE_STATISTICS} <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/help.png" border="0" {HELP_STATISTICS}/></td>
+          <td colspan="2">{STATISTICS_CHECKBOX}
+            <input type="button" name="resetStats2" value="{L_RESET_STATISTICS}" class="mainoption" onclick="javascript:ResetStats()" /></td>
+        </tr>
+
+        <tr class="row2">
+          <td> {L_PRUNE_STATISTICS} <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/help.png" border="0" {HELP_PRUNE_STATISTICS}/></td>
+          <td colspan="2"><input name="prune_statistics" class="input" id="prune_statistics" value="{PRUNE_STATISTICS}" size="5" maxlength="255"></td>
+        </tr>
+
+      </table>
+    </div>
+    
+    
+  
+  <div id="view">
+    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+      <tr>
+        <th colspan="3">{L_VIEW_SETTINGS}:</th>
+      </tr>
+      <tr class="row2">
+        <td>{L_SHOW_LINK_ON_TAB}</td>
+        <td colspan="2">{SHOW_TAB_CHECKBOX}</td>
+      </tr>
+      <tr class="row1">
+        <td>{L_DEFAULT_VIEW}</td>
+        <td colspan="2">{DEFAULT_VIEW}</td>
+      </tr>
+      <tr class="row2">
+        <td> {L_ITEMS_PER_PAGE} </td>
+        <td colspan="2"><input name="items_per_page" maxlength="255" value="{ITEMS_PER_PAGE}" size="3" class="input"></td>
+      </tr>
+    </table>
+  </div>
+  
+<!-- IF not S_HMODE -->  
+  <div id="extended">
+    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+      
+      <tr>
+        <th colspan="3">{L_EXTENDED_SETTINGS}</th>
+      </tr>
+      <tr>
+        <td colspan="3"><div id="conf_extended">
+          <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr class="row1">
+              <td width="50%"> {L_UPDATECHECK}</td>
+              <td width="50%">{UPDATECHECK_CHECKBOX}</td>
+            </tr>
+            <tr class="row2">
+              <td>{L_FORCE_DBUPDATE} <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/help.png" border="0" {HELP_DBUPDATE}/></td>
+              <td>{DB_VERSION}
+                <input type="button" name="fupdate" value="{L_FORCE_DBUPDATE}" class="mainoption" onclick="javascript:ForceUpdate()" /></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
+<!-- ENDIF --> 
+</div>
+ 
+  <table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+
+  <tr>
+    <th width="400" colspan="3"><input type="submit" name="submit" class="mainoption" value="{L_SAVE}"></th>
+  </tr>
+  </table>
+</form>
+<script language="JavaScript" type="text/javascript">
+
+{MC_JS_FORCE_UPD}
+
+{MC_JS_STATS_RESET}
+
+</script>
+<br/>
+{MC_FOOTER}

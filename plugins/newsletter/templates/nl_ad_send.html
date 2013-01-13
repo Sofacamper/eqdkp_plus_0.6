@@ -1,0 +1,368 @@
+<!-- INCLUDE ../nl_css.html -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="2">
+    <tr>
+      <th colspan="1">{L_SEND_HEADLINE}</th>
+      <th width="5" nowrap="nowrap" align="left">{ADMIN_MENU}</th>
+    </tr>
+  </table>
+ <!-- IF IS_SEND_MAIL -->
+<style>
+	.ui-progressbar { position:relative; }
+	.nl_progressbar_label { position: absolute; width: 90%; text-align: center; line-height: 1.9em; left:5%; right:5%;}
+</style>
+<script type="text/javascript">
+function progress_bar(percent){
+										$("#nl_progressbar").progressbar('destroy');
+
+										$("#nl_progressbar").progressbar({
+											value: percent
+										});
+
+}
+</script>
+<div id="nl_send" align="center">
+{L_DONT_CLOSE}
+<div id="nl_progressbar">
+<span class="nl_progressbar_label">{L_LETTER_IS_SENDING}</span></div>
+</div>
+<!-- ENDIF -->
+<script>
+
+ function load_template(id){
+
+	$(document).ready(function() { 
+
+             $.ajax({  
+                type: "GET",
+				url: "templates.php{SID}&mode=ajax&template="+id,
+				dataType: "xml",
+				error: function(){alert("error");},
+                success: function(xml) { 
+
+					$(xml).find('label').each(function(){
+					
+					var newbody = $(this).find('newbody').text();
+					var subject = $(this).find('subject').text();
+					var signature = $(this).find('signature').text();
+
+					document.getElementById('subject').value = subject;
+					document.getElementById('body').value = newbody;
+					if(signature == "1"){
+						document.getElementById('signature').checked = true;
+					} else {
+						document.getElementById('signature').checked = false;
+					};
+					
+					});
+                }
+            }); 
+    });
+
+}
+ </script>
+
+ <!-- IF IS_SEND_MAIL -->
+ <script>
+ var gesamt = {MAILS_IN_QUEUE};
+
+	$(document).ready(function(){
+		set_progress_bar(0);
+		send_mail_ajax(1, gesamt);
+	}); 
+
+ 
+ function send_mail_ajax(i, gesamt){
+
+	$(document).ready(function() { 
+
+      $.ajax({  
+        type: "GET",
+				url: "send.php{SID}&mode=ajax&do=send",
+				dataType: "html",
+				error: function(){
+									error();
+								},
+        success: function(data) {
+					if (data == "0"){
+						success();
+					} else {
+						if (data != "1"){
+							error();
+						} else {
+						
+							if (i== gesamt){				
+								set_progress_bar(i);
+								success();
+							} else {
+								set_progress_bar(i);
+								send_mail_ajax(i+1, gesamt)
+							};
+	
+						}
+		
+					};					
+         }//close success-function		
+       }); 
+    });
+
+}
+
+function set_progress_bar(i){
+
+	var gesamt_mails = {MAILS_IN_QUEUE};
+	var aktuell = Math.round((i / gesamt_mails) * 100);
+
+	progress_bar(aktuell);
+
+}
+
+function success(){
+$("#nl_send").hide("slow");
+$("#nl_progressbar").progressbar('destroy');
+$("#nl_success").show("slow");
+}
+
+function error(){
+$("#nl_send").hide("slow");
+$("#nl_progressbar").progressbar('destroy');
+$("#nl_error").show("slow");
+}
+
+ </script> 
+ <!-- ENDIF -->
+ <script language="javascript" type="text/javascript">
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+
+function bridgeDialog(){
+{NL_JS_BRIDGE}
+}
+
+
+function previewDialog(){
+	var subject = document.newsletter.subject.value;
+	{NL_JS_PREVIEW}
+}
+		
+ 
+function nl_check_form(){
+
+
+	if((document.newsletter.body.value == "") || (document.newsletter.subject.value == "")){
+		
+					show_fields_empty();
+					return false;
+	};
+}
+
+</script>
+<script type="text/javascript">animatedcollapse.addDiv('nl_bbcodes', 'persist=0,hide=1'); animatedcollapse.init();</script>
+{JS_FIELDS_EMPTY}
+<!-- IF IS_SEND_MAIL -->
+<div id="nl_success" style="display:none">
+<!-- ENDIF -->
+
+<!-- IF IS_SEND -->
+
+<table width="99%" border="0" align="center" cellpadding="2" cellspacing="1">
+  <!-- IF not S_ERROR -->
+  <tr>
+    <th align="center" colspan="2">{L_HEADER_EMAIL_SENT}</th>
+  </tr>
+   <!-- ENDIF -->
+  <tr>
+    <td width ="48px" valign="top" class="row1">{NOTICE_IMG}</td>
+    <td class="row1">
+    	<strong>{NOTICE}</strong>
+    </td>
+  </tr>
+   <!-- IF not S_ERROR -->
+   <!-- BEGIN recipient_row -->
+   <tr>
+   <td class="row1"></td>        
+  <td class="{recipient_row.ROW_CLASS}">{recipient_row.NAME}</td>   		    
+  </tr><!-- END recipient_row -->
+  <!-- ENDIF -->
+  <tr>
+  <th colspan="2">&nbsp;</th>
+  </tr>
+</table>
+<!-- IF IS_SEND_MAIL -->
+</div>
+<!-- ENDIF -->
+
+<div id="nl_error" style="display:none"> 
+<table width="99%" border="0" align="center" cellpadding="2" cellspacing="1">
+
+  <tr>
+    <th align="center" colspan="2">{L_ERROR}</th>
+  </tr>
+
+  <tr>
+    <td width ="48px" valign="top" class="row1"><img src={EQDKP_ROOT_PATH}images/false.png></td>
+    <td class="row1">
+    	<strong>{L_ERROR_WHILE_SENDING}</strong>
+    </td>
+  </tr>
+ 
+  <tr>
+  <th colspan="2">&nbsp;</th>
+  </tr>
+</table>
+</div>
+
+
+<!-- ELSE -->
+
+<form action="send.php{SID}&mode=send" method="post" name="newsletter" onSubmit="return nl_check_form()">
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tr class="row1">
+    <td nowrap="nowrap"><strong>{L_RECIPIENT}:</strong> *</td>
+    <td nowrap="nowrap"><table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <!-- IF not IS_RAIDPLAN --><th nowrap="nowrap"><strong>{L_NEWSLETTER}:</strong></th><!-- ENDIF -->
+        <th nowrap="nowrap"><strong>{L_CLASS}:</strong></th>
+        <th nowrap="nowrap"><strong>{L_MEMBERS}:</strong></th>
+      </tr>
+      <tr>
+        <!-- IF not IS_RAIDPLAN --><td nowrap="nowrap">{LETTER_DROPDOWN}</td><!-- ENDIF -->
+        <td nowrap="nowrap">{CLASS_DROPDOWN}<br></td>
+        <td nowrap="nowrap">{MEMBER_DROPDOWN}</td>
+      </tr>
+      <tr>
+        <!-- IF not IS_RAIDPLAN --><td nowrap="nowrap">&nbsp;</td><!-- ENDIF -->
+        <td nowrap="nowrap"><input type="checkbox" name="hide_inactive" value="1" /> 
+        {L_ACTIVE_ONLY}
+</td>
+        <td nowrap="nowrap">&nbsp;</td>
+      </tr>
+    </table>
+    
+    
+    </td>
+  </tr>
+  <tr class="row2">
+    <td width="50" nowrap="nowrap"><strong>{L_TEMPLATE}:</strong></td>
+    <td nowrap="nowrap">{TEMPLATE_DROPDOWN}</td>
+  </tr>
+  <tr class="row1">
+    <td nowrap="nowrap"><strong>{L_SUBJECT}: *</strong></td>
+    <td nowrap="nowrap"><input name="subject" type="text" class="input" id="subject" value="{SUBJECT}" size="65"/></td>
+  </tr>
+  <tr class="row2">
+    <td rowspan="3" nowrap="nowrap"><strong>{L_BODY}: *</strong></td>
+    <td>{WYSIWYG_EDITOR}
+      <textarea name="body" id="body" cols="70" rows="15" class="jTagEditor">{BODY}</textarea>
+      <input type="button" value=" + " onClick="textbox_resize('body', 100);" class="input"/>				        
+      <input type="button" value=" - " onClick="textbox_resize('body', -100);" class="input"/>
+      </td>
+  </tr>
+  <tr class="row2">
+    <td><a href="javascript:bridgeDialog();"><strong>{L_BRIDGE_LONG}</strong></a></td>
+  </tr>
+  <tr class="row2">
+    <td><a href="javascript:animatedcollapse.toggle('nl_bbcodes');"><strong>{L_SHOW_BBCODES}</strong></a>
+    	<div id="nl_bbcodes">
+      <table border="0" cellpadding="2" cellspacing="1">
+        <tr>
+          <th>{L_PLACEHOLDER}</th>
+          <th>{L_FUNCTION}</th>
+          <th>{L_BBCODE}</th>
+          <th>{L_FUNCTION}</th>
+          </tr>
+        <tr class="row1">
+          <td>*DKP_NAME*</td>
+          <td>{L_DKPNAME}</td>
+          <td>[class=CLASSNAME]TEXT[/class]</td>
+          <td>&lt;div class=&quot;CLASSNAME&quot;&gt;TEXT&lt;/div&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*USERNAME*</td>
+          <td>{L_USERNAME}</td>
+          <td>[table]CONTENT[/table]</td>
+          <td>&lt;table&gt;CONTENT&lt;/table&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*AUTHOR*</td>
+          <td>{L_AUTHOR}</td>
+          <td>[tr]CONTENT[/tr]</td>
+          <td>&lt;tr&gt;CONTENT&lt;/tr&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*EQDKP_LINK*</td>
+          <td>{L_DKPLINK}</td>
+          <td>[td]CONTENT[/td]</td>
+          <td>&lt;td&gt;CONTENT&lt;/td&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*DATE*</td>
+          <td>{L_DATE}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          </tr>
+      </table>
+      {L_EXPL_LEGENDE}{L_BBCODES_EXPLAIN}
+      </div>
+      </td>
+  </tr>
+  <tr class="row1">
+    <td nowrap="nowrap"><strong>{L_SIGNATURE}:</strong></td>
+    <td nowrap="nowrap"><input name="signature" type="checkbox" id="signature" value="1" {SIGNATURE}/></td>
+  </tr>
+  <tr class="row2">
+    <td nowrap="nowrap"><strong>{L_FORMAT}:</strong></td>
+    <td nowrap="nowrap"><label><input name="format" type="radio" value="html" checked="checked">
+{L_HTML}</label>
+  <label><input type="radio" name="format" value="plain"> 
+  {L_PLAIN}</label></td>
+  </tr>
+  <!-- IF not S_SMS_DISABLED-->
+  <tr class="row1">
+    <td nowrap="nowrap"><strong>{L_TYPE}:</strong></td>
+    <td nowrap="nowrap"><label><input name="type" type="radio" value="email" {TYPE_MAIL}>
+{L_MAIL}</label>
+  <label><input type="radio" name="type" value="sms" {TYPE_SMS}>
+{L_SMS}</label></td>
+  </tr>
+  <!-- ENDIF -->
+  <tr class="row2">
+    <td nowrap="nowrap"><strong>{L_ARCHIVE}:</strong></td>
+    <td nowrap="nowrap"><input name="archive" type="checkbox" value="1" {ARCHIVE}>&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <th colspan="1"><input type="submit" name="submit" value="{B_SEND}" class="mainoption" />
+      <input name="preview" value="{B_PREVIEW}" class="mainoption" onClick="previewDialog();" type="button"/>
+      <input type="reset" value="{B_RESET}" class="mainoption" /></th>
+  </tr>
+</table>
+</form>
+<!-- ENDIF -->
+
+  <script>
+  function textbox_resize(id, pix)
+{
+	var box			= document.getElementById(id);
+	var new_height	= (parseInt(box.style.height) ? parseInt(box.style.height) : 300) + pix;
+
+	if (new_height > 0)
+	{
+		box.style.height = new_height + 'px';
+	}
+
+	return false;
+}
+
+
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

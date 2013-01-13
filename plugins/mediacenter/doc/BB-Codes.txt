@@ -1,0 +1,42 @@
+BB-CODE-IMPLEMENTATION FOR THE NEWS
+===================================
+
+In Order to include Videos from the MediaCenter into the News,
+
+you have to add following Code into the eqdkp/includes/functions.php:
+
+
+=== FIND IN eqdkp/includes/functions.php AROUND LINE 669 === 
+
+$message = $bbcode->MyEmoticons($message);
+
+=== END ====================================================
+
+
+=== ADD AFTER ==============================================
+
+//MediaCenter-BBCode
+		if ($pm->check(PLUGIN_INSTALLED, 'mediacenter')){	
+			include_once($eqdkp_root_path.'plugins/mediacenter/include/mediacenter.class.php');	
+			if (!$mcclass){			
+				$mcclass = new MediaCenterClass();
+			}
+			$message = $mcclass->videoBBcode($message);
+		}
+//END MediaCenter-BBCode
+
+=== END ====================================================
+
+
+Now you can use following BB-Codes:
+[video]Video-ID[/video]
+[movie]Video-ID[/movie]
+
+You get the Video-ID from the URL, e.g. "../plugins/mediacenter/file.php?id=14"
+=> Video-ID = 14
+              --
+			  
+			  
+Have Fun,
+
+GodMods

@@ -1,0 +1,42 @@
+<table width="100%" border="0" cellpadding="3" cellspacing="1" >
+  <tr>
+    <th colspan="4" align="left" nowrap="nowrap">{L_ARCHIVE}:</th>
+  </tr>
+  <tr>
+    <th align="left" width="30%" nowrap="nowrap">{L_NAME}</th>
+    <th align="left" width="50%" nowrap="nowrap">{L_DESCRIPTION}</th>
+    <th align="left" width="40" nowrap="nowrap">{L_MAILS}</th>
+    <th align="left" width="60" nowrap="nowrap">{L_LAST_MAIL}</th>
+  </tr>
+  <!-- BEGIN index_list -->
+  <tr class="{index_list.ROW_CLASS}">
+    <td width="100" nowrap="nowrap"><strong><a href="archive.php{SID}&lid={index_list.NL_ID}">{index_list.NL_NAME}</a></strong></td>
+    <td width="70%" nowrap="nowrap">{index_list.NL_DESC}</td>
+    <td nowrap="nowrap"><a href="archive.php{SID}&lid={index_list.NL_ID}">{index_list.NL_MAILS}</a></td>
+    <td nowrap="nowrap"><a href="archive.php{SID}&id={index_list.NL_LAST_MAIL_ID}">{index_list.NL_LAST_MAIL}</a></td>
+  </tr>
+  <!-- END index_list -->
+    <!-- IF S_NO_LETTERS -->
+   <tr class="row1">
+    <td colspan="4" nowrap="nowrap"><i>{L_NO_LETTERS}</i></td>
+  </tr>
+  <!-- ENDIF -->
+  <tr>
+    <th colspan="5" class="footer">{L_FOOTCOUNT}</th>
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

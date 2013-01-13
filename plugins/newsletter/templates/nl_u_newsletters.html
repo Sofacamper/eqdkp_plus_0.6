@@ -1,0 +1,77 @@
+<form method="post" name="nl_update">
+  <table width="99%" border="0" cellspacing="0" cellpadding="2">
+    <tr>
+      <td colspan="1"><table width="100%" border="0" cellpadding="3" cellspacing="1" >
+
+        <tr>
+              <th colspan="3" align="left" nowrap="nowrap">{L_SUBSCRIBE_HEADLINE}:</th>
+          </tr>
+            <tr>
+              <th align="left" width="100" nowrap="nowrap">{L_NAME}</th>
+              <th align="left" width="100%" nowrap="nowrap">{L_DESCRIPTION}</th>
+              <th width="10"><input type="checkbox" onclick="if(this.checked == false){nl_deselectall();} else {nl_selectall();};" /></th>
+            </tr>
+
+            <!-- BEGIN index_list -->
+            <tr class="{index_list.ROW_CLASS}">
+              <td width="100" nowrap="nowrap"><strong>{index_list.NL_NAME}</strong></td>
+              <td width="100%" nowrap="nowrap">{index_list.NL_DESC}</td>
+              <td width="10" rowspan="2"><input type="checkbox" value="{index_list.NL_ID}" name="letters[]" {index_list.NL_CHECKED}/></td>
+            </tr>
+            
+            <tr class="{index_list.ROW_CLASS}">
+              <td colspan="3"><em>{index_list.NL_PERMISSION}</em></td>
+            </tr>
+            <!-- END index_list -->
+            <!-- IF S_NO_LETTERS -->
+             <tr class="row1">
+              <td colspan="3"><em>{L_NO_LETTERS}</em></td>
+            </tr>
+            <!-- ENDIF -->
+            <tr>
+              <th colspan="3" class="footer"><table width="100%" border="0" cellpadding="0" cellspacing="0" >
+              <tr>
+                    <td align="left"><input name="submit" type="submit" class="mainoption" id="submit" value="{L_BUTTON_SAVE}">
+                      <input type="reset" class="mainoption" value="{L_BUTTON_RESET}"></td>
+                    <td align="right">{L_FOOTCOUNT}</td>
+                  </tr>
+              </table></th>
+            </tr>
+          </table>
+</td>
+    </tr>
+  </table>
+</form>
+
+
+<script language="JavaScript" type="text/javascript">
+
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+
+			function nl_selectall(){
+
+				for (var i = 0;i < document.getElementsByName('letters[]').length;i++)
+				{
+					document.getElementsByName('letters[]')[i].checked = true;
+				}
+			}
+			
+			function nl_deselectall(){
+
+				for (var i = 0;i < document.getElementsByName('letters[]').length;i++)
+				{
+					document.getElementsByName('letters[]')[i].checked = false;
+				}
+			}
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

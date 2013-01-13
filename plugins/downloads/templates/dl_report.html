@@ -1,0 +1,30 @@
+  <div align="center" style="font-weight:bold;">{DL_OV_ERROR}</div>
+
+<!-- IF DL_S_USER_LOGGED_IN -->
+<form action="" method="post" enctype="multipart/form-data" name="dl_report" onSubmit="return  dl_check_upload_form()">
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+              <tr class="row1">
+          <td align="left">{DL_REPORT_DEAD_LINK_INFO}</td>
+        </tr>
+        <tr class="row2" align="center">
+          <td><textarea name="dl_comment" class="input" id="dl_comment" style="width:98%"></textarea></td>
+        </tr>
+
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="{DL_REPORT_DEAD_LINK}">
+      <input class="liteoption" type="reset" value="{DL_AD_RESET}" onClick="dl_reset_fields()"></th>
+    </tr>
+</table>
+</form>
+<!-- ELSE -->
+<table width="100%" border="0" cellpadding="2" cellspacing="1"><tr class="row1">
+	<tr>
+        <th><span class="footer">{DL_REPORT_DEAD_LINK}</span></th>
+      </tr>
+      <tr class="row1">
+          <td align="left">{DL_USER_NOT_LOGGED_IN}</td>
+      </tr>
+</table>
+<!-- ENDIF -->

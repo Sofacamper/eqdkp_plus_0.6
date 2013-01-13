@@ -1,0 +1,337 @@
+<!-- custom Calendar CSS Code -->
+<style type="text/css">
+  #RAID_DATE, #RAID_DATE_INV, #RAID_DATE_SUB, #RAID_DATE_FINISH { 
+    width: 7em;
+  }
+  #RAID_DATE + img, #RAID_DATE_INV + img, #RAID_DATE_SUB + img, #RAID_DATE_FINISH + img {
+    position: relative;
+    left: -21px;
+    top: -1px;
+  }
+</style>
+
+<!-- custom JS Code -->
+{JS_ALERTDIAG}
+<script>
+{JS_CONFIRM_DEL}
+
+function update_times(){
+  /********************************
+  /* INPUT
+  ********************************/
+  // Raid start
+  var start_minx   = document.post.start_min.value;  
+	var start_min    = (start_minx > 0) ? parseInt(start_minx.replace( /^(0+)/g, '' )) : 0;
+	var start_hourx  = document.post.start_hour.value;
+	var start_hour   = (start_hourx > 0) ? parseInt(start_hourx.replace( /^(0+)/g, '' )) : 0;
+	var vstart_hour  = {V_START_ADD_HOUR};
+	var vstart_min   = {V_START_ADD_MIN};
+	var start_date   = document.post.RAID_DATE.value.split(".");
+
+	// Invite
+	var vend_hour    = {V_END_ADD_HOUR};
+	var vend_min     = {V_END_ADD_MIN};
+	
+	// Raid finish
+	var vfinish_hour = {V_FINISH_ADD_HOUR};
+	var vfinish_min  = 0;
+	
+	// One day earlier
+  vyesterday      = (parseInt(start_date[0])-1);
+  vyesterday      = (vyesterday<10) ? "0" + vyesterday : vyesterday;    // Leading zero
+  newdayearlier   = vyesterday+'.'+start_date[1]+'.'+start_date[2];
+	
+	// One day later
+  vtomorrow   = (parseInt(start_date[0])+1);
+  vtomorrow   = (vtomorrow<10) ? "0" + vtomorrow : vtomorrow;
+  newdaylater = vtomorrow+'.'+start_date[1]+'.'+start_date[2];
+	
+	// today
+	thistoday = start_date[0]+'.'+start_date[1]+'.'+start_date[2];
+	document.post.RAID_DATE_SUB.value = document.post.RAID_DATE.value = document.post.RAID_DATE_FINISH.value = thistoday;
+	/********************************
+  /* Raid INVITE times
+  ********************************/
+  // Hours Change
+  invite_hour = start_hour - vstart_hour;
+  if (invite_hour < 0 || invite_hour == 0 && start_min < vstart_min){
+    // Invite day is one day earlier
+    document.post.RAID_DATE_INV.value = newdayearlier;
+    invite_hour = invite_hour + 24;
+  }
+
+  // Minutes Change
+  invite_min = start_min - vstart_min;
+  if (start_min < vstart_min){
+    invite_hour  -= 1;               // One hour earlier
+    invite_min    = 60 + invite_min;   // Invite is one hour earlier/later
+  }
+
+  /********************************
+  /* Raid SUBSCRIPTION time
+  ********************************/
+  end_hour = start_hour - vend_hour;
+  if (end_hour < 0 || end_hour == 0 && start_min < vend_min){
+    // Subscription day is one day earlier
+    document.post.RAID_DATE_SUB.value = newdayearlier;
+    end_hour = 24 + end_hour;
+  }
+  
+  // Minutes Change
+  end_min = start_min - vend_min;
+  if (start_min < vend_min){
+    end_hour -= 1;                // One hour earlier
+    end_min   = 60 + end_min;     // SignIn is one hour later
+  }
+	
+  /********************************
+  /* Raid FINISH times
+  ********************************/
+  finish_hour = start_hour + vfinish_hour;
+  if (finish_hour > 23){
+    // Start day is one day later
+    
+    document.post.RAID_DATE_FINISH.value = newdaylater;
+    finish_hour = -24 + finish_hour;
+  }
+  
+  /********************************
+  /* OUTPUT
+  ********************************/
+	document.post.invite_min.value	= (invite_min < 10) ? '0' + invite_min : invite_min;
+	document.post.end_min.value			= (end_min < 10) ? '0' + end_min : end_min;
+	document.post.invite_hour.value	= (invite_hour < 10) ? '0' + invite_hour : invite_hour;
+	document.post.end_hour.value		= (end_hour < 10) ? '0' + end_hour : end_hour;
+	document.post.finish_hour.value	= (finish_hour < 10 ) ? '0' + finish_hour : finish_hour;
+	document.post.finish_min.value  = (start_min < 10 ) ? '0' + start_min : start_min;
+}
+
+function ChangeDays(){
+  document.post.RAID_DATE_INV.value     = document.post.RAID_DATE.value;
+  document.post.RAID_DATE_SUB.value     = document.post.RAID_DATE.value;
+  document.post.RAID_DATE_FINISH.value  = document.post.RAID_DATE.value
+}
+
+function CalcMaxAttendees(){
+	count = 0;
+	for (var n = 0; n < document.post.elements.length; n++){
+		if (document.post.elements[n].name.indexOf("raid_class_") == 0){
+			count = count + 1 * document.post.elements[n].value;
+		}
+	}
+	document.post.raid_attendees_count.value = count;
+	document.post.raid_attendees_count_show.value = count;
+}
+
+function TemplateChange(id) {
+  	switch (id) {
+  		<!-- BEGIN events -->
+  		case {events.NAME}:
+  			<!-- BEGIN classes -->document.post.raid_class_{events.classes.NAME}_count.value = {events.classes.COUNT};
+        <!-- END classes -->
+  			CalcMaxAttendees();
+  			break;
+  		<!-- END events -->
+  		default:
+  			for (var n = 0; n < document.post.elements.length; n++){
+  				if (document.post.elements[n].name.indexOf("raid_class_") == 0){
+  					document.post.elements[n].value = 0;
+  				}
+  			}
+  			document.post.raid_attendees_count.value = 0;
+  			break;
+  	}
+}
+
+function DeleteTemplate(){
+	this.form.submit();
+}
+
+function viewmember(file){
+helpwindow = window.open(file,"viewhelp","scrollbars=no,toolbar=no,toolbar=no,directories=no,status=no,width=400");
+helpwindow.focus();
+return false;
+}
+</script>
+
+</head>
+
+<form method="get" action="{F_ADD_RAID}">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+		<tr>
+			<th align="left" colspan="2">
+				{L_RTEMPLATE}: {DR_TEMPLATE}
+				    <input type="hidden" name="fe" value="{FRONTEND}" />
+						<!-- IF RP_IS_EDIT -->
+						<input type="hidden" name="{URI_RAID}" value="{RAID_ID}" />
+						<!-- ENDIF -->
+						<!-- IF F_ISDIRECTDATE -->
+						<input type="hidden" name="tstamp" value="{F_ISDIRECTDATE}" />
+						<!-- ENDIF -->
+						<!-- IF DELBUTTON_VISABLE -->
+						<input type="submit" name="deltemplate" value="{B_DEL_TRMPLATE}" class="mainoption"  />
+						<!-- ENDIF -->
+						
+						{DR_ROLE_SELECT}
+			</th>
+		</tr>
+</table>
+</form>
+
+<form method="post" action="{F_ADD_RAID}" name="post" onsubmit="return check_form(this)">
+	<input type="hidden" name="{URI_RAID}" value="{RAID_ID}" />
+	<input type="hidden" name="rp_distri" value="{RP_DISTRI}" />
+	<input type="hidden" name="frontend" value="{FRONTEND}" />
+	<input type="hidden" name="rdelete" id="rdelete"  value="" />
+	<table width="100%" border="0" cellspacing="1" cellpadding="2">
+		<tr>
+			<td width="75%" valign="top" class="row2">
+				<table width="100%" border="0" cellpadding="3" cellspacing="0" class="borderless">
+					<tr>
+						<td width="34%" valign="top">
+							<b>{L_EVENT}:</b> <span class="small"></span></td>
+							<td valign="middle">{DR_EVENT} <a href="{U_ADD_EVENT}" class="small" target="top"><img src="../images/addraid/add.png" alt="{L_ADD_EVENT}" title="{L_ADD_EVENT}" /></a></td>
+					</tr><tr>
+						<td width="33%" valign="top">
+							<b>{L_TEMPLATE_NAME}:</b></td>
+						<td><input type="text" name="templatename" value="{TEMPLATE_NAME}" class="input" /> {HELP_TEMPLATE}
+						</td></tr>
+					<tr>
+						<td width="33%" valign="top">
+							<b>{L_VALUE}:</b></td>
+						<td><input type="text" name="raid_value" size="8" maxlength="7" value="{RAID_VALUE}" class="input" /> {HELP_VALUE}
+						</td></tr>
+						<tr>
+						<td width="33%" valign="top">
+							<b>{L_NOTE}:</b>
+						</td><td>
+            <textarea name="raid_note" class="input" rows="2" cols="32">{RAID_NOTE}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="33%" valign="top">
+							<b>{L_LEADER}:</b>
+						</td>
+            <td>{DR_RAIDLEADER}</td>
+          </tr>
+          <tr>
+						<td width="33%" valign="top">
+							<b>{L_LINK}:</b>
+						</td><td>
+							<input type="text" name="raid_link" size="35" maxlength="255" value="{RAID_LINK}" class="input" />
+					</td></tr>
+					<tr>
+            <td width="33%" valign="top"><b>{L_START_TIME}:</b></td>
+						<td>{DATEPICK_START} {DR_START_HOURS}&nbsp;:&nbsp;{DR_START_MINUTES}</td>
+					</tr>
+					<tr>
+						<td width="33%" valign="top"><b>{L_INVITE_TIME}:</b></td>
+						<td>{DATEPICK_INVITE}	{DR_INV_HOURS}&nbsp;:&nbsp;{DR_INV_MINUTES}</td>
+					</tr>
+          <tr>
+						<td width="33%" valign="top"><b>{L_SIGNUP_DEADLINE}:</b></td>
+						<td>{DATEPICK_DEADLINE}	{DR_SUB_HOURS}&nbsp;:&nbsp;{DR_SUB_MINUTES}</td>
+					</tr>
+					<tr>
+						<td width="33%" valign="top"><b>{L_RAID_FINISH}:</b></td>
+						<td>{DATEPICK_FINISH} {DR_FINISH_HOURS}&nbsp;:&nbsp;{DR_FINISH_MINUTES}</td>
+					</tr>
+					<!-- IF ENABLE_AUTOADDFLEX -->
+					<tr>
+						<td valign="top"><b>{L_FLEXADDRANK}:</b></td>
+            <td>{DR_AUTOADDRANK}</td>
+          </tr>
+					<!-- ENDIF -->
+					<!-- IF S_ADD -->
+				  <tr>
+						<td valign="top"><b>{L_REPEAT_EVERY}:</b></td>
+            <td>{DR_REPEAT} <!-- IF S_REPEAT_OFF -->{WARN_REPEATOFF}<!-- ENDIF --></td>
+          </tr>
+					<!-- ELSE -->
+						<!-- IF RP_IS_REPEATBLE -->
+					<tr>
+						<td valign="top"><b>{L_REPEAT_DESCR}</b></td>
+						<td>
+              <table class="borderless">
+                <tr>
+  							  <td valign="top"><input type="checkbox" name="rp_del_all_repeat" value="1" id="rp_del_all_repeat" /></td><td>{L_DEL_REPEAT}</td>
+  						  </tr>
+                <tr>
+                  <td valign="top"><input type="checkbox" name="rp_edit_all_repeat" value="1" id="rp_edit_all_repeat" /><input type="hidden" name="multiple_id" value="{REPEAT_ID}" /></td><td>{L_EDIT_REPEAT} {WARN_NOTUPDATE}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+            <!-- ENDIF -->
+					<!-- ENDIF -->
+          
+				</table>
+				</td>
+				<td valign="top" width="25%" class="row1">
+				<table width="100%" border="0" cellspacing="1" cellpadding="2">
+					<tr><th colspan="3">{L_CLASSES}:</th></tr>
+					<!-- BEGIN raid_classes -->
+					<tr>
+					  <td width="5%">{raid_classes.CLASS_ICON}</td>
+						<td width="65%" valign="center" class="tableheader_{raid_classes.NAME_EN}">{raid_classes.LABEL}:</td>
+						<td align="left"><input type="text" size="3" maxlength="2" name="{raid_classes.NAME}" value="{raid_classes.COUNT}" onchange="CalcMaxAttendees();"></td>
+					</tr>
+					<!-- END classes -->
+					<tr>
+					  <td colspan="3"><hr/></td>
+					</tr>
+          <tr>
+            <td width="5%"><img src="../images/addraid/summ.png" alt=""/></td>
+						<td width="65%" valign="center"><b>{L_ATTENDEES}</b>:</td>
+						<!-- IF ENABLE_ATTSUMM -->
+						  <td><input type="text" size="3" maxlength="2" name="raid_attendees_count_show" value="{F_ATTENDEES_COUNT}" disabled><input type="hidden" size="3" maxlength="2" name="raid_attendees_count" value="{F_ATTENDEES_COUNT}" ></td>
+					  <!-- ELSE -->
+					   <td><input type="text" size="3" maxlength="2" name="raid_attendees_count" value="{F_ATTENDEES_COUNT}"><input type="hidden" size="3" maxlength="2" name="raid_attendees_count_show" value="{F_ATTENDEES_COUNT}" ></td>
+					  <!-- ENDIF -->
+          </tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th align="center" colspan="2">
+				<!-- IF S_ADD -->
+					<input type="submit" name="add"				value="{B_ADD_RAID}"		class="mainoption" />
+					<input type="reset"  name="reset"			value="{B_RESET}"			class="liteoption" />
+					<input type="submit" name="template"	value="{B_ADDTEMPLATE}"		class="liteoption" />
+				<!-- ELSE -->
+					<input type="submit" name="update"			value="{B_UPDATE_RAID}"		class="mainoption" />
+					<input type="submit" name="template"	value="{B_ADDTEMPLATE}"		class="liteoption" />
+					<!-- IF RP_SHOW_DELBUTTON -->
+						<input type="button" onclick="javascript:deleteRaid()" name="delete"			value="{B_DELETE_RAID}"		class="liteoption" />
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+			</th>
+		</tr>
+	</table>
+</form>
+
+<script type="text/javascript">
+<!-- IF TCHANGE_VALUE -->
+  TemplateChange({TCHANGE_VALUE})
+<!-- ENDIF -->
+
+function check_form(){
+    if ((document.post.raid_attendees_count.value.length < 1) || (document.post.raid_attendees_count.value == '0')){
+        DisplayErrorMessage('{MSG_ATTENDEES_EMPTY}');
+        return false;
+    }
+    if ((document.getElementById('raid_name').value == '') || (document.getElementById('raid_name').value.length < 1)){
+        DisplayErrorMessage('{MSG_NAME_EMPTY}');
+        return false;
+    }
+    return true;
+}
+
+<!-- IF RP_IS_NOTEMPLATE -->
+  CalcMaxAttendees();
+<!-- ENDIF -->
+
+<!-- IF RP_ISNOT_EDIT -->
+update_times();
+<!-- ENDIF -->
+</script>

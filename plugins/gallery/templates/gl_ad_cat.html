@@ -1,0 +1,71 @@
+<!-- list existing categories -->
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	   
+  <tr>		     
+    <th colspan="2">{GL_AD_CATEGORIES}</th><th colspan="4" style="text-align: right"><input type="button" class="mainoption" onClick="location.href='categories.php?delete=all'" value="{GL_AD_CAT_DELALL}">     
+    </th>	   
+  </tr>	   
+  <tr>		     
+    <th width="15%" align="left">{GL_AD_CATEGORY}
+    </th>		     
+    <th >{GL_AD_ADD_COMMENT}   
+    </th> 
+    <th>{GL_AD_MANAGE_PICTURES}
+    </th>		
+    <th width="40" >    {GL_AD_MANAGE_CAT_ORDER}:     
+    </th>    
+    <th colspan="2" width="50" align="left">			     
+    </th>    	   
+  </tr>	   
+  <!-- BEGIN cat_list -->	   
+  <tr class="{cat_list.ROW_CLASS}">
+    <form method="POST">	     
+      <td width="15%" align="left" style="padding-left: 10px;"><input type="text" class="input" style="width:90px" name="cat_up_name" value="{cat_list.LIST}"></td>		     
+      <td style="padding-left: 10px;"><input type="text" class="input" style="width:400px" name="cat_up_description" value="{cat_list.DESCRIPTION}"></td> 		
+      <td align="center">{cat_list.PIC_COUNT}</td>
+      <td width="40" align="center">{cat_list.UP_BUTTON}<br>{cat_list.DOWN_BUTTON}</td>    
+    <td width="50" align="center">			       				         
+        <input type="hidden" name="cat_update_id" value="{cat_list.CAT_ID}">				         
+        <input class="mainoption" type="submit" value="{GL_AD_UPDATE_TITLE}">
+      </form>
+ 		</td>
+    <td>
+      <a href="categories.php?delete={cat_list.CAT_ID}"><img src="../images/delete.png"></a>			       
+    </td>    
+  </tr>	   
+  <!-- END cat_list -->      
+  <tr>		     
+    <th colspan="6">{GL_AD_CREATE}     
+    </th>	   
+  </tr>	
+  <form action="../admin/categories.php" method="post">   
+    <tr class="row1">		     
+      <td width="15%" align="left" style="padding-left: 10px;">	 
+        <input class="input" type="text" name="cat_name" style="width:90px">			</td>		     
+      <td  style="padding-left: 10px;">        
+        <input class="input" type="text" name="cat_comment" style="width:400px">    </td> 		
+      <td width="40" align="center">    </td>    
+      <td colspan="3" width="50" align="center">			  		</td>    
+    </tr>	      
+    <tr>		     
+      <th colspan="6">        
+        <input class="mainoption" type="submit" value="{GL_AD_SEND}">				         
+        <input class="liteoption" type="reset" value="{GL_AD_RESET}">
+        &nbsp;{GL_AD_STATUS}			
+      </th>	   
+    </tr>	         
+  </form>
+</table>
+<script language="JavaScript" type="text/javascript">
+function aboutDialog(){
+  {L_CREDITS}
+}
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="../images/credits/info.png" alt="Credits" border="0" /> Credits</a>  
+  </span><br />  
+  <span class="copy">{L_COPYRIGHT}   
+  </span>
+</center>

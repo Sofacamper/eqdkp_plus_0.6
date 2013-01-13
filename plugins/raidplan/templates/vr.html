@@ -1,0 +1,366 @@
+<!-- INCLUDE ../css/rp_viewraid.html -->
+<!-- INCLUDE ../css/rp_groupmenu.html -->
+<!-- INCLUDE ../css/rp_optionsmenu.html -->
+<script language="JavaScript" type="text/javascript">
+
+function submit_DeleteGuest(v,m){
+                if(v){
+                  document.guestp.submit();
+                }
+                return true;
+              }
+              
+function DeleteGuest(id){
+  document.guestp.guestid.value=id;
+  $.prompt('{L_DEL_WARNING}', {
+             buttons:{ {L_BUTTON_DELETE}: true, {L_BUTTON_CANCEL}: false },
+             submit: submit_DeleteGuest,
+             prefix:'colsJqi',
+             show:'slideDown'}
+          );
+}
+	 
+function EditGuest(id,raidid) {
+  {JS_EDITGUEST}
+}
+
+function AddGuest(raidid) {
+  {JS_ADDGUEST}
+}
+
+function TransformRaid(raidid) {
+  {JS_TRANSFORMRAID}
+}
+
+function EditNote(memberid) {
+  {JS_EDITNOTE}
+}
+
+function ExportDialog() {
+  {JS_EXPORT}
+}
+
+function EditRaid() {
+  {JS_EDITRAID}
+}
+
+function AddRaid() {
+  {JS_ADDRAID}
+}
+
+function AboutDialog() {
+  {JS_ABOUT}
+}
+
+function OpenUSettings() {
+  {JS_USETTINGS}
+}
+
+function HideX(id) {
+  document.getElementById('guestdelete'+id).style.display="none";
+}
+            
+function ShowX(id){
+  document.getElementById('guestdelete'+id).style.display="inline";
+}
+	
+function check_form(){
+	return true;
+    if (document.post.raid_attendees.value.length < 1){
+        alert('{MSG_ATTENDEES_EMPTY}');
+        return false;
+    }
+    if (document.post.raid_name.value.length < 1){
+        alert('{MSG_NAME_EMPTY}');
+        return false;
+    }
+    return true;
+}
+
+{JS_MEMCODE}
+
+function changeVal(uebergabe, role){
+ // uebergabe ist gleich der wert, der aus selectbox 1 übergeben wird
+ myOptions = document.getElementById("rp_role");
+ laenge = myOptions.length;
+
+ // trash the values of the second box before filling
+ for(z=laenge; z>=0; z--){
+  myOptions.options[z] = null;
+ }
+
+ // refill the 2 select boxes
+ for(i in values[uebergabe]){
+  if(values[uebergabe][i] != ""){
+    var selectme = (values[uebergabe][i][0] == role) ? true : false;
+    addOption = new Option(values[uebergabe][i][1],values[uebergabe][i][0], false,selectme);
+    optionNr = parseInt(i);
+    myOptions[optionNr] = addOption;
+  }
+ }
+}
+
+function viewmember(file){
+  helpwindow = window.open(file,"viewhelp","scrollbars=no,toolbar=no,toolbar=no,directories=no,status=no,width=400");
+  helpwindow.focus();
+  return false;
+}
+</script>
+<form name="guestp" method="get" action="{F_UPDMEMBER}">
+<input type="hidden" name="r" value="{RAID_ID}" />
+<input type="hidden" name="guestid" value="" />
+</form>
+	<table width="100%" border="0" cellspacing="1" cellpadding="2">
+		<tr>
+			<td align="center" colspan="2">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="borderless">
+        <tr>
+        <!-- IF S_GROUPNUMBER -->
+        <th align="right" nowrap="nowrap" width="100px">
+        {L_FILTER}:
+        <form method="get" action="{F_ADD_RAID}">
+        <input type="hidden" name="{URI_SESSION}" value="{V_SID}" />
+        <input type="hidden" name="r" value="{RAID_ID}" />
+        <select name="group" class="input" onchange="javascript:form.submit();">
+        <!-- BEGIN gfilter_row -->
+        <option value="{gfilter_row.VALUE}"{gfilter_row.SELECTED}>{gfilter_row.OPTION}</option>
+        <!-- END gfilter_row -->
+        </select></form>
+        </th>
+        <!-- ENDIF -->
+        <th width="100%">
+          {RAID_NAME} - {RAID_DATE}
+        </th><th align="right" nowrap="nowrap" width="150px">
+          <!-- IF IS_AD_GL -->{MENU_OPTIONS}<!-- ENDIF -->
+        </th>
+        </tr>
+      </table>
+      </td>
+		</tr>
+		<tr>
+			<td width="100%" valign="top" class="row2">
+			  <!-- IF RAID_CLOSED -->
+          <table width="100%" border="0" cellspacing="1" cellpadding="2" class="errortable">
+            <tr>
+						  <td width ="48px"><img src="images/viewraid/closed.png" /></td>
+						  <td >
+							 {L_CLOSED_TEXT}	
+						  </td>
+					 </tr>
+				  <tr>
+				  </table>
+			  <!-- ENDIF -->
+				<table width="100%" border="0" cellpadding="3" cellspacing="0" class="borderless">
+					<tr>
+						<td valign="top">
+							<table width="100%" border="0" cellpadding="3" cellspacing="0" class="borderless">
+								<tr>
+									<!-- IF RAID_ICON_SHOW -->
+									<td width="100%" valign="top" colspan=2>
+										<div class="rp_raidname"><img src="{RAID_ICON}" alt="{RAID_NAME}" /> {RAID_NAME}</div>
+									<!-- ELSE -->
+									<td width="100%" valign="top" colspan=2>
+									<b>{L_RAID}:</b> {RAID_NAME} 
+								  <!-- ENDIF -->
+                  </td>
+										
+								</tr>
+								<tr  class="row1">
+									<td width="30%" valign="top">
+										<b>{L_INVITE_TIME}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_DATE_INVITE}
+									</td>
+								</tr>
+								<tr  class="row2">
+									<td width="30%" valign="top">
+										<b>{L_START_TIME}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_DATE}
+									</td>
+								</tr>
+								<tr  class="row1">
+									<td width="30%" valign="top">
+										<b>{L_SIGNUP_DEADLINE}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_SIGNUP_DEADLINE}
+									</td>
+								</tr>
+								<!-- IF RAID_DATE_FINISH -->
+								<tr  class="row2">
+									<td width="30%" valign="top">
+										<b>{L_FINISH_TIME}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_DATE_FINISH}
+									</td>
+								</tr>
+								<!-- ENDIF -->
+							</table>
+						</td>
+						<td>
+							<table width="100%" border="0" cellpadding="3" cellspacing="0" class="borderless">
+								<tr  class="row1">
+									<td width="30%" valign="top">
+										<b>{L_ADDED_BY}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_ADDED_BY} <i>({L_ADDED_ON} {RAID_ADDED_DATE})</i>  
+									 <!-- IF S_RAIDUPDATED -->
+                    <img src="{EQDKP_ROOT_PATH}/plugins/raidplan/images/viewraid/updated.png" alt="{L_RAIDCHANGED}" {UPDATEDON_TT} />
+									 <!-- ENDIF -->
+                  </td>
+								</tr>
+								<tr  class="row2">
+									<td width="30%" valign="top">
+										<b>{L_VALUE}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_VALUE}
+									</td>
+								</tr>
+								<tr  class="row1">
+									<td width="30%" valign="top">
+										<b>{L_LEADER}:</b>
+									</td><td width="70%" valign="top">
+										{RAID_LEADER}
+									</td>
+								</tr>
+								<!-- IF RAID_LINK -->
+								<tr  class="row2">
+									<td width="30%" valign="top">
+										<b>{L_LINK}:</b>
+									</td><td width="70%" valign="top">
+										<a href="{RAID_LINK}" target="_blank" class="raid_link">{RAID_LINK}</a>
+									</td>
+								</tr>
+								<!-- ENDIF -->
+								<tr  class="row2">
+									<td width="30%" valign="top">
+										<b>{L_NOTE}:</b>
+									</td><td width="70%" valign="top">
+										<!-- IF IS_AD_GL -->
+											<form method="post" action="{F_SAVE_NOTE}" name="changenote">
+											<input type="hidden" name="{URI_RAID}" value="{RAID_ID}" />
+											<input type="hidden" name="savenote" value="true" />
+											<input type="hidden" name="raid_id" value="{RAID_ID}" />
+											<textarea name="raid_note" onfocus="window.onkeypress='null'" class="input" cols="35" rows="3">{RAID_NOTE}</textarea>
+											<input type="image" src="images/viewraid/save.png" border="0" name="savenoteb" title="{B_SAVE}" alt="{B_SAVE}"/>
+											</form>
+										<!-- ELSE -->
+											<!-- IF RAID_NOTE -->
+							 					{RAID_NOTE}
+							 				<!-- ELSE -->
+							 					{L_NO_RAIDNOTE}
+							 				<!-- ENDIF -->
+										<!-- ENDIF -->
+									</td>
+								</tr>
+						</table>
+					</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" valign="top" class="row2">
+				<!-- INCLUDE ../member_output.html -->
+			</td>
+		</tr>
+		<!-- IF RAID_CLOSED -->
+	  <!-- ELSE -->
+		<tr class="row2">
+			<td align="center" colspan="2">
+				<form method="post" action="{F_ADD_RAID}" name="post" onsubmit="return check_form(this)">
+        <input type="hidden" name="{URI_RAID}" value="{RAID_ID}" />
+        <input type="hidden" name="subscribed_member_id" value="{SUBSCRIBED_MEMBER_ID}" />
+			<table width="100%" class="borderless"  cellpadding="0" cellspacing="0" >
+			<tr>
+      <!-- IF S_LOGGED_IN -->
+			 <!-- IF S_DEADLINE_REACHED -->
+			  <td align="center"><table width="98%" class="errortable"><tr><td align="center">{L_DEADLINE_REACHED}</td></tr></table></td> 
+			 <!-- ELSEIF S_NO_CLASS_SETTING -->
+			 <td  align="center"><table width="98%" class="errortable"><tr><td align="center">{L_NO_CLASS_SETTING}</td></tr></table></td>
+       <!-- ELSE -->
+        <!-- IF S_NO_USER_ASSIGN -->
+				  <td align="center"><table width="98%" class="errortable"><tr><td align="center">{L_NO_USER_ASSIGNED}</td></tr></table></td>
+				<!-- ELSE -->
+				  <!-- IF S_ROLE_DISTRI_ERROR -->
+				    <td width="100%" colspan=3><table width="100%" class="errortable"><tr><td align="center">{L_ROLE_DISTRI_ERROR}</td></tr></table></td>
+				    </tr><tr>
+          <!-- ENDIF -->
+          <!-- IF S_NO_DEFAULTCHAR -->
+          </tr>
+            <td width="100%" colspan=3 align="center">
+              <table width="90%" class="infotable">
+                <tr>
+                  <td align="center" width="10%"><img src="images/global/info.png" /></td>
+                  <td width="90%">
+                    {L_NO_DEFAULT_CHAR}<br/>
+                    <center><input type="button" name="usettings" value="{L_OPEN_USETT_BTN}" class="mainoption" onclick="javascript:OpenUSettings()" /></center>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          <tr>
+          <!-- ENDIF -->
+				  <td align="left" width="30%">
+          <table width="100%" class="borderless"  cellpadding="0" cellspacing="0" >
+			     <tr>
+			     	<td width="20px;"></td>
+            <td width="60px;"><img src="images/viewraid/personal_big.png" alt="{L_CHAR}" /></td>
+            <td valign="middle">
+              {DRDWN_MEMBERS}
+              <!-- IF S_ROLE_DISTRI -->
+                {DRDWN_ROLE}
+              <!-- ENDIF -->
+              </td></tr></table>   
+          </td>
+				  <td align="left" width="50%" valign="top">
+				  	<!-- IF RAID_NOTE_OFF -->
+				  	<input name="signupnote" type="hidden" value="{PLAYER_NOTE}">
+				  	<!-- ELSE -->
+				  	<table width="100%" class="borderless"  cellpadding="0" cellspacing="0" >
+				  		<tr>
+				  			<td width="60px"><img src="images/viewraid/note.png" alt="{L_NOTE}" /></td>
+				  			<td><textarea name="signupnote" rows="1" cols="55" class="input">{PLAYER_NOTE}</textarea></td>
+				  		</tr>
+				  </table>
+				  <!-- ENDIF -->
+				  </td>
+          <td width="20%" align="left" valign="middle">
+            {DRDWN_ACTION} <input type="submit" name="update" 	value="{B_CHANGE}" 	class="mainoption" />
+					</td>
+				<!-- ENDIF -->
+							 <!-- IF S_ADMIN -->
+			</tr><tr>
+			<!-- ENDIF -->
+			 <!-- ENDIF -->
+			<!-- ELSE -->
+			<td><table width="100%" class="errortable"><tr><td align="center"><center><font color="red">{L_NOT_LOGGED_IN}</font></center></td></tr></table></td>
+			<!-- ENDIF -->	
+			</tr>		
+			</table>
+			<!-- IF S_LOGGEDIN_ROLE -->
+			 <script>changeVal({JS_START_ID}, '{JS_ROLE}');</script>
+			<!-- ENDIF -->
+			</form>
+			</td>
+		</tr>
+		<!-- ENDIF -->
+	</table>
+<script type="text/javascript">
+<!-- IF S_LOGGEDIN_ROLE -->
+  changeVal({JS_START_ID}, '{JS_ROLE}');
+<!-- ENDIF -->
+
+var vraid=new switchicon("switchcontent", "div") //Limit scanning of switch contents to just "div" elements
+vraid.setHeader('<img src="images/minus.gif" />', '<img src="images/plus.gif" />') //set icon HTML
+vraid.collapsePrevious(false) //Allow only 1 content open at any time
+vraid.setPersist(true, 7) //No persistence enabled
+vraid.defaultExpanded({S_JSHIDEVALUE}) //Set 1st content to be expanded by default
+vraid.init()
+</script>
+<br/>
+<!-- IF ENABLE_COMMENTS -->
+{COMMENTS}
+<!-- ENDIF -->
+<br/><center><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="images/credits/info.png" alt="{L_CREDITS}" border="0" /> {L_CREDITS}</a></span>
+<br /><span class="copy">{L_COPYRIGHT}</span></center>

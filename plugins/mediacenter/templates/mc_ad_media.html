@@ -1,0 +1,245 @@
+<!-- INCLUDE ../mc_css.html -->
+{MC_STATUS}
+  {UPDATE_BOX} {UPDCHECK_BOX}
+  <table width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tr>
+    <th colspan="9" nowrap="nowrap"><table width="100%" class="borderless" border="0" cellspacing="0">
+      <tr>
+        <td style="text-align: left; width: 33%"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/admin_logo.png" alt="Edit" align="absmiddle"> {L_MANAGE_VIDEOS}
+</td>
+        {DL_UPLOAD}
+        <td style="text-align: right;"><form action="../search.php{SID}" method="post" name="dl_search">
+          <input type="text" class="input" value="{L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{L_SEARCH_INPUTVALUE}';};" />
+          <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+        </form>
+         </td>
+        <td width="50" nowrap="nowrap">{MC_ADMIN_MENU}</td>
+      </tr>
+    </table></th>
+  </tr>
+</table>
+<div align="center" style="font-weight:bold;">{MC_ERROR}</div> 
+    
+  <form action="{MASSEDIT_ACTION}" method="post" name="dl_massedit"> 
+  
+   <table width="100%" class="borderless" border="0" cellspacing="0">
+     <!-- IF S_REPORTED -->
+     <tr>
+       <th style="text-align: left; width: 33%">{L_REPORTED}</th>
+       {DL_UPLOAD} </tr>
+     <tr>
+       
+    <td style="text-align: left; width: 33%">
+    <div id="dl_cat_rep">
+    <table width="100%" border="0" cellpadding="2" cellspacing="1" >
+         <tr>
+           <th align="center" width="20" nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){dl_deselect_cat('rep');} else {dl_select_cat('rep');};"></th>
+           <th align="left" width="35" nowrap="nowrap">{L_ACTION_HEADLINE}</th>
+           <th align="left" width="35" nowrap="nowrap"><a href="downloads.php{SID}&o=2.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED20}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=2.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED21}.png" alt="up" border="0"></a>{L_NAME_HEADLINE}</th>
+           <th align="left" width="100%">{L_DESC_HEADLINE}</th>
+           <th align="left" width="80"><a href="downloads.php{SID}&o=3.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED30}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=3.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED31}.png" alt="up" border="0"></a>{L_VIEWS_HEADLINE}</th>
+           <th align="left" ><a href="downloads.php{SID}&o=0.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED01}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=0.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED00}.png" alt="up" border="0"></a>{L_DATE_HEADLINE}</th>
+         </tr>
+
+         <!-- BEGIN reported_list -->
+         <tr class="{reported_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{reported_list.ROW_CLASS}';">
+           <td width="20" nowrap="nowrap" align="center"><input type="checkbox" value="{reported_list.LINK_ID}" name="links[]"></td>
+           <td width="35" nowrap="nowrap"><a href="{reported_list.LINK_REPAIR_URL}" title="{reported_list.L_TITLE_LINK_CONFIRM}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/ok.png" border="0"></a><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/edit.png" alt="Edit" onClick="editDialog('{reported_list.LINK_ID}');" style="cursor:pointer;" title="{reported_list.L_TITLE_LINK_EDIT}"/><a href="{reported_list.LINK_DELETE_URL}" title="{reported_list.L_TITLE_LINK_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/delete.png" alt="Delete" border="0"></a></td>
+           <td width="30%"><a href="{EQDKP_ROOT_PATH}plugins/mediacenter/file.php{SID}&id={reported_list.LINK_ID}">{reported_list.LINK_NAME}{reported_list.LINK_REPORTED}</a></td>
+           <td width="30%">{reported_list.LINK_DESC}</td>
+           <td nowrap="nowrap">{reported_list.LINK_VIEWS}</td>
+           <td nowrap="nowrap">{reported_list.LINK_DATE}</td>
+         </tr>
+         <!-- END reported_list -->
+         <tr>
+           <th colspan="6" width="100%"><input name="mass_repair_but" type="submit" id="mass_repair_but" value="{L_CONFIRM}" class="input"></th>
+         </tr>
+       </table>
+       </div>
+       </td>
+     </tr>
+     <!-- ENDIF -->
+    <!-- IF S_UNCONFIRMED -->
+     <tr>
+       <th style="text-align: left; width: 33%"><strong>{L_UNCONFIRMED}</strong></th>
+     </tr>
+     <tr>
+       <td style="text-align: left; width: 33%">    <div id="dl_cat_unconf">
+    <table width="100%" border="0" cellpadding="2" cellspacing="1" >
+         <tr>
+           <th align="center" width="20" nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){dl_deselect_cat('unconf');} else {dl_select_cat('unconf');};"></th>
+           <th align="left" width="35" nowrap="nowrap">{L_ACTION_HEADLINE}</th>
+           <th align="left" width="35" nowrap="nowrap"><a href="downloads.php{SID}&o=2.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED20}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=2.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED21}.png" alt="up" border="0"></a>{L_NAME_HEADLINE}</th>
+           <th align="left" width="100%">{L_DESC_HEADLINE}</th>
+           <th align="left" width="80"><a href="downloads.php{SID}&o=3.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED30}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=3.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED31}.png" alt="up" border="0"></a>{L_VIEWS_HEADLINE}</th>
+           <th align="left" ><a href="downloads.php{SID}&o=0.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED01}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=0.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED00}.png" alt="up" border="0"></a>{L_DATE_HEADLINE}</th>
+         </tr>
+
+         <!-- BEGIN unconfirmed_list -->
+         <tr class="{unconfirmed_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{unconfirmed_list.ROW_CLASS}';">
+           <td width="20" nowrap="nowrap" align="center"><input type="checkbox" value="{unconfirmed_list.LINK_ID}" name="links[]"></td>
+           <td width="35" nowrap="nowrap"><a href="{unconfirmed_list.LINK_CONFIRM_URL}" title="{unconfirmed_list.L_TITLE_LINK_CONFIRM}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/ok.png" alt="Delete" border="0"></a><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/edit.png" alt="Edit" onClick="editDialog('{unconfirmed_list.LINK_ID}');" style="cursor:pointer;" title="{unconfirmed_list.L_TITLE_LINK_EDIT}"/><a href="{unconfirmed_list.LINK_DELETE_URL}" title="{unconfirmed_list.L_TITLE_LINK_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/delete.png" alt="Delete" border="0"></a></td>
+           <td width="30%"><a href="{EQDKP_ROOT_PATH}plugins/mediacenter/file.php{SID}&id={unconfirmed_list.LINK_ID}">{unconfirmed_list.LINK_NAME}{unconfirmed_list.LINK_REPORTED}</a></td>
+           <td width="30%">{unconfirmed_list.LINK_DESC}</td>
+           <td nowrap="nowrap">{unconfirmed_list.LINK_VIEWS}</td>
+           <td nowrap="nowrap">{unconfirmed_list.LINK_DATE}</td>
+         </tr>
+         <!-- END unconfirmed_list -->
+         <tr>
+           <th colspan="6" width="100%"><input name="mass_confirm_but" type="submit" id="mass_confirm_but" value="{L_CONFIRM}" class="input"></th>
+         </tr>
+       </table>
+       </div></td>
+     </tr>
+     <!-- ENDIF -->
+   </table>
+   
+   
+<!-- BEGIN index_list -->
+    <table width="99%" border="0" cellspacing="0" cellpadding="2">
+        <tr>
+          <td colspan="1">
+           <script type="text/javascript">animatedcollapse.addDiv('dl_cat_{index_list.CAT_ID}', 'persist=0,hide=1'); animatedcollapse.init();</script>
+            <table width="100%" border="0" cellpadding="2" cellspacing="1">
+              <tr>
+                <th colspan="9" nowrap="nowrap"> <table width="100%" class="borderless" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="text-align: left; width: 33%"><strong><a href="javascript:animatedcollapse.toggle('dl_cat_{index_list.CAT_ID}')"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/toggle.png" name="imgdl_mirror_table" border="0" id="imgdl_mirror_table2"><strong> {index_list.L_CAT_HEADLINE}: {index_list.CAT_NAME}</strong></a></strong></td>
+                    <td style="text-align: left; width: 33%">({index_list.CAT_FILECOUNT} {L_VIDEOS})</td>
+                    <td style="text-align: right; width: 33%"><!-- IF not S_NO_CATS -->
+
+                      <img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/new.png" alt="Edit" align="absmiddle" onClick="uploadDialog('{index_list.CAT_ID}')" style="cursor:pointer" title="{DL_UPLOAD_HEADLINE}">
+    
+                      <!-- ENDIF --></td>
+                  </tr>
+                </table></th>
+              </tr>
+            </table>
+            <div id="dl_cat_{index_list.CAT_ID}">
+            <table width="100%" border="0" cellpadding="2" cellspacing="1" >
+<!-- IF index_list.S_NOLINKS -->
+              <tr>
+                <td width="100%" align="center" class="row2" colspan="6">{index_list.L_NOLINKS}</td>
+              </tr>
+<!-- ELSE index_list.S_NOLINKS -->           
+              <tr>
+                <th align="center" width="20" nowrap="nowrap"><input type="checkbox" onClick="if(this.checked == false){dl_deselect_cat('{index_list.CAT_ID}');} else {dl_select_cat('{index_list.CAT_ID}');};"></th>
+                <th align="left" width="35" nowrap="nowrap">{index_list.L_ACTION_HEADLINE}</th>
+                <th align="left" width="35" nowrap="nowrap"><a href="downloads.php{SID}&o=2.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED20}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=2.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED21}.png" alt="up" border="0"></a>{index_list.L_NAME_HEADLINE}</th>
+                <th align="left" width="100%">{index_list.L_DESC_HEADLINE}</th>
+                <th align="left" width="80"><a href="downloads.php{SID}&o=3.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED30}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=3.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED31}.png" alt="up" border="0"></a>{index_list.L_VIEWS_HEADLINE}</th>
+
+                <th align="left" ><a href="downloads.php{SID}&o=0.1"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/down_arrow{RED01}.png" alt="down" border="0"></a><a href="downloads.php{SID}&o=0.0"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/up_arrow{RED00}.png" alt="up" border="0"></a>{index_list.L_DATE_HEADLINE}</th>
+
+              </tr>
+<!-- ENDIF index_list.NOLINKS -->                
+<!-- BEGIN link_list -->
+              <tr class="{index_list.link_list.ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{index_list.link_list.ROW_CLASS}';">
+                <td width="20" nowrap="nowrap" align="center"><input type="checkbox" value="{index_list.link_list.LINK_ID}" name="links[]"></td>
+                <td width="35" nowrap="nowrap"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/edit.png" alt="Edit" onClick="editDialog('{index_list.link_list.LINK_ID}');" style="cursor:pointer;" title="{index_list.link_list.L_TITLE_LINK_EDIT}"/><a href="{index_list.link_list.LINK_DELETE_URL}" title="{index_list.link_list.L_TITLE_LINK_DELETE}"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/delete.png" alt="Delete" border="0"></a></td>
+                <td width="30%"><a href="{EQDKP_ROOT_PATH}plugins/mediacenter/file.php{SID}&id={index_list.link_list.LINK_ID}">{index_list.link_list.LINK_NAME}{index_list.link_list.LINK_REPORTED}</a></td>
+
+                <td width="30%">{index_list.link_list.LINK_DESC}</td>
+                <td nowrap="nowrap">{index_list.link_list.LINK_VIEWS}</td>
+
+                <td nowrap="nowrap">{index_list.link_list.LINK_DATE}</td>
+
+              </tr>
+<!-- END link_list -->              
+              <tr>
+                <th colspan="6" class="footer" width="100%">{index_list.CAT_FOOTCOUNT}</th>
+              </tr>
+          </table></div></td>
+        </tr>
+    </table>
+
+    <!-- END index_list -->
+  <!-- IF S_IF_CATS -->
+<table width="100%">
+    	<tr>
+        	<td><span style="padding-left:7px;"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/arrow_turn_left.png" align="bottom" /><a href="javascript:dl_selectall();">{L_SELECT_ALL}</a>/<a href="javascript:dl_deselectall();">{L_DESELECT_ALL}</a>
+ &nbsp;  &nbsp;   
+          {L_ALL_MARKED}:  &nbsp;  {MASSEDIT_ACTION_DROPDOWN}
+            <div id="target_cat" style="display:none">{L_TO} {TARGET_CAT_DROPDOWN}</div>
+          
+           <input class="mainoption" type="submit" value="{L_GO}" /></span>
+          </td>
+        </tr>
+    </table>
+   <!-- ENDIF --> 
+</form>
+
+<br/>
+<script language="javascript" type="text/javascript">
+			
+			function dl_selectall(){
+
+				for (var i = 0;i < document.getElementsByName('links[]').length;i++)
+				{
+					document.getElementsByName('links[]')[i].checked = true;
+				}
+			}
+			
+			function dl_deselectall(){
+
+				for (var i = 0;i < document.getElementsByName('links[]').length;i++)
+				{
+					document.getElementsByName('links[]')[i].checked = false;
+				}
+			}
+			
+			
+			
+			function dl_select_cat(catid){
+				
+				var area = document.getElementById('dl_cat_'+catid);
+				var checkboxes = area.getElementsByTagName('input');
+
+				for (var i=0; i<checkboxes.length; i++){
+					checkboxes[i].checked = true;
+
+				}
+				
+			}
+			
+		function dl_deselect_cat(catid){
+	
+				var area = document.getElementById('dl_cat_'+catid);
+
+				var checkboxes = area.getElementsByTagName('input');
+
+				for (var i=0; i<checkboxes.length; i++){
+					checkboxes[i].checked = false;
+
+				}
+				
+			}
+			
+function mc_check_action_dropdown(){
+		
+	var action = document.getElementById('massedit_action_drpdwn').value;
+
+	if (action == "move"){
+			
+		document.getElementById('target_cat').style.display = "inline";
+			
+	} else {
+			
+		document.getElementById('target_cat').style.display = "none";
+			
+	};
+		
+}
+          </script>
+<script language="JavaScript" type="text/javascript">
+
+function editDialog(id){
+ {MC_JS_EDIT}
+}
+
+function uploadDialog(catid){
+ {MC_JS_UPLOAD}
+}
+
+</script>
+{MC_FOOTER}

@@ -1,0 +1,70 @@
+<style>
+/* Basic code - don't modify */
+.dl_colortab { display: block; margin: 0; padding: 0; position: relative; font-weight:normal;}
+.dl_colortab li { display: block; list-style: none; margin: 0; padding: 0; float: right; position: relative; }
+.dl_colortab a { display: block; font-size:11px;font-weight:normal;}
+.dl_colortab ul { display: none; position: absolute; right: 0; margin: 0; padding: 0; }
+* html .dl_colortab ul { line-height: 0; } /* IE6 "fix" */
+.dl_colortab ul a { zoom: 1; } /* IE6/7 fix */
+.dl_colortab ul li { float: none; }
+.dl_colortab ul ul { top: 0; }
+    
+/* Essentials - configure this */
+.dl_colortab ul { width: 200px; color: black;}
+.dl_colortab ul ul { right: 161px; }
+
+/* Everything else is theming */
+.dl_colortab { height: 24px; font-size:11px;font-weight:normal;}
+.dl_colortab *:hover { background-color: #EEFFDF; font-weight:normal;}
+.dl_colortab a { font-size: 12px; padding: 4px; line-height: 1; color: black; background: #f5f5f5}
+.dl_colortab a:visited {color:#000; font-weight:normal;}
+.dl_colortab li.hover a { background-color: #EEFFDF; color: black; }
+.dl_colortab ul { top: 25px; background: #f5f5f5; color: black; font-size:11px;font-weight:normal;}
+.dl_colortab ul li a { background-color: #EEFFDF; color: black;}
+.dl_colortab ul a.hover { background-color: #30A8C3; color: white; }
+.dl_colortab ul a.visited { font-weight:normal; }
+.dl_colortab ul a { border-right: none; opacity: 0.9; filter: alpha(opacity=90); color: black;}
+/* #dl_colortab ul a { border-bottom: none; } - I also needed this for IE6/7 */
+</style>
+
+<style>
+ TABLE.errortable { 
+  border-top: 1px;
+  border-bottom: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  border-color: red; 
+  border-style: solid;
+  background: #FFEFEF;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+}
+
+TABLE.errortable_inner { 
+  background: #FFEFEF;
+  border: 0;
+}
+
+TABLE.errortable td{
+	color:red;
+	background: #FFEFEF;
+	padding: 5px;
+	-moz-border-radius:10px;
+  -webkit-border-radius:10px;
+}
+
+TABLE.errortable td a{
+	color:red;
+  text-decoration: none;
+}
+TABLE.errortable td a:hover{
+	color:red;
+  text-decoration: underline;
+}
+
+TABLE.errortable th{
+	color:white;
+	background: red;
+}
+
+ </style>

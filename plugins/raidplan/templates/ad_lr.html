@@ -1,0 +1,92 @@
+<script language="JavaScript" type="text/javascript">
+function AddRaid() {
+  {JS_ADDRAID}
+}
+
+function EditRaid(raidid) {
+  {JS_EDITRAID}
+}
+
+function TransformRaid(raidid) {
+  {JS_TRANSFORMRAID}
+}
+
+function Cleanup() {
+  {JS_CLEANUP}
+}
+</script>
+<input type="button" name="addraid" value="{L_ADDRAID}" onclick="javascript:AddRaid()" class="mainoption"  /> 
+<input type="button" name="addraid" value="{L_CLEANRAIDS}" onclick="javascript:Cleanup()" class="mainoption"  />
+<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+  <tr>
+    <td align="center" class="menu">{RAID_PAGINATION}</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="left" width="70" nowrap="nowrap"><a href="{U_LIST_RAIDS}o={O_DATE}&amp;start={START}">{L_DATE}</a></th>
+    <th align="left" width="35%"><a href="{U_LIST_RAIDS}o={O_NAME}&amp;start={START}">{L_NAME}</a></th>
+    <th align="left" width="65%"><a href="{U_LIST_RAIDS}o={O_NOTE}&amp;start={START}">{L_NOTE}</a></th>
+    <th align="left" width="60" nowrap="nowrap"><a href="{U_LIST_RAIDS}o={O_VALUE}&amp;start={START}">{L_VALUE}</a></th>
+    <th align="left" width="20" nowrap="nowrap"></th>
+    <th align="left" width="20" nowrap="nowrap"></th>
+  </tr>
+  <!-- BEGIN raids_row -->
+  <tr class="{raids_row.ROW_CLASS}">
+    <td width="70" nowrap="nowrap">{raids_row.DATE}</td>
+    <td width="35%">{raids_row.RAID_ICON} {raids_row.NAME}</td>
+    <td width="65%">{raids_row.NOTE}</td>
+    <td width="60" nowrap="nowrap" class="positive">{raids_row.VALUE}</td>
+    <td width="20" nowrap="nowrap" align="center">{raids_row.REPEATABLE}</td>
+    <td width="20" nowrap="nowrap" align="center"><a href="#" onclick="javascript:EditRaid('{raids_row.RAID_ID}')"><img src="../images/global/edit.png" alt="{L_EDIT}" title="{L_EDIT}" /></a></td>
+  </tr>
+  <!-- END raids_row -->
+  <tr>
+    <th colspan="6" class="footer">{LISTRAIDS_FOOTCOUNT}</th>
+  </tr>
+</table><br/>
+
+
+<span id="lr1-title" class="iconspan"><img src="../images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0"></span> {L_RECENT_RAIDS}
+<div id="lr1" class="icongroup1">
+<!-- history part -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="left" width="70" nowrap="nowrap"><a href="{U_LIST_RAIDS}o={O_DATE}&amp;start={START}">{L_DATE}</a></th>
+    <th align="left" width="35%"><a href="{U_LIST_RAIDS}o={O_NAME}&amp;start={START}">{L_NAME}</a></th>
+    <th align="left" width="65%"><a href="{U_LIST_RAIDS}o={O_NOTE}&amp;start={START}">{L_NOTE}</a></th>
+    <th align="left" width="60" nowrap="nowrap"><a href="{U_LIST_RAIDS}o={O_VALUE}&amp;start={START}">{L_VALUE}</a></th>
+    <th align="left" width="20" nowrap="nowrap"></th>
+    <th align="left" width="20" nowrap="nowrap"></th>
+  </tr>
+  <!-- BEGIN recent_raids_row -->
+  <tr class="{recent_raids_row.ROW_CLASS}">
+    <td width="70" nowrap="nowrap">{recent_raids_row.DATE}</td>
+    <td width="35%">{recent_raids_row.RAID_ICON} {recent_raids_row.NAME}</td>
+    <td width="65%">{recent_raids_row.NOTE}</td>
+    <td width="60" nowrap="nowrap" class="positive">{recent_raids_row.VALUE}</td>
+    <td width="20" nowrap="nowrap" align="center">{recent_raids_row.REPEATABLE}</td>
+    <td width="20" nowrap="nowrap" align="center"><img onclick="TransformRaid('{recent_raids_row.RAID_ID}')" src="../images/viewraid/transform.png" alt="{L_TRANSFORM}" title="{L_TRANSFORM}" /></a></td>
+   </tr>
+  <!-- END recent_raids_row -->
+  <tr>
+    <th colspan="6" class="footer">{LISTRAIDS_FOOTCOUNT}</th>
+  </tr>
+</table>
+</div>
+
+<script type="text/javascript">
+var csetting=new switchicon("icongroup1", "div") //Limit scanning of switch contents to just "div" elements
+csetting.setHeader('<img src="../images/minus.gif" />', '<img src="../images/plus.gif" />') //set icon HTML
+csetting.collapsePrevious(false) //Allow only 1 content open at any time
+csetting.setPersist(true) //No persistence enabled
+csetting.defaultExpanded(0) //Set 1st content to be expanded by default
+csetting.init()
+</script>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+  <tr>
+    <td align="center" class="menu">{RAID_PAGINATION}</td>
+  </tr>
+</table>
+<center><br /><span class="copy">RaidPlan v{L_VERSION} &copy; 2006 - {L_YEAR} by EQDKP Plus Team</span></center>

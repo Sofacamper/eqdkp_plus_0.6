@@ -1,0 +1,101 @@
+{ERROR_MSG}
+<script language="javascript" type="text/javascript">
+function nl_check_form(){
+
+	if((document.addTemplate.name.value == "") || (document.addTemplate.subject.value == "") || (document.addTemplate.body.value == "")){
+		
+					show_fields_empty();
+					return false;
+	};
+}
+
+</script>
+<script type="text/javascript">animatedcollapse.addDiv('nl_bbcodes', 'persist=0,hide=1'); animatedcollapse.init();</script>
+{JS_FIELDS_EMPTY}
+<form method="post" action="templates_add.php{SID}" name="addTemplate" onSubmit="return nl_check_form()">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr class="row2">
+    <td width="50" nowrap="nowrap">{L_NAME}: *</td>
+    <td><input type="text" name="name" size="65" class="input" id="name" /></td>
+  </tr>
+  <tr  class="row1">
+    <td>{L_SUBJECT}: *</td>
+    <td><input type="text" name="subject" size="65" class="input" /></td>
+  </tr>
+  <tr  class="row2">
+    <td>{L_BODY}: *</td>
+    <td>{WYSIWYG_EDITOR}
+      <textarea name="body" id="body" cols="70"></textarea>
+      <input type="button" value=" + " onClick="textbox_resize('body', 100);" class="input"/>				        
+      <input type="button" value=" - " onClick="textbox_resize('body', -100);" class="input"/>
+      <br>
+      <a href="javascript:animatedcollapse.toggle('nl_bbcodes');"><strong>{L_SHOW_BBCODES}</strong></a>
+    	<div id="nl_bbcodes">
+      <table border="0" cellpadding="2" cellspacing="1">
+        <tr>
+          <th>{L_PLACEHOLDER}</th>
+          <th>{L_FUNCTION}</th>
+          <th>{L_BBCODE}</th>
+          <th>{L_FUNCTION}</th>
+          </tr>
+        <tr class="row1">
+          <td>*DKP_NAME*</td>
+          <td>{L_DKPNAME}</td>
+          <td>[class=CLASSNAME]TEXT[/class]</td>
+          <td>&lt;div class=&quot;CLASSNAME&quot;&gt;TEXT&lt;/div&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*USERNAME*</td>
+          <td>{L_USERNAME}</td>
+          <td>[table]CONTENT[/table]</td>
+          <td>&lt;table&gt;CONTENT&lt;/table&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*AUTHOR*</td>
+          <td>{L_AUTHOR}</td>
+          <td>[tr]CONTENT[/tr]</td>
+          <td>&lt;tr&gt;CONTENT&lt;/tr&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*EQDKP_LINK*</td>
+          <td>{L_DKPLINK}</td>
+          <td>[td]CONTENT[/td]</td>
+          <td>&lt;td&gt;CONTENT&lt;/td&gt;</td>
+          </tr>
+        <tr class="row1">
+          <td>*DATE*</td>
+          <td>{L_DATE}</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          </tr>
+      </table>
+      {L_EXPL_LEGENDE}{L_BBCODES_EXPLAIN}
+      </div></td>
+  </tr>
+  <tr class="row1">
+    <td>{L_SIGNATURE}</td>
+    <td><input type="checkbox" name="signature" value="1"></td>
+  </tr>
+  <tr>
+    <th colspan=2><center>
+      <input type="submit" name="submit" value="{B_SAVE}" class="mainoption" /> 
+      <input type="reset" value="{B_RESET}" class="mainoption" />
+    </center></th>
+  </tr>
+</table>
+
+  </form>
+  <script>
+  function textbox_resize(id, pix)
+{
+	var box			= document.getElementById(id);
+	var new_height	= (parseInt(box.style.height) ? parseInt(box.style.height) : 300) + pix;
+
+	if (new_height > 0)
+	{
+		box.style.height = new_height + 'px';
+	}
+
+	return false;
+}
+</script>

@@ -1,0 +1,164 @@
+<!-- INCLUDE ../dl_css.html -->
+ {DL_STATUS}
+ <!-- IF not DL_S_HMODE -->
+ <!-- IF not DL_S_CACHE_WRITABLE -->
+ 
+  
+
+  <table class="errortable" border="0" cellpadding="2" cellspacing="0" width="100%">
+          								<tbody><tr>
+          								  <td class="row1" width="60px"><img src="./../libraries/PluginUpdater/images/error.png"></td>
+          								  <td class="row1">{DL_CACHE_NOT_WRITABLE}</td>
+          								</tr>
+                        </tbody></table><br>
+
+<!-- ENDIF -->
+<!-- ENDIF -->
+<div align="center" style="font-weight:bold;">{DL_ERROR}</div>
+<script type="text/javascript">animatedcollapse.addDiv('mirrors', 'persist=0,hide=1'); animatedcollapse.init();</script>
+<form action="upload.php{SID}{DL_DEBUG}" method="post" enctype="multipart/form-data" name="dl_upload" onSubmit="return  dl_check_upload_form()">
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+      <tr>
+        <th colspan="2"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/new.png" alt="Edit" align="absmiddle"><span class="footer">{DL_UPLOAD_HEADLINE}</span></th>
+      </tr>
+      <!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->
+        <tr class="row1">
+          <td width="180" align="left"><strong>{DL_CAT_HEADLINE}:*</strong></td>
+          <td>{DL_CATEGORY_SELECT}</td>
+        </tr>
+        <!-- ENDIF -->
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_NAME_HEADLINE}</span>:*</strong></td>
+          <td><input class="input" type="text" name="dl_name" id="dl_name" style="width:98%;"/></td>
+        </tr>
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_DESC_HEADLINE}</span>:</strong></td>
+          <td><textarea name="dl_description" class="input" id="dl_description" style="width:98%"></textarea></td>
+        </tr>
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_PERM_HEADLINE}:*</strong></td>
+          <td><select name="dl_permission" class="input">
+            <option value="0" selected="selected" id="perm0">{DL_PERM_REGISTERED}</option>
+            <option value="1" id="perm1">{DL_PERM_PUBLIC}</option>
+          </select></td>
+        </tr>
+        <!-- IF not DL_S_HMODE -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_SELECT_FILE_HEADLINE}:*</strong></td>
+          <td><div id="dl_file_area">
+            <input name="dl_file" type="file" class="input" id="dl_file" onChange="dl_check_file_field()" size="60">
+          <br><span class="small"><strong>{DL_AD_ACCEPTED_FILE_TYPES}</strong> {DL_ACCEPTED_FILETYPES}</span></div><div id="dl_loading_area" style="display:none" align="center"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/loading.gif"></div></td>
+        </tr>
+        <!-- ENDIF -->
+        
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_URL_HEADLINE}:*</strong></td>
+          <td><input class="input" type="text" name="dl_url" id="dl_url" style="width:98%;" onChange="dl_check_url_field()"/></td>
+        </tr>
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_FILESIZE_HEADLINE}:</strong></td>
+          <td>        <input name="dl_url_filesize" type="text" class="input" id="dl_url_filesize" size="5">
+            <select name="dl_url_filesize_unit" class="input">
+          <option value="Bytes">Bytes</option>
+		  <option value="KB">KB</option>
+          <option value="MB">MB</option>
+          <option value="GB">GB</option>
+        </select>
+          <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_FILESIZE}/></td>
+        </tr>
+        
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_PREVIEW_IMAGE}:</strong></td>
+          <td><input name="dl_previewimage" type="file" class="input" id="dl_previewimage" size="60"></td>
+        </tr>
+        <!-- IF DL_S_MULTIPLE_LINKS_ENABLED -->
+        <tr class="row1">
+          <td align="left" nowrap><strong>{DL_RELATED_LINKS_HEADLINE}:</strong></td>
+          <td><input class="input" type="text" name="dl_related_links" style="width:92%" id="dl_related_links"/>
+            <span id="dl_mirrors_area2"></span> <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_RELATED_LINKS}/></td>
+        </tr>
+        <!-- ENDIF -->
+        <!-- IF DL_S_MIRRORS_ENABLED -->
+        <tr class="row2">
+          <td align="left" nowrap><strong>{DL_MIRRORS_HEADLINE}:</strong></td>
+          <td><input class="input" type="text" name="dl_mirrors[]" style="width:92%" id="dl_mirrors[]" onchange="if(this.value != ''){dl_add_mirror_input();}"/>
+          <span id="dl_mirrors_area"></span>
+
+          <img src="{EQDKP_ROOT_PATH}plugins/downloads/images/help.png" border="0" {DL_HELP_MIRRORS}/></td>
+        </tr>
+		<!-- ENDIF -->
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+    <tr>
+      <th colspan="5"> <input name="submit" type="submit" class="mainoption" id="submit" value="{DL_AD_SEND}">
+      <input class="liteoption" type="reset" value="{DL_AD_RESET}" onClick="dl_reset_fields()">
+      <input name="ref" type="hidden" id="ref" value="{DL_REFFERRER}"></th>
+    </tr>
+
+</table>
+</form>
+<script language="javascript" type="text/javascript">
+<!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->		  
+function dl_check_permission(){
+				
+	if (<!-- BEGIN js_registered_cats -->document.dl_upload.dl_category.value == {js_registered_cats.DL_CATID} || <!-- END js_registered_cats --> document.dl_upload.dl_category.value == "abc"){document.dl_upload.dl_permission.disabled = true;
+		document.dl_upload.dl_permission.selectedIndex = 0;
+	}	
+	else {document.dl_upload.dl_permission.disabled = false;};
+				
+}
+						
+dl_check_permission();
+<!-- ENDIF -->
+
+function dl_check_file_field(){
+	if (document.dl_upload.dl_file.value != ""){
+		document.dl_upload.dl_url.disabled = true;
+		document.dl_upload.dl_url_filesize.disabled = true;
+		document.dl_upload.dl_url_filesize_unit.disabled = true;
+		
+	}
+	else {
+		document.dl_upload.dl_url.disabled = false;
+		document.dl_upload.dl_url_filesize.disabled = false;
+		document.dl_upload.dl_url_filesize_unit.disabled = false;
+	};
+}
+
+function dl_check_url_field(){
+	if (document.dl_upload.dl_url.value != ""){document.dl_upload.dl_file.disabled = true;}
+	if (document.dl_upload.dl_url.value == ""){document.dl_upload.dl_file.disabled = false;}
+}
+
+function dl_reset_fields(){
+	document.dl_upload.dl_file.disabled = false;
+	document.dl_upload.dl_url.disabled = false;
+	document.dl_upload.dl_url_filesize.disabled = false;
+	document.dl_upload.dl_url_filesize_unit.disabled = false;
+}
+
+function dl_add_mirror_input(){
+	var clone = document.getElementById("dl_mirrors[]").cloneNode(true);
+	var output_area = document.getElementById("dl_mirrors_area");
+	clone.value = "";
+	output_area.appendChild(clone);
+}
+
+
+
+function dl_check_upload_form(){
+
+	if((document.dl_upload.dl_name.value == "") || ((document.dl_upload.dl_file.value == "") && (document.dl_upload.dl_url.value == ""))){
+		
+					show_fields_empty();
+					return false;
+	}
+	else {document.getElementById('dl_file_area').style.display = "none";
+		document.getElementById('dl_loading_area').style.display = "inline";
+		};
+}
+
+
+</script>
+{DL_JS_FIELDS_EMPTY}

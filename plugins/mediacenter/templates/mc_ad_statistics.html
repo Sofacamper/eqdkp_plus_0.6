@@ -1,0 +1,120 @@
+<!-- INCLUDE ../mc_css.html -->
+<script type='text/javascript'>
+                    // wait for the DOM to be loaded
+                    $(document).ready(function() {
+
+                      $('#Chart_form').ajaxForm({
+                        target: '#chart',
+                        beforeSubmit:  function() {
+							$('#chart').html('');
+							$('#loading').html('<img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/loading_circle_big.gif" alt="Loading...">');
+
+						  
+                        },
+                        success: function() {
+							$('#loading').html('');
+
+							
+                        },
+                      });
+					});
+
+ </script>
+ {MC_STATUS}
+  {UPDATE_BOX} {UPDCHECK_BOX}
+  <table width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tr>
+    <th colspan="9" nowrap="nowrap"><table width="100%" class="borderless" border="0" cellspacing="0">
+      <tr>
+        <td style="text-align: left;"><img src="{EQDKP_ROOT_PATH}plugins/mediacenter/images/admin_logo.png" alt="Edit" align="absmiddle"> {L_STATISTICS}</td>
+
+        <td width="50" nowrap="nowrap">{MC_ADMIN_MENU}</td>
+      </tr>
+    </table></th>
+  </tr>
+  <!-- IF S_STATS_ENABLED -->
+  <tr class="row1">
+    <td colspan="9">
+    <form id="Chart_form" name="Chart_form" action="statistics.php{SID}&mode=chart&ajax=true" method="post">
+    <table cellpadding="0" cellspacing="3">
+      <tr>
+	    <td colspan="5"><b>{L_FILTER}:</b></td>
+	    </tr>
+	  <tr>
+
+       <td colspan="2">{L_CATEGORY}: {CATEGORY_DROPDOWN}</td>
+      <td colspan="3"><span id="file_list">{START_FILELIST}</span></td>
+
+     
+      </tr>
+      <tr>
+        <td height="6" colspan="5">&nbsp;</td>
+        </tr>
+      <tr>
+      <td colspan="5"><b>{L_SELECT_TIME}:</b></td>
+      </tr>
+    <tr>
+      <td>{L_YEAR}: {YEAR_DROPDOWN}</td>
+      <td>{L_MONTH}: {MONTH_DROPDOWN}</td>
+      <td>&nbsp;</td>
+      <td width="60"></td>
+      <td align="right"><input class="input" name="sb_submit" value="{L_LOAD}" type="submit" /></td>
+    </tr>
+    </table>
+    </form>
+    
+    </td>
+  </tr>
+  
+  <tr class="row2"> 
+    <td height="330" colspan="9"> <div id="chart" style="width:700px;" align="center">{START_GRAPH}</div>
+ <div id="loading" align="center"></div></td>
+  </tr>
+  <tr>
+    <th colspan="9">{L_CACHING_INFO}</th>
+  </tr>
+  <!-- ELSE -->
+  <tr class="row2"> 
+    <td colspan="9"> <div align="center" style="font-weight:bold;">{MC_ERROR}</div></td>
+  </tr>
+    <tr>
+    <th colspan="9"></th>
+  </tr>
+  <!-- ENDIF -->
+ </table>
+
+
+
+ 
+  
+  
+
+ 
+
+<script language="javascript" type="text/javascript">
+
+function mc_file_list(catID){
+	if (catID != "" && catID != 0 && catID != -1){
+		$(document).ready(function() { 
+
+             $.ajax({  
+                type: "GET",
+				url: "statistics.php{SID}&mode=filelist&id="+catID,
+				dataType: "html",
+				error: function(){alert("error");},
+                success: function(xml){					
+							$('#file_list').html(xml);
+						},
+
+					
+                }); 
+    	});
+	} else {
+		document.getElementById('file_list').innerHTML = "";
+	}
+}
+
+
+</script>
+
+{MC_FOOTER}

@@ -1,0 +1,68 @@
+{STATUS}
+<script type="text/javascript">
+	function valueCheck(){
+		if (document.newpoll.polltitle.value != ""){
+			document.newpoll.po_submit.disabled = false;
+		} else {
+			document.newpoll.po_submit.disabled = true;
+		}
+	}
+</script>
+<form action="createoptions.php" name="newpoll" method="POST">
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<tr>
+			<th colspan="2">{F_HEADLINE}</th>
+		</tr>
+		<tr class="row1">
+			<td>{F_TITLE}</td>
+			<td>
+				<input type="text" name="polltitle" size="80" onKeyUp="valueCheck()" />
+			</td>
+		</tr>
+		<tr class="row2">
+			<td valign="top">{F_DESCRIPTION}</td>
+			<td>
+				{DESCRIPTION}<textarea id="description" name="description" class="jTagEditor"></textarea>
+			</td>
+		</tr>
+		<tr class="row1">
+			<td>{F_MULTIPLE}</td>
+			<td><input type="checkbox" name="multiple" value="1" {MULTIPLE} /></td>
+		</tr>
+		<tr class="row2">
+			<td>{F_COMMENTS}</td>
+			<td><input type="checkbox" name="comments" value="1" {COMMENTS} /></td>
+		</tr>
+		<tr class="row1">
+			<td>{F_EDITABLE}</td>
+			<td><input type="checkbox" name="editable" value="1" {EDITABLE} /></td>
+		</tr>
+		<tr class="row2">
+			<td>{F_INTERMED}</td>
+			<td><input type="checkbox" name="intermed" value="1" {INTERMED} /></td>
+		</tr>
+		<tr class="row1">
+			<td>{F_MODSTYLE}</td>
+			<td>
+				<select name="modstyle">
+					<option value="1" {MODSTYLE1}>{F_MODSTYLE1}</option>
+					<option value="2" {MODSTYLE2}>{F_MODSTYLE2}</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="row2">
+			<td>{F_ENDDATE}</td>
+			<td>{ENDDATE}</td>
+		</tr>
+		<tr class="row1">
+			<td>{F_CLOSED}</td>
+			<td><input type="checkbox" name="closed" value="1" /></td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				<input type="submit" name="po_submit" value="{F_STEPTWO}" disabled />
+			</th>
+		</tr>
+	</table>
+</form>
+{PO_FOOTER}

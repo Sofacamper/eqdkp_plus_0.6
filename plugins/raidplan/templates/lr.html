@@ -1,0 +1,263 @@
+{RSS_FEED}
+<style type="text/css">
+TABLE.errortable { 
+  padding: 5px;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  border-color: red; 
+  border-style: solid;
+  background: #FFEFEF;
+}
+
+TABLE.errortable_inner { 
+  background: #FFEFEF;
+  border: 0;
+}
+
+TABLE.errortable td{
+	color:red;
+	background: #FFEFEF;
+}
+</style>
+<script language="JavaScript" type="text/javascript">
+
+isIE=document.all;
+isNN=!document.all&&document.getElementById;
+isN4=document.layers;
+var draidid;
+function RightClickSettings(dd){
+  draidid = dd;
+  if (isIE||isNN){
+    document.oncontextmenu=checkV;
+  }else{
+    document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+    document.onmousedown=checkV;}
+}
+
+function checkV(e){
+if (isN4){
+if (e.which==2||e.which==3){
+EditRaid(draidid);
+return false;
+}}else{
+EditRaid(draidid);
+return false;}}
+
+function OnMouseDrueber(id,stat){
+  if(stat == 'over'){
+    document.getElementById('icon_'+id).style.display="none";
+    document.getElementById('box_'+id).style.display="block";
+  }else{
+    if(!document.getElementById('ck_'+id).checked){
+      document.getElementById('icon_'+id).style.display="block";
+      document.getElementById('box_'+id).style.display="none";
+    }
+  }
+}
+
+function show_tabelle (uebergabe){
+  if ( document.getElementById("multinotes").id == uebergabe ){
+    document.getElementById("multinotes").style.display = '';
+  }else{
+    document.getElementById("multinotes").style.display = 'none';
+  }
+}
+
+function AboutDialog(){
+  {JS_ABOUT}
+}
+
+function AddRaid(timestamp){
+  {JS_ADDRAID}
+}
+
+function AddRaid2(){
+  {JS_ADDRAID2}
+}
+
+function EditRaid(raidid) {
+  {JS_EDITRAID}
+}
+
+{JS_CLOSE}
+</script>
+
+<!-- IF ALPHA_DESTROY -->
+<table border="0" cellpadding="0" cellspacing="0" class="errortable" width="100%" height="150px">
+  <tr>
+    <td width="90%">
+    <font size="100px"><center>THIS IS AN UNSUPPORTED ALPHAVERSION</font></font>
+    </td>
+  </tr>
+</table><br/>
+<!-- ENDIF -->
+
+<!-- IF OPT_CALENDAR -->
+	<!-- IF OPT_CAL_ABOVE -->
+		{CALENDAR}
+	<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF OPT_CLASSIC -->
+<!-- IF RAID_PAGINATION -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+  <tr>
+    <td align="center" class="menu">{RAID_PAGINATION}</td>
+  </tr>
+</table>
+<!-- ENDIF -->
+<form name="multisignin" method="post" action="{F_MULTISIGNIN}">
+<input type="hidden" name="subscribed_member_id" value="{VALUE_MEM_ID}" />
+<input type="hidden" name="subscribed_role" value="{VALUE_ROLE}" />
+<table width="100%" border="0" cellspacing="1" cellpadding="0" id="rowheader">
+  <tr>
+    <th align="center" colspan="1" height="20px"><img src="images/addraid/add.png" onclick="AddRaid2()" alt="Add Raid" /></th>
+    <!-- IF SHOW_MULTISIGN -->
+      <th align="center" colspan="7" height="20px">{L_CURRENT_RAID}</th>
+      <th align="right" colspan="4" height="20px">
+        {DRDWN_MULTISIGN}
+        <img src="images/notes/comment.png" alt="{L_MULTINOTE}" onclick="show_tabelle('multinotes')" {HELP_MULTINOTE}/>
+        <input type="submit" name="multisign" value="{B_PERFORM}" class="mainoption" {HELP_MULTISIGN} />
+      </th>
+  </tr>
+  <tr>
+    <td colspan="12">
+      <table id="multinotes"  width="100%" class="borderless" style="display:none;">
+        <tr>
+          <th width="10%">{L_MULTINOTE}</th>
+          <th width="90%" align="left"><input type="text" size="130" name="multi_note" value="" class="input" /></th>
+        </tr>
+      </table>
+    </td>
+    <!-- ELSE -->
+      <th align="center" colspan="11" height="20px">{L_CURRENT_RAID}</th>
+    <!-- ENDIF -->
+  </tr>
+<tr>
+		<th align="left" width="2%" nowrap="nowrap"></th>
+    <th align="left" width="6%" nowrap="nowrap"><a href="{U_LIST_RAIDS}o={O_DATE}&amp;start={START}">{L_DATE}</a></th>
+    <th align="left" width="5%" nowrap="nowrap">{L_STATUS}</th>
+    <th align="left" width="6%" nowrap="nowrap">{L_DAY}</th>
+    <th align="left" width="5%" nowrap="nowrap">{L_INVITE}</th>
+    <th align="left" width="5%" nowrap="nowrap">{L_START}</th>
+    <th align="left" width="5%" nowrap="nowrap">{L_END}</th>
+    <th align="left" width="20%"><a href="{U_LIST_RAIDS}o={O_NAME}&amp;start={START}">{L_NAME}</a></th>
+    <th align="left" width="41%"><a href="{U_LIST_RAIDS}o={O_NOTE}&amp;start={START}">{L_NOTE}</a></th>
+    <th align="left" width="6%" nowrap="nowrap"><a href="{U_LIST_RAIDS}o={O_VALUE}&amp;start={START}">{L_VALUE}</a></th>
+    <th align="left" width="2%" nowrap="nowrap"></th>
+    <th align="left" width="2%" nowrap="nowrap"></th>
+  </tr>
+  <!-- BEGIN raids_row -->
+  <tr class="{raids_row.ROW_CLASS}" height="20px">
+		<td width="2%" align="center" nowrap="nowrap" >
+      <span {raids_row.RAIDSTATUS_TXT} >{raids_row.RAIDSTATUS_ICON}</span>
+    </td>
+    <td width="6%" align="center" nowrap="nowrap">{raids_row.DATE}</td>
+    <td width="5%" align="center" nowrap="nowrap">&nbsp;<span {raids_row.RAIDATTCOUNT_TXT} >({raids_row.COUNT})</span>&nbsp;</td>
+    <td width="6%" align="center" nowrap="nowrap">{raids_row.DAY}</td>
+    <td width="5%" align="center" nowrap="nowrap">{raids_row.INVITE}</td>
+    <td width="5%" align="center" nowrap="nowrap">{raids_row.START}</td>
+    <td width="5%" align="center" nowrap="nowrap">{raids_row.END}</td>
+    <td width="20%"><a href="{raids_row.U_VIEW_RAID}" class="raidlink">{raids_row.RAID_ICON} {raids_row.NAME}</a></td>
+    <td width="41%">{raids_row.NOTE}</td>
+    <td width="6%" align="right" nowrap="nowrap" class="positive">{raids_row.VALUE}</td>
+    <!-- IF SHOW_MULTISIGN -->
+      <td onmouseover="OnMouseDrueber({raids_row.RAID_ID},'over')" onmouseout="OnMouseDrueber({raids_row.RAID_ID},'weg')" >
+        <div style="width:20px;height:18px;">
+          <div id='icon_{raids_row.RAID_ID}' style="width:20px;height:18px;float:left;overflow:hidden;padding:1px;text-align:center;">{raids_row.CONFIRMED}</div>
+          <div id='box_{raids_row.RAID_ID}' style="width:20px;height:18px;overflow:hidden;display:none;"><input id="ck_{raids_row.RAID_ID}" type="Checkbox" name="sign_id[]" value="{raids_row.RAID_ID}" /></div>
+          <div style="clear:both;"></div>
+        </div>
+      </td>
+    <!-- ELSE -->
+      <td ><div style="width:20px;height:18px;text-align:center;margin-top:1px;">{raids_row.CONFIRMED}</div></td>
+    <!-- ENDIF -->
+    <td width="2%" nowrap="nowrap" class="positive">
+    <!-- IF RP_ADMIN -->
+    <div onclick="javascript:EditRaid('{raids_row.RAID_ID}');" style="cursor: pointer;"><img src="./images/global/edit.png" width="16" height="16" alt="Edit" align="absmiddle" /></div>
+    <!-- ENDIF -->
+    </td>
+  </tr>
+  <!-- END raids_row -->
+  <tr>
+  <td colspan="12">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th align="left"><a href="#" {LEGEND_TT}>{L_LEGEND}</a></th>
+   		<th class="footer">{LISTRAIDS_FOOTCOUNT}</th>
+		</tr>
+	</table>
+  </td>
+  </tr>
+</table>
+</form>
+
+<br/>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+  <tr>
+    <th align="center" colspan=11 height="20px"><span id="lr1-title" class="iconspan" style="margin-left:5px;float:left;"><img src="images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0"></span>&nbsp;{L_RECENT_RAID}</th>
+  </tr>
+  <tr>
+  <td>
+  <div id="lr1" class="icongroup1">
+<table width="100%" class="borderless" cellspacing="0" cellpadding="0">
+  <tr>
+    <th align="left" width="2%" nowrap="nowrap"></th>
+    <th align="center" width="8%" nowrap="nowrap">{L_DATE}</th>
+		<th align="left" width="6%" nowrap="nowrap">{L_STATUS}</th>
+    <th align="left" width="26%">{L_NAME}</th>
+    <th align="left" width="50%">{L_NOTE}</th>
+    <th align="left" width="6%" nowrap="nowrap">{L_VALUE}</th>
+  </tr>
+  <!-- BEGIN recent_raids -->
+  <tr class="{recent_raids.ROW_CLASS}" height="20px">
+  	<td width="2%" align="center"><div {recent_raids.RAIDSTATUS_TXT} >{recent_raids.RAIDSTATUS_ICON}</div></td>
+    <td width="8%" align="center" nowrap="nowrap">{recent_raids.DATE}</td>
+		<td width="6%" align="center" nowrap="nowrap">&nbsp;<span {recent_raids.RAIDATTCOUNT_TXT} >({recent_raids.COUNT})</span>&nbsp;</td>
+    <td width="26%"><a href="{recent_raids.U_VIEW_RAID}">{recent_raids.RAID_ICON} {recent_raids.NAME}</a></td>
+    <td width="50%">{recent_raids.NOTE}</td>
+    <td width="6%" nowrap="nowrap" class="positive">{recent_raids.VALUE}</td>
+  </tr>
+  <!-- END raids_row -->
+  <tr><td colspan="6">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <th align="left"><a href="#" {LEGEND_TT}>{L_LEGEND}</a></th>
+    	<th class="footer">{LISTRECENTRAIDS_FOOTCOUNT}</th>
+		</tr>
+		</table>
+  </td></tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+var csetting=new switchicon("icongroup1", "div") //Limit scanning of switch contents to just "div" elements
+csetting.setHeader('<img src="images/minus.gif" />', '<img src="images/plus.gif" />') //set icon HTML
+csetting.collapsePrevious(false) //Allow only 1 content open at any time
+csetting.setPersist(true) //No persistence enabled
+csetting.defaultExpanded(0,1) //Set 1st content to be expanded by default
+csetting.init()
+</script>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
+  <tr>
+    <td align="center" class="menu">{RAID_PAGINATION}</td>
+  </tr>
+</table>
+<!-- IF S_ADD_RAID -->
+<br />
+<center><button type="button" class="liteoption" onClick="self.location.href='{F_ADD_RAID}'">{L_ADD_RAID}</button></center>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF OPT_CALENDAR -->
+	<!-- IF OPT_CAL_BEYOND -->
+	<br/>
+		{CALENDAR}
+	<!-- ENDIF -->
+<!-- ENDIF -->
+<center><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="images/credits/info.png" alt="Credits" border="0" /> Credits</a></span>
+<br /><span class="copy">{L_COPYRIGHT}</span></center>

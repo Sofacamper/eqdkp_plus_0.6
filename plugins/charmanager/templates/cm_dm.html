@@ -1,0 +1,85 @@
+<script language="JavaScript" type="text/javascript">
+{JS_DELETECHAR}
+{JS_CONFIRMALL}
+{JS_DELETEALL}
+
+function RewokeChar(rewoke_id){
+	document.data.rewoke_id.value=rewoke_id;
+	document.data.submit();
+}
+
+function ConfirmChar(confirm_id){
+	document.data.confirm_id.value=confirm_id;
+	document.data.submit();
+}
+</script>
+<form method="post" action="{F_UPDATE}" name="data">
+<input type='hidden' name='delete_id' value=''>
+<input type='hidden' name='confirm_id' value=''>
+<input type='hidden' name='rewoke_id' value=''>
+<input type='hidden' name='deleteall' value=''>
+<input type='hidden' name='confirmall' value=''>
+</form>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<tr>
+		<th colspan="6">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<th width="80%">{L_CONFIRM_LIST}</th>
+					<th width="20%" align="right"><input type="submit" name="confirm_all" value="{L_CNFRM_ALLCHRS}" class="mainoption" onclick="ConfirmAllChars()"/></th>
+				</tr>
+			</table>
+		</th>
+	</tr>
+  <tr>
+    <th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+    <th align="left" width="100%"><a href="{U_LIST_MEMBERS}o={O_NAME}{URI_ADDON}">{L_NAME}</a></th>
+    <th align="left" width="40" nowrap="nowrap"><a href="{U_LIST_MEMBERS}o={O_LEVEL}{URI_ADDON}">{L_LEVEL}</a></th>
+  	<th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+  	<th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+  </tr>
+  <!-- BEGIN confirm_row -->
+  <tr class="{confirm_row.ROW_CLASS}">
+    <td width="35" nowrap="nowrap" align="right">{confirm_row.COUNT}</td>
+    <td width="100%" nowrap="nowrap"><span class="classes{confirm_row.CLASSID}">{confirm_row.CLASS_ICON}{confirm_row.RACE_ICON} {confirm_row.NAME}</span></td>
+    <td width="40" nowrap="nowrap">{confirm_row.LEVEL}</td>
+    <td align="left" width="35" nowrap="nowrap"><img src="../images/delete.png" style="cursor:pointer;" title="{L_DELETE_CHARS}" alt="{L_DELETE_CHARS}" onclick="javascript:DeleteChar({confirm_row.ID})"/></td>
+    <td align="left" width="35" nowrap="nowrap"><img src="../images/confirm.png" style="cursor:pointer;" title="{L_CONFIRM_CHARS}" alt="{L_CONFIRM_CHARS}" onclick="javascript:ConfirmChar({confirm_row.ID})"/></td>
+  </tr>
+  <!-- END confirm_row -->
+  <tr>
+    <th colspan="6" class="footer">{FC_CONFIRM}</th>
+  </tr>
+</table>
+<br/>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<tr>
+		<th colspan="6">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<th width="80%">{L_DELETE_LIST}</th>
+					<th width="20%" align="right"><input type="submit" name="delete_all" value="{L_DEL_ALLCHARS}" class="mainoption" onclick="DeleteAllChars()"/></th>
+				</tr>
+			</table>
+		</th>
+	</tr>
+  <tr>
+    <th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+    <th align="left" width="100%"><a href="{U_LIST_MEMBERS}o={O_NAME}{URI_ADDON}">{L_NAME}</a></th>
+    <th align="left" width="40" nowrap="nowrap"><a href="{U_LIST_MEMBERS}o={O_LEVEL}{URI_ADDON}">{L_LEVEL}</a></th>
+  	<th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+  	<th align="left" width="35" nowrap="nowrap">&nbsp;</th>
+  </tr>
+  <!-- BEGIN delete_row -->
+  <tr class="{delete_row.ROW_CLASS}">
+    <td width="35" nowrap="nowrap" align="right">{delete_row.COUNT}</td>
+    <td width="100%" nowrap="nowrap"><span class="classes{delete_row.CLASSID}">{delete_row.CLASS_ICON}{delete_row.RACE_ICON} {delete_row.NAME}</span></td>
+    <td width="40" nowrap="nowrap">{delete_row.LEVEL}</td>
+    <td align="left" width="35" nowrap="nowrap"><img src="../images/delete.png" style="cursor:pointer;" title="{L_DELETE_CHARS}" alt="{L_DELETE_CHARS}" onclick="javascript:DeleteChar({delete_row.ID})"/></td>
+    <td align="left" width="35" nowrap="nowrap"><img src="../images/rewoke.png" style="cursor:pointer;" title="{L_REWOKE_CHARS}" alt="{L_REWOKE_CHARS}" onclick="javascript:RewokeChar({delete_row.ID})"/></td>
+  </tr>
+  <!-- END delete_row -->
+  <tr>
+    <th colspan="6" class="footer">{FC_DELETE}</th>
+  </tr>
+</table>

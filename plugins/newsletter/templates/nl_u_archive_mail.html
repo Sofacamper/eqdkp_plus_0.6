@@ -1,0 +1,48 @@
+<table width="100%" border="0" cellpadding="3" cellspacing="1" >
+  <tr>
+    <th colspan="2" align="left" nowrap="nowrap"><a href="archive.php{SID}">{L_ARCHIVE}</a><!-- IF not S_ERROR --> &raquo; <a href="archive.php{SID}&lid={NL_LETTER_ID}">{NL_LETTER_NAME}</a><!-- ENDIF -->:</th>
+  </tr>
+    <!-- IF S_ERROR -->
+    <tr>
+    <td colspan="2" align="left" class="row1">{ERROR}</td>
+  </tr>
+      <tr>
+    <th colspan="2" align="left"></th>
+  </tr>
+  <!-- ELSE -->
+  
+  
+  <tr class="row1">
+    <td align="left" width="100"><strong>{L_DATE}:</strong></td>
+    <td align="left" width="100%">{NL_DATE}</td>
+  </tr>
+
+  <tr class="row2">
+    <td nowrap="nowrap"><strong>{L_SUBJECT}:</strong></td>
+    <td nowrap="nowrap">{NL_SUBJECT}</td>
+  </tr>
+  <tr class="row1">
+    <td nowrap="nowrap"><strong>{L_MESSAGE}:</strong></td>
+    <td nowrap="nowrap">{NL_BODY}</td>
+  </tr>
+
+  <tr>
+    <th colspan="3"><a href="archive.php{SID}&lid={NL_LETTER_ID}">&laquo; {L_BACK_TO_LETTER}</a></th>
+  </tr>
+  <!-- ENDIF -->
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function aboutDialog(){
+{NL_JS_ABOUT}
+}
+</script>
+<br/>
+<center>  
+  <span class="copyis">    
+    <a onclick="javascript:aboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">      
+      <img src="{EQDKP_ROOT_PATH}plugins/newsletter/images/credits/info.png" alt="{L_CREDITS}" border="0" /> {NL_CREDITS}</a>  
+  </span><br />  
+  <span class="copy">{NL_COPYRIGHT}   
+  </span>
+</center>

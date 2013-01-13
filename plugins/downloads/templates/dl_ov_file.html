@@ -1,0 +1,216 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="4">		  
+      <table width="100%" class="borderless" border="0" cellspacing="0">
+        <tr>
+          <td style="text-align: left;">      
+           <b><a href="downloads.php{SID}">{DL_HEADLINE}</a> <!-- IF DL_S_DOWNLOAD_NOT_EXISTING --><!-- ELSE --><!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->&raquo; <a href="downloads.php{SID}&cat={DL_CAT_ID}">{DL_CAT_NAME}</a> <!-- ENDIF -->&raquo; {DL_DOWNLOAD_NAME}<!-- ENDIF --></b></td>
+          <td style="text-align: right;"><form action="search.php{SID}" method="post" name="dl_search">
+            <input type="text" class="input" value="{DL_L_SEARCH_INPUTVALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{DL_L_SEARCH_INPUTVALUE}';};" />
+            <img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+          </form>
+		</td>
+          <td width="1%" style="text-align: left;"><!-- IF DL_IS_ADMIN -->{ADMIN_MENU}<!-- ELSE --><!-- IF DL_IS_ADMIN_UPLOAD --> | <a href="javascript:uploadDialog()"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/new.png">{DL_UPLOAD_HEADLINE}</a><!-- ENDIF --><!-- ENDIF --></td>	
+        </tr>
+      </table>    
+    </th>	
+  </tr>
+      
+  <tr class="">			
+    <td colspan="1" >
+    <div align="center" style="font-weight:bold;">{DL_OV_ERROR}</div>
+    <!-- IF DL_IS_ADMIN_LINK -->
+    <!-- IF DL_S_REPORTED -->
+    <table class="errortable" border="0" cellpadding="2" cellspacing="0" width="100%">
+          								<tbody><tr>
+          								 
+          								  <td class="row1">{DL_L_REPORTED}</td>
+                                          </tr>
+                                          
+                                          <!-- BEGIN reported_list -->
+                                          <tr><td class="row1">{reported_list.MIRROR}</td></tr>
+                                          <!-- END reported_list-->
+                                          
+          								
+                        </tbody></table>
+    <!-- ENDIF -->
+    <!-- ENDIF -->
+    
+      <!-- IF not DL_S_DOWNLOAD_NOT_EXISTING -->
+      
+      <table width="100%" border="0" cellspacing="1" cellpadding="2">
+
+<tr>
+  <td valign="top"><table width="98%" border="0" align="center" cellpadding="2" cellspacing="1">
+    <tr class="row2">
+      <th colspan="2">{DL_FILE_HEADLINE}:</th>
+      </tr>
+    <tr class="row2">
+      <td width="230"><strong>{DL_L_NAME}:</strong></td>
+      <td width="868">{DL_DOWNLOAD_NAME}</td>
+      </tr>
+    <tr class="row1">
+      <td><strong>{DL_L_DESC}:</strong></td>
+      <td>{DL_DOWNLOAD_DESC}</td>
+      </tr>
+    <!-- IF DL_S_LOCALFILE -->
+    <tr class="row2">
+      <td><strong>{DL_L_FILENAME}:</strong></td>
+      <td>{DL_DOWNLOAD_FILENAME}</td>
+      </tr>
+    <tr class="row1">
+      <td><strong>{DL_L_MD5}:</strong></td>
+      <td>{DL_DOWNLOAD_MD5}</td>
+      </tr>
+    <!-- ENDIF -->
+    <tr class="row2">
+      <td><strong>{DL_L_FILESIZE}:</strong></td>
+      <td>{DL_DOWNLOAD_SIZE}</td>
+      </tr>
+    <tr class="row1">
+      <td><strong>{DL_L_RATING_OV}:</strong></td>
+      <td>{DL_STAR_RATING}  <br />
+      ({DL_DOWNLOAD_RATING_OV}/10 | {DL_DOWNLOAD_VOTES} {DL_L_VOTES}) 
+      
+      <!-- IF DL_IS_ADMIN_LINK -->
+      (<a href="downloads.php{SID}&file={DL_DOWNLOAD_ID}&mode=del_votes">{DL_L_DELETE_VOTES}</a>)<!-- ENDIF --></td>
+      </tr>
+    <tr class="row2">
+      <td><strong>{DL_L_UPLOADER}:</strong></td>
+      <td>{DL_DOWNLOAD_UPLOADER}</td>
+    </tr>
+    <tr class="row1">
+      <td><strong>{DL_L_UPLOAD_DATE}:</strong></td>
+      <td>{DL_DOWNLOAD_UPLOAD_DATE}</td>
+      </tr>
+    <tr class="row2">
+      <td><strong>{DL_L_VIEWS}:</strong></td>
+      <td>{DL_DOWNLOAD_VIEWS}x</td>
+      </tr>
+    <tr class="row1">
+      <td><strong>{DL_L_TRAFFIC}:</strong></td>
+      <td><!-- IF DL_S_LOCALFILE -->{DL_DOWNLOAD_TRAFFIC}<!-- ENDIF --></td>
+      </tr>
+    <tr>
+      <td colspan="2" class="row2">
+        {DL_JS_TAB}
+        <div id='download_tabs'>
+          <ul>
+            <li><a href='#download'><span><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/download.png"><strong>{DL_L_DOWNLOAD}</strong></span></a></li>
+            <!-- IF DL_S_MIRRORS --><li><a href='#mirrors'><span><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/download.png">{DL_L_MIRRORS}</span></a></li><!-- ENDIF -->
+            <!-- IF S_LOGGED_IN -->
+            <li><a href="#report" onClick="reportDialog('0');"><span><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/error.png">{DL_L_REPORT_DEAD_LINK}</span></a></li>
+            <!-- ENDIF -->
+            
+            </ul>
+          <div id="download">
+          <div class="ui-widget ui-widget-header ui-corner-all ui-state-focus" onmouseover="this.className='ui-widget ui-widget-header ui-corner-all ui-state-default';" onmouseout="this.className='ui-widget ui-widget-header ui-corner-all ui-state-focus';" onClick="window.location.href='download.php{SID}&id={DL_DOWNLOAD_ID}'" style="cursor:pointer;">
+            <h3><a href="download.php{SID}&id={DL_DOWNLOAD_ID}"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/download_big.png" border="0">
+              {DL_L_DOWNLOAD_IT}</a> <!-- IF DL_IS_ADMIN_LINK -->{DL_MAIN_REPORTED_IMAGE}<!-- ENDIF --></h3>
+          </div>
+            </div>
+          <!-- IF DL_S_MIRRORS -->
+          <div id="mirrors">
+          
+         
+          <table cellpadding="3" cellspacing="0" width="100%">
+          <!-- BEGIN mirror_list -->
+          <tr class="{mirror_list.ROW_CLASS}">
+           
+           <td width="5">&bull;</td>
+           <td><!-- IF DL_IS_ADMIN_LINK -->{mirror_list.MIRROR_REPORTED}<!-- ENDIF -->{mirror_list.MIRROR}</td>
+           <!-- IF S_LOGGED_IN --> 
+           <td><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/error.png" onClick="reportDialog({mirror_list.MIRROR_ID});" style="cursor:pointer;" title="{DL_L_REPORT_DEAD_LINK}"></td>
+           <!-- ENDIF -->
+           
+          </tr>
+          <!-- END mirror_list -->
+          </table>
+          
+
+            </div>
+            <!-- ENDIF -->
+
+</div>
+</td>
+              </tr>
+
+          
+   
+  </table></td>
+  <!-- IF DL_S_PREVIEWIMAGE -->
+  <td valign="top"><table width="100%" border="0" cellspacing="1" cellpadding="2">
+    <tr>
+      <th>{DL_PREVIEW}:</th>
+    </tr>
+    <tr class="row2">
+      <td valign="middle" align="center">{DL_PREVIEW_IMAGE}</td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+    </tr>
+
+  </table></td>
+<!-- ENDIF -->  
+  </tr>
+</table>
+      <!-- IF DL_S_RELATED_DOWNLOADS -->
+      <script type="text/javascript">animatedcollapse.addDiv('dl_related_links', 'persist=0,hide=0'); animatedcollapse.init();</script>
+
+      <table width="99%" border="0" align="center" cellpadding="2" cellspacing="1">
+        <tr>
+          <th align="center" nowrap="nowrap"><strong><a href="javascript:animatedcollapse.toggle('dl_related_links')"><img src="{EQDKP_ROOT_PATH}plugins/downloads/images/toggle.png" name="imgdl_mirror_table" border="0" id="imgdl_mirror_table2"><strong>{DL_RELATED_DLS_HEADLINE} </strong></a></strong></th>
+        </tr> 
+      </table>
+      <div id="dl_related_links">
+      <table width="99%" border="0" align="center" cellpadding="2" cellspacing="1">
+        <tr>
+          <th align="center" width="20" nowrap="nowrap">{DL_TYPE_HEADLINE}</th>
+          <th width="20" align="left" nowrap="nowrap">{DL_NAME_HEADLINE}</th>
+          <th align="left" nowrap="nowrap">{DL_DESC_HEADLINE}</th>
+          <th align="left" width="80">{DL_SIZE_HEADLINE}</th>
+          <th align="left" width="80">{DL_VIEWS_HEADLINE}</th>
+          <th align="left" >{DL_RATING_HEADLINE}</th>
+          <th align="left" >&nbsp;</th>
+        </tr>
+        <!-- BEGIN related_list -->
+        <tr class="{related_list.DL_ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{related_list.DL_ROW_CLASS}';">
+          <td width="20" nowrap="nowrap" align="center">{related_list.DL_LINK_EXT_IMAGE}</td>
+          <td nowrap="nowrap"><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&file={related_list.DL_LINK_ID}">{related_list.DL_LINK_NAME}<!-- IF DL_IS_ADMIN_LINK -->{related_list.DL_LINK_REPORTED}<!-- ENDIF --></a></td>
+          <td>{related_list.DL_LINK_DESC}</td>
+          <td width="80" nowrap="nowrap">{related_list.DL_LINK_SIZE}</td>
+          <td width="80" nowrap="nowrap">{related_list.DL_LINK_VIEWS}</td>
+          <td width="80" nowrap="nowrap"><img src="images/rating_{related_list.DL_LINK_RATING}.png" alt="{related_list.DL_LINK_RATING}" border="0" /></td>
+          <td width="22" nowrap="nowrap" align="center"><a href="{EQDKP_ROOT_PATH}plugins/downloads/download.php{SID}&id={related_list.DL_LINK_ID}" target="_blank" title="{related_list.DL_TITLE_DOWNLOAD_IT}"><img src="images/download.png" border="0" /></a></td>
+        </tr>
+        <!-- END related_list -->
+        <tr>
+          <th colspan="7" class="footer">{DL_RELATED_DLS_FOOTCOUNT}</th>
+        </tr>
+      </table>
+      </div>
+
+    <!-- ENDIF -->
+    <br>{COMMENTS}
+    <!-- ENDIF --></td>			
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function uploadDialog(){
+	{DL_JS_UPLOAD}
+}
+
+function editDialog(){
+	{DL_JS_EDIT}
+}
+
+function reportDialog(mirror){
+	{DL_JS_REPORT}
+}
+
+</script>
+
+{DL_FOOTER}

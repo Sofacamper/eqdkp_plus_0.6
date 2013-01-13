@@ -1,0 +1,61 @@
+{EDITOR_INIT}
+<!-- Thats the data table ;) we don't change anything here :P -->
+<form method="post" action="{F_ACTION}" name="post">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<input name="changed" value="" type="hidden" /> 
+	  <tr><th colspan="4" align=center>{L_INFO_PAGEOPT}</th></tr>
+      <tr>
+		<td class="row1">{L_INFO_PAGELIST}</td>
+		<td class="row1">
+			<select name="pagelist" class="input" {DISABLE_BUTTON} onchange="javascript:this.form.changed.value='PAGE'; form.submit();">
+        			<!-- BEGIN pages_row -->
+        			<option value="{pages_row.VALUE}"{pages_row.SELECTED}>{pages_row.OPTION}</option>
+        			<!-- END pages_row -->
+      		</select>
+		</td>
+		<td class="row2">{L_INFO_PAGE_TITLE}</td>
+		<td class="row2"><input type="text" name="title" size="32" value="{INFO_PAGE_TITLE}" class="input" /></td>	
+	</tr>
+	<tr>
+		<td class="row1">{L_INFO_PAGE_ISE}</td>
+		<td class="row1"><input type="checkbox" name="ise" value="1" {INFO_PAGE_ISE} /></td>
+		<td class="row2">{L_INFO_PAGE_ML}</td>
+		<td class="row2">
+			<select name="ml" class="input">
+        			<!-- BEGIN ml_row -->
+        			<option value="{ml_row.VALUE}"{ml_row.SELECTED}>{ml_row.OPTION}</option>
+        			<!-- END ml_row -->
+      		</select>
+		</td>	
+	</tr>
+	<tr>
+		<td class="row1">{L_INFO_PAGE_VIS}</td>
+		<td class="row1">
+			<select name="vis" class="input">
+        			<!-- BEGIN vis_row -->
+        			<option value="{vis_row.VALUE}"{vis_row.SELECTED}>{vis_row.OPTION}</option>
+        			<!-- END vis_row -->
+      		</select>
+		</td>	
+    <td class="row2">&nbsp;</td>
+		<td class="row2">&nbsp;</td>
+		
+	</tr>
+	
+	<tr>
+		<th colspan="4" align="center">{L_INFO_PAGE_CONTENT}</th>
+	</tr>
+	<tr>
+		<td colspan="4"  align="center" class="row1"><textarea class="mceEditor" cols="{INFO_TEXT_COLS}" rows="{INFO_TEXT_ROWS}" name="page_content">{INFO_PAGE_CONTENT}</textarea></td>
+  	</tr>
+	<tr><th class="footer" colspan="4">{EDITED}</th></tr>
+  	<tr>
+		<td align="center"><input type="submit" name="infoaddbu" value="Add" class="mainoption" /></td>
+		<td align="center"><input type="submit" name="infoupdatebu" value="Update" class="mainoption" {DISABLE_BUTTON}/></td>
+		<td align="center">&nbsp;</td>
+		<td align="center"><input type="submit" name="infodelbu" value="Delete" class="mainoption" {DISABLE_BUTTON}/></td>
+	</tr>
+</table>
+</form>
+<!-- That's the End of the Data Table ;) -->
+<br /><center><span class="copy">{CREDITS}</span></center>

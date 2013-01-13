@@ -1,0 +1,298 @@
+ /*
+ * Project:     EQdkp RaidPlanner
+ * License:     Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Began:       2005
+ * Date:        $Date: 2012-09-30 22:37:02 +0200 (Sun, 30 Sep 2012) $
+ * -----------------------------------------------------------------------
+ * @author      $Author: wallenium $
+ * @copyright   2005-2008 Simon (Wallenium) Wallmann
+ * @link        http://eqdkp-plus.com
+ * @package     raidplan
+ * @version     $Rev: 12160 $
+ * 
+ * $Id: changelog.txt 12160 2012-09-30 20:37:02Z wallenium $
+ */
+
+Changelog
+--------------------------------------------------------------------------------------------------
+4.1.10 [30/09/2012][WalleniuM]
+Fixed - removed resitistances from char tooltip
+Fixed - added monk to role init
+
+4.1.9 [25/06/2012][WalleniuM]
+Fixed - Class icons not shown in member overview
+Fixed - Race icons not shown in member overview
+Fixed - Role icons not shown in raid creation dialog
+
+4.1.8 [17/01/2012][WalleniuM]
+Fixed - issue introduced in 4.1.7
+
+4.1.7 [12/01/2012][WalleniuM]
+Fixed - Issues with class icons on role distribution and class distribution
+Fixed - Issues with role icons on role distribution
+Fixed - Minor issues with event icons not showing for every game
+
+4.1.6 [10/07/2011][WalleniuM]
+Fixed - issue introduced in 4.1.5
+
+4.1.5 [10/05/2011][WalleniuM]
+Fixed - Use class Icons of EQDKP+ instead of own if available
+
+4.1.4 [12/14/2010][WalleniuM]
+Fixed - [#1758] [RSS] Fixed GUID
+Fixed - [#1759] [Listraids] Raidleader not shown in Tooltip
+Implemented - [#1754] enable rss automatically if cache writeable
+Implemented - [#1755] [RSS] more details for iphone app/vista gadget
+Implemented - [#1756] Update spanish Language files
+Implemented - [#1757] Add bad cataclysm support
+
+4.1.3 [11/1/2009][WalleniuM]
+- Implemented - [#1195] Use libraries instead of wpfc to reduce file space 
+- Fixed - [#1615] phpRaidViewer lua Output not working
+- Implemented - [#1616] AION Support
+- Implemented - [#1623] Add french language files
+
+
+4.1.2 REPACKAGED [11/1/2009][WalleniuM]
+  - added lotro moria class changes
+  - fixed bug with death knights and english language
+  - fix on year change & double months
+  - small timezone fix
+  - fixed lua export for phpraidviewer
+
+4.1.2 [04/11/2008][WalleniuM]
+  Fixed - [#1212] Wrong Date in RSS Feed
+
+4.1.1 [27/10/2008][WalleniuM]
+  Fixed - [#1147] Checkboxes in Usersettings not working
+  Fixed - [#1148] Usersettings disabled by the admin used in the frontend
+  Fixed - [#1149] Time offset when summertime ends and DST enabled
+  Fixed - [#1173] Link style in Raid view not visible in some templates
+  Fixed - [#1174] SMTP Password shown as plain text
+  Fixed - [#1189] Not all members visible in role distributed raids
+  Implemented - [#1146] Rework Tooltip Style
+
+4.1.0 [23/09/2008][WalleniuM]
+  Fixed - [#964] [Portal] Required attendees count wrong if more than total
+  Fixed - [#1036] Classcolors not selectable if spaces in Classname
+  Fixed - [#1039] Confirmed members flagged as signed in after editing note
+  Fixed - [#1049] [EXPORT MODULE] Lua export not working for non english classnames
+  Fixed - [#1050] [EXPORT MODULE] The comments are not showing in lua export
+  Fixed - [#1104] Style Fixes
+  Fixed - [#1111] Error and raids not longer deletable if raid duration time is set to Float
+  Fixed - [#1112] Auto add by Rank do not work in class distributed raids
+  Fixed - [#1115] Class distribution not working on raid edit
+  Implemented - [#976] Clickable Links in E-Mails
+  Implemented - [#977] Twink menu to change Roles of signed in member
+  Implemented - [#978] Add Raid Button in RaidList
+  Implemented - [#1007] activate Portal Modul on install
+  Implemented - [#1012] Show two Calendar Months on one page
+  Implemented - [#1041] [Portal] Guests not added to confirmed attendees
+  Implemented - [#1043] LogManager to log user actions
+  Implemented - [#1044] Send Email on member confirmation
+  Implemented - [#1046] Select autoadd Rank on raid creation
+  Implemented - [#1058] RSS Feed of planned raids
+  Implemented - [#1087] Dynamic Role Management
+  Implemented - [#1088] Rework User settings
+  Implemented - [#1102] Add DeathKnight for WotlK
+  Implemented - [#1103] Use Comment System of eqdkpPLUS
+  Implemented - [#1116] Hide header in viewraid for external applications
+  Implemented - [#1133] Better Raid Transform Options
+
+4.0.0 [06/06/2008][WalleniuM]
+  Fixed - [#721] Groups showing in macro export when disabled in settings
+  Fixed - [#723] Classnames with spaces not saved in Database
+  Fixed - [#727] Select Sunday as startday does not work in calendar view
+  Fixed - [#729] Wrong day (day +1) in calendar view in some timezones
+  Fixed - [#736] Member names in Class colors
+  Fixed - [#748] Raid one day off in negative timezones
+  Fixed - [#750] Time offset if Server Timezon != User timezone
+  Fixed - [#753] Raid date out of templates not working when adding a raid in calendar mode
+  Fixed - [#769] If Member is signed in, status changes are possible after subscription time expired
+  Fixed - [#869] Members can &quot;MultiJoin&quot; closed raids
+  Fixed - [#968] Members can &quot;MultiJoin&quot; after deadline
+  Fixed - [#984] Rework csv output for autoinvite2
+  Fixed - [#987] SQL Errors with strict sql configs
+  Implemented - [#747] Possibility for automatically adding members on raid creation (mabye per rank)
+  Implemented - [#722] Remove LUA Export
+  Implemented - [#724] Possibility to use Role Distribution
+  Implemented - [#738] Possibility to unsign for multiple raids
+  Implemented - [#739] Add a note to multi-signup/unsign
+  Implemented - [#743] Add Class to Member TT if role distri
+  Implemented - [#744] Possibility to hide notes for guests
+  Implemented - [#751] Add class icons &amp; role distribution for vanguard
+  Implemented - [#756] Convert planned raid to dkp raid
+  Implemented - [#764] strike through canceled raids in raid list
+  Implemented - [#771] Speed improvements in listraids.php
+  Implemented - [#772] Possibility to hide the version in the page footer
+  Implemented - [#773] Possibility to remove unsign of members for admin
+  Implemented - [#814] Last Raid in Member Tooltip
+  Implemented - [#820] Rewrite statistic page for faster loading times and less db queries
+  Implemented - [#821] rework Raid calendar
+  Implemented - [#830] Comments in raid view
+  Implemented - [#870] Simple Export Plugin API
+  Implemented - [#871] Twink Quickchange Menu
+  Implemented - [#981] Save classnames in english, translate to user language
+  Implemented - [#982] Add lua Export Plugin (User Submission)
+  Implemented - [#983] Role Distribution
+  Implemented - [#985] update everquest2 classnames
+  Implemented - [#986] Convert JS Lib from Prototype to jQuery
+  Implemented - [#988] Add Age of Conan Game support
+  Implemented - [#989] Class Colors changable in Settings
+
+
+3.1.0 [12/16/2007][WalleniuM]
+	Fixed - [#658] Time difference (1h) on end of summertime
+	Fixed - [#660] Update problems
+	Fixed - [#672] Without Charmanager: No Char-Lvl in Tooltip
+	Fixed - [#683] Wrong date when Adding Raid in Frontend &amp; using raidtemplate
+	Fixed - [#690] Wrong Path for LUA Export
+	Fixed - [#692] Missing signup time if charmanager not installed
+	Fixed - [#708] SQL Error in plugin manager if uninstalled
+	Fixed - [#709] Wrong attendee count in listraids.php if deleting member
+	Implemented - [#659] User can disable Raid email notifications
+	Implemented - [#661] Endtime in listraids
+	Implemented - [#663] Possibility to send notification emails to active members only
+	Implemented - [#665] recent raid in admin raid list
+	Implemented - [#675] Database Cleanup (remove old Raids)
+	Implemented - [#676] Use $db-&gt;free_result() to free memory on SQL Statements
+	Implemented - [#685] One Click sign in
+	Implemented - [#694] Reset all Usersettings with one click
+	Implemented - [#695] CSS based JS Calendar Template
+	Implemented - [#700] Sign Up for multiple Raids (on selection)
+	Implemented - [#705] Legend of icons in Tooltip
+	Implemented - [#706] Possibility to hide recent raids
+	Implemented - [#710] Possibility to save member (character) as default
+
+3.0.5 [12/05/2007][WalleniuM]
+  renamed to 3.1.0
+
+3.0.4 [09/30/2007][WalleniuM]
+	Fixed - [#630] Add Direct-Access-Block to all files in include directory
+	Fixed - [#632] Remove unused debug msg in admin/index.php
+	Fixed - [#634] Weekdays and Monthnames not german in PHP 5.2.2
+	Fixed - [#635] Raidattendee count wrong when member deleted
+	Fixed - [#637] 12hour format only selectable for languages which have 12 hour formats
+	Fixed - [#640] Link to User settings not showing
+	Fixed - [#642] User can exploit the confirm all if link is known
+	Fixed - [#646] Instance Pictures with slash do not work
+	Fixed - [#650] Attendees Count not loaded if classsetup is disabled
+	Fixed - [#651] No Attendee Count on raidview id classsetup is disabled
+	Fixed - [#652] Class Count = 0, if class setup is disabled
+	Fixed - [#653] Timezone GMT do not add DST Value if enabled
+	Implemented - [#616] Repeatable Raids are not editable
+	Implemented - [#622] Macro Export: Guest not listed
+	Implemented - [#627] Possibility to disable Member Notes
+	Implemented - [#629] Cleanup common.php, remove unused code
+	Implemented - [#631] Autodetect TimeZone on Update/installation
+	Implemented - [#633] Add Autodetect Button to TimeZone Select List
+	Implemented - [#638] big red warning if charmanager/raidplan tableupdate missing
+	Implemented - [#639] Option to disable auto-confirm of ClassLeaders
+	Implemented - [#641] Possibility to close raids
+	Implemented - [#645] Date Format selectable by user/Admin
+	Implemented - [#649] 'Reset to default' button in usersettings
+
+3.0.3 [09/19/2007][WalleniuM]
+	Fixed - [#623] png images not working in IE6
+	Fixed - [#624] Wrong times in viewraid
+	Fixed - [#626] Listmembers error: $this-&gt;time....
+	Implemented - [#625] remove unused stuff in viewmember.php
+
+3.0.2 [09/16/2007][WalleniuM]
+	Fixed - [#608] SQL Error in Permission Check
+	Fixed - [#611] Save of Usersettings not possible
+	Fixed - [#615] LUA Export broken
+	Fixed - [#617] Wrong time output in RaidCalendar
+	Implemented - [#609] Javascript *.png Fix for IE5.5 till IE 7
+	Implemented - [#610] Add TimeZone Dropdown, Daylight saving Time
+	Implemented - [#612] Timezone selectable by User if enabled
+	Implemented - [#613] Move time Variables to an own class
+	Implemented - [#614] Admin &amp; Usersetting to switch 12h/24h Time output
+	Implemented - [#618] Add Icon if raid is Repeatable in Admin-Raidlist
+
+3.0.1 [08/30/2007][WalleniuM]
+	Fixed - [#599] Wildcard expire with setting set to off
+	Fixed - [#600] SignIn Row at the end of page when hiding notsignedin row
+	Fixed - [#601] Removed LUA Specialchar convertion in Macro Export
+	Fixed - [#603] Remove Member count in not signed in row
+	Fixed - [#604] Empty Raidnotes in raidview not possible
+	Fixed - [#605] Disable raidlist of eqdkp disables RP, too (permission)
+
+3.0.0 [08/20/2007][WalleniuM]
+	Fixed - [#463] Setting to enable GroupLeader Permissions
+	Fixed - [#464] Charmanager Add Character doesn&#039;t work
+	Fixed - [#492] No selected Event -&gt; Reset of input
+	Fixed - [#493] First weekday in JS calendar is not changable to monday
+	Fixed - [#494] Language correction by anative english speaker
+	Fixed - [#496] Listraids, Calendarmode: No Tooltips on events with Semicolon
+	Fixed - [#518] No Members in List when using event with semicolon
+	Fixed - [#585] Collation Bug in viewraid
+	Implemented - [#243] Add Wildcards to Members
+	Implemented - [#244] Wildcard Manager in Admin Panel
+	Implemented - [#245] Wildcards per event
+	Implemented - [#252] Dualraid, Groups for one Raid
+	Implemented - [#256] Linebreak for more than 10 classes (p.e. Everquest)
+	Implemented - [#314] Statisics for Raidplan
+	Implemented - [#429] As Admin/GL: Unsign members
+	Implemented - [#397] Manual addition of external members (Guests)
+	Implemented - [#410] Send mail to all unsigned members
+	Implemented - [#411] Option to hide members of hidden groups in the viewraid
+	Implemented - [#413] Add Level cap to not signed in members in config
+	Implemented - [#466] Automatic Permission Setup for installing Person
+	Implemented - [#467] CVS Output for AutoInvite2
+	Implemented - [#472] Calendar View: Possibility to hide Eventname
+	Implemented - [#473] More information in Settings: Help Tooltips
+	Implemented - [#478] Charmanager Tooltip on unsigned Members
+	Implemented - [#490] Persistent Groups
+	Implemented - [#495] pwc alert class instead of javascript alert()
+	Implemented - [#497] Possibility to disable the unsigned Members row
+	Implemented - [#498] Possibility to collapse/decolapse status rows by default
+	Implemented - [#499] cronjob for expiring wildcards after x hours
+	Implemented - [#500] Add Level to Member Tooltip in Raidview
+	Implemented - [#501] Possibility to Show Random Value in a Tooltip
+	Implemented - [#502] Rise the number of groups to 9
+	Implemented - [#505] As Admin: Add raid from Frontend
+	Implemented - [#506] Change Note field to multilines textbox
+	Implemented - [#507] Admin can Change Member Notes
+	Implemented - [#508] Change Confirmation texts of Users
+	Implemented - [#519] Admin can addMember Notes
+	Implemented - [#513] Display talents in player popup
+	Implemented - [#515] Add &#039;Changed by&#039; to raid view
+	Implemented - [#528] Group Filter on raidview page
+	Implemented - [#533] Raidlist: Usersetting for choosing calendar or classic mode
+	Implemented - [#534] Hide inactive Members in not signed in Members list
+	Implemented - [#543] Rework the Export functions
+
+2.1.0 [05/25/2007][WalleniuM]
+	Not a bug - [#379] [2.0.5] Sign up does not work
+	Works for me - [#220] Amount of Signedin/Signedout for Classes
+	Works for me - [#221] Missing Color for Classes
+	Duplicate - [#224] Raid Calendar System
+	Fixed - [#233] change class-listing on existing raid
+	Fixed - [#235] 'no Email'; warning if an user have no email.
+	Implemented - [#222] Repeatable Raids
+	Implemented - [#229] Add a database field for update time
+	Implemented - [#230] Show/log admin changes
+	Implemented - [#236] Calendar Mode of Raid List
+	Implemented - [#239] New Field: Raidleader
+	Implemented - [#240] Groupleader /officers may confirm characters in Frontend
+	Implemented - [#246] Confirm Members in Frontend, not only in Backend
+	Implemented - [#248] Raidplan Calendar with Drop Down for Hours:Minutes
+	Implemented - [#250] Autoconfirm members in special group
+	Implemented - [#255] Implement Overlib fallback if no itemstats is installed
+	Implemented - [#257] Config System
+	Implemented - [#282] Admin &quot;blog&quot; for raids
+	Implemented - [#283] sign off without signing in, first
+	Implemented - [#293] Link to Charmamager (if installed) when no selected characters
+	Implemented - [#295] Event Icons / Instance Icons
+	Implemented - [#296] Change time without JS Calendar
+	Implemented - [#298] Admin should be able to sign users in.
+	Implemented - [#323] Automatic correction of missing Configuration settings
+	Implemented - [#324] Update Check/ notice on new updates
+	Implemented - [#326] Update-Tool for easier updates
+	Implemented - [#327] Add About Dialog, rewrite copyright line
+	Implemented - [#328] New Field: Additional Information
+	Implemented - [#377] Integrate Charmanager in tooltip in Viewraid.
+	and much, much more.

@@ -1,0 +1,196 @@
+<script language="JavaScript" type="text/javascript">
+function AboutDialog() {
+  {JS_ABOUT}
+}
+
+{JS_SAVE_MSG}
+{JS_MEMCODE}
+{JS_CONFIRM_DEL}
+
+function changeVal(uebergabe, role){
+ // uebergabe ist gleich der wert, der aus selectbox 1 übergeben wird
+ myOptions = document.getElementById("rp_role");
+ laenge = myOptions.length;
+
+ // trash the values of the second box before filling
+ for(z=laenge; z>=0; z--){
+  myOptions.options[z] = null;
+ }
+
+ // refill the 2 select boxes
+ for(i in values[uebergabe]){
+  if(values[uebergabe][i] != ""){
+    var selectme = (values[uebergabe][i][0] == role) ? true : false;
+    addOption = new Option(values[uebergabe][i][1],values[uebergabe][i][0], false,selectme);
+    optionNr = parseInt(i);
+    myOptions[optionNr] = addOption;
+  }
+ }
+}
+
+function DetectTimezone(selvalue){
+    for(var i = 0; i < document.getElementById('rp_timezone').length; i++){
+    if(document.getElementById('rp_timezone').options[i].value==selvalue){
+      document.getElementById('rp_timezone').options[i].selected=true;
+      break;
+    }
+  }
+}
+</script>
+
+<form method="post" action="{F_CHARSETTINGS}" name="post">
+<input type="hidden" name="rreset" id="rreset"  value="" />
+<input type="hidden" name="fpopup" value="{FPOPUP}" />
+<table border="0" width="100%" cellspacing="1" cellpadding="2">
+	<tr>
+	  	<th align="left">
+			<span id="config1-title" class="iconspan"><img src="images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0" height="9" width="9"></span> {L_DEF_CHARACTER}
+		</th>
+	</tr>
+		<tr>
+			<td>
+				<div id="config1" class="icongroup1">
+				<table class="borderless" align="center" border="0" cellspacing="1" cellpadding="2" width="100%"> 
+					<tr>
+					<!-- IF S_NO_CHARS -->
+			      <td class="row1" width ="48px"><img src="images/global/false.png" /></td>
+            <td class="row1">{NO_USER_ASSIGNED}</td>
+					<!-- ELSE -->
+				<td width="40%" class="row2">{L_MEMBERS}</td>
+				<td width="60%" class="row1">{DRDWN_MEMBERS}</td>
+			</tr>
+			<tr>
+				<td width="40%" class="row2">{L_ROLE}</td>
+				<td width="60%" class="row1">{DRDWN_ROLE}</td>
+			</tr>
+				<tr>
+				<th colspan=2>
+					<input type="submit" name="issavebu" value="{L_SUBMIT}" class="mainoption" />
+				</th>
+				<!-- ENDIF -->
+			</tr>
+			</table></div>
+			</td></tr>
+</table>
+</form>
+<br/>
+
+<!-- IF SHOW_ALL -->
+<form method="post" action="{F_USERSETTINGS}" name="post2">
+<input type="hidden" name="rreset" id="rreset"  value="" />
+<table border="0" width="100%" cellspacing="1" cellpadding="2">
+	<!-- IF SHOW_LAYOUTSETTINGS -->
+  <tr>
+	  	<th align="left">
+			<span id="config2-title" class="iconspan"><img src="images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0" height="9" width="9"></span> {L_H_LAYOUT}
+		</th>
+	</tr>
+		<tr>
+			<td>
+				<div id="config2" class="icongroup1">
+				<table class="borderless" align="center" border="0" cellpadding="0" cellspacing="1" width="100%"> 
+					<tr>
+				<td width="40%" class="row2">{L_RAID_LIST_MO}</td>
+				<td width="60%" class="row1">{DRDWN_MODE}</td>
+			</tr>
+			<tr>
+				<td width="40%" class="row2">{L_RAID_AB_CAL}</td>
+				<td width="60%" class="row1">{DRDWN_AB}</td>
+			</tr>
+			</table></div>
+			</td></tr>
+			<!-- ENDIF -->
+			<!-- IF SHOW_TIMESETTINGS -->
+				<tr>
+        <th align="left">
+          <span id="config3-title" class="iconspan"><img src="images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0" height="9" width="9"></span> {L_H_TIME_DATE}
+        </th>
+      </tr>
+      <tr>
+			<td>
+				<div id="config3" class="icongroup1">
+				<table class="borderless" align="center" border="0" cellpadding="0" cellspacing="1" width="100%"> 
+			<tr>
+				<td width="40%" class="row2">{L_TIMEZONE} {HELP_TIMEOFF}<br/>[{L_TZ_CHECK}]</td>
+				<td width="60%" class="row1">{DRDWN_TZONE} <input type="button" value="{L_AUTODET_BUTTN}" onClick="javascript:DetectTimezone({TZVALUE})" class="mainoption" /></td>
+			</tr>
+			<tr>
+				<td width="40%" class="row2">{L_DSTCORRECT} {HELP_DSTCHECK}</td>
+				<td width="60%" class="row1">{DSTCHECK}</td>
+			</tr>
+			</table></div>
+			</td></tr>
+			<!-- ENDIF -->
+			<!-- IF SHOW_EMAILSETTINGS -->
+			<tr>
+        <th align="left">
+          <span id="config4-title" class="iconspan"><img src="images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0" height="9" width="9"></span> {L_H_MAIL}
+        </th>
+      </tr>
+      <tr>
+			<td>
+				<div id="config4" class="icongroup1">
+				<table class="borderless" align="center" border="0" cellpadding="0" cellspacing="1" width="100%"> 
+			<tr>
+				<td width="40%" class="row2">{L_SENDEMAIL}</td>
+				<td width="60%" class="row1">{SENDEMAIL}</td>
+			</tr>
+			</table></div>
+			</td></tr>
+			<!-- ENDIF -->
+			<!-- IF SHOW_ENGLISHSETTINGS -->
+			<tr>
+        <th align="left">
+          <span id="config5-title" class="iconspan"><img src="images/minus.gif" alt="" title="{L_HEADER_HELP}" border="0" height="9" width="9"></span> {L_H_ENSETTINGS}
+        </th>
+      </tr>
+      <tr>
+			<td>
+				<div id="config5" class="icongroup1">
+				<table class="borderless" align="center" border="0" cellpadding="0" cellspacing="1" width="100%"> 
+			<tr>
+				<td width="40%" class="row2">{L_DATEFORMAT}</td>
+				<td width="60%" class="row1">{DRDWN_DFORMAT}</td>
+			</tr>
+			<tr>
+				<td width="40%" class="row2">{L_12HFORMAT}</td>
+				<td width="60%" class="row1">{12HFORMAT}</td>
+			</tr>
+			<tr>
+				<td width="40%" class="row2">{L_RAID_CAL_STTD}</td>
+				<td width="60%" class="row1">{DRDWN_SD}</td>
+			</tr>
+			</table></div>
+			</td></tr>
+			<!-- ENDIF -->
+			<tr>
+				<th colspan=2>
+					<input type="submit" name="issavebu" value="{L_SUBMIT}" class="mainoption" />
+					<input type="button" onClick='openConfirmDialog()' name="resdefault" value="{L_RESET_DEFAULT}" class="liteoption" />
+				</th>
+			</tr>
+			</table></div>
+
+</form>
+
+<script type="text/javascript">
+var csetting=new switchicon("icongroup1", "div") //Limit scanning of switch contents to just "div" elements
+csetting.setHeader('<img src="images/minus.gif" />', '<img src="images/plus.gif" />') //set icon HTML
+csetting.collapsePrevious(false) //Allow only 1 content open at any time
+csetting.setPersist(false) //No persistence enabled
+csetting.defaultExpanded(0,1) //Set 1st content to be expanded by default
+csetting.init()
+
+<!-- IF SHOW_CHARSETTINGS -->
+changeVal({JS_START_ID}, '{JS_ROLE}');
+<!-- ENDIF -->
+</script>
+<br/><center><span class="copyis"><a onclick="javascript:AboutDialog()" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';"><img src="images/credits/info.png" alt="{L_CREDITS}" border="0" /> {L_CREDITS}</a></span>
+<br /><span class="copy">{L_COPYRIGHT}</span></center>
+<!-- ELSE -->
+<!-- IF SHOW_CHARSETTINGS -->
+<script type="text/javascript">
+changeVal({JS_START_ID}, '{JS_ROLE}');
+<!-- ENDIF -->
+</script>
+<!-- ENDIF -->

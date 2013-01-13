@@ -1,0 +1,92 @@
+<!-- INCLUDE ../dl_css.html -->
+{DL_STATUS}
+<table width="100%" border="0" cellspacing="0" cellpadding="2">	
+  <tr>		
+    <th colspan="4">		  
+      <table width="100%" class="borderless" border="0" cellspacing="0">
+        <tr>
+          <td style="text-align: left; width: 33%">      
+           <b><a href="downloads.php{SID}">{DL_HEADLINE}</a> &raquo; {DL_SEARCH_HEADLINE}</b></td>{DL_UPLOAD}
+          <td style="text-align: right;"><form action="search.php{SID}" method="post" name="dl_search">
+            <input type="text" class="input" value="{DL_SEARCH_VALUE}" name="search_value" onfocus="this.value='';" onblur="if(this.value == ''){this.value='{DL_L_SEARCH_INPUTVALUE}';};" />
+           <img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/search.png" alt="Submit" onClick="document.dl_search.submit();" style="cursor:pointer;">
+          </form></td>
+          <td width="30" nowrap="nowrap" style="text-align: left;"><!-- IF DL_IS_ADMIN -->{ADMIN_MENU}<!-- ENDIF --></td>	
+        </tr>
+      </table>    
+    </th>	
+  </tr>
+<!-- IF not DL_S_NO_DOWNLOADS -->     
+  <tr class="row1">
+    <td colspan="1" align="center" ><span style="font-weight:bold;">{DL_OV_ERROR}</span></td>
+  </tr>
+  <!-- ENDIF -->
+  <tr class="">			
+    <td colspan="1" align="center">
+
+      
+<!-- IF DL_S_NO_VALUE -->
+
+<!-- ELSE -->     
+      <table width="100%" border="0" cellpadding="2" cellspacing="1">
+<!-- IF DL_S_NO_DOWNLOADS -->
+<tr class="row2">
+  <td>{DL_NO_DOWNLOADS}</td>
+ </tr>
+
+<!-- ELSE -->   
+        <tr>
+         
+          <th align="center" width="20" nowrap="nowrap"><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=1.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED10}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=1.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED11}.png" alt="up"></a>{DL_TYPE_HEADLINE}</th>
+          <th width="20" align="left" nowrap="nowrap"><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=2.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED20}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=2.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED21}.png" alt="up"></a>{DL_NAME_HEADLINE}</th>
+          <th align="left" nowrap="nowrap"><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=3.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED30}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=3.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED31}.png" alt="up"></a>{DL_DESC_HEADLINE}</th>
+ <!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->
+          <th width="80" align="left" nowrap="nowrap"><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=7.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED70}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=7.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED71}.png" alt="up"></a>{DL_CAT_HEADLINE}</th>
+ <!-- ENDIF -->         
+          <th align="left" width="80"><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=4.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED40}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=4.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED41}.png" alt="up"></a>{DL_SIZE_HEADLINE}</th>
+          <th align="left" width="80"><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=5.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED50}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=5.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED51}.png" alt="up"></a>{DL_VIEWS_HEADLINE}</th>
+          <th align="left" ><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=6.0"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/down_arrow{RED60}.png" alt="down"></a><a href="search.php{SID}&search_value={DL_SEARCH_VALUE}&o=6.1"><img src="{EQDKP_ROOT_PATH}/plugins/downloads/images/up_arrow{RED61}.png" alt="up"></a>{DL_RATING_HEADLINE}</th>
+          <th align="left" >&nbsp;</th>
+        </tr>
+     
+<!-- BEGIN link_list -->
+        <tr class="{link_list.DL_ROW_CLASS}" onmouseover="this.className='rowHover';" onmouseout="this.className='{link_list.DL_ROW_CLASS}';">
+         
+          <td width="20" nowrap="nowrap" align="center">{link_list.DL_LINK_EXT_IMAGE}</td>
+          <td nowrap="nowrap"><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&file={link_list.DL_LINK_ID}">{link_list.DL_LINK_NAME}</a></td>
+          <td>{link_list.DL_LINK_DESC}</td>
+           <!-- IF DL_S_CATEGORIES_DISABLED --><!-- ELSE -->
+          <td nowrap="nowrap"><a href="{EQDKP_ROOT_PATH}plugins/downloads/downloads.php{SID}&cat={link_list.DL_LINK_CATID}">{link_list.DL_LINK_CAT}</a></td>
+          <!-- ENDIF -->
+          <td width="80" nowrap="nowrap">{link_list.DL_LINK_SIZE}</td>
+          <td width="80" nowrap="nowrap">{link_list.DL_LINK_VIEWS}</td>
+          <td width="80" nowrap="nowrap"><img src="images/rating_{link_list.DL_LINK_RATING}.png" alt="{link_list.DL_LINK_RATING}" border="0" /></td>
+          <td width="22" nowrap="nowrap" align="center"><a href="{EQDKP_ROOT_PATH}plugins/downloads/download.php{SID}&id={link_list.DL_LINK_ID}" target="_blank" title="{link_list.DL_L_DOWNLOAD_IT}"><img src="images/download.png" border="0" /></a></td>
+        </tr>
+<!-- END link_list -->
+<!-- ENDIF -->
+        <tr>
+          <th colspan="9" class="footer">{DL_SEARCH_FOOTCOUNT}</th>
+        </tr>
+    </table>
+      <table class="borderless" width="100%" border="0" cellpadding="2" cellspacing="1">
+  <tbody><tr>
+    <td class="menu" align="center">{DL_PAGINATION}</td>
+
+  </tr>
+</tbody></table>
+
+<!-- ENDIF -->    
+</td>			
+  </tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+
+function uploadDialog(){
+	
+	{DL_JS_UPLOAD}
+
+}
+</script>
+<br />
+{DL_FOOTER}
