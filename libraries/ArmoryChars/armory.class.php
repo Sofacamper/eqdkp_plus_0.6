@@ -104,30 +104,30 @@ class PHPArmory
 		$myGuild 	= $this->ConvertInput($guild);
 		$myServer	= $this->ConvertInput($server, true);
 		$myUser		= $this->ConvertInput($username);
-		$linkprfx	= 'http://'.$loc.'.battle.net/wow/'.(($user->lang['armory_linklanguage']) ? $user->lang['armory_linklanguage'] : 'en').'/';
+		$linkprfx	= 'http://armory.wow-castle.de/';
 
 		// Generate the Output
 		switch ($mode) {
 			case 'char':
-				$url = $linkprfx.'character/'.$myServer.'/'.$myUser."/simple";
+				$url = $linkprfx.'character-sheet.xml?r=WoW-Castle+PvE&cn='.$myUser.'';
 				break;
 			case 'talent1':
-				$url = $linkprfx.'character/'.$myServer.'/'.$myUser."/talent/primary";
+				$url = $linkprfx.'character-talents.xml?r=WoW-Castle+PvE&cn='.$myUser."&group=1";
 				break;
 			case 'talent2':
-				$url = $linkprfx.'character/'.$myServer.'/'.$myUser."/talent/secondary";
+				$url = $linkprfx.'character-talents.xml?r=WoW-Castle+PvE&cn='.$myUser."&group=2";
 				break;
 			case 'statistics':
-				$url = $linkprfx.'character/'.$myServer.'/'.$myUser."/statistic";
+				$url = $linkprfx.'character-statistics.xml?r=WoW-Castle+PvE&cn='.$myUser.'';
 				break;
 			case 'reputation':
-				$url = $linkprfx.'character/'.$myServer.'/'.$myUser."/reputation/";
+				$url = $linkprfx.'character-statistics.xml?r=WoW-Castle+PvE&cn='.$myUser.'';
 				break;
 			case 'achievements':
-				$url = $linkprfx.'character/'.$myServer.'/'.$myUser."/achievement";
+				$url = $linkprfx.'character-statistics.xml?r=WoW-Castle+PvE&cn='.$myUser.'';
 				break;
 			case 'guild':
-				$url = $linkprfx."guild/".$myServer."/".$myGuild."/roster";
+				$url = $linkprfx.'guild-info.xml?r=WoW-Castle+PvE&gn='.$myGuild.'';
 				break;
 		}
 		return $url;
