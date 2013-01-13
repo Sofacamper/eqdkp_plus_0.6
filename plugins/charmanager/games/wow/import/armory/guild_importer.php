@@ -13,14 +13,13 @@
  * @package     charmanager
  * @version     $Rev: 4729 $
  * 
- * $Id: guild_importer.php 11314 2011-09-22 19:55:41Z wallenium $
+ * $Id: guild_importer.php 5938 2009-09-24 15:05:08Z wallenium $
  */
 
 	define('EQDKP_INC', true);
 	define('PLUGIN', 'charmanager');
 	$eqdkp_root_path = './../../../../../../';
-	include_once($eqdkp_root_path .'/plugins/charmanager/include/common.php');
-	$user->check_auth('a_charmanager_config');
+	include_once($eqdkp_root_path .'/plugins/charmanager/include/common.php');	
 
 	if(!$conf['uc_servername'] or !$conf['uc_server_loc']){
 		echo $user->lang['uc_imp_novariables'];
@@ -77,6 +76,8 @@
 		$output .= $user->lang['uc_guild_name'].': <input name="guildname" size="30" maxlength="50" value="" class="input" type="text"><br/>';
 		$output .= $user->lang['uc_class_filter'].': '.$khrml->DropDown('uc_classid', $classarray, '', '', '', 'input').'<br/>';
 		$output .= $user->lang['uc_level_filter'].': <input name="level" size="2" maxlength="3" value="0" class="input" type="text"><br/>';
+		$ranksortarry = array(1=>$user->lang['uc_rank_filter1a'], 2=>$user->lang['uc_rank_filter1b']);
+		$output .= $user->lang['uc_rank_filter2a'].' '.$khrml->DropDown('rank_sort', $ranksortarry, '1', '', '', 'input').' '.$user->lang['uc_rank_filter2b'].': <input name="uc_rank" size="2" maxlength="3" value="0" class="input" type="text"><br/>';
 		$output .= $user->lang['uc_startdkp'].': <input name="startdkp" size="5" maxlength="5" value="0" class="input" type="text"><br/>';
 		$output .= '<input type="submit" name="submiti" value="'.$user->lang['uc_import_forw'].'" class="mainoption" />';
 	  $output .= '</form>';
@@ -88,11 +89,15 @@
 		$load_notice	= '<div class="uc_infotext">'.$user->lang['uc_gimp_infotxt'].'</div>';
 		echo "<script>parent.document.getElementById('uc_load_message').innerHTML='".$load_mssg."';</script>";
 		echo "<script>parent.document.getElementById('uc_load_notice').innerHTML='".$load_notice."';</script>";
-
-	  $armory = new bnet_armory($conf['uc_server_loc'], 'de_de');
-		if($_HMODE){
-			$armory->setSettings(array('apiKeyPrivate'=>$bnetapi_private, 'apiKeyPublic'=>$bnetapi_public));
-		}
+		
+		include_once('classes/ArmoryChars.class.php');
+	  $armory = new ArmoryChars("вов");
+	  
+	  // Read Member kist from Armory
+	  $myClassId	= ($in->get('uc_classid',0)) ? $armory->ConvertID($in->get('uc_classid',0), 'int', 'classes', true) : '';
+	  
+	  // Limit by Rank
+	  $myRankFilter = array('value' => $in->get('uc_rank',0), 'sort' => $in->get('rank_sort',0));
 	  
 	  // Error Reporting..
 	  if(!$_POST['guildname']){
@@ -100,7 +105,7 @@
 	  }
 	  
 	  // Fetch the Data
-	  $guilddata 	= $armory->guild($_POST['guildname'], stripslashes($conf['uc_servername']), true);
+	  $xml = $armory->GetGuildMembers($_POST['guildname'],stripslashes($conf['uc_servername']),$conf['uc_server_loc'], $_POST['level'], $myClassId, $myRankFilter, 'de_de');
 	  $myheadout = '<table width="400">';
 		echo $myheadout;
 		
@@ -111,30 +116,21 @@
 	    $memberarray[] = strtolower($row['member_name']);
 	  }
 	  $db->free_result($result);
-	  if(!isset($guilddata['status'])){
-		  foreach($guilddata['members'] as $guildchars){
-			#filter: class
-			if($in->get('uc_classid', 0) > 0 && $armory->ConvertID($guildchars['character']['class'], 'int', 'classes') != $in->get('uc_classid', 0)){
-				continue;
-			}
-
-			// filter: level
-			if($_POST['level'] > 0 && $guildchars['character']['level'] < $_POST['level']){
-				continue;
-			}
-
-		    if(in_array(strtolower(utf8_decode($guildchars['character']['name'])),$memberarray)){
+	  
+	  if(is_array($xml)){
+		  foreach($xml as $chars){
+		    if(in_array(strtolower(utf8_decode($chars['name'])),$memberarray)){
 		      // member is in Database! Do not import again!
 		      $setstatus = '<span>'.$user->lang['uc_armory_impduplex'].'</span>';
 		    }else{
 		      // member is not in database, import!	      
 		      $myStatus = $db->query("INSERT INTO __members :params", array(
-	        			'member_name'       => utf8_decode($guildchars['character']['name']),
-	        			'member_level'			=> $guildchars['character']['level'],
-	        			'member_class_id'		=> $armory->ConvertID($guildchars['character']['class'], 'int', 'classes'),
-	        			'member_race_id'    => $armory->ConvertID($guildchars['character']['race'], 'int', 'races'),
-	        			'member_adjustment'	=> ($_POST['startdkp'] > 0) ? $_POST['startdkp'] : 0,
-	        			'member_rank_id'		=> ($conf['uc_defaultrank'] > 0) ? $conf['uc_defaultrank'] : 0,
+	        			'member_name'       => utf8_decode($chars['name']),
+	        			'member_level'			=> $armory->ValueOrNull($chars['level']),
+	        			'member_class_id'		=> $chars['eqdkp_classid'],
+	        			'member_race_id'    => $chars['eqdkp_raceid'],
+	        			'member_adjustment'	=> $armory->ValueOrNull($_POST['startdkp']),
+	        			'member_rank_id'		=> $armory->ValueOrNull($conf['uc_defaultrank']),
 	        ));
 		      if($myStatus){
 		        $setstatus = '<span syle="color:green">'.$user->lang['uc_armory_imported'].'</span>';
@@ -143,8 +139,8 @@
 		      }
 		    }
 		    $output  = '<tr>';
-		    $output .= '<td width="200">'.utf8_decode($guildchars['character']['name']).'</td>';
-				$output .= '<td width="50">'.$guildchars['character']['level'].'</td>';
+		    $output .= '<td width="200">'.utf8_decode($chars['name']).'</td>';
+				$output .= '<td width="50">'.$chars['level'].'</td>';
 				$output .= '<td width="150">'.$setstatus.'</td>';
 				$output .= "</tr>";
 				echo $output;

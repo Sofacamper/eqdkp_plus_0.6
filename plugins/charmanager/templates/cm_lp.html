@@ -57,6 +57,13 @@ function EditChar(editid) {
     <th align="left" width="100%"><a href="{U_LIST_PROFILES}o={O_NAME}{URI_ADDON}">{L_NAME}</a></th>
     
     <th align="left" width="80">{L_SKILL}</th>
+    <!-- IF SHOW_RESIS -->
+      <th align="left" width="20"><a href="{U_LIST_PROFILES}o={O_ARCANE}{URI_ADDON}"><img src="games/wow/images/resistence/arcane_resistance.gif" alt="{L_ARCANE}" /></a></th>
+      <th align="left" width="20"><a href="{U_LIST_PROFILES}o={O_FIRE}{URI_ADDON}"><img src="games/wow/images/resistence/fire_resistance.gif" alt="{L_FIRE}" /></a></th>
+      <th align="left" width="20"><a href="{U_LIST_PROFILES}o={O_NATURE}{URI_ADDON}"><img src="games/wow/images/resistence/nature_resistance.gif" alt="{L_NATURE}" /></a></th>
+      <th align="left" width="20"><a href="{U_LIST_PROFILES}o={O_FROST}{URI_ADDON}"><img src="games/wow/images/resistence/frost_resistance.gif" alt="{L_FROST}" /></a></th>
+      <th align="left" width="20"><a href="{U_LIST_PROFILES}o={O_SHADOW}{URI_ADDON}"><img src="games/wow/images/resistence/shadow_resistance.gif" alt="{L_SHADOW}" /></a></th>
+    <!-- ENDIF -->
     <th align="left" width="100"><a href="{U_LIST_PROFILES}o={O_RANK}{URI_ADDON}">{L_RANK}</a></th>
     <th align="left" width="140" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_GUILD}{URI_ADDON}">{L_GUILD}</a></th>
     <th align="left" width="40" nowrap="nowrap"><a href="{U_LIST_PROFILES}o={O_LEVEL}{URI_ADDON}">{L_LEVEL}</a></th>
@@ -76,6 +83,13 @@ function EditChar(editid) {
     <td width="100%" nowrap="nowrap"><a href="{members_row.U_VIEW_MEMBER}">{members_row.NAME}</a></td>
     
     <td width="80" nowrap="nowrap">{members_row.SPEC1} {members_row.SPEC2}</td>
+    <!-- IF SHOW_RESIS -->
+      <td width="20" nowrap="nowrap">{members_row.ARCANE}</td>
+      <td width="20" nowrap="nowrap">{members_row.FIRE}</td>
+      <td width="20" nowrap="nowrap">{members_row.NATURE}</td>
+      <td width="20" nowrap="nowrap">{members_row.FROST}</td>
+      <td width="20" nowrap="nowrap">{members_row.SHADOW}</td>
+    <!-- ENDIF -->
     <td width="100" nowrap="nowrap">{members_row.RANK}</td>
     <td width="140" nowrap="nowrap">{members_row.GUILD}</td>
     <td width="40" nowrap="nowrap">{members_row.LEVEL}</td>

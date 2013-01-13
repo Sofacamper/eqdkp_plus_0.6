@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2010-06-23 17:03:44 +0200 (Wed, 23 Jun 2010) $
+ * Date:        $Date: 2009-09-24 17:05:08 +0200 (Do, 24 Sep 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 8165 $
+ * @version     $Rev: 5938 $
  * 
- * $Id: lang_main.php 8165 2010-06-23 15:03:44Z wallenium $
+ * $Id: lang_main.php 5938 2009-09-24 15:05:08Z wallenium $
  */
 
 //Main 
@@ -130,7 +130,6 @@ $lang['uc_noprofile_found']		= 'No profile available';
 $lang['uc_profiles_complete']	= 'Profile successfully updated';
 $lang['uc_notyetupdated']			= 'No new data (outdated character)';
 $lang['uc_error_with_id']			= 'Error with the member ID, skipped member';
-$lang['uc_notyourchar']				= 'You are trying to add a new char which is not yours. Because of security reasons, you are not allowed to do this. Please contact an administrator or try to add a char with another name.';
 
 // Edit Profile tabs
 $lang['uc_tab_profilers']			= 'Profile';

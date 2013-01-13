@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * Date:        $Date: 2009-08-17 16:46:58 +0200 (Mo, 17 Aug 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 12157 $
+ * @version     $Rev: 5703 $
  * 
- * $Id: listprofiles.php 12157 2012-09-30 20:05:50Z wallenium $
+ * $Id: listprofiles.php 5703 2009-08-17 14:46:58Z wallenium $
  */
 
 define('EQDKP_INC', true);
@@ -226,43 +226,43 @@ $current_order = switch_order($sort_order);
           $cm_alinks = array(
                 0 => array(
                     'name'    => $user->lang['uc_armorylink1'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'char'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'char', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 1 => array(
                     'name'    => $user->lang['uc_armorylink2'].' 1',
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent1'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent1', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 2 => array(
                     'name'    => $user->lang['uc_armorylink2'].' 2',
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent2'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent2', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 3 => array(
                     'name'    => $user->lang['uc_armorylink3'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'reputation'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'reputation', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
         				4 => array(
                     'name'    => $user->lang['uc_armorylink4'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'achievements'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'achievements', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 5 => array(
                     'name'    => $user->lang['uc_armorylink5'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'statistics'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'statistics', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 6 => array(
                     'name'    => $user->lang['uc_armorylink6'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'guild', $CharTools->convertEncoding(stripslashes($row['guild']))),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $CharTools->convertEncoding($row['member_name']), $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'guild', $row['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => (($row['guild']) ? true : false),
                     ),
@@ -274,8 +274,14 @@ $current_order = switch_order($sort_order);
                 'ID'            => $row['mid'],
                 
                 'ARMORY_LINKS'	=> ($conf['uc_showarmlink'] == 1) ? $jquery->DropDownMenu('alinks'.$row['mid'], 'actionmenu', $cm_alinks, 'plugins/charmanager/images','<img src="images/armory.gif" />') : '',
-       			'SPEC1'					=> $spec1[icon],
-        		'SPEC2'					=> $spec2[icon],
+       
+       					'FIRE'					=> ( $row['fir'] ) ? $row['fir'] : 0,
+       					'ARCANE'				=> ( $row['ar'] ) ? $row['ar'] : 0,
+       					'FROST'					=> ( $row['frr'] ) ? $row['frr'] : 0,
+       					'NATURE'				=> ( $row['nr'] ) ? $row['nr'] : 0,
+       					'SHADOW'				=> ( $row['sr'] ) ? $row['sr'] : 0,
+       					'SPEC1'					=> $spec1[icon],
+        				'SPEC2'					=> $spec2[icon],
                 
                 'GUILD'         => $row['guild'],
                 'COUNT'         => $member_count,
@@ -335,6 +341,11 @@ $tpl->assign_vars(array(
     'L_CURRENT'       => $user->lang['current'],
     'L_LASTRAID'      => $user->lang['lastraid'],
     'L_LASTLOOT'      => $user->lang['lastloot'],
+    'L_ARCANE'				=> $user->lang['uc_res_arcane'],
+    'L_FIRE'					=> $user->lang['uc_res_fire'],
+    'L_NATURE'				=> $user->lang['uc_res_nature'],
+    'L_FROST'					=> $user->lang['uc_res_frost'],
+    'L_SHADOW'				=> $user->lang['uc_res_shadow'],
     'L_BUTTON_EDIT'		=> $user->lang['uc_button_edit'],
     'L_EDIT_CHAR'			=> $user->lang['uc_edit_char'],
     'L_SKILL'					=> $user->lang['uc_tab_skills'],

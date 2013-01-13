@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * Date:        $Date: 2009-09-24 18:18:38 +0200 (Do, 24 Sep 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 12157 $
+ * @version     $Rev: 5939 $
  * 
- * $Id: charmanager_plugin_class.php 12157 2012-09-30 20:05:50Z wallenium $
+ * $Id: charmanager_plugin_class.php 5939 2009-09-24 16:18:38Z wallenium $
  */
 
 if (!defined('EQDKP_INC')){
@@ -23,11 +23,11 @@ if (!defined('EQDKP_INC')){
 class charmanager_plugin_class extends EQdkp_Plugin
 {
 	// Do not change
-	var $version    = '1.7.0';
-	var $build      = '11313';
+	var $version    = '1.5.1';
+	var $build      = '5939';
 	var $vstatus    = 'Stable';
 	var $copyright  = 'WalleniuM';
-	var $fwversion  = '2.0.0';  // required framework Version
+  var $fwversion  = '2.0.0';  // required framework Version
 	
     function charmanager_plugin_class($pm){
 			global $eqdkp_root_path, $user, $table_prefix, $SID, $db;
@@ -39,7 +39,7 @@ class charmanager_plugin_class extends EQdkp_Plugin
             'name'          => 'Character Manager',
             'code'          => 'charmanager',
             'path'          => 'charmanager',
-            'contact'       => 'wallenium@eqdkp-plus.com',
+            'contact'       => 'webmaster@wallenium.de',
             'template_path' => 'plugins/charmanager/templates/',
             'version'       => $this->version)
       );

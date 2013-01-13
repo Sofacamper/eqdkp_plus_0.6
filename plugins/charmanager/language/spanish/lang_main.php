@@ -1,220 +1,257 @@
 <?php
+ /*
+ * Project:     EQdkp CharManager 1
+ * License:     Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Began:       2006
+ * Date:        $Date: 2009-05-20 13:18:06 +0200 (mi√©, 20 may 2009) $
+ * -----------------------------------------------------------------------
+ * @author      $Author: wallenium $
+ * @copyright   2005-2008 Simon (Wallenium) Wallmann
+ * @link        http://eqdkp-plus.com
+ * @package     charmanager
+ * @version     $Rev: 4915 $
+ * 
+ * $Id: lang_main.php 4915 2009-05-20 11:18:06Z wallenium $
+ */
 
-if (!defined('EQDKP_INC')) {
-	die('You cannot access this file directly.');
-}
+//Main 
+$lang['charmanager']          = 'Gestor de personaje';
+$lang['uc_manage_chars']			= 'Gestionar personajes';
+$lang['uc_credit_name']				= 'Gestor de Personajes EQDKP';
+$lang['uc_enu_profiles']			= 'Perfiles';
+$lang['cm_short_desc']        = 'El usuario puede gestionar miembros';
+$lang['cm_long_desc']         = 'Con el plugin Gestor de Personaje, los usuarios pueden a√±dir, gestionar y asignar miembros por si mismos. Hay campos adicionales tambi√©n.';
 
-//Language: Spanish	
-//Created by EQdkp Plus Translation Tool on  2010-07-09 15:10
-//File: plugin_charmanager
-//Source-Language: english
+// Error Messages
+$lang['uc_faild_memberadd']   = "Fallo al a√±adir el miembro %1\$s existe con la ID %2\$s";
+$lang['uc_saved_not']         = 'ERROR: No se pueden guardar los datos. Por favor int√©ntalo de nuevo o informa al administrador';
+$lang['uc_error_memberinfos']	= 'No se puede obtener informaci√≥n del miembro del plugin de Gesti√≥n de Personaje';
+$lang['uc_error_raidinfos']		= 'No se puede obtener informaci√≥n de la banda del plugin de Gesti√≥n de Personaje';
+$lang['uc_error_iteminfos']		= 'No se puede obtener informaci√≥n del objeto del plugin de Gesti√≥n de Personaje';
+$lang['uc_error_itemraidi']		= 'No se puede obtener informaci√≥n del objeto/banda del plugin de Gesti√≥n de Personaje';
+$lang['uc_not_loggedin']			= 'No est√°s logado en el sistema';
+$lang['uc_not_installed']			= 'El plugin de Gesti√≥n de Personajes no est√° instalado';
+$lang['uc_no_prmissions']			= 'No tienes permisos para entrar. Por favor, habla con un administrador.';
+$lang['uc_php_version']				= "Gesti√≥n de Personajes requiere PHP %1\$s o superior. El servidor usa actualmente PHP %2\$s";
+$lang['uc_plus_version']			= "El Gestor de Personajes requiere EQDKP-PLUS %1\$s o superior. La versi√≥n actual es %2\$s";
 
-$alang = array( 
-"charmanager" => "Gestor de personaje",
-"uc_manage_chars" => "Gestionar personajes",
-"uc_credit_name" => "Gestor de Personajes EQDKP",
-"uc_enu_profiles" => "Perfiles",
-"cm_short_desc" => "El usuario puede gestionar miembros",
-"cm_long_desc" => "Con el plugin Gestor de Personaje, los usuarios pueden aÒdir, gestionar y asignar miembros por si mismos. Hay campos adicionales tambiÈn.",
-"uc_faild_memberadd" => "Fallo al aÒadir el miembro %1$s existe con la ID %2$s",
-"uc_saved_not" => "ERROR: No se pueden guardar los datos. Por favor intÈntalo de nuevo o informa al administrador",
-"uc_error_memberinfos" => "No se puede obtener informaciÛn del miembro del plugin de GestiÛn de Personaje",
-"uc_error_raidinfos" => "No se puede obtener informaciÛn de la banda del plugin de GestiÛn de Personaje",
-"uc_error_iteminfos" => "No se puede obtener informaciÛn del objeto del plugin de GestiÛn de Personaje",
-"uc_error_itemraidi" => "No se puede obtener informaciÛn del objeto/banda del plugin de GestiÛn de Personaje",
-"uc_not_loggedin" => "No est·s logado en el sistema",
-"uc_not_installed" => "El plugin de GestiÛn de Personajes no est· instalado",
-"uc_no_prmissions" => "No tienes permisos para entrar. Por favor, habla con un administrador.",
-"uc_php_version" => "GestiÛn de Personajes requiere PHP %1$s o superior. El servidor usa actualmente PHP %2$s",
-"uc_plus_version" => "El Gestor de Personajes requiere EQDKP-PLUS %1$s o superior. La versiÛn actual es %2$s",
-"uc_saved_succ" => "Los cambios se han guardado",
-"us_char added" => "El personaje fue aÒadido",
-"us_char_updated" => "El personaje se actualizÛ",
-"uc_info_box" => "InformaciÛn",
-"uc_pic_changed" => "La imagen se cambiÛ correctamente",
-"uc_pic_added" => "Se aÒadiÛ correctamente la imagen",
-"uc_changedate" => "m-d-Y",
-"uc_armorylink1" => "armeria",
-"uc_armorylink2" => "talentos y glifos",
-"uc_armorylink3" => "reputaciÛn",
-"uc_armorylink4" => "logros",
-"uc_armorylink5" => "estadÌsticas",
-"uc_armorylink6" => "hermandad",
-"uc_charmanager" => "GestiÛn de Personaje",
-"uc_change_pic" => "Cambiar imagen",
-"uc_add_pic" => "AÒadir imagen",
-"uc_add_char" => "AÒadir personaje",
-"uc_add_char_plain" => "Crear nuevo",
-"uc_add_char_armory" => "Importar",
-"uc_save_char" => "Guardar personaje",
-"overtake_char" => "Hacer este personaje tuyo",
-"uc_edit_char" => "Editar personaje seleccionado",
-"uc_conn_members" => "Asignar personajes",
-"uc_connections" => "Asignaciones de personajes",
-"uc_button_cancel" => "Cancelar",
-"uc_button_edit" => "Editar",
-"uc_tt_n1" => "Escoge al personaje que quieres<br/> editar",
-"uc_tt_n2" => "Asigna tu cuenta de usuario a<br/>personajes que existen en<br/>el sistema DKP",
-"uc_tt_n3" => "Crear un nuevo personaje que<br/>no exista en el sistema DKP",
-"uc_prifler_expl" => "Los perfiles se mostrar·n como enlaces webs, no se importar·n!",
-"uc_ext_import_sh" => "Importar datos",
-"uc_connectme" => "Guardar",
-"uc_updat_armory" => "Actualizar de la ArmerÌa",
-"uc_add_massupdate" => "Actualizar todo",
-"uc_need_confirmation" => "[por confirmar]",
-"uc_del_warning" => "øSe debe borrar el miembro? Los puntos y objetos ser·n eliminados y no podr·n ser recuperados.",
-"uc_del_msg_all" => "øEliminar todos los personajes?",
-"uc_confirm_msg_all" => "øConfirmar todos los personajes?",
-"cm_todo_txt" => "Hay %1$s tareas de administrador restantes.",
-"cm_todo_head" => "Tareas de Administrador del Gestor de Personaje",
-"uc_delete_manager" => "Gestionar tareas de administrador",
-"uc_rewoke_char" => "Restaurar personaje",
-"uc_delete_char" => "Borrar personaje",
-"uc_delete_allchar" => "Borrar todos los personajes",
-"uc_confirm_list" => "Personaje por confirmar",
-"uc_delete_list" => "Personaje por borrar",
-"uc_prof_import" => "importar",
-"uc_import_forw" => "continuar",
-"uc_imp_succ" => "Los datos se importaron correctamente",
-"uc_upd_succ" => "Los datos se actualizaron correctamente",
-"uc_imp_failed" => "Ocurrio un error en el proceso de importaciÛn. Por favor, intÈntelo de nuevo.",
-"uc_armory_loc" => "LocalizaciÛn del servidor",
-"uc_charname" => "nombre del personaje",
-"uc_servername" => "Nombre del servidor",
-"uc_charfound" => "El personaje  <b>%1$s</b> est· disponible en la armerÌa.",
-"uc_charfound2" => "El perfil de este personaje fuÈ actualizado por ˙ltima vez el <b>%1$s</b>.",
-"uc_charfound3" => "ATENCION: °Durante el proceso de importaciÛn todos los datos se sobreescribir·n!",
-"uc_armory_confail" => "No hay conexiÛn con la ArmerÌa. Los datos no pueden ser enviados.",
-"uc_armory_imported" => "importado",
-"uc_armory_impfailed" => "fallido",
-"uc_armory_impduplex" => "duplicado",
-"uc_class_filter" => "Miembros de la clase",
-"uc_class_nofilter" => "No filtrar",
-"uc_guild_name" => "Nombre de Hermandad",
-"uc_level_filter" => "Todos los miembros con niveles mayores o iguales que",
-"uc_rank_filter1a" => "mayores o iguales",
-"uc_rank_filter1b" => "igual",
-"uc_rank_filter2a" => "Importar todos los miembros con rangos",
-"uc_rank_filter2b" => "que",
-"uc_imp_novariables" => "Debes establecer un servidor y una localizaciÛn en los ajustes primero.",
-"uc_imp_noguildname" => "No se ha indicado nombre de hermandad",
-"uc_gimp_header_load" => "La hermandad ser· importada, por favor espera...",
-"uc_gimp_header_fnsh" => "ImportaciÛn de hermandad completada",
-"uc_gimp_finish_note" => "Nota: No se importan todos los campos. SÛlo nombre de miembros, raza, clase y nivel han sido importados. Para importar el resto, ejecuta la actualizaciÛn de ArmerÌa manualmente.",
-"uc_gimp_infotxt" => "El tiempo de ejecuciÛn del script puede ser mayor de 60 seg. y la memoria m·s grande que 32 M. Por favor, mira abajo si la descarga ha finalizado.",
-"uc_startdkp" => "AÒade DKP iniciales",
-"uc_noprofile_found" => "No hay perfil disponible",
-"uc_profiles_complete" => "PerfÌl actualizado correctamente",
-"uc_notyetupdated" => "No hay datos nuevos (personaje desactualizado)",
-"uc_error_with_id" => "Error con la ID del miembro. Se ha saltado este miembro.",
-"uc_tab_profilers" => "Perfil",
-"uc_tab_Character" => "Personaje",
-"uc_tab_skills" => "Habilidades",
-"uc_tab_raidinfo" => "Info de Banda",
-"uc_tab_raids" => "Bandas",
-"uc_tab_items" => "Objetos",
-"uc_tab_profession" => "Profesiones",
-"uc_tab_notes" => "Notas",
-"uc_first_prof" => "Primera profesiÛn",
-"uc_second_prof" => "Segunda profesiÛn",
-"uc_prof_skill" => "Skill",
-"professionsarray" => array(
-	"alchemy" => "Alquimia",
-"mining" => "MinerÌa",
-"engineering" => "IngenierÌa",
-"skinning" => "Desuello",
-"herbalism" => "HerboristerÌa",
-"leatherworking" => "PeleterÌa",
-"blacksmithing" => "HerrerÌa",
-"tailoring" => "SastrerÌa",
-"enchanting" => "Encantamiento",
-"jewelcrafting" => "JoyerÌa",
-"inscription" => "InscripciÛn",
-),
-	"uc_gender" => "GÈnero",
-"genderarray" => array(
-	"Male" => "Masculino",
-"Female" => "Femenino",
-),
-	"uc_faction" => "FacciÛn",
-"factionarray" => array(
-	"Horde" => "Horda",
-"Alliance" => "Alianza",
-),
-	"uc_resitence" => "Resistencia",
-"uc_res_fire" => "Fuego",
-"uc_res_frost" => "Escarcha",
-"uc_res_arcane" => "Arcano",
-"uc_res_nature" => "Naturaleza",
-"uc_res_shadow" => "Sombras",
-"uc_bar_health" => "Salud",
-"uc_bar_energy" => "EnergÌa",
-"uc_bar_mana" => "Man·",
-"uc_bar_rage" => "Ira",
-"uc_save_pic" => "Guardar",
-"uc_load_pic" => "Cargar imagen",
-"uc_allowed_types" => "Tipo de im·genes permitidas",
-"uc_max_resolution" => "ResoluciÛn max.",
-"uc_pixel" => "pÌxeles",
-"uc_not_writable" => "La carpeta 'data/' no se puede escribir. Por favor, informa a un administrador.",
-"is_adminmenu_uc" => "Gestor de personajes",
-"uc_manage" => "Administrar",
-"uc_add" => "AÒadir",
-"uc_connect" => "Asignar personajes",
-"uc_view" => "Ver perfiles",
-"uc_edit_all" => "Editar todo",
-"uc_config" => "Ajustes",
-"uc_delete" => "Borrar personajes propios",
-"uc_delmanager" => "Administrar ToDo",
-"about_header" => "CrÈditos",
-"uc_char_info" => "InformaciÛn del personaje",
-"uc_last_5_raids" => "⁄ltimas 5 bandas",
-"uc_last_5_items" => "⁄ltimos 5 objetos",
-"uc_ext_profile" => "Perfil externo",
-"uc_buffed" => "Buffed.de",
-"uc_allakhazam" => "Allakhazam",
-"uc_curse_profiler" => "Curse Profiler",
-"uc_ctprofiles" => "CT Profiles",
-"uc_receives" => "Profesiones",
-"uc_guild" => "Hermandad",
-"uc_raid_infos" => "InformaciÛn de banda",
-"uc_talentplaner" => "Planificador de talentos",
-"uc_unknown" => "Desconocido",
-"uc_lastupdate" => "⁄ltima actualizaciÛn del perfil",
-"uc_level_out" => "Nivel",
-"uc_notes" => "Notas",
-"uc_copyright" => "Copyright",
-"uc_created_devteam" => "por WalleniuM",
-"uc_url_web" => "Web",
-"uc_dialog_header" => "Sobre Gestor de personajes",
-"uc_additions" => "Aportaciones",
-"uc_setting_saved_h" => "Ajustes guardados",
-"uc_setting_saved" => "Los ajustes del Gestor de personajes se han guardado correctamente",
-"uc_setting_failed" => "Los ajustes no se guardaron. IntÈntalo de nuevo o contacta a un administrador",
-"uc_header_global" => "Ajustes del Gestor de Personajes",
-"uc_enabl_updatecheck" => "Activar revisiÛn de actualizaciÛn",
-"uc_lock_server" => "Bloquear nombre de servidor para los usuarios (no podr·n cambiarlo)",
-"uc_update_all" => "Actualizar todos los datos del prefil (p.e. ArmerÌa)",
-"uc_bttn_update" => "Actualizar",
-"uc_cache_update" => "Actualizar perfiles de miembros",
-"uc_profile_updater" => "Cargando informaciÛn del perfil. Por favor, espere...",
-"uc_server_loc" => "LocalizaciÛn del servidor",
-"uc_profile_ready" => "Los perfiles se importaron correctamente. Puedes <a href=\"#\" onclick=\"javascript:closeWindow()\" >cerrar</a> esta ventana.",
-"uc_last_updated" => "⁄ltimo actualizado",
-"uc_never_updated" => "Nunca actualizado",
-"uc_armory_link" => "Lista de perfil: muestra un men˙ con enlacez a la armerÌa",
-"uc_no_resi_save" => "No importar resistencias",
-"uc_lp_hideresis" => "Ocultar resistencias del usuario en la lista del perfil",
-"uc_defaultrank" => "Rango para personajes reciÈn creados",
-"uc_defaultrank_none" => "Ninguno",
-"uc_reqconfirm" => "Los administradores deben confirmar los personajes creados por los usuarios",
-"uc_confirm_char" => "Confirmar personaje",
-"uc_confirm_allchar" => "Confirmar todos",
-"uc_limport" => "Ajustes de importaciÛn",
-"uc_import_guild" => "Importar todos los miembros de la hermandad",
-"uc_import_guildb" => "Importar hermandad",
-"uc_import_srvlang" => "Lenguaje de la ArmerÌa",
- );
-$lang = (is_array($lang))? $lang : array();
-$lang = array_merge($lang, $alang);
+// Info Boxes
+$lang['uc_saved_succ']        = 'Los cambios se han guardado';
+$lang['us_char added']        = 'Se a√±adi√≥ el personaje';
+$lang['us_char_updated']      = 'El personaje se actualiz√≥';
+$lang['uc_info_box']          = 'Informaci√≥n';
+$lang['uc_pic_changed']				= 'La imagen se cambi√≥ correctamente';
+$lang['uc_pic_added']					= 'Se a√±adi√≥ correctamente la imagen';
+
+// Date functionality
+$lang['uc_changedate']				= 'm-d-Y';
+
+// Armory Menu
+$lang['uc_armorylink1']				= 'armeria';
+$lang['uc_armorylink2']				= 'talentos y glifos';
+$lang['uc_armorylink3']				= 'reputaci√≥n';
+$lang['uc_armorylink4']				= 'logros';
+$lang['uc_armorylink5']				= 'estad√≠sticas';
+$lang['uc_armorylink6']				= 'hermandad';
+
+//User Settings
+$lang['uc_charmanager']       = 'Gesti√≥n de Personaje';
+$lang['uc_change_pic']				= 'Cambiar imagen';
+$lang['uc_add_pic']						= 'A√±adir imagen';
+$lang['uc_add_char']          = 'A√±adir personaje';
+$lang['uc_add_char_plain']		= 'Crear nuevo';
+$lang['uc_add_char_armory']		= 'Importar';
+$lang['uc_save_char']					= 'Guardar personaje';
+$lang['overtake_char']        = 'Hacer este personaje tuyo';
+$lang['uc_edit_char']         = 'Editar personaje seleccionado';
+$lang['uc_conn_members']			= 'Asignar personajes';
+$lang['uc_connections']				= 'Asignaciones de personajes';
+$lang['uc_button_cancel']     = 'Cancelar';
+$lang['uc_button_edit']				= 'Editar';
+$lang['uc_tt_n1']							= 'Escoge al personaje que quieres<br/> editar';
+$lang['uc_tt_n2']							= 'Asigna tu cuenta de usuario a<br/>personajes que existen en<br/>el sistema DKP';
+$lang['uc_tt_n3']							= 'Crear un nuevo personaje que<br/>no exista en el sistema DKP';
+$lang['uc_prifler_expl']			= 'Los perfiles se mostrar√°n como enlaces webs, no se importar√°n!';
+$lang['uc_ext_import_sh']			= 'Importar datos';
+$lang['uc_connectme']         = 'Guardar';
+$lang['uc_updat_armory']			= 'Actualizar de la Armer√≠a';
+$lang['uc_add_massupdate']		= 'Actualizar todo';
+$lang['uc_need_confirmation']	= '[por confirmar]';
+
+// Member Tasks
+$lang['uc_del_warning']				= '¬øSe debe borrar el miembro? Los puntos y objetos ser√°n eliminados y no podr√°n ser recuperados.';
+$lang['uc_del_msg_all']				= '¬øEliminar todos los personajes?';
+$lang['uc_confirm_msg_all']		= '¬øConfirmar todos los personajes?';
+$lang['cm_todo_txt']					= "Hay %1\$s tareas de administrador restantes.";
+$lang['cm_todo_head']					= 'Tareas de Administrador del Gestor de Personaje';
+$lang['uc_delete_manager']		= 'Gestionar tareas de administrador';
+$lang['uc_rewoke_char']				= 'Restaurar personaje';
+$lang['uc_delete_char']				= 'Borrar personaje';
+$lang['uc_delete_allchar']		= 'Borrar todos los personajes';
+$lang['uc_confirm_list']			= 'Personaje por confirmar';
+$lang['uc_delete_list']				= 'Personaje por borrar';
+
+// Import
+$lang['uc_prof_import']				= 'importar';
+$lang['uc_import_forw']				= 'continuar';
+$lang['uc_imp_succ']					= 'Los datos se importaron correctamente';
+$lang['uc_upd_succ']					= 'Los datos se actualizaron correctamente';
+$lang['uc_imp_failed']				= 'Ocurrio un error en el proceso de importaci√≥n. Por favor, int√©ntelo de nuevo.';
+
+// Armory Import
+$lang['uc_armory_loc']				= 'Localizaci√≥n del servidor';
+$lang['uc_charname']					= 'nombre del personaje';
+$lang['uc_servername']				= 'Nombre del servidor (p.e. Tyrande)';
+$lang['uc_charfound']					= "El personaje  <b>%1\$s</b> est√° disponible en la armer√≠a.";
+$lang['uc_charfound2']				= "El perfil de este personaje fu√© actualizado por √∫ltima vez el <b>%1\$s</b>.";
+$lang['uc_charfound3']				= 'ATENCION: ¬°Durante el proceso de importaci√≥n todos los datos se sobreescribir√°n!';
+$lang['uc_armory_confail']		= 'No hay conexi√≥n con la Armer√≠a. Los datos no pueden ser enviados.';
+$lang['uc_armory_imported']		= 'importado';
+$lang['uc_armory_impfailed']	= 'fallido';
+$lang['uc_armory_impduplex']	= 'duplicado';
+$lang['uc_class_filter']			= 'Miembros de la clase';
+$lang['uc_class_nofilter']		= 'No filtrar';
+$lang['uc_guild_name']				= 'Nombre de Hermandad';
+$lang['uc_level_filter']			= 'Todos los miembros con nivel igual o superior a';
+$lang['uc_imp_novariables']		= 'Debes establecer un servidor y una localizaci√≥n en los ajustes primero.';
+$lang['uc_imp_noguildname']		= 'No se ha indicado nombre de hermandad';
+$lang['uc_gimp_header_load']	= 'La hermandad ser√° importada, por favor espera...';
+$lang['uc_gimp_header_fnsh']	= 'Importaci√≥n de hermandad completada';
+$lang['uc_gimp_finish_note']	= 'Nota: No se importan todos los campos. S√≥lo nombre de miembros, raza, clase y nivel han sido importados. Para importar el resto, ejecuta la actualizaci√≥n de Armer√≠a manualmente.';
+$lang['uc_gimp_infotxt']			= 'El tiempo de ejecuci√≥n del script puede ser mayor de 60 seg. y la memoria m√°s grande que 32 M. Por favor, mira abajo si la descarga ha finalizado.';
+$lang['uc_startdkp']					= 'A√±ade DKP iniciales';
+$lang['uc_noprofile_found']		= 'No hay perfil disponible';
+$lang['uc_profiles_complete']	= 'Perf√≠l actualizado correctamente';
+$lang['uc_notyetupdated']			= 'No hay datos nuevos (personaje desactualizado)';
+$lang['uc_error_with_id']			= 'Error con la ID del miembro. Se ha saltado este miembro.';
+
+// Edit Profile tabs
+$lang['uc_tab_profilers']			= 'Perfil';
+$lang['uc_tab_Character']			= 'Personaje';
+$lang['uc_tab_skills']				= 'Habilidades';
+$lang['uc_tab_raidinfo']			= 'Info de Banda';
+$lang['uc_tab_raids']					= 'Bandas';
+$lang['uc_tab_items']					= 'Objetos';
+$lang['uc_tab_profession']		= 'Profesiones';
+$lang['uc_tab_notes']         = 'Notas';
+
+// Professions
+$lang['uc_first_prof']				= 'Primera profesi√≥n';
+$lang['uc_second_prof']				= 'Segunda profesi√≥n';
+$lang['uc_prof_skill']				= 'Skill';
+$lang['professionsarray']			= array(
+																'alchemy'					=> 'Alquimia',
+																'mining'					=> 'Miner√≠a',
+																'engineering'			=> 'Ingenier√≠a',
+																'skinning'				=> 'Desuello',
+																'herbalism'				=> 'Herborister√≠a',
+																'leatherworking'	=> 'Peleter√≠a',
+																'blacksmithing'		=> 'Herrer√≠a',
+																'tailoring'				=> 'Sastrer√≠a',
+																'enchanting' 			=> 'Encantamiento',
+																'jewelcrafting'		=> 'Joyer√≠a',
+																'inscription'     => 'Inscripci√≥n'
+															);
+$lang['uc_gender']						= 'G√©nero';
+$lang['genderarray']					= array(
+																'Male'						=> 'Masculino',
+																'Female'					=> 'Femenino',
+															);
+$lang['uc_faction']						= 'Facci√≥n';
+$lang['factionarray']					= array(
+																'Horde'						=> 'Horda',
+																'Alliance'				=> 'Alianza',
+															);
+
+// resistences
+$lang['uc_resitence']				  = 'Resistencia';
+$lang['uc_res_fire']					= 'Fuego';
+$lang['uc_res_frost']					= 'Escarcha';
+$lang['uc_res_arcane']				= 'Arcano';
+$lang['uc_res_nature']				= 'Naturaleza';
+$lang['uc_res_shadow']				= 'Sombras';
+
+// Bars
+$lang['uc_bar_health']				= "Salud";
+$lang['uc_bar_energy']				= "Energ√≠a";
+$lang['uc_bar_mana']					= "Man√°";
+$lang['uc_bar_rage']					= "Ira";
+
+// Add Picture
+$lang['uc_save_pic']					= 'Guardar';
+$lang['uc_load_pic']					= 'Cargar imagen';
+$lang['uc_allowed_types']			= 'Tipo de im√°genes permitidas';
+$lang['uc_max_resolution']		= 'Resoluci√≥n max.';
+$lang['uc_pixel']							= 'p√≠xeles';
+$lang['uc_not_writable']			= 'La carpeta \'data/\' no se puede escribir. Por favor, informa a un administrador.';
+
+//Admin
+$lang['is_adminmenu_uc']			= 'Gestor de personajes';
+$lang['uc_manage']            = 'Administrar';
+$lang['uc_add']            		= 'A√±adir';
+$lang['uc_connect']						= 'Asignar personajes';
+$lang['uc_view']							= 'Ver perfiles';
+$lang['uc_edit_all']					= 'Editar todo';
+$lang['uc_config']						= 'Ajustes';
+$lang['uc_delete']						= 'Borrar personajes propios';
+$lang['uc_delmanager']				= 'Administrar ToDo';
+
+// About Dialog
+$lang['about_header']					= 'Cr√©ditos';
+
+// Profile
+$lang['uc_char_info']					= 'Informaci√≥n del personaje';
+$lang['uc_last_5_raids']			= '√öltimas 5 bandas';
+$lang['uc_last_5_items']			= '√öltimos 5 objetos';
+$lang['uc_ext_profile']				= 'Perfil externo';
+$lang['uc_buffed']						= 'Buffed.de';
+$lang['uc_allakhazam']				= 'Allakhazam';
+$lang['uc_curse_profiler']		= 'Curse Profiler';
+$lang['uc_ctprofiles']				= 'CT Profiles';
+$lang['uc_receives']					= 'Profesiones';
+$lang['uc_guild']							= 'Hermandad';
+$lang['uc_raid_infos'] 				= 'Informaci√≥n de banda';
+$lang['uc_talentplaner']			= 'Planificador de talentos';
+$lang['uc_unknown']						= 'Desconocido';
+$lang['uc_lastupdate']				= '√öltima actualizaci√≥n del perfil';
+$lang['uc_level_out']					= 'Nivel';
+$lang['uc_notes']             = 'Notas';
+
+// About dialog
+$lang['uc_copyright'] 				= 'Copyright';
+$lang['uc_created_devteam']		= 'por WalleniuM';
+$lang['uc_url_web']           = 'Web';
+$lang['uc_dialog_header']			= 'Sobre Gestor de personajes';
+$lang['uc_additions']         = 'Aportaciones';
+
+// config
+$lang['uc_setting_saved_h']   = 'Ajustes guardados';
+$lang['uc_setting_saved']			= 'Los ajustes del Gestor de personajes se han guardado correctamente';
+$lang['uc_setting_failed']		= 'Los ajustes no se guardaron. Int√©ntalo de nuevo o contacta a un administrador';
+$lang['uc_header_global']			= 'Ajustes del Gestor de Personajes';
+$lang['uc_enabl_updatecheck']	= 'Activar revisi√≥n de actualizaci√≥n';
+$lang['uc_servername']				= 'Nombre del servidor';
+$lang['uc_lock_server']				= 'Bloquear nombre de servidor para los usuarios (no podr√°n cambiarlo)';
+$lang['uc_update_all']				= 'Actualizar todos los datos del prefil (p.e. Armer√≠a)';
+$lang['uc_bttn_update']				= 'Actualizar';
+$lang['uc_cache_update']			= 'Actualizar perfiles de miembros';
+$lang['uc_profile_updater']		= 'Cargando informaci√≥n del perfil. Por favor, espere...';
+$lang['uc_server_loc']				= 'Localizaci√≥n del servidor';
+$lang['uc_profile_ready']			= 'Los perfiles se importaron correctamente. Puedes <a href="#" onclick="javascript:closeWindow()" >cerrar</a> esta ventana.';
+$lang['uc_last_updated']			= '√öltimo actualizado';
+$lang['uc_never_updated']			= 'Nunca actualizado';
+$lang['uc_armory_link']				= 'Lista de perfil: muestra un men√∫ con enlacez a la armer√≠a';
+$lang['uc_no_resi_save']			= 'No importar resistencias';
+$lang['uc_lp_hideresis']      = 'Ocultar resistencias del usuario en la lista del perfil';
+$lang['uc_defaultrank']				= 'Rango para personajes reci√©n creados';
+$lang['uc_defaultrank_none']	= 'Ninguno';
+$lang['uc_reqconfirm']				= 'Los administradores deben confirmar los personajes creados por los usuarios';
+$lang['uc_confirm_char']			= 'Confirmar personaje';
+$lang['uc_confirm_allchar']		= 'Confirmar todos';
+$lang['uc_limport']						= 'Ajustes de importaci√≥n';
+$lang['uc_import_guild']			= 'Importar todos los miembros de la hermandad';
+$lang['uc_import_guildb']			= 'Importar hermandad';
+$lang['uc_import_srvlang']    = 'Lenguaje de la Armer√≠a';
 ?>

@@ -5,7 +5,7 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2009-12-20 11:35:56 +0100 (Sun, 20 Dec 2009) $
+ * Date:        $Date: 2009-12-20 11:35:56 +0100 (So, 20. Dez 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
@@ -81,10 +81,10 @@ while ( $row = $db->fetch_record($members_result) ){
 	// Action Menu
 	$cm_actions= array(
                 0 => array(
-                    'name'    => $user->lang['uc_edit_char'],
-                    'link'    => "javascript:EditChar('".$row['myid']."')",
-                    'img'     => 'edit.png',
-                    'perm'    => $user->check_auth('u_charmanager_', false),
+                    //'name'    => $user->lang['uc_edit_char'],
+                    //'link'    => "javascript:EditChar('".$row['myid']."')",
+                    //'img'     => 'edit.png',
+                    //'perm'    => $user->check_auth('u_charmanager_', false),
                     ),
                 1 => array(
                     'name'    => $user->lang['uc_delete_char'],
@@ -145,10 +145,10 @@ $db->free_result($result);
 // Action Menu
 	$cm_addmenu = array(
                 0 => array(
-                    'name'    => $user->lang['uc_add_char_plain'],
-                    'link'    => "javascript:AddChar()",
-                    'img'     => 'add.png',
-                    'perm'    => $user->check_auth('u_charmanager_add', false),
+                    //'name'    => $user->lang['uc_add_char_plain'],
+                    //'link'    => "javascript:AddChar()",
+                    //'img'     => 'add.png',
+                    //'perm'    => $user->check_auth('u_charmanager_add', false),
                     ),
                 1 => array(
                     'name'    => $user->lang['uc_add_char_armory'],

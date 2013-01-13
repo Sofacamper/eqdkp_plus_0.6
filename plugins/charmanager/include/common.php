@@ -5,7 +5,7 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2009-05-20 13:35:11 +0200 (Wed, 20 May 2009) $
+ * Date:        $Date: 2009-05-20 13:35:11 +0200 (Mi, 20 Mai 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann

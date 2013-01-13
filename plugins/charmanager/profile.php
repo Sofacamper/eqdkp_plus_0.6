@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * Date:        $Date: 2009-10-27 13:13:56 +0100 (Di, 27 Okt 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 12157 $
+ * @version     $Rev: 6269 $
  *
- * $Id: profile.php 12157 2012-09-30 20:05:50Z wallenium $
+ * $Id: profile.php 6269 2009-10-27 12:13:56Z wallenium $
  */
 
 // temporary variables
@@ -223,43 +223,43 @@ $sql = "SELECT ma.*, m.member_id, m.member_name, m.member_earned, m.member_spent
           $cm_alinks = array(
                 0 => array(
                     'name'    => $user->lang['uc_armorylink1'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'char'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'char', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 1 => array(
                     'name'    => $user->lang['uc_armorylink2'].' 1',
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent1'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent1', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
 								2 => array(
                     'name'    => $user->lang['uc_armorylink2'].' 2',
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent2'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'talent2', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 3 => array(
                     'name'    => $user->lang['uc_armorylink3'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'reputation'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'reputation', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
         				4 => array(
                     'name'    => $user->lang['uc_armorylink4'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'achievements'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'achievements', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 5 => array(
                     'name'    => $user->lang['uc_armorylink5'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'statistics'),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'statistics', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => true,
                     ),
                 6 => array(
                     'name'    => $user->lang['uc_armorylink6'],
-                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'guild', $CharTools->convertEncoding(stripslashes($$member['guild']))),
+                    'link'    => $armory->Link($conf['uc_server_loc'], $member['member_name'], $CharTools->convertEncoding(stripslashes($conf['uc_servername'])), 'guild', $member['guild']),
                     'img'     => 'armory.gif',
                     'perm'    => (($member['guild']) ? true : false),
                     ),
@@ -306,8 +306,8 @@ $sql = "SELECT ma.*, m.member_id, m.member_name, m.member_earned, m.member_spent
 				'TAB1_NAME1'											=> $user->lang['uc_tab_Character'],
 				'TAB1_NAME2'											=> $user->lang['uc_tab_raidinfo'],
 				'TAB1_NAME3'											=> $user->lang['uc_tab_notes'],
-				'TAB2_NAME1'											=> $user->lang['uc_tab_raids'],
-				'TAB2_NAME2'											=> $user->lang['uc_tab_items'],
+				'TAB2_NAME1'											=> $user->lang['uc_tab_items'],
+				'TAB2_NAME2'											=> $user->lang['uc_tab_raids'],
 
         'ARMORY_LINKS'	                  => ($conf['uc_showarmlink'] == 1) ? $jquery->DropDownMenu('alinks'.$row['mid'], 'actionmenu', $cm_alinks, 'plugins/charmanager/images','<img src="images/power.png" />') : '',
 				'CSSSECONDBAR'										=> $sendondbar['css'],
@@ -362,6 +362,11 @@ $sql = "SELECT ma.*, m.member_id, m.member_name, m.member_earned, m.member_spent
         'L_RAIDS_LIFETIME'                => sprintf($user->lang['raids_lifetime'],
                                                 date($user->style['date_notime_short'], $member['member_firstraid']),
                                                 date($user->style['date_notime_short'], $member['member_lastraid'])),
+        'L_ARCANE'												=> $user->lang['uc_res_arcane'],
+    		'L_FIRE'													=> $user->lang['uc_res_fire'],
+    		'L_NATURE'												=> $user->lang['uc_res_nature'],
+    		'L_FROST'													=> $user->lang['uc_res_frost'],
+    		'L_SHADOW'												=> $user->lang['uc_res_shadow'],
     		'L_LAST_5_RAIDS'									=> $user->lang['uc_last_5_raids'],
     		'L_LAST_5_ITEMS'									=> $user->lang['uc_last_5_items'],
     		'L_CLASS'													=> $user->lang['class'],

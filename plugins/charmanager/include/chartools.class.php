@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * Date:        $Date: 2009-08-13 23:33:57 +0200 (Do, 13 Aug 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 12157 $
+ * @version     $Rev: 5637 $
  * 
- * $Id: chartools.class.php 12157 2012-09-30 20:05:50Z wallenium $
+ * $Id: chartools.class.php 5637 2009-08-13 21:33:57Z wallenium $
  */
 
 class CharTools
@@ -209,17 +209,8 @@ class CharTools
     $member_id      = $db->query_first("SELECT member_id FROM __members WHERE ".$mySQLsentence);
     $isaddmember    = ( isset($member_id) && $member_id > 0 ) ? false : true;
     if(!$isaddmember){
-    	// Check if you're an admin or if the char is connected to you...
-    	if(!$user->check_auth('a_charmanager_config', false)){
-				$tmp_mine	= $db->query_first("SELECT user_id FROM __member_user WHERE member_id='{$member_id}'");
-				if($tmp_mine != $user->data['user_id']){
-					return 'not_your_char';
-				}
-			}
-    	
-    	// blabla
       $cmmember_id    = $db->query_first("SELECT member_id FROM __member_additions WHERE member_id='".$db->sql_escape($member_id)."'");
-      $isaddcmmember  = ( isset($cmmember_id) && $cmmember_id > 0 ) ? false : true;		// There's a member in DB, but might not have the data fields
+      $isaddcmmember  = ( isset($cmmember_id) && $cmmember_id > 0 ) ? false : true;
     }else{
       $isaddcmmember = $isaddmember = true;    //There's no Member ID, we should add the member..
     }
@@ -311,6 +302,14 @@ class CharTools
         
         if($conf['uc_reqconfirm'] && $isaddmember){
         	$myMemAddition['require_confirm']	= '1';
+        }
+        
+        if($conf['uc_noresisave'] != 1 || !$isImport){
+          $myMemAddition['fir']           = $this->ValueorNull($impvar['fire']);
+          $myMemAddition['nr']            = $this->ValueorNull($impvar['nature']);
+          $myMemAddition['sr']            = $this->ValueorNull($impvar['shadow']);
+          $myMemAddition['ar']            = $this->ValueorNull($impvar['arcane']);
+          $myMemAddition['frr']           = $this->ValueorNull($impvar['ice']);
         }
       }
       $query = $db->build_query($updinsert_cm, $myMemAddition);

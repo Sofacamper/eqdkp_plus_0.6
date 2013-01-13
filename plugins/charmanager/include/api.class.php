@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * Date:        $Date: 2009-08-03 22:36:07 +0200 (Mo, 03 Aug 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 12157 $
+ * @version     $Rev: 5421 $
  * 
- * $Id: api.class.php 12157 2012-09-30 20:05:50Z wallenium $
+ * $Id: api.class.php 5421 2009-08-03 20:36:07Z wallenium $
  */
 
 if ( !defined('EQDKP_INC') ){
@@ -54,6 +54,43 @@ class cmAPI
     $profiledata = array();
 		while ($memdata = $db->fetch_record($result)){
 	   	$profiledata[$memdata['member_id']] = array(
+        // Resis
+        'fire'				=> array(
+                            'name'      => $user->lang['uc_res_fire'],
+                            'data'      => $memdata['fir'],
+                            'category'  => 'Skills',
+                            'list'      => '1',
+                            'image'     => 'images/resistence/fire_resistance.gif'
+                          ),
+        'arcane'		  => array(
+                            'name'      => $user->lang['uc_res_arcane'],
+                            'data'      => $memdata['ar'],
+                            'category'  => 'Skills',
+                            'list'      => '1',
+                            'image'     => 'images/resistence/arcane_resistance.gif'
+                          ),	
+        'frost'				=> array(
+                            'name'      => $user->lang['uc_res_frost'],
+                            'data'      => $memdata['frr'],
+                            'category'  => 'Skills',
+                            'list'      => '1',
+                            'image'     => 'images/resistence/frost_resistance.gif'
+                          ),	
+        'nature'			=> array(
+                            'name'      => $user->lang['uc_res_nature'],
+                            'data'      => $memdata['nr'],
+                            'category'  => 'Skills',
+                            'list'      => '1',
+                            'image'     => 'images/resistence/nature_resistance.gif'
+                          ),	
+        'shadow'			=> array(
+                            'name'      => $user->lang['uc_res_nature'],
+                            'data'      => $memdata['sr'],
+                            'category'  => 'Skills',
+                            'list'      => '1',
+                            'image'     => 'images/resistence/shadow_resistance.gif'
+                          ),
+				
 				//  Skills
 				'skill_1'			=> array(
                             'name'      => $user->lang['uc_tab_skills'].' 1',

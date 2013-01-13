@@ -24,11 +24,11 @@ class PHPArmory
 	private $xml_timeout = 20;  // seconds to pass for timeout
 	private $user_agent  = 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.2) Gecko/20070220 Firefox/2.0.0.2';
 	protected $links		 = array(
-        						'eu'		=> 'http://eu.wowarmory.com/',
-        						'us'		=> 'http://www.wowarmory.com/',
-        						'kr'    => 'http://kr.wowarmory.com/',
-        						'cn'    => 'http://cn.wowarmory.com/',
-        						'tw'    => 'http://tw.wowarmory.com/',
+        						'eu'	=> 'http://armory.wow-castle.de/',
+        						'us'	=> 'http://armory.wow-castle.de/',
+        						'kr'	=> 'http://armory.wow-castle.de/',
+        						'cn'	=> 'http://armory.wow-castle.de/',
+        						'tw'	=> 'http://armory.wow-castle.de/',
         					);
 	private $serverlocs  = array(
                             'eu'    => 'EU',

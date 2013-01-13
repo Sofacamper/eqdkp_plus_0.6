@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2011-09-22 21:55:41 +0200 (Thu, 22 Sep 2011) $
+ * Date:        $Date: 2009-08-13 23:33:57 +0200 (Do, 13 Aug 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 11314 $
+ * @version     $Rev: 5637 $
  * 
- * $Id: updateprofile.php 11314 2011-09-22 19:55:41Z wallenium $
+ * $Id: updateprofile.php 5637 2009-08-13 21:33:57Z wallenium $
  */
  
 define('EQDKP_INC', true);
@@ -26,10 +26,7 @@ if(!$in->get('cron') == 'true'){
 }
 
 $ucdb = new AdditionalDB('charmanager_config');
-$armory = new bnet_armory($conf['uc_server_loc'], 'de_de');
-if($_HMODE){
-	$armory->setSettings(array('apiKeyPrivate'=>$bnetapi_private, 'apiKeyPublic'=>$bnetapi_public));
-}
+$armory = new ArmoryChars("вов");
 
 $sql = "SELECT member_name FROM __members ORDER BY member_name";
 $members = array();
@@ -44,12 +41,12 @@ if($in->get('actual',0) < $in->get('count',0)){
 	$nextcount 		= $in->get('actual',0)+1;
 	$actualcount	= $in->get('actual',0);
 	//Load the Armory Data
-	$chardata = $armory->character($members[$actualcount], stripslashes($conf['uc_servername']), true);
-	$errorornot = (isset($chardata['status'])) ? false : true;
-
+	$xml_data = $armory->GetCharacterData($members[$actualcount],stripslashes($conf['uc_servername']),$conf['uc_server_loc'], 'de_de');
+	$arm_data = $armory->BuildMemberArray($xml_data[0], $conf['uc_server_loc']);
+	
 	// Show the Char icon
 	$myOutput = '';
-	if($errorornot){
+	if(is_array($arm_data)){
 		echo "<script type='text/javascript'>
 		function replace_img(){
       if (load_img.complete) {
@@ -58,20 +55,22 @@ if($in->get('actual',0) < $in->get('count',0)){
       } 
     } 
 		load_img = new Image();
-		load_img.src = '".$armory->characterIcon($chardata)."';
+		load_img.src = '{$arm_data['ac_charicon']}';
 		timerid = setInterval('replace_img()', 500);
 		</script>";
 
-		$myOutput .= '<img src="'.$armory->characterIcon($chardata).'" name="char_icon" alt="icon" width="44px" height="44px" align="middle"/> ';
+		$myOutput .= '<img src="'.$arm_data['ac_charicon'].'" name="char_icon" alt="icon" width="44px" height="44px" align="middle"/> ';
 	}
 	
 	$myOutput .= '('.($actualcount+1).'/'.$in->get('count',0).') ';
-
-	if($errorornot){
-		$myOutput  .= $members[$actualcount].' ['.$user->lang['uc_lastupdate'].': '.date('d.m.Y', ($chardata['lastModified']/ 1000)).']';
+	if(is_array($arm_data)){
+		$myOutput  .= $members[$actualcount].' ['.$user->lang['uc_lastupdate'].': '.date('d.m.Y', $armory->Date2Timestamp($arm_data['lastmodified'])).']';
 		$skipme			= false;
+  }elseif($arm_data == 'old_char'){
+		$myOutput  .= $members[$actualcount].': <span style="color:orange">'.$user->lang['uc_notyetupdated'].'</span>';
+		$skipme 		= true;
 	}else{
-		$myOutput  .= $members[$actualcount].': <span style="color:red">'.$chardata['reason'].'</span>';
+		$myOutput  .= $members[$actualcount].': <span style="color:red">'.$user->lang['uc_noprofile_found'].'</span>';
 		$skipme 		= true;
 	}
 	
@@ -85,37 +84,51 @@ if($in->get('actual',0) < $in->get('count',0)){
   	if(!$isindatabase or $isindatabase == 0 or $isindatabase == '0'){
   		$myOutput  .= $members[$actualcount].': <span style="color:red">'.$user->lang['uc_error_with_id'].'</span>';
   	}else{
-		$dataarray = array(
-			'member_name'		=> $members[$actualcount],
-			'member_id'			=> $isindatabase,
-			'member_race_id'	=> $armory->ConvertID($chardata['race'], 'int', 'races'),
-			'member_class_id'	=> $armory->ConvertID($chardata['class'], 'int', 'classes'),
-			'member_level'		=> (isset($chardata['level'])) ? $chardata['level'] : 0,
-			'gender'			=> ($chardata['gender'] == 1) ? 'Female' : 'Male',
-			#'faction'			=> ($arm_data['factionid'] == 1) ? 'Horde' : 'Alliance',
-			'guild'				=> $CharTools->convertEncoding($chardata['guild']['name'], 'decode'),
-			'last_update'		=> ($chardata['lastModified']/ 1000),
-
-			'skill_1'			=> ($chardata['talents'][0]['trees'][0]['total'] > 0) ? $chardata['talents'][0]['trees'][0]['total'] : 0,
-			'skill_2'			=> ($chardata['talents'][0]['trees'][1]['total'] > 0) ? $chardata['talents'][0]['trees'][1]['total'] : 0,
-			'skill_3'			=> ($chardata['talents'][0]['trees'][2]['total'] > 0) ? $chardata['talents'][0]['trees'][2]['total'] : 0,
-
-			'health_bar'		=> $chardata['stats']['health'],
-			'second_bar'		=> $chardata['stats']['power'],
-			'second_name'		=> $chardata['stats']['powerType'],
-			'prof1_value'		=> ($chardata['professions']['primary'][0]['rank']) ? $chardata['professions']['primary'][0]['rank'] : '',
-			'prof1_name'		=> ($chardata['professions']['primary'][0]['name']) ? $CharTools->convertEncoding($chardata['professions']['primary'][0]['name'], 'decode') : '',
-			'prof2_value'		=> ($chardata['professions']['primary'][1]['rank']) ? $chardata['professions']['primary'][1]['rank'] : '',
-			'prof2_name'		=> ($chardata['professions']['primary'][1]['name']) ? $CharTools->convertEncoding($chardata['professions']['primary'][1]['name'], 'decode') : '',
-		);
-
-		// Skill tree 2 / DualSpec
-		$dataarray['skill2_1'] = ($chardata['talents'][1]['trees'][0]['total'] > 0) ? $chardata['talents'][1]['trees'][0]['total'] : 0;
-		$dataarray['skill2_2'] = ($chardata['talents'][1]['trees'][1]['total'] > 0) ? $chardata['talents'][1]['trees'][1]['total'] : 0;
-		$dataarray['skill2_3'] = ($chardata['talents'][1]['trees'][2]['total'] > 0) ? $chardata['talents'][1]['trees'][2]['total'] : 0;
-
-		echo $myOutput;
-	  	if($errorornot){
+  		echo $myOutput; $iii=1; $profarry = array();
+	  	if(is_array($arm_data)){
+	    	foreach($arm_data['professions']->children() as $professions){
+	        $profarry[$iii]['name'] 	= $professions['key'];
+	        $profarry[$iii]['value'] 	= $professions['value'];
+	        $iii++;
+	      }
+	    }
+	  	
+	  	$dataarray = array(
+	  										'member_name'			=> $members[$actualcount],
+	  										'member_id'				=> $isindatabase,
+	  										'member_race_id'	=> $armory->ValueorNull($arm_data['race_eqdkp']),
+	  										'member_class_id'	=> $armory->ValueorNull($arm_data['class_eqdkp']),
+	  										'member_level'		=> $armory->ValueOrNull($arm_data['level']),
+	  										'gender'					=> ($arm_data['genderid'] == 1) ? 'Female' : 'Male',
+	  										'faction'					=> ($arm_data['factionid'] == 1) ? 'Horde' : 'Alliance',
+	  										'guild'						=> $CharTools->convertEncoding($arm_data['guildname'], 'decode'),
+	  										'last_update'			=> $armory->Date2Timestamp($arm_data['lastmodified']),
+	  										
+	  										'skill_1'					=> $armory->ValueOrNull($arm_data['spec1']['treeOne']),
+	  										'skill_2'					=> $armory->ValueOrNull($arm_data['spec1']['treeTwo']),
+	  										'skill_3'					=> $armory->ValueOrNull($arm_data['spec1']['treeThree']),
+	  										
+	  										'health_bar'			=> $arm_data['characterbars']->health['effective'],
+	  										'second_bar'			=> $arm_data['characterbars']->secondBar['effective'],
+	  										'second_name'			=> $arm_data['characterbars']->secondBar['type'],
+	  										'prof1_value'			=> ($profarry[1]['value']) ? $profarry[1]['value'] : '',
+	  										'prof1_name'			=> ($profarry[1]['name']) ? $CharTools->convertEncoding($profarry[1]['name'], 'decode') : '',
+	  										'prof2_value'			=> (count($profarry) == 2) ? $profarry[2]['value'] : '',
+	  										'prof2_name'			=> (count($profarry) == 2) ? $CharTools->convertEncoding($profarry[2]['name'], 'decode') : '',
+	  										
+	      	              'fire'						=> $armory->ValueOrNull($arm_data['resistances']->fire['value']),
+	    									'nature'					=> $armory->ValueOrNull($arm_data['resistances']->nature['value']),
+	    									'shadow'					=> $armory->ValueOrNull($arm_data['resistances']->shadow['value']),
+	    									'arcane'					=> $armory->ValueOrNull($arm_data['resistances']->arcane['value']),
+	    									'frost'					  => $armory->ValueOrNull($arm_data['resistances']->frost['value']),
+	      	               );
+				
+				// Skill tree 2 / DualSpec
+				$dataarray['skill2_1'] = ($arm_data['dualspec']) ? $armory->ValueOrNull($arm_data['spec2']['treeOne']) : '0';
+				$dataarray['skill2_2'] = ($arm_data['dualspec']) ? $armory->ValueOrNull($arm_data['spec2']['treeTwo']): '0';
+				$dataarray['skill2_3'] = ($arm_data['dualspec']) ? $armory->ValueOrNull($arm_data['spec2']['treeThree']): '0';
+	    	                
+	  	if(is_array($arm_data)){
 	  		$CharTools->updateChar($isindatabase, '', $dataarray, true);
 	    }
 		} // end of null member id check

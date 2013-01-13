@@ -4,50 +4,19 @@
  * Link:	http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2012-09-30 22:05:50 +0200 (Sun, 30 Sep 2012) $
+ * Date:        $Date: 2009-09-24 18:28:21 +0200 (Do, 24 Sep 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 12157 $
+ * @version     $Rev: 5940 $
  * 
- * $Id: changelog.txt 12157 2012-09-30 20:05:50Z wallenium $
+ * $Id: changelog.txt 5940 2009-09-24 16:28:21Z wallenium $
  */
 
 Changelog
 --------------------------------------------------------------------------------------------------
-
-1.7.0 [09/30/2012]
-  removed residences for world of warcraft as it is not longer used
-  added mandarin & monk
-
-
-1.6.0 [09/22/2011]
-  removed residences for world of warcraft as it is not longer used
-  get import & update to work with the new battle net wow API. its a workaround, bad coding! but it seems to work for now until 0.7 is released
-
-1.5.7 [12/20/2010]
-  fixed some errors with the armory move to battle.net
-
-1.5.6 [08/09/2010]
-  Bug #1861	Updating chars from armory not working
-  Bug #1860	Saving of updated chars not working if not an admin
-  Bug #1863	Wrong Output of text in the cronjob
-
-1.5.5 [08/01/2010]
-  Bug #1855  	Import of members not working if user is not an admin
-
-1.5.4 [06/30/2010]
-  Bug #1831  	Permissions on armory import not working as intended
-  Bug #1832  	User can overwrite existing chars by adding a new one
-
-1.5.3 [03/12/2010]
-  Fixed - [#1770] changed tab names in profile view
-
-1.5.2 [12/20/2009]
-  Fixed - [#1728] Fixed missing skill &amp; race icons in charlist
-
 1.5.1 [09/24/2009]
   Fixed - [#1598] Import existing Char updates the wrong one
   Fixed - [#1599] profile links not working for members with special chars

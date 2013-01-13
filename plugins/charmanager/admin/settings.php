@@ -5,15 +5,15 @@
  * Link:		    http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
  * Began:       2006
- * Date:        $Date: 2011-09-22 21:22:48 +0200 (Thu, 22 Sep 2011) $
+ * Date:        $Date: 2009-08-17 16:46:58 +0200 (Mo, 17 Aug 2009) $
  * -----------------------------------------------------------------------
  * @author      $Author: wallenium $
  * @copyright   2005-2008 Simon (Wallenium) Wallmann
  * @link        http://eqdkp-plus.com
  * @package     charmanager
- * @version     $Rev: 11311 $
+ * @version     $Rev: 5703 $
  * 
- * $Id: settings.php 11311 2011-09-22 19:22:48Z wallenium $
+ * $Id: settings.php 5703 2009-08-17 14:46:58Z wallenium $
  */
 
 // EQdkp required files/vars
@@ -43,6 +43,7 @@ if ($in->get('issavebu', false)){
 			'uc_lockserver'			=> $in->get('uc_lockserver'),
 			'uc_server_loc'			=> $in->get('uc_server_loc'),
 			'uc_showarmlink'		=> $in->get('uc_showarmlink'),
+			'uc_noresisave'			=> $in->get('uc_noresisave'),
 			'uc_lphideresi'     => $in->get('uc_lphideresi'),
 			'uc_defaultrank'		=> $in->get('uc_defaultrank'),
 			'uc_reqconfirm'			=> $in->get('uc_reqconfirm'),
@@ -107,6 +108,7 @@ $tpl->assign_vars(array(
       'USE_UPDATECH'    => $wpfcdb->isChecked($conf['uc_updtcheck_on']),
       'LOCK_SERVERFLD'	=> $wpfcdb->isChecked($conf['uc_lockserver']),
       'SHOW_ARM_LINK'		=> $wpfcdb->isChecked($conf['uc_showarmlink']),
+      'NO_RESISAVE'			=> $wpfcdb->isChecked($conf['uc_noresisave']),
       'LP_HIDERESI'			=> $wpfcdb->isChecked($conf['uc_lphideresi']),
       'REQCONFIRM'			=> $wpfcdb->isChecked($conf['uc_reqconfirm']),
       'SERVERNAME'      => stripslashes($conf['uc_servername']),
